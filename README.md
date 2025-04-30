@@ -1,1 +1,1 @@
-# seekconnect
+// Placeholder for README.md
