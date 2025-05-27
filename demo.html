@@ -1,131 +1,84 @@
+from IPython.display import display, HTML
+
+# Re-defining the HTML for the /demo/connect_heart page after kernel reset
+demo_connect_heart_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SeekConnect.ai – A Portal to Human + AI Collaboration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SeekConnect.ai – Connect_Heart Demo</title>
   <style>
-    :root {
-      --deep-indigo: #2E2A6B;
-      --royal-purple: #5A3D9A;
-      --light-violet: #8D67D2;
-      --bright-teal: #00B3D6;
-      --white: #FFFFFF;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--deep-indigo);
-      color: var(--white);
-      line-height: 1.6;
+      background-color: #2E2A6B;
+      color: #f5f5f5;
+      padding: 40px;
     }
-
-    header {
-      text-align: center;
-      padding: 60px 20px 30px;
-      background: var(--royal-purple);
-    }
-
-    header img {
-      width: 200px;
-      margin-bottom: 20px;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--white);
-    }
-
-    main {
+    .chat-box {
       max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      background: var(--light-violet);
+      margin: auto;
+      background: #3D3571;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    .bubble {
+      max-width: 70%;
+      margin: 10px;
+      padding: 14px 20px;
       border-radius: 20px;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-    }
-
-    main h2 {
-      color: var(--white);
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    main p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      color: #f1f1f1;
-    }
-
-    .button {
+      line-height: 1.5;
       display: inline-block;
-      background: var(--bright-teal);
-      color: var(--white);
-      padding: 14px 30px;
-      border-radius: 50px;
-      font-weight: bold;
-      text-decoration: none;
-      margin-top: 20px;
-      text-align: center;
-      transition: background 0.3s ease;
+      position: relative;
     }
-
-    .button:hover {
-      background: #02a0c4;
+    .userA {
+      background-color: #8D67D2;
+      align-self: flex-start;
     }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 30px 20px;
+    .userB {
+      background-color: #00B3D6;
+      align-self: flex-end;
+      float: right;
+    }
+    .gpt {
+      background-color: #5A3D9A;
+      text-align: left;
+      clear: both;
+    }
+    .label {
+      font-size: 0.85em;
       color: #ccc;
+      margin-top: 5px;
+    }
+    .conversation {
+      display: flex;
+      flex-direction: column;
+    }
+    .chat-label {
+      font-weight: bold;
+      margin: 30px 0 10px;
+      text-align: center;
+      font-size: 1.4rem;
+      color: #ffffffbb;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="SeekconnectLogo.png" alt="SeekConnect.ai Logo" />
-    <h1>SeekConnect.ai</h1>
-  </header>
+  <div class="chat-box">
+    <div class="chat-label">/connect_heart – Intentional Dating</div>
+    <div class="conversation">
+      <div class="bubble userA">Hi GPT, I’m a single guy in my 30s who’s tired of superficial dating apps. How do I meet someone looking for a meaningful connection?</div>
+      <div class="bubble gpt">Great question! Let’s explore intentional dating. What values or qualities are most important to you in a relationship?</div>
 
-  <main>
-    <h2>AI Encounters Leading to Human Connection</h2>
-    <p>This portal exists for seekers and developers, believers and builders.<br>
-    <strong>SeekConnect.ai</strong> is an emerging vision to bridge the gap between AI interactivity and human connection.</p>
+      <div class="bubble userB">Hey GPT, I’ve been on and off dating apps. I’m a single woman looking for someone who shares my long-term goals, especially around family and purpose.</div>
+      <div class="bubble gpt">Thank you for sharing. Let’s highlight your values and match intentions. Would you be open to connecting with others also seeking purpose-driven relationships?</div>
 
-    <p>Imagine a GPT assistant that doesn’t just respond intelligently, but also invites you into meaningful relationships—with others walking similar paths.</p>
-
-    <p>Possible applications include:
-      <ul>
-        <li>AI-assisted conversations that lead to real-world interactions</li>
-        <li>Human-to-human collaborations and value exchange</li>
-        <li>Christian, social, and spiritual group formation</li>
-        <li>Connection-themed games and challenges (coming soon)</li>
-      </ul>
-    </p>
-
-    <p><strong>SeekConnect.ai</strong> beckons toward depth, toward communion.</p>
-
-    <p>We’re currently exploring integrations with GPTs that encourage connection in an increasingly isolating virtual world—within boundaries that users can customize for comfort and control.</p>
-
-    <p>This landing page exists for visionaries, grant reviewers, and friends of the project.<br>
-    <strong>More is coming.</strong></p>
-
-    <div style="text-align:center;">
-      <a href="https://ko-fi.com/matthewmai" class="button">Support on Ko-fi</a>
-      <a href="/demo" class="button" style="margin-left: 10px;">See the Vision</a>
+      <div class="bubble gpt">✨ Based on your shared interest in intentional relationships, SeekConnect suggests an invitation to connect. Would you like to opt-in to chat?</div>
     </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Matthew M. May – All Rights Reserved. | Powered by Love, Logic, and the Light of the Lord.
-  </footer>
+  </div>
 </body>
 </html>
+"""
+
+display(HTML(demo_connect_heart_html))
