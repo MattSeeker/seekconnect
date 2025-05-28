@@ -2,147 +2,231 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SeekConnect.ai | Styled Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeekConnect.ai – Vision Demo</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
-
-    body {
-      margin: 0;
-      background: linear-gradient(to bottom right, #0d0d2b, #1a1a40, #0f0f2c);
-      color: #f0f0f0;
-      font-family: 'Source Code Pro', monospace;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
+    :root {
+      --deep-indigo: #2E2A6B;
+      --royal-purple: #5A3D9A;
+      --light-violet: #8D67D2;
+      --bright-teal: #00B3D6;
+      --white: #FFFFFF;
     }
 
-    .container {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0, 200, 255, 0.1);
-      padding: 30px;
-      width: 90%;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--deep-indigo);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: var(--royal-purple);
+    }
+
+    header img {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--white);
+    }
+
+    main {
       max-width: 800px;
-      backdrop-filter: blur(8px);
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: var(--light-violet);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    }
+
+    main h2 {
+      color: var(--white);
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .demo-container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      min-height: 400px;
     }
 
     .typing {
       white-space: pre-wrap;
       font-size: 1rem;
       line-height: 1.6;
-      border-right: 2px solid #00c8ff;
+      color: #f1f1f1;
+      border-right: 2px solid var(--bright-teal);
       animation: blink-caret 0.75s step-end infinite;
-      min-height: 400px;
+      min-height: 350px;
     }
 
     .button {
-      display: block;
-      margin: 30px auto 0;
-      padding: 12px 24px;
-      background-color: #00c8ff;
-      color: #0f0f2c;
+      display: inline-block;
+      background: var(--bright-teal);
+      color: var(--white);
+      padding: 14px 30px;
       border: none;
-      border-radius: 8px;
+      border-radius: 50px;
       font-weight: bold;
-      cursor: pointer;
+      text-decoration: none;
+      margin: 20px auto;
+      text-align: center;
       transition: background 0.3s ease;
+      cursor: pointer;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .button:hover {
-      background-color: #009fcc;
+      background: #02a0c4;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      color: #ccc;
     }
 
     @keyframes blink-caret {
       from, to { border-color: transparent; }
-      50% { border-color: #00c8ff; }
+      50% { border-color: var(--bright-teal); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="demo" class="typing"></div>
-    <button class="button" onclick="nextScenario()">Next Scenario</button>
-  </div>
+  <header>
+    <img src="SeekconnectLogo.png" alt="SeekConnect.ai Logo" />
+    <h1>SeekConnect.ai</h1>
+  </header>
+
+  <main>
+    <h2>Vision Demo: AI-Assisted Human Connection</h2>
+    
+    <div class="demo-container">
+      <div id="demo" class="typing"></div>
+    </div>
+
+    <div class="button-container">
+      <button class="button" onclick="nextScenario()">Next Scenario</button>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/index.html" class="button">← Back to Home</a>
+      <a href="https://ko-fi.com/matthewmai" class="button">Support on Ko-fi</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Matthew M. May – All Rights Reserved. | Powered by <strong>Logós</strong> / <strong>Phṓs</strong> / <strong>Agápē</strong>.
+  </footer>
 
   <script>
     const scenarios = [
 `👤 Name: Alex  ✅ Open to Connect
-"I’ve been feeling like nobody really gets how much I care about music. I make stuff in my garage, but it’s mostly for me. I wish I could talk to someone who gets it — not just 'likes' online."
+"I've been feeling like nobody really gets how much I care about music. I make stuff in my garage, but it's mostly for me. I wish I could talk to someone who gets it — not just 'likes' online."
 
 🤖 GPT:
-"That’s a powerful way to describe how art wants to be witnessed, Alex. It’s not about praise — it’s about resonance."
+"That's a powerful way to describe how art wants to be witnessed, Alex. It's not about praise — it's about resonance."
 
 👤 Name: Morgan  ✅ Open to Connect
-"Honestly, I’m just tired of small talk. I want to find people who still care about anything real. Like, music, stories, family… even silence."
+"Honestly, I'm just tired of small talk. I want to find people who still care about anything real. Like, music, stories, family… even silence."
 
 🤖 GPT to Morgan:
 "Morgan, I see you are Open to Connect (OTC). I recently spoke with another user who shared how important music and meaningful connection is to them. Would you like me to make outreach to Alex?"`,
 
 `👤 Name: Sam  ✅ Open to Connect
-"I’ve been studying scripture alone lately. I miss those moments when someone would say something and it just *clicked*. I’d love to find that again."
+"I've been studying scripture alone lately. I miss those moments when someone would say something and it just *clicked*. I'd love to find that again."
 
 🤖 GPT:
-"Those shared moments of insight are sacred, Sam. They show up more often when we’re walking with others."
+"Those shared moments of insight are sacred, Sam. They show up more often when we're walking with others."
 
 👤 Name: Evelyn  ✅ Open to Connect
-"I keep asking questions about faith, not because I’m doubting but because I want to go deeper. I think community helps with that."
+"I keep asking questions about faith, not because I'm doubting but because I want to go deeper. I think community helps with that."
 
 🤖 GPT to Evelyn:
 "Evelyn, I see you are Open to Connect (OTC). I recently spoke with another user who longs for shared moments of spiritual insight. Would you like me to make outreach to Sam?"`,
 
 `👤 Name: Jordan  ✅ Open to Connect
-"I’ve spent most of my life building teams. I’d like to share what I’ve learned — not in a show-off way, but to actually help someone grow."
+"I've spent most of my life building teams. I'd like to share what I've learned — not in a show-off way, but to actually help someone grow."
 
 🤖 GPT:
-"That’s generous, Jordan. Good mentors don’t give answers — they ask the right questions."
+"That's generous, Jordan. Good mentors don't give answers — they ask the right questions."
 
 👤 Name: Mia  ✅ Open to Connect
-"I have the drive, but not the map. I just wish someone could help me avoid the mistakes I don’t even know I’m making yet."
+"I have the drive, but not the map. I just wish someone could help me avoid the mistakes I don't even know I'm making yet."
 
 🤖 GPT to Mia:
-"Mia, I see you are Open to Connect (OTC). I recently spoke with another user who’s eager to share their experience and help someone grow. Would you like me to make outreach to Jordan?"`,
+"Mia, I see you are Open to Connect (OTC). I recently spoke with another user who's eager to share their experience and help someone grow. Would you like me to make outreach to Jordan?"`,
 
 `👤 Name: Daniel  ✅ Open to Connect
-"My writing is where I work things out. It’s personal, raw. I want to connect with someone who isn’t afraid to go there too."
+"My writing is where I work things out. It's personal, raw. I want to connect with someone who isn't afraid to go there too."
 
 🤖 GPT:
-"Writing can be a sacred mirror, Daniel. It reflects what we often can’t say out loud."
+"Writing can be a sacred mirror, Daniel. It reflects what we often can't say out loud."
 
 👤 Name: Zoe  ✅ Open to Connect
-"I don’t care if it’s painting or poetry — if it’s real, it matters. I’m looking for someone who can share the vulnerable stuff."
+"I don't care if it's painting or poetry — if it's real, it matters. I'm looking for someone who can share the vulnerable stuff."
 
 🤖 GPT to Zoe:
 "Zoe, I see you are Open to Connect (OTC). I recently spoke with another user who pours their heart into their creative work. Would you like me to make outreach to Daniel?"`,
 
 `👤 Name: Marcus  ✅ Open to Connect
-"Life’s been heavy lately. I just want to meet someone I can laugh with again — not perform, just enjoy."
+"Life's been heavy lately. I just want to meet someone I can laugh with again — not perform, just enjoy."
 
 🤖 GPT:
 "Sometimes laughter is the most honest kind of healing, Marcus. It opens us up again."
 
 👤 Name: Isabel  ✅ Open to Connect
-"My favorite friendships started with something silly. I think joy is a sacred thing, and we don’t share it enough."
+"My favorite friendships started with something silly. I think joy is a sacred thing, and we don't share it enough."
 
 🤖 GPT to Isabel:
-"Isabel, I see you are Open to Connect (OTC). I recently spoke with another user who’s longing to rediscover joy through real connection. Would you like me to make outreach to Marcus?"`,
+"Isabel, I see you are Open to Connect (OTC). I recently spoke with another user who's longing to rediscover joy through real connection. Would you like me to make outreach to Marcus?"`,
 
 `👤 Name: Theo  ✅ Open to Connect
-"I’m pivoting careers right now. Trying to make sure the next chapter actually *means* something. I’d like to meet others doing the same."
+"I'm pivoting careers right now. Trying to make sure the next chapter actually *means* something. I'd like to meet others doing the same."
 
 🤖 GPT:
 "Transitions are powerful teachers, Theo. Purpose has a way of clarifying in motion."
 
 👤 Name: Naomi  ✅ Open to Connect
-"I left my last job because it wasn’t aligned. I’m trying to build something that matters — even if it’s small."
+"I left my last job because it wasn't aligned. I'm trying to build something that matters — even if it's small."
 
 🤖 GPT to Naomi:
-"Naomi, I see you are Open to Connect (OTC). I recently spoke with another user who’s also searching for purposeful work. Would you like me to make outreach to Theo?"`,
+"Naomi, I see you are Open to Connect (OTC). I recently spoke with another user who's also searching for purposeful work. Would you like me to make outreach to Theo?"`,
 
 `👤 Name: Caleb  ✅ Open to Connect
 "I find myself asking big questions at random times — like in the grocery line. Is anyone else like that?"
 
 🤖 GPT:
-"You’re wired for wonder, Caleb. Don’t silence it — let it guide you."
+"You're wired for wonder, Caleb. Don't silence it — let it guide you."
 
 👤 Name: Sofia  ✅ Open to Connect
 "I journal about weird things like time and consciousness. But I also binge cooking shows. I'm looking for a friend who gets both sides."
