@@ -1,84 +1,96 @@
+# The assistant will now generate and present the animated HTML demo code for SeekConnect.ai
 from IPython.display import display, HTML
 
-# Re-defining the HTML for the /demo/connect_heart page after kernel reset
-demo_connect_heart_html = """
+animated_demo_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SeekConnect.ai – Connect_Heart Demo</title>
+  <title>SeekConnect.ai – Demo</title>
   <style>
     body {
+      background-color: #1e1e3f;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #2E2A6B;
-      color: #f5f5f5;
+      color: #fff;
       padding: 40px;
     }
-    .chat-box {
-      max-width: 800px;
-      margin: auto;
-      background: #3D3571;
-      border-radius: 10px;
+    h1 {
+      text-align: center;
+      color: #00B3D6;
+      margin-bottom: 40px;
+    }
+    .chat-container {
+      max-width: 600px;
+      margin: 0 auto 60px auto;
+      background: #2e2a6b;
       padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
-    .bubble {
-      max-width: 70%;
-      margin: 10px;
-      padding: 14px 20px;
-      border-radius: 20px;
-      line-height: 1.5;
-      display: inline-block;
-      position: relative;
+    .message {
+      margin: 15px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
     }
-    .userA {
-      background-color: #8D67D2;
-      align-self: flex-start;
+    .message.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .userB {
-      background-color: #00B3D6;
-      align-self: flex-end;
-      float: right;
+    .user {
+      color: #8D67D2;
+      font-weight: bold;
     }
     .gpt {
-      background-color: #5A3D9A;
-      text-align: left;
-      clear: both;
-    }
-    .label {
-      font-size: 0.85em;
-      color: #ccc;
-      margin-top: 5px;
-    }
-    .conversation {
-      display: flex;
-      flex-direction: column;
-    }
-    .chat-label {
+      color: #00B3D6;
       font-weight: bold;
-      margin: 30px 0 10px;
-      text-align: center;
-      font-size: 1.4rem;
-      color: #ffffffbb;
     }
   </style>
 </head>
 <body>
-  <div class="chat-box">
-    <div class="chat-label">/connect_heart – Intentional Dating</div>
-    <div class="conversation">
-      <div class="bubble userA">Hi GPT, I’m a single guy in my 30s who’s tired of superficial dating apps. How do I meet someone looking for a meaningful connection?</div>
-      <div class="bubble gpt">Great question! Let’s explore intentional dating. What values or qualities are most important to you in a relationship?</div>
 
-      <div class="bubble userB">Hey GPT, I’ve been on and off dating apps. I’m a single woman looking for someone who shares my long-term goals, especially around family and purpose.</div>
-      <div class="bubble gpt">Thank you for sharing. Let’s highlight your values and match intentions. Would you be open to connecting with others also seeking purpose-driven relationships?</div>
+  <h1>SeekConnect.ai – Animated Demo</h1>
 
-      <div class="bubble gpt">✨ Based on your shared interest in intentional relationships, SeekConnect suggests an invitation to connect. Would you like to opt-in to chat?</div>
-    </div>
+  <div class="chat-container" id="demo1">
+    <div class="message user">User A (OTC): What’s the best way to open a chess game?</div>
+    <div class="message gpt">GPT: The most popular openings include the Ruy López, Queen’s Gambit, and Sicilian Defense.</div>
+    <div class="message user">User B (OTC): What’s the most important piece in chess?</div>
+    <div class="message gpt">GPT: While the king is essential, the queen is the most powerful strategically.</div>
+    <div class="message gpt">GPT: You both seem interested in chess strategy. Would you like to play a live game together?</div>
   </div>
+
+  <div class="chat-container" id="demo2">
+    <div class="message user">User A (OTC): Who is the apostle that Jesus loved?</div>
+    <div class="message gpt">GPT: That would be John, often referred to as “the beloved disciple.”</div>
+    <div class="message user">User B (OTC): What does John 1:1 mean?</div>
+    <div class="message gpt">GPT: It introduces Jesus as the divine Word – the eternal logos present with God from the beginning.</div>
+    <div class="message gpt">GPT: Would you both be open to joining a virtual Bible study group together?</div>
+  </div>
+
+  <div class="chat-container" id="demo3">
+    <div class="message user">User A (OTC): I’ve just sold my actuarial business. I want to mentor someone new.</div>
+    <div class="message gpt">GPT: That’s wonderful! Mentorship can be incredibly impactful.</div>
+    <div class="message user">User B (OTC): I just earned my actuarial science degree and could use a mentor.</div>
+    <div class="message gpt">GPT: Would you like to meet for a mentorship introduction session?</div>
+  </div>
+
+  <script>
+    const containers = document.querySelectorAll('.chat-container');
+
+    containers.forEach((container, index) => {
+      const messages = container.querySelectorAll('.message');
+      messages.forEach((msg, i) => {
+        setTimeout(() => {
+          msg.classList.add('visible');
+        }, 2000 * (i + index * 6));
+      });
+    });
+  </script>
+
 </body>
 </html>
 """
 
-display(HTML(demo_connect_heart_html))
+# Display raw HTML output for preview
+display(HTML(animated_demo_html))
