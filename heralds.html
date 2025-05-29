@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="/styles.css" />
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: #0f172a;
-      color: #e2e8f0;
+      color: #f8fafc;
       margin: 0;
       padding: 2rem;
     }
@@ -18,28 +18,48 @@
       margin-bottom: 3rem;
     }
     h1 {
-      font-size: 2.5rem;
-      color: #facc15;
+      font-size: 2.75rem;
+      color: #ffffff;
+      font-weight: 700;
     }
     h2 {
-      font-size: 1.8rem;
-      color: #a5f3fc;
-      margin-top: 2.5rem;
+      font-size: 1.5rem;
+      color: #38bdf8;
+      margin-top: 2rem;
+      font-weight: 600;
     }
     .section {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto 2rem auto;
-      padding: 1.5rem;
+      padding: 2rem;
       background-color: #1e293b;
-      border-radius: 0.75rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
     blockquote {
       font-style: italic;
       color: #cbd5e1;
-      border-left: 4px solid #94a3b8;
+      border-left: 4px solid #64748b;
       padding-left: 1rem;
       margin: 1rem 0;
+    }
+    .btn-back {
+      display: inline-block;
+      margin: 3rem auto 0;
+      text-align: center;
+      background-color: #6366f1;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .btn-back:hover {
+      background-color: #4f46e5;
+    }
+    .btn-container {
+      text-align: center;
     }
   </style>
 </head>
@@ -83,5 +103,8 @@
     </blockquote>
   </div>
 
+  <div class="btn-container">
+    <a href="/" class="btn-back">Back to SeekConnect Home</a>
+  </div>
 </body>
 </html>
