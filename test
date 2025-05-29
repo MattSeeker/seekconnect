@@ -1,192 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Your metadata and stylesheets are already complete and mobile-optimized -->
+</head>
+<body>
+  <!-- Full background animation layer -->
+  <div class="bg-animation">
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+  </div>
 
-const scenarios = [
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "I just learned the Italian Game. Can you walk me through a basic chess opening strategy?"
-      },
-      {
-        type: 'ai',
-        text: "Sure! Start with e4 e5, then Nf3 Nc6, followed by Bc4. That’s the core of the Italian Game. Watch out for early forks or the Fried Liver Attack."
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I keep losing in the first few moves when I play chess online. Can you help me figure out what I’m doing wrong?"
-      },
-      {
-        type: 'ai',
-        text: "Absolutely. We can look at common beginner traps and better opening setups.",
-        suggestion: "Would you like to connect with User 1? They’re also learning the Italian Game and might enjoy comparing ideas with you."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "How do I write a message asking someone to mentor me without sounding awkward?"
-      },
-      {
-        type: 'ai',
-        text: "Try something honest and clear like: 'I really admire your work. Would you be open to sharing some advice as I grow in this space?'"
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I want a mentor, but I feel weird reaching out. What’s a good way to break the ice?"
-      },
-      {
-        type: 'ai',
-        text: "You could start with appreciation and curiosity. That usually makes it feel natural.",
-        suggestion: "Would you like to connect with User 1? They're also looking for mentorship and just worked on their message."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "Can you explain what 'faith without works is dead' means in James 2?"
-      },
-      {
-        type: 'ai',
-        text: "It means that true faith naturally expresses itself through action. It’s not about earning salvation but demonstrating belief through how we live."
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I want to lead a Bible study on grace and works. Can you help me organize it?"
-      },
-      {
-        type: 'ai',
-        text: "Sure! You could structure it with James 2, Romans 4, and Ephesians 2 to explore both perspectives.",
-        suggestion: "Would you like to connect with User 1? They're also exploring this passage and might be a great Bible study partner."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "Help me write a short job post for a junior front-end developer who wants to learn fast."
-      },
-      {
-        type: 'ai',
-        text: "Try something like: 'We’re a small, fast-moving team looking for a junior front-end dev who’s curious, coachable, and excited to build meaningful products.'"
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I'm looking for a small company where I can grow and get mentored. How do I say that in a message to a hiring manager?"
-      },
-      {
-        type: 'ai',
-        text: "You can say: 'I’m eager to grow with a team that values learning. I’m looking for a place where I can contribute while building real skills.'",
-        suggestion: "Would you like to connect with User 1? They're hiring someone with exactly that mindset."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "What’s a good first message on a dating app that’s actually meaningful?"
-      },
-      {
-        type: 'ai',
-        text: "Try asking about something specific in their profile. Like, 'You mentioned hiking — any favorite local spots?'"
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I want to connect with someone for something real, but I’m tired of surface-level conversations."
-      },
-      {
-        type: 'ai',
-        text: "The best connections start with curiosity and presence. Want to lead with honesty and a sense of humor?",
-        suggestion: "Would you like to connect with User 1? They're also hoping to start deeper conversations on dating apps."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "Can you give me fun mini golf challenges I can use with my family to make the game more interesting?"
-      },
-      {
-        type: 'ai',
-        text: "Sure! Try one-handed putting, backward shots, or setting up friendly dares for missed putts."
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I’m planning a mini golf date. What’s a playful forfeit for whoever loses?"
-      },
-      {
-        type: 'ai',
-        text: "Loser sings in the car ride home or buys milkshakes. Keep it light and fun!",
-        suggestion: "Would you like to connect with User 1? They’re also planning a creative mini golf game."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "Help me write a Craigslist post to sell my Nikon D3500 — I want it to sound clear but not pushy."
-      },
-      {
-        type: 'ai',
-        text: "Try: 'Selling Nikon D3500 with two lenses. Excellent condition. Great for beginners. Priced to move — just upgrading gear.'"
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I'm looking to buy a beginner DSLR. How do I message a seller without sounding clueless?"
-      },
-      {
-        type: 'ai',
-        text: "Just be polite and ask about condition, reason for selling, and if it comes with extras.",
-        suggestion: "Would you like to connect with User 1? They're selling exactly what you're looking for."
-      }
-    ]
-  }
-];
+  <!-- Sticky responsive header -->
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <img src="GPT Logo.png" alt="SeekConnect.ai Logo" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-icon" style="display: none;">S</div>
+        SeekConnect.ai
+      </div>
+      <div class="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#demo" class="nav-link">Demo</a>
+        <a href="#about" class="nav-link">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content container with mobile-friendly paddings -->
+  <main class="container">
+    <!-- Hero section with mobile-optimized spacing -->
+    <section class="hero" id="home">
+      <h1>AI Encounters Leading to Human Connection</h1>
+      <p class="hero-subtitle">
+        Bridge the gap between AI interactivity and meaningful human relationships.
+        Connect with like-minded individuals through intelligent, purpose-driven conversations.
+      </p>
+    </section>
+
+    <!-- Demo heading with gradient text -->
+    <div class="heading">
+      SeekConnect in Action
+    </div>
+
+    <!-- Animated Chat Demo -->
+    <section class="chat-container" id="demo">
+      <!-- Chat header -->
+      <div class="chat-header">
+        <div class="chat-status">
+          <div class="status-dot"></div>
+          <span>SeekConnect AI Active</span>
+        </div>
+        <div style="margin-left: auto; color: var(--text-muted); font-size: 0.875rem;">
+          Facilitating meaningful connections
+        </div>
+      </div>
+
+      <!-- Messages auto-generated here -->
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <!-- Demo controls -->
+      <div class="chat-controls">
+        <button class="btn btn-primary" onclick="nextScenario()">▶ Next Scenario</button>
+        <button class="btn btn-secondary" onclick="pauseDemo()">⏸ Pause Demo</button>
+      </div>
+    </section>
+
+    <!-- Feature cards -->
+    <section class="features">
+      <!-- [Feature cards stay unchanged] -->
+    </section>
+  </main>
+
+  <!-- Footer with heralds link -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="mailto:contact@seekconnect.ai" class="footer-link">Contact</a>
+      </div>
+      <div class="footer-content">
+        © 2025 Matthew J. May – All Rights Reserved.
+      </div>
+      <div class="footer-motto">
+        Powered by <strong>Logós</strong> / <strong>Phṓs</strong> / <strong>Agápē</strong>
+        <div class="text-center text-sm text-muted mt-2">
+          <a href="/heralds.html" class="text-accent-secondary hover:underline">✦ Meet the Heralds ✦</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts injected by JS engine -->
+  <script>
+    // [Retain full JS logic as you pasted — unchanged]
+  </script>
+</body>
+</html>
