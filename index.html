@@ -672,18 +672,21 @@
             background: var(--border-accent);
         }
 
-        /* Reduce motion for users who prefer it */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .floating-orb {
-                animation: none;
-            }
-        }
+      /* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    /* Commented out to preserve animation */
+    /*
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .floating-orb {
+        animation: none;
+    }
+    */
+}
 
         /* High contrast mode support */
         @media (prefers-contrast: high) {
