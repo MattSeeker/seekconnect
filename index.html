@@ -68,12 +68,15 @@
         }
 
         .floating-orb {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            filter: blur(40px);
-            animation: float 20s infinite ease-in-out;
-            will-change: transform;
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    filter: blur(40px);
+    animation: float 20s infinite ease-in-out;
+    animation-play-state: running; /* ✅ Add this */
+    will-change: transform;
+}
+
         }
 
         .orb-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
@@ -712,7 +715,17 @@
         }
     </style>
 </head>
-<body>
+<script>
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.floating-orb').forEach((orb, index) => {
+      orb.style.animation = 'none';
+      void orb.offsetWidth; // force reflow
+      orb.style.animation = `float 20s infinite ease-in-out ${-index * 7}s`;
+    });
+  });
+</script>
+
+    <body>
     <div class="bg-animation">
         <div class="floating-orb orb-1"></div>
         <div class="floating-orb orb-2"></div>
