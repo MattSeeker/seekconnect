@@ -609,32 +609,29 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-/* Menu Toggle Button – 2025-05-30 */
+/* Menu Toggle Button – Updated 2025-05-30 */
 .menu-toggle {
-  display: none;
-  background: #000;
+  background: #000; /* hard black */
   border: none;
   padding: 0.5rem;
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s ease, box-shadow 0.3s ease;
   box-shadow: var(--shadow-glow);
+  display: none; /* hidden by default */
 }
 
-.menu-toggle:hover {
-  background: #111;
-  box-shadow: 0 0 12px var(--accent-primary);
-}
-
+/* Ensure SVG stays inside */
 .menu-toggle svg {
   display: block;
 }
 
-/* Show button and hide links on small screens */
+/* Only show hamburger button on small screens */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
+}
 
   .nav-links {
     display: none;
