@@ -130,10 +130,16 @@
             font-weight: bold;
         }
 
-        .nav-links {
+      .nav-links {
   display: flex;
   gap: 2rem;
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
 }
 
 /* Mobile override: hide nav links by default */
