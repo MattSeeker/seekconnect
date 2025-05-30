@@ -49,17 +49,16 @@
             min-height: 100vh;
         }
 
-       .bg-animation {
+     .bg-animation {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Changed from z-index: -1 */
-    opacity: 0.03;
-    pointer-events: none; /* So they don't interfere with clicking */
-        }
-
+    z-index: -1;
+    opacity: 0.08; /* Slightly more visible than 0.03 but still subtle */
+}
+ 
        .floating-orb {
     position: absolute;
     border-radius: 50%;
@@ -69,10 +68,27 @@
     z-index: 1; /* Changed from z-index: -1 */
     pointer-events: none; /* So they don't interfere with clicking */
 }
-        .orb-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
-        .orb-2 { width: 200px; height: 200px; top: 60%; right: 20%; animation-delay: -7s; }
-        .orb-3 { width: 250px; height: 250px; bottom: 20%; left: 30%; animation-delay: -14s; }
-
+       .orb-1 {
+    width: 300px;
+    height: 300px;
+    top: 70%; /* Moved down from 10% */
+    left: 10%;
+    animation-delay: 0s;
+}
+.orb-2 {
+    width: 200px;
+    height: 200px;
+    top: 85%; /* Moved down from 60% */
+    right: 20%;
+    animation-delay: -7s;
+}
+.orb-3 {
+    width: 250px;
+    height: 250px;
+    bottom: 5%; /* Changed from bottom: 20% to move it lower */
+    left: 30%;
+    animation-delay: -14s;
+}
         @keyframes float {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
             33% { transform: translate(30px, -30px) rotate(120deg); }
