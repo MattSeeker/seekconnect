@@ -626,12 +626,31 @@
   display: block;
 }
 
-/* Desktop nav-links style */
+/* Nav Links Default (Desktop) */
 .nav-links {
   display: flex;
   gap: 2rem;
   align-items: center;
 }
+
+/* Hide menu button by default */
+.menu-toggle {
+  display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: var(--shadow-glow);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
 
   .nav-links {
     display: none;
@@ -639,25 +658,36 @@
     gap: 1rem;
     width: 100%;
     margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 16px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-lg);
   }
 
   .nav-links.show {
     display: flex;
   }
-/* END mobile nav toggle styles */
-   /* Only show hamburger button and toggle links on mobile */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    background: var(--bg-glass); /* optional style fix we'll do in Step 2 */
-  }
 }
 
+/* Desktop Override – force-hide menu toggle */
 @media (min-width: 769px) {
   .menu-toggle {
     display: none !important;
   }
+
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+  }
 }
+
  </style>
 </head>
 <body>
