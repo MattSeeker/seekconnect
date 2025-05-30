@@ -633,12 +633,6 @@
   align-items: center;
 }
 
-/* Only show hamburger button and toggle links on mobile */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
   .nav-links {
     display: none;
     flex-direction: column;
@@ -651,7 +645,12 @@
     display: flex;
   }
 } /* END mobile nav toggle styles */
-    </style>
+   /* Only show hamburger button and toggle links on mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+ </style>
 </head>
 <body>
     <div class="bg-animation">
