@@ -611,7 +611,7 @@
 }
 /* Menu Toggle Button – Updated 2025-05-30 */
 .menu-toggle {
-  background: #000; /* hard black */
+  background: #000;
   border: none;
   padding: 0.5rem;
   border-radius: 50%;
@@ -626,12 +626,18 @@
   display: block;
 }
 
-/* Only show hamburger button on small screens */
+/* Desktop nav-links style */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Only show hamburger button and toggle links on mobile */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
-}
 
   .nav-links {
     display: none;
@@ -644,7 +650,7 @@
   .nav-links.show {
     display: flex;
   }
-}/* END mobile nav toggle styles */
+} /* END mobile nav toggle styles */
     </style>
 </head>
 <body>
