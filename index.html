@@ -130,36 +130,73 @@
             font-weight: bold;
         }
 
-      .nav-links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
+        /* Navigation Links - Desktop Default */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-}
+        /* Hamburger Menu Button - Hidden by default */
+        .menu-toggle {
+            display: none;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-/* Mobile override: hide nav links by default */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
+        .menu-toggle:hover {
+            background: var(--bg-secondary);
+            border-color: var(--border-accent);
+        }
 
-  .nav-links.show {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    margin-top: 1rem;
-    border-radius: 16px;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-primary);
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow-lg);
-  }
+        /* Mobile Styles Only */
+        @media (max-width: 768px) {
+            /* Show hamburger menu on mobile */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Hide nav links by default on mobile */
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 2rem;
+                background: var(--bg-primary);
+                border-top: 1px solid var(--border-primary);
+                backdrop-filter: blur(20px);
+                box-shadow: var(--shadow-lg);
+            }
+
+            /* Show nav links when toggled */
+            .nav-links.show {
+                display: flex;
+            }
+        }
+
+        /* Desktop Override - Ensure hamburger is always hidden on desktop */
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none !important;
+            }
+
+            .nav-links {
+                display: flex !important;
+                position: static;
+                flex-direction: row;
+                background: none;
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
         }
 
         .nav-link {
@@ -468,10 +505,6 @@
                 padding: 1rem;
             }
 
-            .nav-links {
-                gap: 1rem;
-            }
-
             .hero {
                 padding: 2rem 0 4rem;
             }
@@ -494,6 +527,76 @@
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .container {
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .heading {
+                font-size: 1.5rem !important;
+                padding: 1.5rem 1rem 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Tablet Layout Enhancements */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                padding: 0 2rem;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chat-container {
+                padding: 2rem 2rem;
+            }
+        }
+
+        /* Typography Scaling */
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .heading {
+            font-size: clamp(1.25rem, 3vw, 2.25rem);
+        }
+
+        /* Layout Flexibility */
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1400px;
+                padding: 0 3rem;
+            }
+
+            .nav {
+                max-width: 1400px;
+                padding: 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 4vw, 4.5rem);
+            }
+
+            .features {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -534,161 +637,8 @@
 
         ::-webkit-scrollbar-thumb:hover {
             background: var(--border-accent);
-        /* Additional Mobile Tweaks */
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    padding: 0 1rem;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    padding-top: 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-
-  .heading {
-    font-size: 1.5rem !important;
-    padding: 1.5rem 1rem 1rem;
-    text-align: center;
-  }
-/* Tablet Layout Enhancements – 2025-05-30 */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .hero h1 {
-    font-size: 2.25rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.1rem;
-    padding: 0 2rem;
-  }
-
-  .features {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .chat-container {
-    padding: 2rem 2rem;
-  }
-}
-/* Typography Scaling – 2025-05-30 */
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-}
-
-.hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-}
-
-.heading {
-  font-size: clamp(1.25rem, 3vw, 2.25rem);
-}
-   /* Layout Flexibility – 2025-05-30 */
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1400px;
-    padding: 0 3rem;
-  }
-
-  .nav {
-    max-width: 1400px;
-    padding: 1rem 3rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.5rem, 4vw, 4.5rem);
-  }
-
-  .features {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-/* Menu Toggle Button – Updated 2025-05-30 */
-.menu-toggle {
-  background: #000;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: var(--shadow-glow);
-  display: none; /* hidden by default */
-}
-
-/* Ensure SVG stays inside */
-.menu-toggle svg {
-  display: block;
-}
-
-/* Nav Links Default (Desktop) */
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-/* Hide menu button by default */
-.menu-toggle {
-  display: none;
-}
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-primary);
-    border-radius: 50%;
-    padding: 0.5rem;
-    box-shadow: var(--shadow-glow);
-    backdrop-filter: blur(8px);
-    cursor: pointer;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 16px;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-primary);
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-}
-
-/* Desktop Override – force-hide menu toggle */
-@media (min-width: 769px) {
-  .menu-toggle {
-    display: none !important;
-  }
-
-  .nav-links {
-    display: flex !important;
-    flex-direction: row;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-  }
-}
-
- </style>
+        }
+    </style>
 </head>
 <body>
     <div class="bg-animation">
@@ -698,37 +648,30 @@
     </div>
 
     <header class="header">
-       <nav class="nav">
-  <div class="logo">
-    <img src="GPT Logo.png" alt="SeekConnect.ai Logo" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="logo-icon" style="display: none;">S</div>
-    SeekConnect.ai
-  </div>
+        <nav class="nav">
+            <div class="logo">
+                <img src="GPT Logo.png" alt="SeekConnect.ai Logo" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-icon" style="display: none;">S</div>
+                SeekConnect.ai
+            </div>
 
-  <!-- Hamburger Button -->
-  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-    <svg width="28" height="28" viewBox="0 0 100 80" fill="none">
-      <rect width="100" height="10" rx="5" fill="url(#grad)" />
-      <rect y="30" width="100" height="10" rx="5" fill="url(#grad)" />
-      <rect y="60" width="100" height="10" rx="5" fill="url(#grad)" />
-      <defs>
-        <linearGradient id="grad" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#6366f1" />
-          <stop offset="0.5" stop-color="#8b5cf6" />
-          <stop offset="1" stop-color="#06b6d4" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </button>
+            <!-- Hamburger Button - Only visible on mobile -->
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
 
-  <!-- ACTUAL NAV LINKS HERE -->
-  <div class="nav-links" id="navLinks">
-    <a href="#home" class="nav-link">Home</a>
-    <a href="#demo" class="nav-link">Demo</a>
-    <a href="#features" class="nav-link">Features</a>
-    <a href="#contact" class="nav-link">Contact</a>
-  </div>
-</nav>
+            <!-- Navigation Links -->
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
     </header>
 
     <main class="container">
@@ -740,18 +683,18 @@
             </p>
         </section>
 
-<div class="heading" style="
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 600;
-    padding: 2rem 1rem 1rem;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-">
- SeekConnect in Action
-</div>
+        <div class="heading" style="
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            padding: 2rem 1rem 1rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        ">
+            SeekConnect in Action
+        </div>
 
         <section class="chat-container" id="demo">
             <div class="chat-header">
@@ -819,155 +762,155 @@
                 <a href="#" class="footer-link">Privacy Policy</a>
                 <a href="#" class="footer-link">Terms of Service</a>
                 <a href="mailto:contact@seekconnect.ai" class="footer-link">Contact</a>
-                </div>
+            </div>
             <div class="footer-content">
                 © 2025 Matthew J. May – All Rights Reserved.
             </div>
             <div class="footer-motto">
                 Powered by <strong>Logós</strong> / <strong>Phṓs</strong> / <strong>Agápē</strong>
-               <div class="text-center text-sm text-muted mt-2">
-  <a href="/heralds.html" class="text-accent-secondary hover:underline">
-    ✦ Meet the Heralds ✦
-  </a>
-</div> 
+                <div class="text-center text-sm text-muted mt-2">
+                    <a href="/heralds.html" class="text-accent-secondary hover:underline">
+                        ✦ Meet the Heralds ✦
+                    </a>
+                </div> 
             </div>
         </div>
     </footer>
 
     <script>
-       const scenarios = [
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "I just learned the Italian Game. Can you walk me through a basic chess opening strategy?"
-      },
-      {
-        type: 'ai',
-        text: "Sure! Start with e4 e5, then Nf3 Nc6, followed by Bc4. That’s the core of the Italian Game. Watch out for early forks or the Fried Liver Attack."
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I keep losing in the first few moves when I play chess online. Can you help me figure out what I’m doing wrong?"
-      },
-      {
-        type: 'ai',
-        text: "Absolutely. We can look at common beginner traps and better opening setups.",
-        suggestion: "Would you like to connect with User 1? They’re learning a basic strategy called the Italian Game and might enjoy comparing ideas or even playing a game with you."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "I recently retired but I have so much to give. I'd like to find opportunities to mentor others.  What's your advice?"
-      },
-      {
-        type: 'ai',
-        text: "I recommend reaching out to organziations that currently use your skills, and see if they have oportunities to connect with people at the beginning of their career paths leading to your previous role."
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I want a mentor, but I feel weird reaching out. What’s a good way to break the ice?"
-      },
-      {
-        type: 'ai',
-        text: "You could start with appreciation and curiosity. That usually makes it feel natural.",
-        suggestion: "Would you like to connect with User 1? They're looking to provide mentorship in your field."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "Can you explain what 'faith without works is dead' means in James 2?"
-      },
-      {
-        type: 'ai',
-        text: "It means that true faith naturally expresses itself through action. It’s not about earning salvation but demonstrating belief through how we live."
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I want to lead a Bible study on grace and works. Can you help me organize it?"
-      },
-      {
-        type: 'ai',
-        text: "Sure! You could structure it with James 2, Romans 4, and Ephesians 2 to explore both perspectives.",
-        suggestion: "Would you like to connect with User 1? They're also exploring this passage and might be a great Bible study partner."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "Help me write a short job post for a junior front-end developer who wants to learn fast."
-      },
-      {
-        type: 'ai',
-        text: "Try something like: 'We’re a small, fast-moving team looking for a junior front-end dev who’s curious, coachable, and excited to build meaningful products.'"
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I'm looking for a small company where I can grow and get mentored. How do I say that in a message to a hiring manager?"
-      },
-      {
-        type: 'ai',
-        text: "You can say: 'I’m eager to grow with a team that values learning. I’m looking for a place where I can contribute while building real skills.'",
-        suggestion: "Would you like to connect with User 1? They're hiring someone with exactly that mindset."
-      }
-    ]
-  },
-  {
-    messages: [
-      {
-        type: 'user',
-        name: 'User 1',
-        avatar: '1',
-        openToConnect: true,
-        text: "What’s a good first message on a dating app that’s actually meaningful?"
-      },
-      {
-        type: 'ai',
-        text: "Try asking about something specific in their profile. Like, 'You mentioned hiking — any favorite local spots?'"
-      },
-      {
-        type: 'user',
-        name: 'User 2',
-        avatar: '2',
-        openToConnect: true,
-        text: "I want to connect with someone for something real, but I’m tired of surface-level conversations."
-      },
-      {
-        type: 'ai',
-        text: "The best connections start with curiosity and presence. Want to lead with honesty and a sense of humor?",
-        suggestion: "Would you like to connect with User 1? They're also hoping to start deeper conversations on dating apps."
+        const scenarios = [
+            {
+                messages: [
+                    {
+                        type: 'user',
+                        name: 'User 1',
+                        avatar: '1',
+                        openToConnect: true,
+                        text: "I just learned the Italian Game. Can you walk me through a basic chess opening strategy?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "Sure! Start with e4 e5, then Nf3 Nc6, followed by Bc4. That's the core of the Italian Game. Watch out for early forks or the Fried Liver Attack."
+                    },
+                    {
+                        type: 'user',
+                        name: 'User 2',
+                        avatar: '2',
+                        openToConnect: true,
+                        text: "I keep losing in the first few moves when I play chess online. Can you help me figure out what I'm doing wrong?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "Absolutely. We can look at common beginner traps and better opening setups.",
+                        suggestion: "Would you like to connect with User 1? They're learning a basic strategy called the Italian Game and might enjoy comparing ideas or even playing a game with you."
+                    }
+                ]
+            },
+            {
+                messages: [
+                    {
+                        type: 'user',
+                        name: 'User 1',
+                        avatar: '1',
+                        openToConnect: true,
+                        text: "I recently retired but I have so much to give. I'd like to find opportunities to mentor others.  What's your advice?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "I recommend reaching out to organziations that currently use your skills, and see if they have oportunities to connect with people at the beginning of their career paths leading to your previous role."
+                    },
+                    {
+                        type: 'user',
+                        name: 'User 2',
+                        avatar: '2',
+                        openToConnect: true,
+                        text: "I want a mentor, but I feel weird reaching out. What's a good way to break the ice?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "You could start with appreciation and curiosity. That usually makes it feel natural.",
+                        suggestion: "Would you like to connect with User 1? They're looking to provide mentorship in your field."
+                    }
+                ]
+            },
+            {
+                messages: [
+                    {
+                        type: 'user',
+                        name: 'User 1',
+                        avatar: '1',
+                        openToConnect: true,
+                        text: "Can you explain what 'faith without works is dead' means in James 2?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "It means that true faith naturally expresses itself through action. It's not about earning salvation but demonstrating belief through how we live."
+                    },
+                    {
+                        type: 'user',
+                        name: 'User 2',
+                        avatar: '2',
+                        openToConnect: true,
+                        text: "I want to lead a Bible study on grace and works. Can you help me organize it?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "Sure! You could structure it with James 2, Romans 4, and Ephesians 2 to explore both perspectives.",
+                        suggestion: "Would you like to connect with User 1? They're also exploring this passage and might be a great Bible study partner."
+                    }
+                ]
+            },
+            {
+                messages: [
+                    {
+                        type: 'user',
+                        name: 'User 1',
+                        avatar: '1',
+                        openToConnect: true,
+                        text: "Help me write a short job post for a junior front-end developer who wants to learn fast."
+                    },
+                    {
+                        type: 'ai',
+                        text: "Try something like: 'We're a small, fast-moving team looking for a junior front-end dev who's curious, coachable, and excited to build meaningful products.'"
+                    },
+                    {
+                        type: 'user',
+                        name: 'User 2',
+                        avatar: '2',
+                        openToConnect: true,
+                        text: "I'm looking for a small company where I can grow and get mentored. How do I say that in a message to a hiring manager?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "You can say: 'I'm eager to grow with a team that values learning. I'm looking for a place where I can contribute while building real skills.'",
+                        suggestion: "Would you like to connect with User 1? They're hiring someone with exactly that mindset."
+                    }
+                ]
+            },
+            {
+                messages: [
+                    {
+                        type: 'user',
+                        name: 'User 1',
+                        avatar: '1',
+                        openToConnect: true,
+                        text: "What's a good first message on a dating app that's actually meaningful?"
+                    },
+                    {
+                        type: 'ai',
+                        text: "Try asking about something specific in their profile. Like, 'You mentioned hiking — any favorite local spots?'"
+                    },
+                    {
+                        type: 'user',
+                        name: 'User 2',
+                        avatar: '2',
+                        openToConnect: true,
+                        text: "I want to connect with someone for something real, but I'm tired of surface-level conversations."
+                  },
+                  {
+                        type: 'ai',
+                        text: "The best connections start with curiosity and presence. Want to lead with honesty and a sense of humor?",
+                        suggestion: "Would you like to connect with User 1? They're also hoping to start deeper conversations on dating apps."
       }
     ]
   },
@@ -1203,4 +1146,4 @@
   }
 </script>
 </body>
-</html>
+</html> 
