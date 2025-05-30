@@ -644,12 +644,20 @@
   .nav-links.show {
     display: flex;
   }
-} /* END mobile nav toggle styles */
+/* END mobile nav toggle styles */
    /* Only show hamburger button and toggle links on mobile */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
+    background: var(--bg-glass); /* optional style fix we'll do in Step 2 */
   }
+}
+
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;
+  }
+}
  </style>
 </head>
 <body>
