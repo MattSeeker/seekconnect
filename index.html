@@ -245,7 +245,23 @@
             background-clip: text;
             line-height: 1.1;
         }
+.hero-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
 
+.hero-logo {
+  height: 96px;
+  width: 96px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.05);
+}
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
