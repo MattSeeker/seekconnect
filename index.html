@@ -1031,7 +1031,7 @@
                             ${message.openToConnect ? '<span class="connection-badge">✅ Open to Connect</span>' : ''}
                         </div>
                     ` : ''}
-                    <div class="message-text">${message.text}</div>
+                   <div class="message-text"></div>
                     ${message.suggestion ? `
                         <div class="ai-suggestion">
                             <div class="suggestion-header">Connection Opportunity:</div>
@@ -1110,6 +1110,9 @@
                         
                         chatMessages.appendChild(messageEl);
                         chatMessages.scrollTop = chatMessages.scrollHeight;
+                        
+const textEl = messageEl.querySelector('.message-text');
+typeMessage(message.text, textEl);
                         
                         const textEl = messageEl.querySelector('.message-text');
                         typeMessage(message.text, textEl, () => {
