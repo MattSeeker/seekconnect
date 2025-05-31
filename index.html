@@ -375,12 +375,46 @@
         }
 
         .connection-badge {
-            background: linear-gradient(135deg, var(--success), #059669);
-            color: white;
-            padding: 0.125rem 0.5rem;
-            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.75rem;
             font-weight: 500;
+            color: var(--accent-primary);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 32px;
+            height: 18px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 16px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.animate::after {
+            animation: toggleSlide 0.6s ease-in-out;
+        }
+
+        @keyframes toggleSlide {
+            0% { left: 2px; }
+            50% { left: 10px; transform: scaleX(1.2); }
+            100% { left: 16px; }
         }
 
         .message-text {
@@ -1059,7 +1093,7 @@
                         ${message.type === 'user' ? `
                             <div class="message-header">
                                 <span class="user-name">${message.name}</span>
-                                ${message.openToConnect ? '<span class="connection-badge">✅ Open to Connect</span>' : ''}
+                                ${message.openToConnect ? '<span class="connection-badge"><span class="toggle-switch"></span>Open to Connect</span>' : ''}
                             </div>
                         ` : ''}
                         <div class="message-text"></div>
@@ -1074,6 +1108,16 @@
 
                 chatMessages.appendChild(messageEl);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Add toggle animation after a brief delay
+                if (message.openToConnect) {
+                    setTimeout(() => {
+                        const toggle = messageEl.querySelector('.toggle-switch');
+                        if (toggle) {
+                            toggle.classList.add('animate');
+                        }
+                    }, 300);
+                }
 
                 const textElement = messageEl.querySelector('.message-text');
                 
