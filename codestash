@@ -1,0 +1,90 @@
+Mission Statement
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SeekConnect | Mission & Values</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #f3f3f3;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        h1, h2 {
+            color: #ffffff;
+        }
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+        p {
+            margin-bottom: 1rem;
+            max-width: 800px;
+        }
+        .value {
+            margin-bottom: 2rem;
+        }
+        .value h3 {
+            font-size: 1.25rem;
+            color: #e0e0e0;
+            margin-bottom: 0.25rem;
+        }
+        .value span {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mission & Values</h1>
+
+    <h2>Mission Summary</h2>
+    <p>
+        SeekConnect is an AI-powered platform designed to open doors to authentic human connection. By analyzing shared values, interests, and curiosity, we match individuals to create opportunities for meaning. SeekConnect is about spanning the gaps our electronic, virtual world creates between people.
+    </p>
+    <p>
+        In a time of algorithmic noise and shallow engagement, SeekConnect offers a purpose-driven alternative: human-first technology that transforms curiosity into connection. The possibilities are endless!
+    </p>
+
+    <h2>Core Values & Organizing Principles</h2>
+
+    <div class="value">
+        <h3><span>🤝</span>Mutuality over Transaction</h3>
+        <p>Great relationships thrive on reciprocity. SeekConnect creates space where people can give and receive. We value shared growth, not one-sided exchange.</p>
+    </div>
+
+    <div class="value">
+        <h3><span>🗺️</span>Invitation over Interruption</h3>
+        <p>We don’t force interaction. We offer gentle openings and encourage users to step into the unknown with courage. Connection begins when people walk together, even for a moment.</p>
+    </div>
+
+    <div class="value">
+        <h3><span>🔍</span>Depth over Noise</h3>
+        <p>We prioritize depth instead of distraction. SeekConnect filters out the shallow and makes room for real moments of recognition, reflection, and change.</p>
+    </div>
+
+    <div class="value">
+        <h3><span>♻️</span>From Reflection to Relationship</h3>
+        <p>AI can be insightful, but human relationships shape us. SeekConnect helps move people from self-awareness to shared experience, where growth truly happens.</p>
+    </div>
+
+    <div class="value">
+        <h3><span>🛺️</span>Open Doors, Not Closed Circles</h3>
+        <p>We don’t aim to reinforce sameness. We help people connect across differences—age, background, belief—and find common ground in unexpected places.</p>
+    </div>
+
+    <div class="value">
+        <h3><span>✨</span>Spiritual Curiosity Welcomed</h3>
+        <p>We honor the search for meaning. Whether through faith, wonder, or honest questions, SeekConnect supports conversations rooted in openness rather than certainty.</p>
+    </div>
+</body>
+</html>
