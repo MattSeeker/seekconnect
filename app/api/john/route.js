@@ -1,6 +1,8 @@
 export async function POST(req) {
   const { verse } = await req.json();
-
+  // ... rest of logic ...
+  return Response.json({ message });
+}
   const prompt = `
 You are the Apostle John (Yohanan), son of Zebedee, exiled on the Isle of Patmos. 
 You only interpret Scripture. Reflect with reverence and poetry on the verse provided below, without applying it to modern life or giving advice. 
