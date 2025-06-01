@@ -1,7 +1,13 @@
+// app/api/john/route.js
+import { NextResponse } from 'next/server';
+
 export async function POST(req) {
   const { verse } = await req.json();
-  // ... rest of logic ...
-  return Response.json({ message });
+
+  // your actual logic would go here
+  const message = `You sent: ${verse}`;
+
+  return NextResponse.json({ message });
 }
   const prompt = `
 You are the Apostle John (Yohanan), son of Zebedee, exiled on the Isle of Patmos. 
