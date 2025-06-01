@@ -305,6 +305,28 @@
             51%, 100% { opacity: 0; }
         }
 
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .retry-button {
+            background: var(--accent-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: white;
+            font-size: 0.875rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .retry-button:hover {
+            background: var(--accent-secondary);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -405,22 +427,26 @@
         const verseInput = document.getElementById('verseInput');
         const sendButton = document.getElementById('sendButton');
 
+        // Store the last verse for retry functionality
+        let lastVerse = '';
+
         function setVerse(verse) {
             verseInput.value = verse;
             verseInput.focus();
         }
 
-        function addMessage(sender, text, isUser = false) {
+        function addMessage(sender, text, isUser = false, isError = false) {
             const messageEl = document.createElement('div');
             messageEl.className = 'message';
             
             const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
             const avatarText = isUser ? 'You' : 'J';
             const senderName = isUser ? 'You' : 'John';
+            const contentClass = isError ? 'message-content error-message' : 'message-content';
             
             messageEl.innerHTML = `
                 <div class="message-avatar ${avatarClass}">${avatarText}</div>
-                <div class="message-content">
+                <div class="${contentClass}">
                     <div class="message-header">${senderName}</div>
                     <div class="message-text">${text}</div>
                 </div>
@@ -454,9 +480,108 @@
             }, 30);
         }
 
+        function addRetryButton(messageEl, verse) {
+            const textEl = messageEl.querySelector('.message-text');
+            const retryButton = document.createElement('button');
+            retryButton.className = 'retry-button';
+            retryButton.textContent = 'Try Again';
+            retryButton.onclick = () => {
+                messageEl.remove();
+                sendVerseRequest(verse);
+            };
+            textEl.appendChild(retryButton);
+        }
+
+        async function sendVerseRequest(verse) {
+            // Show typing indicator
+            const typingEl = showTyping();
+            
+            try {
+                // Enhanced error handling with timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+                
+                const response = await fetch('/api/john', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        verse: verse,
+                        timestamp: Date.now() // Add timestamp to prevent caching issues
+                    }),
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                // Handle different response types
+                let data;
+                const contentType = response.headers.get('content-type');
+                
+                if (contentType && contentType.includes('application/json')) {
+                    data = await response.json();
+                } else {
+                    // Handle non-JSON responses
+                    const textResponse = await response.text();
+                    data = { message: textResponse };
+                }
+                
+                // Remove typing indicator
+                typingEl.remove();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || data.message || `Server returned ${response.status}: ${response.statusText}`);
+                }
+                
+                // Check if the response contains the actual message
+                let responseMessage = data.message || data.response || data.text || 'No response received';
+                
+                // Handle specific error messages
+                if (responseMessage.toLowerCase().includes('john is not available') || 
+                    responseMessage.toLowerCase().includes('not available') ||
+                    responseMessage.toLowerCase().includes('unavailable')) {
+                    throw new Error('Service temporarily unavailable. The API endpoint may be down or misconfigured.');
+                }
+                
+                // Add John's response with typing effect
+                const johnMessage = addMessage('John', '');
+                typeText(johnMessage, responseMessage);
+                
+            } catch (error) {
+                // Remove typing indicator
+                typingEl.remove();
+                
+                let errorMessage = 'I apologize, but I am experiencing difficulties at the moment. ';
+                
+                if (error.name === 'AbortError') {
+                    errorMessage += 'The request timed out. Please try again.';
+                } else if (error.message.includes('fetch')) {
+                    errorMessage += 'There seems to be a connection issue. Please check your internet connection and try again.';
+                } else if (error.message.includes('Service temporarily unavailable')) {
+                    errorMessage += 'The service is temporarily unavailable. This may be due to server maintenance or configuration issues.';
+                } else {
+                    errorMessage += `Error details: ${error.message}`;
+                }
+                
+                // Show error message with retry option
+                const errorMessageEl = addMessage('John', errorMessage, false, true);
+                addRetryButton(errorMessageEl, verse);
+                
+                console.error('API Error Details:', {
+                    error: error.message,
+                    verse: verse,
+                    timestamp: new Date().toISOString()
+                });
+            }
+        }
+
         async function sendVerse() {
             const verse = verseInput.value.trim();
             if (!verse) return;
+
+            // Store for retry functionality
+            lastVerse = verse;
 
             // Add user message
             addMessage('You', verse, true);
@@ -466,38 +591,8 @@
             sendButton.disabled = true;
             sendButton.textContent = 'Reflecting...';
             
-            // Show typing indicator
-            const typingEl = showTyping();
-            
             try {
-                const response = await fetch('/api/john', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ verse }),
-                });
-                
-                const data = await response.json();
-                
-                if (!response.ok) {
-                    throw new Error(data.error || 'Failed to get response');
-                }
-                
-                // Remove typing indicator
-                typingEl.remove();
-                
-                // Add John's response with typing effect
-                const johnMessage = addMessage('John', '');
-                typeText(johnMessage, data.message);
-                
-            } catch (error) {
-                // Remove typing indicator
-                typingEl.remove();
-                
-                // Show error message
-                addMessage('John', 'I apologize, but I am unable to respond at this moment. Please try again shortly.');
-                console.error('Error:', error);
+                await sendVerseRequest(verse);
             } finally {
                 // Re-enable button
                 sendButton.disabled = false;
@@ -518,6 +613,19 @@
 
         // Focus input on load
         verseInput.focus();
+
+        // Add connection status checking
+        window.addEventListener('online', () => {
+            console.log('Connection restored');
+            if (lastVerse) {
+                addMessage('John', 'Connection restored. You may retry your last question if needed.', false, false);
+            }
+        });
+
+        window.addEventListener('offline', () => {
+            console.log('Connection lost');
+            addMessage('John', 'It appears you have lost internet connection. Please check your connection and try again.', false, true);
+        });
     </script>
 </body>
 </html>
