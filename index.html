@@ -820,6 +820,39 @@
                     Our Users connect...they embrace the possibilites to move beyond receiving input from GPTs and into the ability to give and receive influence among real people. 
                 </p>
             </div>
+        </section>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">AI-Assisted Connections</h3>
+                <p class="feature-description">
+                    Our AI doesn't just respond...it evaluates.  It seeks meaningful connection opportunities between users with similar interests and values.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Purpose-Driven Matching</h3>
+                <p class="feature-description">
+                    Our platform invites...based on alignment in creative pursuits, professional growth, spiritual paths, and life experiences.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">Privacy & Control</h3>
+                <p class="feature-description">
+                    Our AI-overlay protects...users maintain full control over their connection preferences with customizable privacy boundaries and consent-based introductions.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3 class="feature-title">Beyond Small Talk</h3>
+                <p class="feature-description">
+                    Our Users connect...they embrace the possibilites to move beyond receiving input from GPTs and into the ability to give and receive influence among real people. 
+                </p>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -890,7 +923,7 @@
                         name: 'Pat',
                         avatar: '2',
                         openToConnect: true,
-                        text: "I want a mentor, but I'm not sure where to find someone to mentor me in my current job. Where do I find mentee opportunities?"
+                        text: "I want a mentor, I don't know where to begin searching for one. Where do I find mentee opportunities?"
                     },
                     {
                         type: 'ai',
@@ -1041,12 +1074,14 @@
         let isTyping = false;
         let isPaused = false;
         let typingInterval;
-        let messageQueue = [];
 
         function clearChat() {
             const chatMessages = document.getElementById('chatMessages');
             chatMessages.innerHTML = '';
-            messageQueue = [];
+            if (typingInterval) {
+                clearInterval(typingInterval);
+                typingInterval = null;
+            }
         }
 
         function typeText(text, element, callback) {
@@ -1067,6 +1102,7 @@
                     i++;
                 } else {
                     clearInterval(typingInterval);
+                    typingInterval = null;
                     element.classList.remove('typing-animation');
                     if (callback) {
                         setTimeout(callback, 500);
@@ -1075,49 +1111,65 @@
             }, 40);
         }
 
-        function addMessageWithTyping(message, delay = 0) {
-            setTimeout(() => {
-                if (isPaused) return;
+        function addMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message';
+
+            const avatarClass = message.type === 'user' ? 'user-avatar' : 'ai-avatar';
+            const avatarText = message.type === 'user' ? message.avatar : 'AI';
+
+            messageEl.innerHTML = `
+                <div class="message-avatar ${avatarClass}">${avatarText}</div>
+                <div class="message-content">
+                    ${message.type === 'user' ? `
+                        <div class="message-header">
+                            <span class="user-name">${message.name}</span>
+                            ${message.openToConnect ? '<span class="connection-badge"><span class="toggle-switch"></span>Open to Connect</span>' : ''}
+                        </div>
+                    ` : ''}
+                    <div class="message-text"></div>
+                    ${message.suggestion ? `
+                        <div class="ai-suggestion" style="display: none;">
+                            <div class="suggestion-header">Connection Opportunity:</div>
+                            <div class="suggestion-text"></div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            chatMessages.appendChild(messageEl);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Add toggle animation after a brief delay
+            if (message.openToConnect) {
+                setTimeout(() => {
+                    const toggle = messageEl.querySelector('.toggle-switch');
+                    if (toggle) {
+                        toggle.classList.add('animate');
+                    }
+                }, 300);
+            }
+
+            return messageEl;
+        }
+
+        function playScenario(scenarioIndex) {
+            if (scenarioIndex >= scenarios.length) {
+                scenarioIndex = 0;
+            }
+
+            currentScenario = scenarioIndex;
+            clearChat();
+
+            const scenario = scenarios[currentScenario];
+            let messageIndex = 0;
+
+            function playNextMessage() {
+                if (isPaused || messageIndex >= scenario.messages.length) return;
                 
-                const chatMessages = document.getElementById('chatMessages');
-                const messageEl = document.createElement('div');
-                messageEl.className = 'message';
-
-                const avatarClass = message.type === 'user' ? 'user-avatar' : 'ai-avatar';
-                const avatarText = message.type === 'user' ? message.avatar : 'AI';
-
-                messageEl.innerHTML = `
-                    <div class="message-avatar ${avatarClass}">${avatarText}</div>
-                    <div class="message-content">
-                        ${message.type === 'user' ? `
-                            <div class="message-header">
-                                <span class="user-name">${message.name}</span>
-                                ${message.openToConnect ? '<span class="connection-badge"><span class="toggle-switch"></span>Open to Connect</span>' : ''}
-                            </div>
-                        ` : ''}
-                        <div class="message-text"></div>
-                        ${message.suggestion ? `
-                            <div class="ai-suggestion" style="display: none;">
-                                <div class="suggestion-header">Connection Opportunity:</div>
-                                <div class="suggestion-text"></div>
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-
-                chatMessages.appendChild(messageEl);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                // Add toggle animation after a brief delay
-                if (message.openToConnect) {
-                    setTimeout(() => {
-                        const toggle = messageEl.querySelector('.toggle-switch');
-                        if (toggle) {
-                            toggle.classList.add('animate');
-                        }
-                    }, 300);
-                }
-
+                const message = scenario.messages[messageIndex];
+                const messageEl = addMessage(message);
                 const textElement = messageEl.querySelector('.message-text');
                 
                 // Type the main message
@@ -1127,45 +1179,29 @@
                         const suggestionTextEl = messageEl.querySelector('.suggestion-text');
                         suggestionEl.style.display = 'block';
                         
-                        // Type the suggestion after a brief pause
-                        setTimeout(() => {
-                            typeText(message.suggestion, suggestionTextEl);
-                        }, 800);
+                        // Type the suggestion
+                        typeText(message.suggestion, suggestionTextEl, () => {
+                            messageIndex++;
+                            setTimeout(playNextMessage, 2000);
+                        });
+                    } else {
+                        messageIndex++;
+                        setTimeout(playNextMessage, message.type === 'user' ? 1500 : 2000);
                     }
                 });
-            }, delay);
-        }
-
-        function playScenario(scenarioIndex) {
-            if (scenarioIndex >= scenarios.length) {
-                scenarioIndex = 0;
             }
 
-            currentScenario = scenarioIndex;
-            currentMessage = 0;
-            clearChat();
-
-            const scenario = scenarios[currentScenario];
-            let cumulativeDelay = 1000; // Start after 1 second
-
-            scenario.messages.forEach((message, index) => {
-                addMessageWithTyping(message, cumulativeDelay);
-                
-                // Calculate delay for next message
-                const messageLength = message.text.length;
-                const typingTime = messageLength * 40; // 40ms per character
-                const pauseAfterMessage = message.type === 'user' ? 1500 : 2000;
-                const suggestionTime = message.suggestion ? (message.suggestion.length * 40 + 1300) : 0;
-                
-                cumulativeDelay += typingTime + pauseAfterMessage + suggestionTime;
-            });
+            setTimeout(playNextMessage, 1000);
         }
 
         function nextScenario() {
             isPaused = false;
             const btn = document.querySelector('.chat-controls .btn-secondary');
             btn.innerHTML = '⏸ Pause Demo';
-            clearInterval(typingInterval);
+            if (typingInterval) {
+                clearInterval(typingInterval);
+                typingInterval = null;
+            }
             playScenario((currentScenario + 1) % scenarios.length);
         }
 
@@ -1176,6 +1212,7 @@
             
             if (isPaused && typingInterval) {
                 clearInterval(typingInterval);
+                typingInterval = null;
             }
         }
 
