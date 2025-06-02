@@ -419,33 +419,34 @@
             verseInput.focus();
         }
 
-        function addMessage(sender, text, isUser = false, easterEgg = null) {
-            const messageEl = document.createElement('div');
-            messageEl.className = 'message';
-            
-            const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
-            const avatarText = isUser ? 'You' : 'J';
-            const senderName = isUser ? 'You' : 'John';
-        }
-            // Add image if it's an easter egg
-          let imageHtml = '';
-if (easterEgg && easterEgg.image_url) {
-    imageHtml = '<img src="' + easterEgg.image_url + '" alt="John\'s Hebrew Name" class="easter-egg-image">';
+     function addMessage(sender, text, isUser, easterEgg) {
+    isUser = isUser || false;
+    easterEgg = easterEgg || null;
+    
+    const messageEl = document.createElement('div');
+    messageEl.className = 'message';
+    
+    const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
+    const avatarText = isUser ? 'You' : 'J';
+    const senderName = isUser ? 'You' : 'John';
+    
+    let imageHtml = '';
+    if (easterEgg && easterEgg.image_url) {
+        imageHtml = '<img src="' + easterEgg.image_url + '" alt="John\'s Hebrew Name" class="easter-egg-image">';
+    }
+    
+    messageEl.innerHTML = 
+        '<div class="message-avatar ' + avatarClass + '">' + avatarText + '</div>' +
+        '<div class="message-content">' +
+            '<div class="message-header">' + senderName + '</div>' +
+            '<div class="message-text">' + text + '</div>' +
+            imageHtml +
+        '</div>';
+    
+    chatMessages.appendChild(messageEl);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return messageEl;
 }
-            
-            messageEl.innerHTML = `
-                <div class="message-avatar ${avatarClass}">${avatarText}</div>
-                <div class="message-content">
-                    <div class="message-header">${senderName}</div>
-                    <div class="message-text">${text}</div>
-                    ${imageHtml}
-                </div>
-            `;
-            
-            chatMessages.appendChild(messageEl);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            return messageEl;
-        }
 
         function showTyping() {
             const typingEl = addMessage('John', '<span class="loading">John is reflecting<span class="loading-dots"><span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span></span></span>');
