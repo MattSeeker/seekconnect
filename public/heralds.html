@@ -3,563 +3,662 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herald John - Biblical Wisdom</title>
+    <title>Biblical Heralds - Scripture Insights</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-tertiary: #1a1a1a;
-            --bg-glass: rgba(255, 255, 255, 0.03);
-            --border-primary: rgba(255, 255, 255, 0.1);
-            --border-accent: rgba(99, 102, 241, 0.3);
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent-primary: #6366f1;
-            --accent-secondary: #8b5cf6;
-            --accent-tertiary: #06b6d4;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
-            --gradient-secondary: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            min-height: 100vh;
-            padding: 2rem;
+            background: #fafbfc;
+            color: #333;
         }
-
-        .herald-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .herald-header {
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .herald-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .herald-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-
-        .herald-description {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-primary);
-            border-radius: 16px;
-            padding: 1.5rem;
-            backdrop-filter: blur(20px);
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .chat-interface {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-primary);
-            border-radius: 24px;
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-lg);
+            position: relative;
             overflow: hidden;
         }
-
-        .chat-header {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-primary);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="0,0 1000,80 1000,100 0,100"/></svg>');
+            background-size: cover;
         }
-
-        .herald-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
+        
+        .header-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-
-        .herald-info h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .herald-info p {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .chat-messages {
-            min-height: 400px;
-            max-height: 500px;
-            overflow-y: auto;
-            padding: 1.5rem;
-        }
-
-        .message {
-            margin-bottom: 1.5rem;
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        .message-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .user-avatar {
-            background: linear-gradient(135deg, #f59e0b, #f97316);
-        }
-
-        .herald-message-avatar {
-            background: var(--gradient-primary);
-        }
-
-        .message-content {
-            flex: 1;
-            background: var(--bg-tertiary);
-            border-radius: 16px;
-            padding: 1rem 1.25rem;
-            border: 1px solid var(--border-primary);
-        }
-
-        .message-header {
-            font-weight: 600;
-            color: var(--text-primary);
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 300;
             margin-bottom: 0.5rem;
-            font-size: 0.875rem;
+            letter-spacing: -1px;
         }
-
-        .message-text {
-            color: var(--text-secondary);
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .main-section {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        
+        .heralds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .herald-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e1e8ed;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .herald-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+        
+        .herald-card.selected {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .herald-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .herald-subtitle {
+            font-size: 0.9rem;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .herald-description {
+            color: #5a6c7d;
+            margin-bottom: 1rem;
             line-height: 1.6;
         }
-
-        .verse-display {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-primary);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 0.5rem 0;
+        
+        .biblical-ref {
+            font-size: 0.85rem;
+            color: #8492a6;
             font-style: italic;
-            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            border-top: 1px solid #f1f3f4;
         }
-
-        .verse-reference {
-            color: var(--accent-primary);
-            font-weight: 600;
-            font-style: normal;
+        
+        .interpretation-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e1e8ed;
+            margin-top: 2rem;
         }
-
-        .easter-egg-image {
-            max-width: 200px;
-            border-radius: 8px;
-            margin: 10px 0;
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-label {
             display: block;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
-
-        .input-section {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-primary);
-            background: var(--bg-secondary);
-        }
-
-        .input-container {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-end;
-        }
-
-        .verse-input {
-            flex: 1;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-primary);
-            border-radius: 12px;
-            padding: 1rem;
-            color: var(--text-primary);
-            font-family: inherit;
+        
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
             font-size: 1rem;
-            resize: vertical;
-            min-height: 60px;
-            transition: all 0.3s ease;
+            transition: border-color 0.2s;
+            background: #fafbfc;
         }
-
-        .verse-input:focus {
+        
+        .input-field:focus {
             outline: none;
-            border-color: var(--border-accent);
-            box-shadow: var(--shadow-glow);
+            border-color: #667eea;
+            background: white;
         }
-
-        .verse-input::placeholder {
-            color: var(--text-muted);
+        
+        .input-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
         }
-
-        .send-button {
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
+        
+        .interpret-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            white-space: nowrap;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-
-        .send-button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
+        
+        .interpret-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
-
-        .send-button:disabled {
-            opacity: 0.5;
+        
+        .interpret-button:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
-
-        .loading {
+        
+        .response-area {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #f1f3f4;
+        }
+        
+        .response-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+        
+        .response-herald {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .response-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .response-text {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #2c3e50;
+        }
+        
+        .recommendation-card {
+            background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .recommendation-header {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-secondary);
-            font-style: italic;
         }
-
-        .loading-dots {
-            display: inline-flex;
-            gap: 2px;
+        
+        .recommendation-text {
+            color: #78350f;
+            line-height: 1.6;
         }
-
-        .loading-dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--accent-primary);
-            animation: loadingDot 1.4s infinite both;
+        
+        .selected-herald-display {
+            background: #f0f4ff;
+            border: 1px solid #c7d2fe;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
-
-        .loading-dot:nth-child(1) { animation-delay: 0s; }
-        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes loadingDot {
-            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-            40% { opacity: 1; transform: scale(1); }
+        
+        .selected-herald-name {
+            font-weight: 600;
+            color: #4338ca;
+            margin-bottom: 0.25rem;
         }
-
-        .example-verses {
+        
+        .selected-herald-note {
+            font-size: 0.9rem;
+            color: #6366f1;
+        }
+        
+        .feature-highlight {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .feature-text {
+            font-size: 1.1rem;
+            color: #0c4a6e;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .easter-egg-response {
+            background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+            border-left-color: #f59e0b !important;
+        }
+        
+        .easter-egg-image {
+            max-width: 100%;
+            border-radius: 8px;
             margin-top: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
-        .example-verse {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-primary);
-            border-radius: 20px;
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
         }
-
-        .example-verse:hover {
-            border-color: var(--border-accent);
-            color: var(--text-primary);
-            background: var(--bg-tertiary);
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
-
-        .typing-animation {
-            position: relative;
-        }
-
-        .typing-animation::after {
-            content: '|';
-            color: var(--accent-primary);
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Responsive */
+        
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
+            .header {
+                padding: 2rem 0;
             }
-
-            .input-container {
-                flex-direction: column;
-                align-items: stretch;
+            
+            .logo {
+                font-size: 2.5rem;
             }
-
-            .send-button {
-                align-self: stretch;
-                text-align: center;
+            
+            .tagline {
+                font-size: 1.1rem;
             }
-
-            .example-verses {
-                justify-content: center;
+            
+            .heralds-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .herald-card {
+                padding: 1.5rem;
+            }
+            
+            .interpretation-section {
+                padding: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
             }
         }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
         }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-primary);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--border-accent);
+        
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="herald-container">
-        <div class="herald-header">
-            <h1 class="herald-title">Herald John</h1>
-            <p class="herald-subtitle">The Beloved Disciple</p>
-            <div class="herald-description">
-                Insight from John, author of the Gospel of Love, leader at the Church of Ephesus, and receiver of Jesus' Revelation.
-            </div>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">Biblical Heralds</h1>
+            <p class="tagline">Experience Scripture through the unique perspectives of biblical figures who walked with God</p>
         </div>
-
-        <div class="chat-interface">
-            <div class="chat-header">
-                <div class="herald-avatar">J</div>
-                <div class="herald-info">
-                    <h3>The Apostle John</h3>
-                    <p>Author of the Fourth Gospel • The Beloved Disciple</p>
-                </div>
+    </header>
+    
+    <div class="container">
+        <section class="main-section">
+            <h2 class="section-title">Choose Your Herald</h2>
+            <div class="heralds-grid" id="heralds-grid">
+                <div class="error-message" id="loading-message">Loading heralds...</div>
             </div>
-
-            <div class="chat-messages" id="chatMessages">
-                <div class="message">
-                    <div class="message-avatar herald-message-avatar">J</div>
-                    <div class="message-content">
-                        <div class="message-header">John</div>
-                        <div class="message-text">
-                            Peace be with you. I am John. I walked with the Word made flesh, witnessed His glory, and was especially loved by Him. Share with me a verse or passage from Scripture, and I will reflect on it and tell you what I think He would want you to see.
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-section">
-                <div class="input-container">
-                    <textarea 
-                        id="verseInput" 
-                        class="verse-input" 
-                        placeholder="Enter a Bible verse or passage for John to reflect upon... (Try typing 'Yochanan' for a special surprise!)"
-                        rows="2"
-                    ></textarea>
-                    <button id="sendButton" class="send-button">
-                        Ask John
-                    </button>
+            
+            <div class="interpretation-section">
+                <div class="selected-herald-display" id="selected-display">
+                    <div class="selected-herald-name">Select a herald above</div>
+                    <div class="selected-herald-note">Each herald brings their unique perspective to Scripture</div>
                 </div>
                 
-                <div class="example-verses">
-                    <div class="example-verse" onclick="setVerse('John 3:16')">John 3:16</div>
-                    <div class="example-verse" onclick="setVerse('1 John 4:7-8')">1 John 4:7-8</div>
-                    <div class="example-verse" onclick="setVerse('John 1:1-5')">John 1:1-5</div>
-                    <div class="example-verse" onclick="setVerse('Revelation 21:1-4')">Revelation 21:1-4</div>
-                    <div class="example-verse" onclick="setVerse('John 15:12-13')">John 15:12-13</div>
-                    <div class="example-verse" onclick="setVerse('Yochanan')">Try Hebrew Name</div>
+                <div class="input-group">
+                    <label class="input-label" for="verse-reference">Scripture Reference</label>
+                    <input type="text" id="verse-reference" class="input-field" placeholder="e.g., John 3:16, Romans 8:28, Psalm 23:1">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label" for="verse-text">Scripture Text</label>
+                    <textarea id="verse-text" class="input-field input-textarea" placeholder="Enter the verse text you'd like interpreted... (Try including a Hebrew name like 'Yohanan' for a surprise!)"></textarea>
+                </div>
+                
+                <button class="interpret-button" onclick="getInterpretation()" id="interpret-btn">
+                    <span>Get Interpretation</span>
+                </button>
+                
+                <div id="response-area" class="response-area" style="display: none;">
+                    <!-- Response content will be populated here -->
+                </div>
+                
+                <div id="recommendation-area" style="display: none;">
+                    <!-- Recommendation content will be populated here -->
                 </div>
             </div>
-        </div>
+            
+            <div class="feature-highlight">
+                <p class="feature-text">
+                    Each herald responds authentically based on their biblical character and life experiences. 
+                    You'll naturally discover which voices resonate most with your own spiritual journey.
+                </p>
+            </div>
+        </section>
     </div>
 
     <script>
-        const chatMessages = document.getElementById('chatMessages');
-        const verseInput = document.getElementById('verseInput');
-        const sendButton = document.getElementById('sendButton');
-
-        function setVerse(verse) {
-            verseInput.value = verse;
-            verseInput.focus();
+        let heralds = {};
+        let selectedHerald = null;
+        
+        // Initialize the page
+        async function init() {
+            try {
+                await loadHeralds();
+                renderHeraldCards();
+                document.getElementById('loading-message').style.display = 'none';
+            } catch (error) {
+                console.error('Failed to load heralds:', error);
+                document.getElementById('heralds-grid').innerHTML = 
+                    '<div class="error-message">Failed to load heralds. Please refresh the page or check your connection.</div>';
+            }
         }
-
-        function addMessage(sender, text, isUser, data) {
-            isUser = isUser || false;
-            data = data || null;
+        
+        // Load heralds from API
+        async function loadHeralds() {
+            const response = await fetch('/api/heralds');
+            const data = await response.json();
             
-            const messageEl = document.createElement('div');
-            messageEl.className = 'message';
-            
-            const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
-            const avatarText = isUser ? 'You' : 'J';
-            const senderName = isUser ? 'You' : 'John';
-            
-            let imageHtml = '';
-            if (data && data.easter_egg && data.image_url) {
-                imageHtml = '<img src="' + data.image_url + '" alt="John\'s Hebrew Name" class="easter-egg-image">';
+            if (!data.success) {
+                throw new Error(data.error || 'Failed to load heralds');
             }
             
-            // Add verse text display if available
-            let verseHtml = '';
-            if (data && data.verse_text) {
-                verseHtml = '<div class="verse-display">' +
-                           '<div class="verse-reference">' + data.verse_text.reference + ' (' + data.verse_text.translation + '):</div>' +
-                           '"' + data.verse_text.text + '"' +
-                           '</div>';
-            }
+            // Convert array to object with keys
+            heralds = {};
+            data.heralds.forEach(herald => {
+                const key = herald.name.toLowerCase().replace(' of bethany', '');
+                heralds[key] = herald;
+            });
+        }
+        
+        // Render herald selection cards
+        function renderHeraldCards() {
+            const container = document.getElementById('heralds-grid');
+            container.innerHTML = '';
+            
+            Object.entries(heralds).forEach(([key, herald]) => {
+                const card = document.createElement('div');
+                card.className = 'herald-card';
+                card.setAttribute('data-herald', key);
+                card.onclick = () => selectHerald(key);
                 
-            messageEl.innerHTML = 
-                '<div class="message-avatar ' + avatarClass + '">' + avatarText + '</div>' +
-                '<div class="message-content">' +
-                    '<div class="message-header">' + senderName + '</div>' +
-                    verseHtml +
-                    '<div class="message-text">' + text + '</div>' +
-                    imageHtml +
-                '</div>';
-            
-            chatMessages.appendChild(messageEl);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            return messageEl;
+                card.innerHTML = `
+                    <h3 class="herald-name">${herald.name}</h3>
+                    <div class="herald-subtitle">${herald.subtitle}</div>
+                    <p class="herald-description">${herald.description}</p>
+                    <div class="biblical-ref">${herald.biblicalRef}</div>
+                `;
+                
+                container.appendChild(card);
+            });
         }
-
-        function showTyping() {
-            const typingEl = addMessage('John', '<span class="loading">John is reflecting<span class="loading-dots"><span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span></span></span>');
-            return typingEl;
+        
+        // Select a herald
+        function selectHerald(heraldKey) {
+            selectedHerald = heraldKey;
+            
+            // Update visual selection
+            document.querySelectorAll('.herald-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-herald="${heraldKey}"]`).classList.add('selected');
+            
+            // Update selected display
+            const herald = heralds[heraldKey];
+            const display = document.getElementById('selected-display');
+            display.innerHTML = `
+                <div class="selected-herald-name">${herald.name} is ready to help</div>
+                <div class="selected-herald-note">${herald.subtitle} • ${herald.style}</div>
+            `;
         }
-
-        function typeText(element, text, callback) {
-            const textEl = element.querySelector('.message-text');
-            textEl.innerHTML = '';
-            textEl.classList.add('typing-animation');
+        
+        // Get interpretation from API
+        async function getInterpretation() {
+            const verse = document.getElementById('verse-reference').value.trim();
+            const verseText = document.getElementById('verse-text').value.trim();
+            const button = document.getElementById('interpret-btn');
             
-            let i = 0;
-            const interval = setInterval(() => {
-                if (i < text.length) {
-                    textEl.innerHTML = text.substring(0, i + 1);
-                    i++;
-                } else {
-                    clearInterval(interval);
-                    textEl.classList.remove('typing-animation');
-                    if (callback) callback();
-                }
-            }, 30);
-        }
-
-        async function sendVerse() {
-            const verse = verseInput.value.trim();
-            if (!verse) return;
-
-            // Add user message
-            addMessage('You', verse, true);
+            if (!selectedHerald) {
+                alert('Please select a herald first.');
+                return;
+            }
             
-            // Clear input and disable button
-            verseInput.value = '';
-            sendButton.disabled = true;
-            sendButton.textContent = 'Reflecting...';
+            if (!verse || !verseText) {
+                alert('Please enter both scripture reference and text.');
+                return;
+            }
             
-            // Show typing indicator
-            const typingEl = showTyping();
+            // Show loading state
+            button.disabled = true;
+            button.innerHTML = '<div class="loading-spinner"></div><span>Getting interpretation...</span>';
             
             try {
-                const response = await fetch('/api/john', {
+                const response = await fetch('/api/heralds', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ verse }),
+                    body: JSON.stringify({
+                        herald: selectedHerald,
+                        verse: verse,
+                        verseText: verseText,
+                        userId: 'demo-user-' + Date.now() // Simple user ID for demo
+                    })
                 });
                 
                 const data = await response.json();
                 
-                if (!response.ok) {
-                    throw new Error(data.error || 'Failed to get response');
+                if (!data.success) {
+                    throw new Error(data.error || 'Failed to get interpretation');
                 }
                 
-                // Remove typing indicator
-                typingEl.remove();
-                
-                // Add John's response with typing effect, including verse text and easter egg data
-                const johnMessage = addMessage('John', '', false, data);
-                typeText(johnMessage, data.message);
+                // Handle different response types
+                if (data.type === 'easter_egg') {
+                    showEasterEgg(data);
+                } else if (data.type === 'recommendation') {
+                    showRecommendation(data);
+                } else {
+                    showInterpretation(data);
+                }
                 
             } catch (error) {
-                // Remove typing indicator
-                typingEl.remove();
-                
-                // Show error message
-                addMessage('John', 'I apologize, beloved friend, but I am unable to respond at this moment. Please try again shortly.');
-                console.error('Error:', error);
+                console.error('Error getting interpretation:', error);
+                showError('Sorry, there was an error getting the interpretation. Please try again.');
             } finally {
-                // Re-enable button
-                sendButton.disabled = false;
-                sendButton.textContent = 'Ask John';
-                verseInput.focus();
+                // Reset button
+                button.disabled = false;
+                button.innerHTML = '<span>Get Interpretation</span>';
             }
         }
-
-        // Event listeners
-        sendButton.addEventListener('click', sendVerse);
         
-        verseInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendVerse();
-            }
-        });
-
-        // Focus input on load
-        verseInput.focus();
+        // Show interpretation result
+        function showInterpretation(data) {
+            const responseArea = document.getElementById('response-area');
+            const recommendationArea = document.getElementById('recommendation-area');
+            
+            // Hide recommendation if showing
+            recommendationArea.style.display = 'none';
+            
+            responseArea.innerHTML = `
+                <div class="response-header">
+                    <div class="response-herald">${data.herald.name} responds:</div>
+                    <div class="response-badge">${data.herald.subtitle}</div>
+                </div>
+                <div class="response-text">${data.interpretation}</div>
+            `;
+            
+            responseArea.style.display = 'block';
+            responseArea.classList.add('fade-in');
+            responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Show herald recommendation
+        function showRecommendation(data) {
+            const recommendationArea = document.getElementById('recommendation-area');
+            const responseArea = document.getElementById('response-area');
+            
+            recommendationArea.innerHTML = `
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        💡 Try a Different Perspective
+                    </div>
+                    <div class="recommendation-text">
+                        ${data.message}
+                        <br><br>
+                        <em>Feel free to select ${data.recommendedHerald.name} above and ask again, 
+                        or continue exploring with ${data.originalHerald.name}.</em>
+                    </div>
+                </div>
+            `;
+            
+            recommendationArea.style.display = 'block';
+            recommendationArea.classList.add('fade-in');
+            recommendationArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Hide interpretation result
+            responseArea.style.display = 'none';
+        }
+        
+        // Show Easter egg
+        function showEasterEgg(data) {
+            const responseArea = document.getElementById('response-area');
+            const recommendationArea = document.getElementById('recommendation-area');
+            
+            // Hide recommendation if showing
+            recommendationArea.style.display = 'none';
+            
+            const imageHtml = data.easterEgg.image ? 
+                `<img src="${data.easterEgg.image}" alt="${data.easterEgg.title}" class="easter-egg-image" onerror="this.style.display='none'">` : '';
+            
+            responseArea.innerHTML = `
+                <div class="response-header">
+                    <div class="response-herald">🥚 ${data.easterEgg.title}</div>
+                    <div class="response-badge">Easter Egg Discovered!</div>
+                </div>
+                <div class="response-text easter-egg-response">
+                    ${data.easterEgg.text}
+                    ${imageHtml}
+                </div>
+            `;
+            
+            responseArea.style.display = 'block';
+            responseArea.classList.add('fade-in');
+            responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Show error message
+        function showError(message) {
+            const responseArea = document.getElementById('response-area');
+            const recommendationArea = document.getElementById('recommendation-area');
+            
+            recommendationArea.style.display = 'none';
+            
+            responseArea.innerHTML = `
+                <div class="error-message">
+                    ${message}
+                </div>
+            `;
+            
+            responseArea.style.display = 'block';
+            responseArea.classList.add('fade-in');
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
