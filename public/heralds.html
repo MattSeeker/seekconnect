@@ -180,6 +180,61 @@
             font-family: inherit;
         }
         
+        .input-hint {
+            margin-top: 0.5rem;
+            text-align: center;
+            color: #8492a6;
+        }
+        
+        .concordance-results {
+            background: #f8f9fa;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .concordance-header {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .verse-list {
+            list-style: none;
+        }
+        
+        .verse-item {
+            background: white;
+            border: 1px solid #e1e8ed;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .verse-item:hover {
+            border-color: #667eea;
+            transform: translateX(4px);
+        }
+        
+        .verse-reference {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.25rem;
+        }
+        
+        .verse-topic {
+            font-size: 0.8rem;
+            color: #8492a6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
         .interpret-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -382,7 +437,7 @@
     <header class="header">
         <div class="header-content">
             <h1 class="logo">Biblical Heralds</h1>
-            <p class="tagline">Experience Scripture through the unique perspectives of biblical figures who walked with God</p>
+            <p class="tagline">Experience Scripture through the unique perspectives of Biblical figures who walked with God</p>
         </div>
     </header>
     
@@ -400,13 +455,15 @@
                 </div>
                 
                 <div class="input-group">
-                    <label class="input-label" for="verse-reference">Scripture Reference</label>
-                    <input type="text" id="verse-reference" class="input-field" placeholder="e.g., John 3:16, Romans 8:28, Psalm 23:1">
-                </div>
-                
-                <div class="input-group">
-                    <label class="input-label" for="verse-text">Scripture Text</label>
-                    <textarea id="verse-text" class="input-field input-textarea" placeholder="Enter the verse text you'd like interpreted... (Try including a Hebrew name like 'Yohanan' for a surprise!)"></textarea>
+                    <label class="input-label" for="smart-input">What would you like to explore?</label>
+                    <textarea id="smart-input" class="input-field input-textarea" placeholder="Try any of these:
+• Bible reference: John 3:16, Romans 8:28
+• Topic search: love, fasting, prayer, forgiveness
+• Direct scripture: paste verse text here
+• Hebrew names: yohanan, kefa, miriam (Easter eggs!)"></textarea>
+                    <div class="input-hint">
+                        <small>💡 I can detect what you're looking for automatically!</small>
+                    </div>
                 </div>
                 
                 <button class="interpret-button" onclick="getInterpretation()" id="interpret-btn">
@@ -429,25 +486,33 @@
                 </p>
             </div>
         </section>
+        
+        <!-- Simple Footer -->
+        <footer style="text-align: center; padding: 2rem 0; border-top: 1px solid #e1e8ed; margin-top: 2rem;">
+            <p style="color: #8492a6; font-size: 0.9rem;">
+                <a href="/feedback.html" style="color: #667eea; text-decoration: none;">Support Biblical Heralds</a> • 
+                <a href="/feedback.html" style="color: #667eea; text-decoration: none;">Send Feedback</a>
+            </p>
+        </footer>
     </div>
 
     <script>
         let heralds = {};
         let selectedHerald = null;
         
-       // Initialize the page
-async function init() {
-    try {
-        await loadHeralds();
-        renderHeraldCards();
-        const loadingMsg = document.getElementById('loading-message');
-        if (loadingMsg) loadingMsg.style.display = 'none';
-    } catch (error) {
-        console.error('Failed to load heralds:', error);
-        document.getElementById('heralds-grid').innerHTML = 
-            '<div class="error-message">Failed to load heralds. Please refresh the page or check your connection.</div>';
-    }
-}
+        // Initialize the page
+        async function init() {
+            try {
+                await loadHeralds();
+                renderHeraldCards();
+                const loadingMsg = document.getElementById('loading-message');
+                if (loadingMsg) loadingMsg.style.display = 'none';
+            } catch (error) {
+                console.error('Failed to load heralds:', error);
+                document.getElementById('heralds-grid').innerHTML = 
+                    '<div class="error-message">Failed to load heralds. Please refresh the page or check your connection.</div>';
+            }
+        }
         
         // Load heralds from API
         async function loadHeralds() {
@@ -509,8 +574,7 @@ async function init() {
         
         // Get interpretation from API
         async function getInterpretation() {
-            const verse = document.getElementById('verse-reference').value.trim();
-            const verseText = document.getElementById('verse-text').value.trim();
+            const input = document.getElementById('smart-input').value.trim();
             const button = document.getElementById('interpret-btn');
             
             if (!selectedHerald) {
@@ -518,14 +582,14 @@ async function init() {
                 return;
             }
             
-            if (!verse || !verseText) {
-                alert('Please enter both scripture reference and text.');
+            if (!input) {
+                alert('Please enter something to explore - a Bible reference, topic, or scripture text.');
                 return;
             }
             
             // Show loading state
             button.disabled = true;
-            button.innerHTML = '<div class="loading-spinner"></div><span>Getting interpretation...</span>';
+            button.innerHTML = '<div class="loading-spinner"></div><span>Exploring...</span>';
             
             try {
                 const response = await fetch('/api/heralds', {
@@ -535,16 +599,15 @@ async function init() {
                     },
                     body: JSON.stringify({
                         herald: selectedHerald,
-                        verse: verse,
-                        verseText: verseText,
-                        userId: 'demo-user-' + Date.now() // Simple user ID for demo
+                        input: input,
+                        userId: 'demo-user-' + Date.now()
                     })
                 });
                 
                 const data = await response.json();
                 
                 if (!data.success) {
-                    throw new Error(data.error || 'Failed to get interpretation');
+                    throw new Error(data.error || 'Failed to process your request');
                 }
                 
                 // Handle different response types
@@ -552,13 +615,15 @@ async function init() {
                     showEasterEgg(data);
                 } else if (data.type === 'recommendation') {
                     showRecommendation(data);
+                } else if (data.type === 'concordance' || data.type === 'topic_search') {
+                    showConcordanceResults(data);
                 } else {
                     showInterpretation(data);
                 }
                 
             } catch (error) {
-                console.error('Error getting interpretation:', error);
-                showError('Sorry, there was an error getting the interpretation. Please try again.');
+                console.error('Error:', error);
+                showError(error.message || 'Sorry, there was an error processing your request. Please try again.');
             } finally {
                 // Reset button
                 button.disabled = false;
@@ -639,6 +704,54 @@ async function init() {
             responseArea.style.display = 'block';
             responseArea.classList.add('fade-in');
             responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Show concordance/topic search results
+        function showConcordanceResults(data) {
+            const responseArea = document.getElementById('response-area');
+            const recommendationArea = document.getElementById('recommendation-area');
+            
+            recommendationArea.style.display = 'none';
+            
+            let resultsHtml = '';
+            if (data.type === 'concordance') {
+                resultsHtml = data.results.map(ref => `
+                    <div class="verse-item" onclick="selectVerse('${ref}')">
+                        <div class="verse-reference">${ref}</div>
+                    </div>
+                `).join('');
+            } else if (data.type === 'topic_search') {
+                resultsHtml = data.results.map(item => `
+                    <div class="verse-item" onclick="selectVerse('${item.reference}')">
+                        <div class="verse-reference">${item.reference}</div>
+                        <div class="verse-topic">${item.topic}</div>
+                    </div>
+                `).join('');
+            }
+            
+            responseArea.innerHTML = `
+                <div class="concordance-results">
+                    <div class="concordance-header">
+                        📖 ${data.message}
+                    </div>
+                    <div class="verse-list">
+                        ${resultsHtml}
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: #666; text-align: center;">
+                        Click any verse above to get ${data.herald.name}'s interpretation
+                    </div>
+                </div>
+            `;
+            
+            responseArea.style.display = 'block';
+            responseArea.classList.add('fade-in');
+            responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Select a verse from concordance results
+        async function selectVerse(reference) {
+            document.getElementById('smart-input').value = reference;
+            await getInterpretation();
         }
         
         // Show error message
