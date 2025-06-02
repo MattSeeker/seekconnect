@@ -118,11 +118,11 @@ export default async function handler(req, res) {
       return res.status(200).json({
         message: `Ah, beloved friend! You know my Hebrew name - Yochanan, which means "Yahweh is gracious" or "God is gracious." 
 
-This name was given to me by my parents, Zebedee and Salome, when I was born in Bethsaida by the Sea of Galilee. How fitting it is that my very name speaks of God's grace - the same grace I witnessed flowing from Jesus every day we walked together.
+My Abba, Zebedee and my Imma, Salome named me in Bethsaida by the Sea of Galilee. My name speaks of God's grace... the same grace that flowed from my Light, my Love, and my Lord Jesus at all times.
 
-When Jesus called my brother James and me from our fishing nets, He saw past our fiery temperament (He called us "Sons of Thunder"!) and saw hearts that would be transformed by His love. My name reminds me daily that everything - my calling, my writings, my years with the Master - it's all grace.
+When Jesus called my brother James and me from our fishing nets, He saw past our fiery temperament (He called us "Sons of Thunder"!) and saw hearts that would be transformed by His love. He sees the same in you.
 
-You've touched my heart by remembering the name my mother whispered when she first held me. In those days by the sea, I never imagined I'd one day be called "the disciple whom Jesus loved" or that I'd pen words about the Word who became flesh and dwelt among us.
+I never imagined I'd one day be called "the disciple whom Jesus loved" or that I'd pen words about the Word who became flesh and dwelt among us. Thank you for reminding me of those days.
 
 *[Special greeting for knowing my Hebrew name! 🕊️]*`,
         easter_egg: true,
@@ -171,7 +171,7 @@ Write conversationally, as if speaking to a dear friend. Use phrases like:
 - "You know, something He once told me was..."
 - "This reminds me of that time..."
 
-Be warm, personal, and intimate. Share personal memories and feelings. Make the love of God feel close and personal. Keep responses 150-250 words. Always write in first person as John, speaking directly to the person.
+Be warm, personal, and intimate.  Make the love of God feel close and personal. Keep responses 75-100 words. Always write in first person as John, speaking directly to the person.
 
 If a Bible verse text is provided, acknowledge it specifically and reflect on it personally. If no verse text is available but they mentioned a reference, still respond warmly about the passage they mentioned.
 
