@@ -34,8 +34,8 @@ export default async function handler(req, res) {
     );
 
     if (isHebrewName) {
-      return res.status(200).json({
-        message: `Ah, beloved friend! You know my Hebrew name - Yochanan, which means "Yahweh is gracious" or "God is gracious." 
+  return res.status(200).json({
+    message: `Ah, beloved friend! You know my Hebrew name - Yochanan, which means "Yahweh is gracious" or "God is gracious." 
 
 This name was given to me by my parents, Zebedee and Salome, when I was born in Bethsaida by the Sea of Galilee. How fitting it is that my very name speaks of God's grace - the same grace I witnessed flowing from Jesus every day we walked together.
 
@@ -44,11 +44,11 @@ When Jesus called my brother James and me from our fishing nets, He saw past our
 You've touched my heart by remembering the name my mother whispered when she first held me. In those days by the sea, I never imagined I'd one day be called "the disciple whom Jesus loved" or that I'd pen words about the Word who became flesh and dwelt among us.
 
 *[Special greeting for knowing my Hebrew name! 🕊️]*`,
-        easter_egg: true,
-        hebrew_name: "יוחנן (Yochanan)",
-        image_url: "https://example.com/john-hebrew.jpg" // You'll need to add actual image
-      });
-    }
+    easter_egg: true,
+    hebrew_name: "יוחנן (Yochanan)",
+    image_url: "/johnEE1.jpg"  // ADD THIS LINE - use your actual filename
+  });
+}
 
     // Check for OpenAI API key
     if (!process.env.OPENAI_API_KEY) {
