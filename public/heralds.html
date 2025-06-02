@@ -428,8 +428,10 @@
             const senderName = isUser ? 'You' : 'John';
         }
             // Add image if it's an easter egg
-            const imageHtml = easterEgg?.image_url ? 
-                `<img src="${easterEgg.image_url}" alt="John's Hebrew Name" class="easter-egg-image">` : '';
+          let imageHtml = '';
+if (easterEgg && easterEgg.image_url) {
+    imageHtml = '<img src="' + easterEgg.image_url + '" alt="John\'s Hebrew Name" class="easter-egg-image">';
+}
             
             messageEl.innerHTML = `
                 <div class="message-avatar ${avatarClass}">${avatarText}</div>
