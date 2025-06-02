@@ -131,19 +131,19 @@ const easterEggs = {
     2: {
       title: "The Running Chronicles", 
       text: "You found my secret! I may have been the beloved disciple, but I was also the fastest to the tomb. Though I waited for Peter to go in first - some things require courage, others require speed. I've always been quick to believe what others hesitate to accept.",
-      image: "/images/easter-eggs/john-running-shoes.jpg", // Image prompt: Ancient sandals with wing details, scroll showing "Tomb Racing Records - John: 1st Place (but waited politely)"
+      image: "/images/easter-eggs/john-running-shoes.jpg",
       tone: "playful"
     },
     3: {
       title: "Love Letters Collection",
       text: "My personal correspondence! You know, after walking with Love incarnate for three years, how could I write about anything else? Every letter, every word - it all comes back to this: God is love. Simple words, infinite depth.",
-      image: "/images/easter-eggs/john-love-letters.jpg", // Image prompt: Stack of ancient scrolls tied with ribbon, hearts doodled in margins, "1 John 4:8" prominently visible
+      image: "/images/easter-eggs/john-love-letters.jpg",
       tone: "playful"
     },
     4: {
       title: "The Revelation of Ultimate Victory",
       text: "You have called me by the name my mother gave me, Yohanan - 'God is gracious.' On Patmos, I saw the end of all things: Satan cast into the lake of fire, death itself destroyed, and a new heaven and new earth where God dwells with His people forever. This is not just vision - this is promise. This is victory. This is hope eternal.",
-      image: "/images/easter-eggs/john-final-victory.jpg", // Image prompt: Majestic scene of New Jerusalem descending, Satan being cast into lake of fire, golden light, ultimate victory scene from Revelation
+      image: "/images/easter-eggs/john-final-victory.jpg",
       tone: "reverential"
     }
   },
@@ -151,25 +151,25 @@ const easterEggs = {
     1: {
       title: "Water Walking Lessons - Beginner Level",
       text: "So you know I'm Kefa, the rock! Here's my guide to walking on water: Step 1 - Keep your eyes on Jesus. Step 2 - Don't look down. Step 3 - When you inevitably look down, remember He'll catch you. I learned this the hard way, but what a lesson!",
-      image: "/images/easter-eggs/peter-water-walking.jpg", // Image prompt: Humorous ancient scroll titled "Water Walking 101", stick figure drawings of steps, wet footprints, "Jesus Lifeguard Certified" seal
+      image: "/images/easter-eggs/peter-water-walking.jpg",
       tone: "playful"
     },
     2: {
       title: "Sword Fighting: Why It's Not Always the Answer",
       text: "My combat manual from the garden! Turns out slicing off ears isn't the solution to spiritual warfare. Who knew? Jesus had to teach me that His kingdom advances through love, not blade. Though I still think Malchus appreciated the quick healing afterward.",
-      image: "/images/easter-eggs/peter-sword-lessons.jpg", // Image prompt: Ancient manual with crossed-out sword, ear with bandage, "Lesson 1: Put away your sword" in big letters
+      image: "/images/easter-eggs/peter-sword-lessons.jpg",
       tone: "playful"
     },
     3: {
       title: "Public Speaking: From Fisherman to Preacher", 
       text: "From denying Him three times to preaching to thousands - what a journey! My secret? Stop trying to be clever and just tell them what you've seen. The Holy Spirit does the rest. Though I still sometimes put my foot in my mouth...",
-      image: "/images/easter-eggs/peter-preaching-tips.jpg", // Image prompt: Scroll showing "From 0 to 3000 converts in one sermon", fishing net transformed into crowd of people, "Holy Spirit = Best Speechwriter"
+      image: "/images/easter-eggs/peter-preaching-tips.jpg",
       tone: "playful"
     },
     4: {
       title: "The Keys to the Kingdom",
       text: "You have spoken my true name - Kefa, the rock upon which Christ builds His church. These are not mere keys of authority, but the sacred responsibility to open heaven's gates to every nation, every people, every tongue. From Cornelius to the ends of the earth - the Gospel knows no boundaries. What God has made clean, let no one call unclean.",
-      image: "/images/easter-eggs/peter-keys-kingdom.jpg", // Image prompt: Magnificent golden keys opening gates to people of all nations, Cornelius baptism scene, "All Nations Welcome" banner
+      image: "/images/easter-eggs/peter-keys-kingdom.jpg",
       tone: "reverential"
     }
   },
@@ -177,25 +177,25 @@ const easterEggs = {
     1: {
       title: "The Encouragement Handbook",
       text: "Bar-Nabba - you know my name means 'son of encouragement'! Here's my secret: everyone has potential, even when they can't see it themselves. Like that young John Mark everyone gave up on, or that fierce persecutor Saul. Sometimes you just need someone to believe in you first.",
-      image: "/images/easter-eggs/barnabas-encouragement-guide.jpg", // Image prompt: Cheerful handbook with "See the Best in Everyone" cover, photos of Paul and John Mark with "Potential!" stamps
+      image: "/images/easter-eggs/barnabas-encouragement-guide.jpg",
       tone: "playful"
     },
     2: {
       title: "Real Estate Adventures in Generosity", 
       text: "My property sales journal! Sold my field and gave it all to the apostles. Best investment I ever made - turned out buying into God's kingdom pays dividends for eternity. Though I do miss that little olive grove sometimes...",
-      image: "/images/easter-eggs/barnabas-property-sales.jpg", // Image prompt: Ancient deed marked "SOLD - For Kingdom Purposes", olive trees, treasure chest labeled "Eternal Dividends"
+      image: "/images/easter-eggs/barnabas-property-sales.jpg",
       tone: "playful"
     },
     3: {
       title: "Mentoring Difficult People",
       text: "The chronicles of taking chances on the unchosen! Paul was Public Enemy #1, John Mark was a quitter, yet here's my philosophy: God's grace is bigger than anyone's past. Sometimes love means standing alone with someone until others catch up to God's vision.",
-      image: "/images/easter-eggs/barnabas-mentoring-guide.jpg", // Image prompt: Mentorship chart showing "Public Enemy → Apostle", "Quitter → Gospel Writer", "God's Grace > Your Past" motto
+      image: "/images/easter-eggs/barnabas-mentoring-guide.jpg",
       tone: "playful"
     },
     4: {
       title: "The Moment That Changed Everything",
       text: "You call me by my true name, Bar-Nabba. When Saul came to Jerusalem, every believer fled in terror - except me. I saw what others couldn't: God's grace transforming the chief of sinners into the apostle to the Gentiles. That single moment of standing with Paul opened the Gospel to the entire world. Sometimes encouragement changes the course of history itself.",
-      image: "/images/easter-eggs/barnabas-vouching-paul.jpg", // Image prompt: Powerful scene of Barnabas standing with Paul before fearful apostles, light breaking through darkness, world map showing Gospel spread
+      image: "/images/easter-eggs/barnabas-vouching-paul.jpg",
       tone: "reverential"
     }
   },
@@ -203,25 +203,25 @@ const easterEggs = {
     1: {
       title: "Study Notes from Jesus University",
       text: "Miriam - you know my Hebrew name! While Martha worried about dinner preparations, I discovered the better portion: sitting at the Teacher's feet. My study notes are full of His words that I treasured in my heart. Some meals can wait; some moments cannot.",
-      image: "/images/easter-eggs/mary-study-notes.jpg", // Image prompt: Ancient notebook with "Jesus University - Mary's Notes", sketches of Jesus teaching, "Better Portion" highlighted, cooking sounds in background
+      image: "/images/easter-eggs/mary-study-notes.jpg",
       tone: "playful"
     },
     2: {
       title: "The Art of Holy Interruption",
       text: "My guide to knowing when NOT to be practical! Sometimes love demands extravagant gestures that others call wasteful. That expensive oil wasn't wasted - it was worship. The poor you'll always have, but you won't always have Jesus physically present to anoint.",
-      image: "/images/easter-eggs/mary-holy-interruption.jpg", // Image prompt: Elegant perfume bottle breaking open, gold coins scattered around labeled "Worth It", "Love > Logic" inscription
+      image: "/images/easter-eggs/mary-holy-interruption.jpg",
       tone: "playful"
     },
     3: {
       title: "Meditation Techniques for Busy Households",
       text: "How to find contemplative space when your sister thinks you should be helping in the kitchen! Step 1: Remember what's eternal vs. temporal. Step 2: Choose the better portion. Step 3: Let Jesus defend your choice when family complains.",
-      image: "/images/easter-eggs/mary-meditation-guide.jpg", // Image prompt: Peaceful meditation space with "Eternal vs Temporal" comparison chart, kitchen chaos in background, Jesus as referee
+      image: "/images/easter-eggs/mary-meditation-guide.jpg",
       tone: "playful"
     },
     4: {
       title: "The Anointing for Burial",
       text: "You speak my name as my mother did - Miriam. While others saw waste, I saw worship. While others planned celebrations, I prepared for burial. That precious oil I poured was not extravagance but understanding - I alone knew what was coming. In anointing Him for death, I participated in the greatest sacrifice ever made. True worship often looks like foolishness to those who cannot see beyond the moment.",
-      image: "/images/easter-eggs/mary-anointing-burial.jpg", // Image prompt: Solemn, beautiful scene of Mary anointing Jesus' feet, alabaster jar broken, profound understanding in her eyes, cross shadow in background
+      image: "/images/easter-eggs/mary-anointing-burial.jpg",
       tone: "reverential"
     }
   },
@@ -229,25 +229,25 @@ const easterEggs = {
     1: {
       title: "Leadership Tips from Under the Palm Tree",
       text: "Devorah - you know my name means 'bee'! My advice column from under my judgment tree. Tip #1: God doesn't always choose the expected leader. Tip #2: Sometimes you have to tell the men to find their courage. Tip #3: Victory songs are best sung AFTER the battle.",
-      image: "/images/easter-eggs/deborah-leadership-tips.jpg", // Image prompt: Wise woman under palm tree, scroll reading "Leadership 101", bee decorations, nervous warriors getting pep talk
+      image: "/images/easter-eggs/deborah-leadership-tips.jpg",
       tone: "playful"
     },
     2: {
       title: "Military Strategy for the Hesitant",
       text: "My tactical manual for when your general needs encouragement! Barak wanted me to come to battle with him - sometimes even mighty warriors need a prophetess to confirm God's promise. Leadership isn't always about being the strongest; sometimes it's about being the one who hears God clearest.",
-      image: "/images/easter-eggs/deborah-military-strategy.jpg", // Image prompt: Battle plan scroll with "Step 1: Get Deborah's Approval" at top, nervous general, confident prophetess pointing to victory
+      image: "/images/easter-eggs/deborah-military-strategy.jpg",
       tone: "playful"
     },
     3: {
       title: "Prophetic Weather Reports",
       text: "My meteorological insights! Predicting when God will send rain to flood the valley and trap enemy chariots. Tip: Always check with the Almighty before planning battles. He controls both the armies of heaven and the storms of earth.",
-      image: "/images/easter-eggs/deborah-weather-reports.jpg", // Image prompt: Ancient weather map showing divine storm clouds, stuck chariots in mud, "God's Weather Service - 100% Accuracy" banner
+      image: "/images/easter-eggs/deborah-weather-reports.jpg",
       tone: "playful"
     },
     4: {
       title: "When Heaven Fights with Earth",
       text: "You call me Devorah, as the Lord named me. When Israel cried out under oppression, God raised up not a king or warrior, but a woman to judge His people and lead them to victory. Against 900 iron chariots, with only faith and divine strategy, we witnessed heaven itself fight alongside us. This was not just military victory - this was God demonstrating that His power perfects itself in unexpected vessels, and His deliverance comes to those who trust completely in His timing.",
-      image: "/images/easter-eggs/deborah-divine-victory.jpg", // Image prompt: Epic battle scene with heaven's armies joining earthly forces, woman leader on hilltop, divine lightning striking iron chariots, victory banner
+      image: "/images/easter-eggs/deborah-divine-victory.jpg",
       tone: "reverential"
     }
   }
@@ -409,6 +409,64 @@ function generateCoreInterpretation(herald, verse, verseText) {
   return heraldInterpretations[Math.floor(Math.random() * heraldInterpretations.length)];
 }
 
+// Helper function to handle interpretation with recommendation logic
+async function handleInterpretation(herald, verse, verseText, userId, res) {
+  // Check for Easter egg first
+  const easterEgg = checkForEasterEgg(verseText, herald.name);
+  if (easterEgg) {
+    return res.status(200).json({
+      success: true,
+      type: 'easter_egg',
+      herald: herald,
+      verse: verse,
+      verseText: verseText,
+      easterEgg: easterEgg,
+      message: `🥚 Easter Egg Discovered! You found ${herald.name}'s secret by using their Hebrew name!`
+    });
+  }
+  
+  // Track verse lookups for recommendations (only for normal responses)
+  const lookupKey = `${userId || 'anonymous'}-${verse}-${herald.name}`;
+  const currentCount = verseLookups.get(lookupKey) || 0;
+  verseLookups.set(lookupKey, currentCount + 1);
+  
+  // Check if we should recommend a different herald (4th time)
+  if (currentCount === 3) {
+    // Reset counter and recommend different herald
+    verseLookups.set(lookupKey, 0);
+    
+    const otherHeraldKeys = Object.keys(heralds).filter(h => h !== herald.name.toLowerCase());
+    const recommendedKey = otherHeraldKeys[Math.floor(Math.random() * otherHeraldKeys.length)];
+    const recommendedHerald = heralds[recommendedKey];
+    
+    return res.status(200).json({
+      success: true,
+      type: 'recommendation',
+      message: `I wonder if you'd benefit from hearing ${recommendedHerald.name}'s perspective on this passage? As ${recommendedHerald.subtitle.toLowerCase()}, ${recommendedHerald.name} might offer fresh insights that resonate differently with you.`,
+      recommendedHerald: recommendedHerald,
+      originalHerald: herald,
+      verse: verse
+    });
+  }
+  
+  // Generate normal response
+  const interpretation = generateResponse(herald, verse, verseText);
+  
+  return res.status(200).json({
+    success: true,
+    type: 'interpretation',
+    herald: herald,
+    verse: verse,
+    verseText: verseText,
+    interpretation: interpretation,
+    personality: {
+      colors: herald.colors,
+      primary: herald.primary,
+      style: herald.style
+    }
+  });
+}
+
 export default function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -432,3 +490,122 @@ export default function handler(req, res) {
     // GET /api/heralds?herald=john - return specific herald
     const heraldName = req.query.herald.toLowerCase();
     const herald = heralds[heraldName];
+    
+    if (!herald) {
+      return res.status(404).json({
+        success: false,
+        error: 'Herald not found'
+      });
+    }
+    
+    return res.status(200).json({
+      success: true,
+      herald: herald
+    });
+  }
+  
+  if (req.method === 'POST') {
+    const { herald: heraldName, input, userId } = req.body;
+    
+    // Validation
+    if (!heraldName || !input) {
+      return res.status(400).json({
+        success: false,
+        error: 'herald and input are required'
+      });
+    }
+    
+    const herald = heralds[heraldName.toLowerCase()];
+    if (!herald) {
+      return res.status(404).json({
+        success: false,
+        error: 'Herald not found'
+      });
+    }
+    
+    // Detect input type
+    const inputType = detectInputType(input);
+    
+    // Handle different input types
+    switch (inputType.type) {
+      case 'easter_egg':
+        const easterEgg = checkForEasterEgg(input, herald.name);
+        if (easterEgg) {
+          return res.status(200).json({
+            success: true,
+            type: 'easter_egg',
+            herald: herald,
+            input: input,
+            easterEgg: easterEgg,
+            message: `🥚 Easter Egg Discovered! You found ${herald.name}'s secret by using their Hebrew name!`
+          });
+        }
+        break;
+        
+      case 'reference':
+        const verseResult = await fetchBibleVerse(inputType.reference);
+        if (verseResult.success) {
+          return await handleInterpretation(herald, verseResult.reference, verseResult.text, userId, res);
+        } else {
+          return res.status(400).json({
+            success: false,
+            error: `Could not find verse: ${inputType.reference}. ${verseResult.error}`
+          });
+        }
+        
+      case 'concordance':
+        const concordanceResults = getConcordanceResults(inputType.topic);
+        return res.status(200).json({
+          success: true,
+          type: 'concordance',
+          herald: herald,
+          topic: inputType.topic,
+          query: inputType.query,
+          results: concordanceResults,
+          message: `${herald.name} found ${concordanceResults.length} verses about "${inputType.topic}"`
+        });
+        
+      case 'scripture':
+        return await handleInterpretation(herald, 'User provided text', inputType.text, userId, res);
+        
+      case 'topic_search':
+        // Try to find related topics
+        const searchResults = Object.keys(concordanceTopics)
+          .filter(topic => topic.includes(inputType.query.toLowerCase()) || inputType.query.toLowerCase().includes(topic))
+          .slice(0, 5);
+          
+        if (searchResults.length > 0) {
+          const allResults = searchResults.flatMap(topic => 
+            getConcordanceResults(topic).map(ref => ({ topic, reference: ref }))
+          );
+          
+          return res.status(200).json({
+            success: true,
+            type: 'topic_search',
+            herald: herald,
+            query: inputType.query,
+            results: allResults.slice(0, 10),
+            message: `${herald.name} found verses related to your search`
+          });
+        } else {
+          return res.status(400).json({
+            success: false,
+            error: `I couldn't find any verses related to "${inputType.query}". Try topics like: love, faith, prayer, forgiveness, wisdom`
+          });
+        }
+        
+      default:
+        return res.status(400).json({
+          success: false,
+          error: 'Could not understand your input. Try a Bible reference (John 3:16), topic (love), or scripture text.'
+        });
+    }
+  }
+  
+  // Method not allowed
+  res.setHeader('Allow', ['GET', 'POST']);
+  res.status(405).json({
+    success: false,
+    error: 'Method not allowed'
+  });
+}
