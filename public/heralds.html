@@ -435,18 +435,19 @@
         let heralds = {};
         let selectedHerald = null;
         
-        // Initialize the page
-        async function init() {
-            try {
-                await loadHeralds();
-                renderHeraldCards();
-                document.getElementById('loading-message').style.display = 'none';
-            } catch (error) {
-                console.error('Failed to load heralds:', error);
-                document.getElementById('heralds-grid').innerHTML = 
-                    '<div class="error-message">Failed to load heralds. Please refresh the page or check your connection.</div>';
-            }
-        }
+       // Initialize the page
+async function init() {
+    try {
+        await loadHeralds();
+        renderHeraldCards();
+        const loadingMsg = document.getElementById('loading-message');
+        if (loadingMsg) loadingMsg.style.display = 'none';
+    } catch (error) {
+        console.error('Failed to load heralds:', error);
+        document.getElementById('heralds-grid').innerHTML = 
+            '<div class="error-message">Failed to load heralds. Please refresh the page or check your connection.</div>';
+    }
+}
         
         // Load heralds from API
         async function loadHeralds() {
