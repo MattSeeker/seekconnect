@@ -419,7 +419,7 @@
             verseInput.focus();
         }
 
-     function addMessage(sender, text, isUser, easterEgg) {
+ function addMessage(sender, text, isUser, easterEgg) {
     isUser = isUser || false;
     easterEgg = easterEgg || null;
     
@@ -434,7 +434,7 @@
     if (easterEgg && easterEgg.image_url) {
         imageHtml = '<img src="' + easterEgg.image_url + '" alt="John\'s Hebrew Name" class="easter-egg-image">';
     }
-    
+        
     messageEl.innerHTML = 
         '<div class="message-avatar ' + avatarClass + '">' + avatarText + '</div>' +
         '<div class="message-content">' +
