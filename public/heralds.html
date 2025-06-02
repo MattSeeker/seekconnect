@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -174,6 +174,22 @@
         .message-text {
             color: var(--text-secondary);
             line-height: 1.6;
+        }
+
+        .verse-display {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-primary);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .verse-reference {
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-style: normal;
         }
 
         .easter-egg-image {
@@ -419,34 +435,44 @@
             verseInput.focus();
         }
 
- function addMessage(sender, text, isUser, easterEgg) {
-    isUser = isUser || false;
-    easterEgg = easterEgg || null;
-    
-    const messageEl = document.createElement('div');
-    messageEl.className = 'message';
-    
-    const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
-    const avatarText = isUser ? 'You' : 'J';
-    const senderName = isUser ? 'You' : 'John';
-    
-    let imageHtml = '';
-    if (easterEgg && easterEgg.image_url) {
-        imageHtml = '<img src="' + easterEgg.image_url + '" alt="John\'s Hebrew Name" class="easter-egg-image">';
-    }
-        
-    messageEl.innerHTML = 
-        '<div class="message-avatar ' + avatarClass + '">' + avatarText + '</div>' +
-        '<div class="message-content">' +
-            '<div class="message-header">' + senderName + '</div>' +
-            '<div class="message-text">' + text + '</div>' +
-            imageHtml +
-        '</div>';
-    
-    chatMessages.appendChild(messageEl);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    return messageEl;
-}
+        function addMessage(sender, text, isUser, data) {
+            isUser = isUser || false;
+            data = data || null;
+            
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message';
+            
+            const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
+            const avatarText = isUser ? 'You' : 'J';
+            const senderName = isUser ? 'You' : 'John';
+            
+            let imageHtml = '';
+            if (data && data.easter_egg && data.image_url) {
+                imageHtml = '<img src="' + data.image_url + '" alt="John\'s Hebrew Name" class="easter-egg-image">';
+            }
+            
+            // Add verse text display if available
+            let verseHtml = '';
+            if (data && data.verse_text) {
+                verseHtml = '<div class="verse-display">' +
+                           '<div class="verse-reference">' + data.verse_text.reference + ' (' + data.verse_text.translation + '):</div>' +
+                           '"' + data.verse_text.text + '"' +
+                           '</div>';
+            }
+                
+            messageEl.innerHTML = 
+                '<div class="message-avatar ' + avatarClass + '">' + avatarText + '</div>' +
+                '<div class="message-content">' +
+                    '<div class="message-header">' + senderName + '</div>' +
+                    verseHtml +
+                    '<div class="message-text">' + text + '</div>' +
+                    imageHtml +
+                '</div>';
+            
+            chatMessages.appendChild(messageEl);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return messageEl;
+        }
 
         function showTyping() {
             const typingEl = addMessage('John', '<span class="loading">John is reflecting<span class="loading-dots"><span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span></span></span>');
@@ -504,8 +530,8 @@
                 // Remove typing indicator
                 typingEl.remove();
                 
-                // Add John's response with typing effect, including easter egg data if present
-                const johnMessage = addMessage('John', '', false, data.easter_egg ? data : null);
+                // Add John's response with typing effect, including verse text and easter egg data
+                const johnMessage = addMessage('John', '', false, data);
                 typeText(johnMessage, data.message);
                 
             } catch (error) {
