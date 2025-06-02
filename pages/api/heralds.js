@@ -1,5 +1,9 @@
- // pages/api/heralds.js
+// pages/api/heralds.js
 // Complete Biblical Heralds API - Ready for Production
+
+// Bible Gateway API integration
+const BIBLE_GATEWAY_API_KEY = process.env.BIBLE_GATEWAY_API_KEY || 'demo-key';
+const BIBLE_GATEWAY_BASE_URL = 'https://api.bibliaapi.com/v1/bible/content';
 
 // Hebrew names for Easter egg detection
 const hebrewNames = {
@@ -10,13 +14,118 @@ const hebrewNames = {
   deborah: ['devorah', 'dvorah', 'דבורה']
 };
 
+// Concordance mapping for topic searches
+const concordanceTopics = {
+  love: ['1 John 4:8', 'John 3:16', '1 Corinthians 13:4-7', 'Romans 8:38-39', 'John 15:13'],
+  fasting: ['Matthew 6:16-18', 'Joel 2:12', 'Isaiah 58:6-7', 'Daniel 10:3', 'Matthew 4:2'],
+  prayer: ['Matthew 6:9-13', 'Philippians 4:6-7', '1 Thessalonians 5:17', 'James 5:16', 'Luke 11:1-4'],
+  forgiveness: ['Matthew 6:14-15', 'Ephesians 4:32', 'Colossians 3:13', '1 John 1:9', 'Matthew 18:21-22'],
+  faith: ['Hebrews 11:1', 'Romans 10:17', 'Matthew 17:20', 'Ephesians 2:8-9', 'James 2:17'],
+  hope: ['Romans 15:13', 'Jeremiah 29:11', 'Psalm 42:11', 'Romans 8:24-25', 'Hebrews 6:19'],
+  peace: ['John 14:27', 'Philippians 4:7', 'Isaiah 26:3', 'Romans 5:1', 'Matthew 5:9'],
+  joy: ['Nehemiah 8:10', 'Psalm 16:11', 'John 15:11', 'Galatians 5:22', 'James 1:2'],
+  wisdom: ['Proverbs 3:5-6', 'James 1:5', 'Proverbs 9:10', 'Ecclesiastes 7:12', '1 Corinthians 1:25'],
+  strength: ['Isaiah 40:31', 'Philippians 4:13', 'Psalm 46:1', '2 Corinthians 12:9', 'Ephesians 6:10'],
+  fear: ['Isaiah 41:10', '2 Timothy 1:7', 'Psalm 23:4', 'Joshua 1:9', 'Proverbs 3:25-26'],
+  trust: ['Proverbs 3:5-6', 'Psalm 37:3', 'Isaiah 26:4', 'Jeremiah 17:7-8', 'Nahum 1:7'],
+  worship: ['John 4:24', 'Psalm 95:6', 'Romans 12:1', 'Revelation 4:11', 'Psalm 100:2'],
+  money: ['1 Timothy 6:10', 'Matthew 6:24', 'Luke 16:11', 'Malachi 3:10', 'Proverbs 22:7'],
+  marriage: ['Genesis 2:24', 'Ephesians 5:25', '1 Corinthians 7:3', 'Malachi 2:16', 'Proverbs 18:22'],
+  children: ['Proverbs 22:6', 'Ephesians 6:4', 'Psalm 127:3', 'Matthew 19:14', 'Deuteronomy 6:7'],
+  anger: ['Ephesians 4:26', 'Proverbs 29:11', 'James 1:19-20', 'Psalm 37:8', 'Proverbs 15:1'],
+  anxiety: ['Philippians 4:6-7', 'Matthew 6:25-26', '1 Peter 5:7', 'Psalm 55:22', 'Isaiah 26:3'],
+  salvation: ['Romans 10:9', 'Ephesians 2:8-9', 'John 14:6', 'Acts 4:12', 'Romans 6:23'],
+  persecution: ['Matthew 5:10-12', '2 Timothy 3:12', '1 Peter 4:12-14', 'John 15:20', 'Romans 8:17']
+};
+
+// Bible reference pattern matching
+const bibleRefPattern = /^([1-3]?\s*[A-Za-z]+)\s*(\d+)(?::(\d+)(?:-(\d+))?)?$/;
+
+// Smart input detection
+function detectInputType(input) {
+  const trimmed = input.trim();
+  
+  // Check for Hebrew names (Easter egg)
+  for (const [herald, names] of Object.entries(hebrewNames)) {
+    if (names.some(name => trimmed.toLowerCase().includes(name.toLowerCase()))) {
+      return { type: 'easter_egg', herald, input: trimmed };
+    }
+  }
+  
+  // Check for Bible reference pattern
+  if (bibleRefPattern.test(trimmed)) {
+    return { type: 'reference', reference: trimmed };
+  }
+  
+  // Check for topic words
+  const lowerInput = trimmed.toLowerCase();
+  for (const topic of Object.keys(concordanceTopics)) {
+    if (lowerInput.includes(topic) && trimmed.length < 100) {
+      return { type: 'concordance', topic, query: trimmed };
+    }
+  }
+  
+  // Assume it's direct scripture if longer than 50 characters
+  if (trimmed.length > 50) {
+    return { type: 'scripture', text: trimmed };
+  }
+  
+  // Default to topic search for shorter queries
+  return { type: 'topic_search', query: trimmed };
+}
+
+// Fetch Bible verse from Bible Gateway API
+async function fetchBibleVerse(reference) {
+  try {
+    // For demo purposes, return mock data
+    // In production, implement actual Bible Gateway API call
+    const mockVerses = {
+      'john 3:16': 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.',
+      'romans 8:28': 'And we know that in all things God works for the good of those who love him, who have been called according to his purpose.',
+      'psalm 23:1': 'The Lord is my shepherd, I lack nothing.',
+      'matthew 6:16': 'When you fast, do not look somber as the hypocrites do, for they disfigure their faces to show others they are fasting.',
+      'philippians 4:13': 'I can do all this through him who gives me strength.'
+    };
+    
+    const normalizedRef = reference.toLowerCase().replace(/\s+/g, ' ');
+    const verse = mockVerses[normalizedRef];
+    
+    if (verse) {
+      return { success: true, reference, text: verse };
+    } else {
+      return { success: false, error: 'Verse not found in demo database' };
+    }
+  } catch (error) {
+    return { success: false, error: 'Failed to fetch verse' };
+  }
+}
+
+// Get concordance results for topic
+function getConcordanceResults(topic) {
+  const verses = concordanceTopics[topic.toLowerCase()];
+  if (!verses) {
+    // Search for partial matches
+    const partialMatches = Object.entries(concordanceTopics)
+      .filter(([key]) => key.includes(topic.toLowerCase()) || topic.toLowerCase().includes(key))
+      .flatMap(([, refs]) => refs);
+    
+    if (partialMatches.length > 0) {
+      return partialMatches.slice(0, 5); // Limit to 5 results
+    }
+    
+    return [];
+  }
+  
+  return verses;
+}
+
 // Easter egg content - John has working image, others ready for images
 const easterEggs = {
   john: {
     1: {
       title: "John's Fishing Report",
       text: "Ah, you know my Hebrew name! You've discovered my fishing journal from the early days. Three species today - clean and unclean! Even caught a catfish (don't tell the Pharisees). Shared bread with a traveling rabbi who said I'd fish for people instead. Little did I know how my nets would change...",
-      image: "JohnEE1.jpeg", // Your existing working image
+      image: "/JohnEE1.jpeg", // Your existing working image
       tone: "playful"
     },
     2: {
@@ -323,99 +432,3 @@ export default function handler(req, res) {
     // GET /api/heralds?herald=john - return specific herald
     const heraldName = req.query.herald.toLowerCase();
     const herald = heralds[heraldName];
-    
-    if (!herald) {
-      return res.status(404).json({
-        success: false,
-        error: 'Herald not found'
-      });
-    }
-    
-    return res.status(200).json({
-      success: true,
-      herald: herald
-    });
-  }
-  
-  if (req.method === 'POST') {
-    const { herald: heraldName, verse, verseText, userId } = req.body;
-    
-    // Validation
-    if (!heraldName || !verse || !verseText) {
-      return res.status(400).json({
-        success: false,
-        error: 'herald, verse, and verseText are required'
-      });
-    }
-    
-    const herald = heralds[heraldName.toLowerCase()];
-    if (!herald) {
-      return res.status(404).json({
-        success: false,
-        error: 'Herald not found'
-      });
-    }
-    
-    // Check for Easter egg first
-    const easterEgg = checkForEasterEgg(verseText, herald.name);
-    if (easterEgg) {
-      return res.status(200).json({
-        success: true,
-        type: 'easter_egg',
-        herald: herald,
-        verse: verse,
-        verseText: verseText,
-        easterEgg: easterEgg,
-        message: `🥚 Easter Egg Discovered! You found ${herald.name}'s secret by using their Hebrew name!`
-      });
-    }
-    
-    // Track verse lookups for recommendations (only for normal responses)
-    const lookupKey = `${userId || 'anonymous'}-${verse}-${heraldName}`;
-    const currentCount = verseLookups.get(lookupKey) || 0;
-    verseLookups.set(lookupKey, currentCount + 1);
-    
-    // Check if we should recommend a different herald (4th time)
-    if (currentCount === 3) {
-      // Reset counter and recommend different herald
-      verseLookups.set(lookupKey, 0);
-      
-      const otherHeraldKeys = Object.keys(heralds).filter(h => h !== heraldName.toLowerCase());
-      const recommendedKey = otherHeraldKeys[Math.floor(Math.random() * otherHeraldKeys.length)];
-      const recommendedHerald = heralds[recommendedKey];
-      
-      return res.status(200).json({
-        success: true,
-        type: 'recommendation',
-        message: `I wonder if you'd benefit from hearing ${recommendedHerald.name}'s perspective on this passage? As ${recommendedHerald.subtitle.toLowerCase()}, ${recommendedHerald.name} might offer fresh insights that resonate differently with you.`,
-        recommendedHerald: recommendedHerald,
-        originalHerald: herald,
-        verse: verse
-      });
-    }
-    
-    // Generate normal response
-    const interpretation = generateResponse(herald, verse, verseText);
-    
-    return res.status(200).json({
-      success: true,
-      type: 'interpretation',
-      herald: herald,
-      verse: verse,
-      verseText: verseText,
-      interpretation: interpretation,
-      personality: {
-        colors: herald.colors,
-        primary: herald.primary,
-        style: herald.style
-      }
-    });
-  }
-  
-  // Method not allowed
-  res.setHeader('Allow', ['GET', 'POST']);
-  res.status(405).json({
-    success: false,
-    error: 'Method not allowed'
-  });
-}
