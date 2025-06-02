@@ -176,6 +176,14 @@
             line-height: 1.6;
         }
 
+        .easter-egg-image {
+            max-width: 200px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
         .input-section {
             padding: 1.5rem;
             border-top: 1px solid var(--border-primary);
@@ -305,28 +313,6 @@
             51%, 100% { opacity: 0; }
         }
 
-        .error-message {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #fca5a5;
-        }
-
-        .retry-button {
-            background: var(--accent-primary);
-            border: none;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            color: white;
-            font-size: 0.875rem;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            transition: background 0.3s ease;
-        }
-
-        .retry-button:hover {
-            background: var(--accent-secondary);
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -392,7 +378,7 @@
                     <div class="message-content">
                         <div class="message-header">John</div>
                         <div class="message-text">
-                            Peace be with you, beloved. I am John, the disciple whom Jesus loved. I have walked with the Word made flesh, witnessed His glory, and felt the depth of His love. Share with me a verse or passage from Scripture, and let us explore together the mysteries of God's love and truth that I have been privileged to witness and record.
+                            Peace be with you, beloved friend. I am John, the disciple whom Jesus loved. I have walked with the Word made flesh, witnessed His glory, and felt the depth of His love. Share with me a verse or passage from Scripture, and let us explore together the mysteries of God's love and light that I have been privileged to witness and record.
                         </div>
                     </div>
                 </div>
@@ -403,7 +389,7 @@
                     <textarea 
                         id="verseInput" 
                         class="verse-input" 
-                        placeholder="Enter a Bible verse or passage for John to reflect upon..."
+                        placeholder="Enter a Bible verse or passage for John to reflect upon... (Try typing 'Yochanan' for a special surprise!)"
                         rows="2"
                     ></textarea>
                     <button id="sendButton" class="send-button">
@@ -417,6 +403,7 @@
                     <div class="example-verse" onclick="setVerse('John 1:1-5')">John 1:1-5</div>
                     <div class="example-verse" onclick="setVerse('Revelation 21:1-4')">Revelation 21:1-4</div>
                     <div class="example-verse" onclick="setVerse('John 15:12-13')">John 15:12-13</div>
+                    <div class="example-verse" onclick="setVerse('Yochanan')">Try Hebrew Name</div>
                 </div>
             </div>
         </div>
@@ -427,33 +414,31 @@
         const verseInput = document.getElementById('verseInput');
         const sendButton = document.getElementById('sendButton');
 
-        // Store the last verse for retry functionality
-        let lastVerse = '';
-
         function setVerse(verse) {
             verseInput.value = verse;
             verseInput.focus();
         }
 
-        ffunction addMessage(sender, text, isUser = false, easterEgg = null) {
-    const messageEl = document.createElement('div');
-    messageEl.className = 'message';
-    
-    const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
-    const avatarText = isUser ? 'You' : 'J';
-    const senderName = isUser ? 'You' : 'John';
-    
-    const imageHtml = easterEgg?.image_url ? 
-        `<img src="${easterEgg.image_url}" alt="John" style="max-width: 200px; border-radius: 8px; margin: 10px 0;">` : '';
-    
-    messageEl.innerHTML = `
-        <div class="message-avatar ${avatarClass}">${avatarText}</div>
-        <div class="message-content">
-            <div class="message-header">${senderName}</div>
-            <div class="message-text">${text}</div>
-            ${imageHtml}
-        </div>
-    `;
+        function addMessage(sender, text, isUser = false, easterEgg = null) {
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message';
+            
+            const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
+            const avatarText = isUser ? 'You' : 'J';
+            const senderName = isUser ? 'You' : 'John';
+            
+            // Add image if it's an easter egg
+            const imageHtml = easterEgg?.image_url ? 
+                `<img src="${easterEgg.image_url}" alt="John's Hebrew Name" class="easter-egg-image">` : '';
+            
+            messageEl.innerHTML = `
+                <div class="message-avatar ${avatarClass}">${avatarText}</div>
+                <div class="message-content">
+                    <div class="message-header">${senderName}</div>
+                    <div class="message-text">${text}</div>
+                    ${imageHtml}
+                </div>
+            `;
             
             chatMessages.appendChild(messageEl);
             chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -483,108 +468,9 @@
             }, 30);
         }
 
-        function addRetryButton(messageEl, verse) {
-            const textEl = messageEl.querySelector('.message-text');
-            const retryButton = document.createElement('button');
-            retryButton.className = 'retry-button';
-            retryButton.textContent = 'Try Again';
-            retryButton.onclick = () => {
-                messageEl.remove();
-                sendVerseRequest(verse);
-            };
-            textEl.appendChild(retryButton);
-        }
-
-        async function sendVerseRequest(verse) {
-            // Show typing indicator
-            const typingEl = showTyping();
-            
-            try {
-                // Enhanced error handling with timeout
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-                
-                const response = await fetch('/api/john', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 
-                        verse: verse,
-                        timestamp: Date.now() // Add timestamp to prevent caching issues
-                    }),
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeoutId);
-                
-                // Handle different response types
-                let data;
-                const contentType = response.headers.get('content-type');
-                
-                if (contentType && contentType.includes('application/json')) {
-                    data = await response.json();
-                } else {
-                    // Handle non-JSON responses
-                    const textResponse = await response.text();
-                    data = { message: textResponse };
-                }
-                
-                // Remove typing indicator
-                typingEl.remove();
-                
-                if (!response.ok) {
-                    throw new Error(data.error || data.message || `Server returned ${response.status}: ${response.statusText}`);
-                }
-                
-                // Check if the response contains the actual message
-                let responseMessage = data.message || data.response || data.text || 'No response received';
-                
-                // Handle specific error messages
-                if (responseMessage.toLowerCase().includes('john is not available') || 
-                    responseMessage.toLowerCase().includes('not available') ||
-                    responseMessage.toLowerCase().includes('unavailable')) {
-                    throw new Error('Service temporarily unavailable. The API endpoint may be down or misconfigured.');
-                }
-                
-                // Add John's response with typing effect
-                const johnMessage = addMessage('John', '');
-                typeText(johnMessage, responseMessage);
-                
-            } catch (error) {
-                // Remove typing indicator
-                typingEl.remove();
-                
-                let errorMessage = 'I apologize, but I am experiencing difficulties at the moment. ';
-                
-                if (error.name === 'AbortError') {
-                    errorMessage += 'The request timed out. Please try again.';
-                } else if (error.message.includes('fetch')) {
-                    errorMessage += 'There seems to be a connection issue. Please check your internet connection and try again.';
-                } else if (error.message.includes('Service temporarily unavailable')) {
-                    errorMessage += 'The service is temporarily unavailable. This may be due to server maintenance or configuration issues.';
-                } else {
-                    errorMessage += `Error details: ${error.message}`;
-                }
-                
-                // Show error message with retry option
-                const errorMessageEl = addMessage('John', errorMessage, false, true);
-                addRetryButton(errorMessageEl, verse);
-                
-                console.error('API Error Details:', {
-                    error: error.message,
-                    verse: verse,
-                    timestamp: new Date().toISOString()
-                });
-            }
-        }
-
         async function sendVerse() {
             const verse = verseInput.value.trim();
             if (!verse) return;
-
-            // Store for retry functionality
-            lastVerse = verse;
 
             // Add user message
             addMessage('You', verse, true);
@@ -594,8 +480,38 @@
             sendButton.disabled = true;
             sendButton.textContent = 'Reflecting...';
             
+            // Show typing indicator
+            const typingEl = showTyping();
+            
             try {
-                await sendVerseRequest(verse);
+                const response = await fetch('/api/john', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ verse }),
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to get response');
+                }
+                
+                // Remove typing indicator
+                typingEl.remove();
+                
+                // Add John's response with typing effect, including easter egg data if present
+                const johnMessage = addMessage('John', '', false, data.easter_egg ? data : null);
+                typeText(johnMessage, data.message);
+                
+            } catch (error) {
+                // Remove typing indicator
+                typingEl.remove();
+                
+                // Show error message
+                addMessage('John', 'I apologize, beloved friend, but I am unable to respond at this moment. Please try again shortly.');
+                console.error('Error:', error);
             } finally {
                 // Re-enable button
                 sendButton.disabled = false;
@@ -616,19 +532,6 @@
 
         // Focus input on load
         verseInput.focus();
-
-        // Add connection status checking
-        window.addEventListener('online', () => {
-            console.log('Connection restored');
-            if (lastVerse) {
-                addMessage('John', 'Connection restored. You may retry your last question if needed.', false, false);
-            }
-        });
-
-        window.addEventListener('offline', () => {
-            console.log('Connection lost');
-            addMessage('John', 'It appears you have lost internet connection. Please check your connection and try again.', false, true);
-        });
     </script>
 </body>
 </html>
