@@ -16,7 +16,7 @@ const easterEggs = {
     1: {
       title: "John's Fishing Report",
       text: "Ah, you know my Hebrew name! You've discovered my fishing journal from the early days. Three species today - clean and unclean! Even caught a catfish (don't tell the Pharisees). Shared bread with a traveling rabbi who said I'd fish for people instead. Little did I know how my nets would change...",
-      image: "/images/easter-eggs/john-fishing-report.jpg", // Your existing working image
+      image: "JohnEE1.jpeg", // Your existing working image
       tone: "playful"
     },
     2: {
