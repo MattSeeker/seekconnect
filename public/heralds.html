@@ -435,22 +435,25 @@
             verseInput.focus();
         }
 
-        function addMessage(sender, text, isUser = false, isError = false) {
-            const messageEl = document.createElement('div');
-            messageEl.className = 'message';
-            
-            const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
-            const avatarText = isUser ? 'You' : 'J';
-            const senderName = isUser ? 'You' : 'John';
-            const contentClass = isError ? 'message-content error-message' : 'message-content';
-            
-            messageEl.innerHTML = `
-                <div class="message-avatar ${avatarClass}">${avatarText}</div>
-                <div class="${contentClass}">
-                    <div class="message-header">${senderName}</div>
-                    <div class="message-text">${text}</div>
-                </div>
-            `;
+        ffunction addMessage(sender, text, isUser = false, easterEgg = null) {
+    const messageEl = document.createElement('div');
+    messageEl.className = 'message';
+    
+    const avatarClass = isUser ? 'user-avatar' : 'herald-message-avatar';
+    const avatarText = isUser ? 'You' : 'J';
+    const senderName = isUser ? 'You' : 'John';
+    
+    const imageHtml = easterEgg?.image_url ? 
+        `<img src="${easterEgg.image_url}" alt="John" style="max-width: 200px; border-radius: 8px; margin: 10px 0;">` : '';
+    
+    messageEl.innerHTML = `
+        <div class="message-avatar ${avatarClass}">${avatarText}</div>
+        <div class="message-content">
+            <div class="message-header">${senderName}</div>
+            <div class="message-text">${text}</div>
+            ${imageHtml}
+        </div>
+    `;
             
             chatMessages.appendChild(messageEl);
             chatMessages.scrollTop = chatMessages.scrollHeight;
