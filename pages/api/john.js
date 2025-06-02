@@ -46,7 +46,7 @@ You've touched my heart by remembering the name my mother whispered when she fir
 *[Special greeting for knowing my Hebrew name! 🕊️]*`,
     easter_egg: true,
     hebrew_name: "יוחנן (Yochanan)",
-    image_url: "/public/JohnEE1.jpeg  // ADD THIS LINE - use your actual filename
+    image_url: "JohnEE1.jpeg  // ADD THIS LINE - use your actual filename
   });
 }
 
