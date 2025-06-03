@@ -88,6 +88,56 @@
             margin-bottom: 2rem;
         }
 
+        .herald-selection-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .herald-selection-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .ask-button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .ask-button-large {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 60px;
+            min-width: 300px;
+            box-shadow: var(--shadow);
+        }
+
+        .ask-button-large:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .ask-button-large:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            background: #94a3b8;
+        }
+
+        .ask-text {
+            display: block;
+        }
+
         .herald-card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -96,6 +146,35 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
+            position: relative;
+        }
+
+        .herald-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .herald-card.selected::before {
+            opacity: 1;
+            background: var(--accent-color);
+        }
+
+        .herald-card.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .herald-card:hover {
@@ -533,10 +612,57 @@
 
     <div class="container">
         <div class="intro">
-            <p>Seek biblical wisdom through the authentic voices of 5 distinct biblical characters. Each herald offers their unique perspective, from John's love-focused insights to Deborah's strategic wisdom. Discover Hebrew names, explore Scripture, and uncover hidden Easter eggs along your spiritual journey.</p>
+            <p>A herald is a messenger who brings important news. Our Biblical Heralds reflect the Truth of Scripture through the lens of authentic personalities, shaped by what we know of these remarkable figures from the Old and New Testaments. <strong>Start by entering your question below</strong>, then choose a herald for their unique reflection. Each offers their distinct perspective and emphasis—from John's love-focused insights to Deborah's strategic wisdom.</p>
         </div>
 
-        <div class="heralds-grid">
+        <div class="input-section">
+            <h2>💭 What would you like to explore?</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Enter a Bible reference, Hebrew name, topic, or question - then choose your herald below
+            </p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Try: John 3:16, love, yeshua, or How do I find peace?" id="searchInput">
+            </div>
+            
+            <div class="input-examples">
+                <div class="example-category">
+                    <h4>📖 Bible References</h4>
+                    <div class="example-item" data-example="John 3:16">John 3:16</div>
+                    <div class="example-item" data-example="Psalm 23">Psalm 23</div>
+                    <div class="example-item" data-example="1 Corinthians 13:4-7">1 Corinthians 13:4-7</div>
+                    <div class="example-item" data-example="Romans 8:28">Romans 8:28</div>
+                </div>
+                
+                <div class="example-category">
+                    <h4>🔤 Hebrew Names</h4>
+                    <div class="example-item" data-example="yeshua">Yeshua</div>
+                    <div class="example-item" data-example="david">David</div>
+                    <div class="example-item" data-example="moses">Moses</div>
+                    <div class="example-item" data-example="shalom">Shalom</div>
+                </div>
+                
+                <div class="example-category">
+                    <h4>💭 Topics</h4>
+                    <div class="example-item" data-example="love">Love</div>
+                    <div class="example-item" data-example="faith">Faith</div>
+                    <div class="example-item" data-example="prayer">Prayer</div>
+                    <div class="example-item" data-example="forgiveness">Forgiveness</div>
+                </div>
+                
+                <div class="example-category">
+                    <h4>❓ Questions</h4>
+                    <div class="example-item" data-example="How do I find peace?">How do I find peace?</div>
+                    <div class="example-item" data-example="What does it mean to have faith?">What does it mean to have faith?</div>
+                    <div class="example-item" data-example="How can I forgive someone?">How can I forgive someone?</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="herald-selection-section">
+            <h2>👥 Choose Your Herald</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Each biblical character offers their unique perspective and wisdom
+            </p>
             <div class="herald-card john" data-herald="john">
                 <div class="herald-header">
                     <div class="herald-name">John</div>
@@ -598,49 +724,8 @@
             </div>
         </div>
 
-        <div class="input-section">
-            <h2>Seek Wisdom & Discover Truth</h2>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Enter Bible reference, Hebrew name, topic, or question..." id="searchInput">
-                <button class="ask-button" id="askButton">Ask Herald</button>
-            </div>
-            
-            <div class="input-examples">
-                <div class="example-category">
-                    <h4>📖 Bible References</h4>
-                    <div class="example-item" data-example="John 3:16">John 3:16</div>
-                    <div class="example-item" data-example="Psalm 23">Psalm 23</div>
-                    <div class="example-item" data-example="1 Corinthians 13:4-7">1 Corinthians 13:4-7</div>
-                    <div class="example-item" data-example="Romans 8:28">Romans 8:28</div>
-                </div>
-                
-                <div class="example-category">
-                    <h4>🔤 Hebrew Names</h4>
-                    <div class="example-item" data-example="yeshua">Yeshua</div>
-                    <div class="example-item" data-example="david">David</div>
-                    <div class="example-item" data-example="moses">Moses</div>
-                    <div class="example-item" data-example="shalom">Shalom</div>
-                </div>
-                
-                <div class="example-category">
-                    <h4>💭 Topics</h4>
-                    <div class="example-item" data-example="love">Love</div>
-                    <div class="example-item" data-example="faith">Faith</div>
-                    <div class="example-item" data-example="prayer">Prayer</div>
-                    <div class="example-item" data-example="forgiveness">Forgiveness</div>
-                </div>
-                
-                <div class="example-category">
-                    <h4>❓ Questions</h4>
-                    <div class="example-item" data-example="How do I find peace?">How do I find peace?</div>
-                    <div class="example-item" data-example="What does it mean to have faith?">What does it mean to have faith?</div>
-                    <div class="example-item" data-example="How can I forgive someone?">How can I forgive someone?</div>
-                </div>
-            </div>
-        </div>
-
         <div class="response-section" id="responseSection">
-            <!-- Dynamic content will be inserted here -->
+            <!-- Dynamic responses will appear here -->
         </div>
     </div>
 
@@ -655,10 +740,34 @@
     </footer>
 
     <script>
-        let selectedHerald = 'john'; // Default herald
+        let selectedHerald = null; // No default selection
         let isLoading = false;
+        let hasInput = false;
 
-        // Herald selection
+        // Update button state based on input and herald selection
+        function updateButtonState() {
+            const askButton = document.getElementById('askButton');
+            const input = document.getElementById('searchInput').value.trim();
+            
+            hasInput = input.length > 0;
+            
+            if (!hasInput && !selectedHerald) {
+                askButton.disabled = true;
+                askButton.querySelector('.ask-text').textContent = 'Enter your question above, then select a herald';
+            } else if (hasInput && !selectedHerald) {
+                askButton.disabled = true;
+                askButton.querySelector('.ask-text').textContent = 'Now choose a herald below to get their perspective';
+            } else if (!hasInput && selectedHerald) {
+                askButton.disabled = true;
+                askButton.querySelector('.ask-text').textContent = 'Enter your question above';
+            } else {
+                askButton.disabled = false;
+                const heraldInfo = getHeraldInfo(selectedHerald);
+                askButton.querySelector('.ask-text').textContent = `Ask ${heraldInfo.name}`;
+            }
+        }
+
+        // Herald selection with improved UX
         document.querySelectorAll('.herald-card').forEach(card => {
             card.addEventListener('click', () => {
                 // Remove previous selection
@@ -670,31 +779,51 @@
                 // Update selected herald
                 selectedHerald = card.dataset.herald;
                 
-                // Update visual feedback
-                card.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    card.style.transform = '';
-                }, 200);
+                // Update button state
+                updateButtonState();
+                
+                // If they have input and just selected a herald, scroll to ask button
+                if (hasInput) {
+                    setTimeout(() => {
+                        document.querySelector('.ask-button-container').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }, 100);
+                }
             });
         });
 
-        // Example click handlers
+        // Input monitoring
+        document.getElementById('searchInput').addEventListener('input', () => {
+            updateButtonState();
+        });
+
+        // Example click handlers with improved flow
         document.querySelectorAll('.example-item').forEach(item => {
             item.addEventListener('click', () => {
                 document.getElementById('searchInput').value = item.dataset.example;
-                askHerald();
+                updateButtonState();
+                
+                // Scroll to herald selection after a brief moment
+                setTimeout(() => {
+                    document.querySelector('.herald-selection-section').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 200);
             });
         });
 
         // Search input handlers
         document.getElementById('searchInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !isLoading) {
+            if (e.key === 'Enter' && !isLoading && selectedHerald && hasInput) {
                 askHerald();
             }
         });
 
         document.getElementById('askButton').addEventListener('click', () => {
-            if (!isLoading) {
+            if (!isLoading && selectedHerald && hasInput) {
                 askHerald();
             }
         });
@@ -984,9 +1113,9 @@
             return userSession.userId;
         }
 
-        // Initialize default herald selection
+        // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('.herald-card.john').classList.add('selected');
+            updateButtonState();
             
             // Add CSS for selected state
             const style = document.createElement('style');
