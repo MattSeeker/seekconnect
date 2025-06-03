@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblical Heralds - Scripture Insights</title>
+    <title>Biblical Heralds - Divine Wisdom Through AI</title>
     <style>
         * {
             margin: 0;
@@ -94,6 +94,27 @@
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+        }
+
+        /* Organic color personalities - very subtle gradients */
+        .herald-card[data-herald="john"] {
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.015) 0%, white 100%);
+        }
+
+        .herald-card[data-herald="peter"] {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.015) 0%, white 100%);
+        }
+
+        .herald-card[data-herald="barnabas"] {
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.015) 0%, white 100%);
+        }
+
+        .herald-card[data-herald="mary"] {
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.015) 0%, white 100%);
+        }
+
+        .herald-card[data-herald="deborah"] {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.015) 0%, white 100%);
         }
         
         .herald-card:hover {
@@ -272,6 +293,7 @@
             align-items: center;
             margin-bottom: 1.5rem;
             gap: 1rem;
+            flex-wrap: wrap;
         }
         
         .response-herald {
@@ -382,6 +404,11 @@
             to { transform: rotate(360deg); }
         }
         
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2); }
+        }
+        
         @media (max-width: 768px) {
             .header {
                 padding: 2rem 0;
@@ -411,6 +438,12 @@
             .container {
                 padding: 0 1rem;
             }
+            
+            .response-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
         }
         
         .fade-in {
@@ -437,15 +470,48 @@
     <header class="header">
         <div class="header-content">
             <h1 class="logo">Biblical Heralds</h1>
-            <p class="tagline">Experience Scripture through the unique perspectives of Biblical figures who walked with God</p>
+            <p class="tagline">Divine Wisdom Through AI - Ask, Seek, Find</p>
         </div>
     </header>
     
     <div class="container">
         <section class="main-section">
             <h2 class="section-title">Choose Your Herald</h2>
-            <div class="heralds-grid" id="heralds-grid">
-                <div class="error-message" id="loading-message">Loading heralds...</div>
+            <div class="heralds-grid">
+                <div class="herald-card" data-herald="john">
+                    <h3 class="herald-name">John</h3>
+                    <div class="herald-subtitle">The Beloved Disciple</div>
+                    <p class="herald-description">The beloved disciple who leaned on Jesus' chest at the Last Supper (Yohanan - "God is gracious"). Known for his deep love and profound spiritual insights.</p>
+                    <div class="biblical-ref">John 13:23, John 19:26-27, 1 John 4:7-21</div>
+                </div>
+
+                <div class="herald-card" data-herald="peter">
+                    <h3 class="herald-name">Peter</h3>
+                    <div class="herald-subtitle">The Bold Fisherman</div>
+                    <p class="herald-description">The bold fisherman who became the rock of the early church (Kefa - "stone"). Quick to speak and act, Peter leads with passionate conviction.</p>
+                    <div class="biblical-ref">Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25</div>
+                </div>
+
+                <div class="herald-card" data-herald="barnabas">
+                    <h3 class="herald-name">Barnabas</h3>
+                    <div class="herald-subtitle">Son of Encouragement</div>
+                    <p class="herald-description">Called the "Son of Encouragement" by the apostles (Bar-Nabba). He saw potential in Paul when others doubted and gave John Mark a second chance.</p>
+                    <div class="biblical-ref">Acts 4:36-37, Acts 9:26-27, Acts 15:36-39</div>
+                </div>
+
+                <div class="herald-card" data-herald="mary">
+                    <h3 class="herald-name">Mary of Bethany</h3>
+                    <div class="herald-subtitle">The Contemplative Learner</div>
+                    <p class="herald-description">The contemplative sister who chose to sit at Jesus' feet and learn (Miriam - "beloved"). She understood the deeper significance of worship and sacrifice.</p>
+                    <div class="biblical-ref">Luke 10:38-42, John 11:1-44, John 12:1-8</div>
+                </div>
+
+                <div class="herald-card" data-herald="deborah">
+                    <h3 class="herald-name">Deborah</h3>
+                    <div class="herald-subtitle">Judge and Prophetess</div>
+                    <p class="herald-description">The judge and prophetess who led Israel to victory (Devorah - "bee"). She combined divine wisdom with decisive leadership in challenging times.</p>
+                    <div class="biblical-ref">Judges 4:1-24, Judges 5:1-31</div>
+                </div>
             </div>
             
             <div class="interpretation-section">
@@ -458,9 +524,9 @@
                     <label class="input-label" for="smart-input">What would you like to explore?</label>
                     <textarea id="smart-input" class="input-field input-textarea" placeholder="Try any of these:
 • Bible reference: John 3:16, Romans 8:28
-• Topic search: love, fasting, prayer, forgiveness
+• Topic search: love, faith, prayer, forgiveness
 • Direct scripture: paste verse text here
-• Hebrew names: yohanan, kefa, miriam (Easter eggs!)"></textarea>
+• Hebrew names: Yochanan, Kefa, Miriam (Easter eggs!)"></textarea>
                     <div class="input-hint">
                         <small>💡 I can detect what you're looking for automatically!</small>
                     </div>
@@ -487,92 +553,49 @@
             </div>
         </section>
         
-        <!-- Simple Footer -->
+        <!-- Footer -->
         <footer style="text-align: center; padding: 2rem 0; border-top: 1px solid #e1e8ed; margin-top: 2rem;">
             <p style="color: #8492a6; font-size: 0.9rem;">
-                <a href="/feedback.html" style="color: #667eea; text-decoration: none;">Support Biblical Heralds</a> • 
-                <a href="/feedback.html" style="color: #667eea; text-decoration: none;">Send Feedback</a>
+                <a href="feedback.html" style="color: #667eea; text-decoration: none;">Support Our Ministry</a> • 
+                <a href="about.html" style="color: #667eea; text-decoration: none;">About Us</a> •
+                <a href="privacy.html" style="color: #667eea; text-decoration: none;">Privacy Policy</a> •
+                <a href="terms.html" style="color: #667eea; text-decoration: none;">Terms of Service</a>
             </p>
         </footer>
     </div>
 
     <script>
-        let heralds = {};
         let selectedHerald = null;
+        let searchCount = 0;
         
-        // Initialize the page
-        async function init() {
-            try {
-                await loadHeralds();
-                renderHeraldCards();
-                const loadingMsg = document.getElementById('loading-message');
-                if (loadingMsg) loadingMsg.style.display = 'none';
-            } catch (error) {
-                console.error('Failed to load heralds:', error);
-                document.getElementById('heralds-grid').innerHTML = 
-                    '<div class="error-message">Failed to load heralds. Please refresh the page or check your connection.</div>';
-            }
-        }
-        
-        // Load heralds from API
-        async function loadHeralds() {
-            const response = await fetch('/api/heralds');
-            const data = await response.json();
-            
-            if (!data.success) {
-                throw new Error(data.error || 'Failed to load heralds');
-            }
-            
-            // Convert array to object with keys
-            heralds = {};
-            data.heralds.forEach(herald => {
-                const key = herald.name.toLowerCase().replace(' of bethany', '');
-                heralds[key] = herald;
-            });
-        }
-        
-        // Render herald selection cards
-        function renderHeraldCards() {
-            const container = document.getElementById('heralds-grid');
-            container.innerHTML = '';
-            
-            Object.entries(heralds).forEach(([key, herald]) => {
-                const card = document.createElement('div');
-                card.className = 'herald-card';
-                card.setAttribute('data-herald', key);
-                card.onclick = () => selectHerald(key);
+        // Herald card selection
+        document.querySelectorAll('.herald-card').forEach(card => {
+            card.addEventListener('click', function() {
+                selectedHerald = this.dataset.herald;
                 
-                card.innerHTML = `
-                    <h3 class="herald-name">${herald.name}</h3>
-                    <div class="herald-subtitle">${herald.subtitle}</div>
-                    <p class="herald-description">${herald.description}</p>
-                    <div class="biblical-ref">${herald.biblicalRef}</div>
+                // Update visual selection
+                document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                // Update selected display
+                const heraldName = this.querySelector('.herald-name').textContent;
+                const heraldSubtitle = this.querySelector('.herald-subtitle').textContent;
+                const display = document.getElementById('selected-display');
+                display.innerHTML = `
+                    <div class="selected-herald-name">${heraldName} is ready to help</div>
+                    <div class="selected-herald-note">${heraldSubtitle} • Ready to provide biblical insight</div>
                 `;
-                
-                container.appendChild(card);
             });
-        }
-        
-        // Select a herald
-        function selectHerald(heraldKey) {
-            selectedHerald = heraldKey;
-            
-            // Update visual selection
-            document.querySelectorAll('.herald-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            document.querySelector(`[data-herald="${heraldKey}"]`).classList.add('selected');
-            
-            // Update selected display
-            const herald = heralds[heraldKey];
-            const display = document.getElementById('selected-display');
-            display.innerHTML = `
-                <div class="selected-herald-name">${herald.name} is ready to help</div>
-                <div class="selected-herald-note">${herald.subtitle} • ${herald.style}</div>
-            `;
-        }
-        
-        // Get interpretation from API
+        });
+
+        // Enter key support
+        document.getElementById('smart-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                getInterpretation();
+            }
+        });
+
         async function getInterpretation() {
             const input = document.getElementById('smart-input').value.trim();
             const button = document.getElementById('interpret-btn');
@@ -587,9 +610,11 @@
                 return;
             }
             
+            searchCount++;
+            
             // Show loading state
             button.disabled = true;
-            button.innerHTML = '<div class="loading-spinner"></div><span>Exploring...</span>';
+            button.innerHTML = '<div class="loading-spinner"></div><span>Seeking divine wisdom...</span>';
             
             try {
                 const response = await fetch('/api/heralds', {
@@ -610,82 +635,64 @@
                     throw new Error(data.error || 'Failed to process your request');
                 }
                 
-                // Handle different response types
-                if (data.type === 'easter_egg') {
-                    showEasterEgg(data);
-                } else if (data.type === 'recommendation') {
-                    showRecommendation(data);
-                } else if (data.type === 'concordance' || data.type === 'topic_search') {
-                    showConcordanceResults(data);
-                } else {
-                    showInterpretation(data);
-                }
+                displayResults(data);
                 
             } catch (error) {
                 console.error('Error:', error);
-                showError(error.message || 'Sorry, there was an error processing your request. Please try again.');
+                showError('Unable to connect to the heralds. Please try again.');
             } finally {
                 // Reset button
                 button.disabled = false;
                 button.innerHTML = '<span>Get Interpretation</span>';
             }
         }
-        
-        // Show interpretation result
-        function showInterpretation(data) {
+
+        function displayResults(data) {
             const responseArea = document.getElementById('response-area');
             const recommendationArea = document.getElementById('recommendation-area');
-            
-            // Hide recommendation if showing
+
+            // Hide recommendation area
             recommendationArea.style.display = 'none';
+
+            // Handle different response types based on API structure
+            switch(data.type) {
+                case 'easter_egg':
+                    showEasterEgg(data);
+                    break;
+                case 'recommendation':
+                    showRecommendation(data);
+                    return; // Don't show in response area
+                case 'concordance':
+                    showConcordanceResults(data);
+                    break;
+                case 'topic_search':
+                    showTopicSearchResults(data);
+                    break;
+                case 'interpretation':
+                default:
+                    showInterpretation(data);
+                    break;
+            }
+
+            responseArea.style.display = 'block';
+            responseArea.classList.add('fade-in');
+            responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showInterpretation(data) {
+            const responseArea = document.getElementById('response-area');
             
             responseArea.innerHTML = `
                 <div class="response-header">
                     <div class="response-herald">${data.herald.name} responds:</div>
                     <div class="response-badge">${data.herald.subtitle}</div>
                 </div>
-                <div class="response-text">${data.interpretation}</div>
+                <div class="response-text">${formatResponse(data.interpretation)}</div>
             `;
-            
-            responseArea.style.display = 'block';
-            responseArea.classList.add('fade-in');
-            responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        
-        // Show herald recommendation
-        function showRecommendation(data) {
-            const recommendationArea = document.getElementById('recommendation-area');
-            const responseArea = document.getElementById('response-area');
-            
-            recommendationArea.innerHTML = `
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        💡 Try a Different Perspective
-                    </div>
-                    <div class="recommendation-text">
-                        ${data.message}
-                        <br><br>
-                        <em>Feel free to select ${data.recommendedHerald.name} above and ask again, 
-                        or continue exploring with ${data.originalHerald.name}.</em>
-                    </div>
-                </div>
-            `;
-            
-            recommendationArea.style.display = 'block';
-            recommendationArea.classList.add('fade-in');
-            recommendationArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            
-            // Hide interpretation result
-            responseArea.style.display = 'none';
-        }
-        
-        // Show Easter egg
+
         function showEasterEgg(data) {
             const responseArea = document.getElementById('response-area');
-            const recommendationArea = document.getElementById('recommendation-area');
-            
-            // Hide recommendation if showing
-            recommendationArea.style.display = 'none';
             
             const imageHtml = data.easterEgg.image ? 
                 `<img src="${data.easterEgg.image}" alt="${data.easterEgg.title}" class="easter-egg-image" onerror="this.style.display='none'">` : '';
@@ -700,34 +707,17 @@
                     ${imageHtml}
                 </div>
             `;
-            
-            responseArea.style.display = 'block';
-            responseArea.classList.add('fade-in');
-            responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        
-        // Show concordance/topic search results
+
         function showConcordanceResults(data) {
             const responseArea = document.getElementById('response-area');
-            const recommendationArea = document.getElementById('recommendation-area');
             
-            recommendationArea.style.display = 'none';
-            
-            let resultsHtml = '';
-            if (data.type === 'concordance') {
-                resultsHtml = data.results.map(ref => `
-                    <div class="verse-item" onclick="selectVerse('${ref}')">
-                        <div class="verse-reference">${ref}</div>
-                    </div>
-                `).join('');
-            } else if (data.type === 'topic_search') {
-                resultsHtml = data.results.map(item => `
-                    <div class="verse-item" onclick="selectVerse('${item.reference}')">
-                        <div class="verse-reference">${item.reference}</div>
-                        <div class="verse-topic">${item.topic}</div>
-                    </div>
-                `).join('');
-            }
+            let resultsHtml = data.results.map(verse => `
+                <div class="verse-item" onclick="selectVerse('${verse}')">
+                    <div class="verse-reference">${verse}</div>
+                    <div class="verse-topic">Click to explore with ${data.herald.name}</div>
+                </div>
+            `).join('');
             
             responseArea.innerHTML = `
                 <div class="concordance-results">
@@ -742,24 +732,86 @@
                     </div>
                 </div>
             `;
-            
-            responseArea.style.display = 'block';
-            responseArea.classList.add('fade-in');
-            responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        
-        // Select a verse from concordance results
-        async function selectVerse(reference) {
-            document.getElementById('smart-input').value = reference;
-            await getInterpretation();
-        }
-        
-        // Show error message
-        function showError(message) {
+
+        function showTopicSearchResults(data) {
             const responseArea = document.getElementById('response-area');
+            
+            let resultsHtml = data.results.map(item => `
+                <div class="verse-item" onclick="selectVerse('${item.reference}')">
+                    <div class="verse-reference">${item.reference}</div>
+                    <div class="verse-topic">${item.topic}</div>
+                </div>
+            `).join('');
+            
+            responseArea.innerHTML = `
+                <div class="concordance-results">
+                    <div class="concordance-header">
+                        🔍 ${data.message}
+                    </div>
+                    <div class="verse-list">
+                        ${resultsHtml}
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: #666; text-align: center;">
+                        Click any verse above to get ${data.herald.name}'s interpretation
+                    </div>
+                </div>
+            `;
+        }
+
+        function showRecommendation(data) {
             const recommendationArea = document.getElementById('recommendation-area');
             
-            recommendationArea.style.display = 'none';
+            recommendationArea.innerHTML = `
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        💡 Try a Different Perspective
+                    </div>
+                    <div class="recommendation-text">
+                        ${data.message}
+                        <br><br>
+                        <button class="interpret-button" onclick="selectRecommendedHerald('${data.recommendedHerald.name.toLowerCase().replace(' of bethany', '')}')" style="margin-top: 1rem;">
+                            Try ${data.recommendedHerald.name}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            recommendationArea.style.display = 'block';
+            recommendationArea.classList.add('fade-in');
+            recommendationArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function selectVerse(reference) {
+            document.getElementById('smart-input').value = reference;
+            getInterpretation();
+        }
+
+        function selectRecommendedHerald(heraldKey) {
+            // Find and click the recommended herald card
+            const heraldCard = document.querySelector(`[data-herald="${heraldKey}"]`);
+            if (heraldCard) {
+                heraldCard.click();
+                heraldCard.style.animation = 'pulse 2s ease-in-out';
+                heraldCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => {
+                    heraldCard.style.animation = '';
+                }, 2000);
+            }
+        }
+
+        function formatResponse(response) {
+            // Basic formatting for response text
+            return response
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/^(.*)$/gm, '<p>$1</p>')
+                .replace(/<p><\/p>/g, '');
+        }
+
+        function showError(message) {
+            const responseArea = document.getElementById('response-area');
             
             responseArea.innerHTML = `
                 <div class="error-message">
@@ -770,9 +822,6 @@
             responseArea.style.display = 'block';
             responseArea.classList.add('fade-in');
         }
-        
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
