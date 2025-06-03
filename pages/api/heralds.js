@@ -1,5 +1,5 @@
 // pages/api/heralds.js
-// Complete Biblical Heralds API - Ready for Production
+// Complete Biblical Heralds API - Ready for Production with Hebrew Names Database
 
 // Bible Gateway API integration
 const BIBLE_GATEWAY_API_KEY = process.env.BIBLE_GATEWAY_API_KEY || 'demo-key';
@@ -750,34 +750,10 @@ export default function handler(req, res) {
     });
   }
   
-  case 'hebrew_name':
-        const hebrewData = inputType.result;
-        if (hebrewData.type === 'exact') {
-          return res.status(200).json({
-            success: true,
-            type: 'hebrew_name',
-            herald: herald,
-            hebrew: hebrewData.searchTerm,
-            english: hebrewData.result.english,
-            meaning: hebrewData.result.meaning,
-            context: hebrewData.result.context,
-            message: `${herald.name} shares the meaning of "${hebrewData.result.english}" (${hebrewData.searchTerm})`
-          });
-        } else {
-          return res.status(200).json({
-            success: true,
-            type: 'hebrew_search',
-            herald: herald,
-            query: hebrewData.searchTerm,
-            results: hebrewData.results.map(([hebrew, data]) => ({ hebrew, ...data })),
-            message: `${herald.name} found Hebrew names related to your search`
-          });
-        }
-        break;
-if (req.method === 'POST') {
-    const { herald: heraldName, input, userId } = req.body;  
-   
-  // Validation
+  if (req.method === 'POST') {
+    const { herald: heraldName, input, userId } = req.body;
+    
+    // Validation
     if (!heraldName || !input) {
       return res.status(400).json({
         success: false,
@@ -823,6 +799,30 @@ if (req.method === 'POST') {
           });
         }
         
+      case 'hebrew_name':
+        const hebrewData = inputType.result;
+        if (hebrewData.type === 'exact') {
+          return res.status(200).json({
+            success: true,
+            type: 'hebrew_name',
+            herald: herald,
+            hebrew: hebrewData.searchTerm,
+            english: hebrewData.result.english,
+            meaning: hebrewData.result.meaning,
+            context: hebrewData.result.context,
+            message: `${herald.name} shares the meaning of "${hebrewData.result.english}" (${hebrewData.searchTerm})`
+          });
+        } else {
+          return res.status(200).json({
+            success: true,
+            type: 'hebrew_search',
+            herald: herald,
+            query: hebrewData.searchTerm,
+            results: hebrewData.results.map(([hebrew, data]) => ({ hebrew, ...data })),
+            message: `${herald.name} found Hebrew names related to your search`
+          });
+        }
+        
       case 'concordance':
         const concordanceResults = getConcordanceResults(inputType.topic);
         return res.status(200).json({
@@ -863,31 +863,7 @@ if (req.method === 'POST') {
             error: `I couldn't find any verses related to "${inputType.query}". Try topics like: love, faith, prayer, forgiveness, wisdom`
           });
         }
-
-case 'hebrew_name':
-        const hebrewData = inputType.result;
-        if (hebrewData.type === 'exact') {
-          return res.status(200).json({
-            success: true,
-            type: 'hebrew_name',
-            herald: herald,
-            hebrew: hebrewData.searchTerm,
-            english: hebrewData.result.english,
-            meaning: hebrewData.result.meaning,
-            context: hebrewData.result.context,
-            message: `${herald.name} shares the meaning of "${hebrewData.result.english}" (${hebrewData.searchTerm})`
-          });
-        } else {
-          return res.status(200).json({
-            success: true,
-            type: 'hebrew_search',
-            herald: herald,
-            query: hebrewData.searchTerm,
-            results: hebrewData.results.map(([hebrew, data]) => ({ hebrew, ...data })),
-            message: `${herald.name} found Hebrew names related to your search`
-          });
-        }
-        break;
+        
       default:
         return res.status(400).json({
           success: false,
