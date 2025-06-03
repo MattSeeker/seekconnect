@@ -38,6 +38,244 @@ const concordanceTopics = {
   persecution: ['Matthew 5:10-12', '2 Timothy 3:12', '1 Peter 4:12-14', 'John 15:20', 'Romans 8:17']
 };
 
+// Hebrew Names Database for Biblical Heralds
+const hebrewNamesDatabase = {
+  // EASTER EGG NAMES (Your existing heralds)
+  yochanan: { 
+    english: "John", 
+    meaning: "God is gracious", 
+    context: "The beloved disciple who leaned on Jesus' chest",
+    easterEgg: true 
+  },
+  yohanan: { 
+    english: "John", 
+    meaning: "God is gracious", 
+    context: "Alternative spelling - the beloved disciple",
+    easterEgg: true 
+  },
+  kefa: { 
+    english: "Peter", 
+    meaning: "Stone, Rock", 
+    context: "The bold fisherman who became the rock of the early church",
+    easterEgg: true 
+  },
+  cephas: { 
+    english: "Peter", 
+    meaning: "Stone", 
+    context: "Aramaic name Jesus gave to Simon",
+    easterEgg: true 
+  },
+  "bar-nabba": { 
+    english: "Barnabas", 
+    meaning: "Son of encouragement", 
+    context: "The apostle who vouched for Paul and encouraged John Mark",
+    easterEgg: true 
+  },
+  barnabba: { 
+    english: "Barnabas", 
+    meaning: "Son of encouragement", 
+    context: "Alternative spelling of the encouraging apostle",
+    easterEgg: true 
+  },
+  miriam: { 
+    english: "Mary", 
+    meaning: "Beloved, Wished-for child", 
+    context: "Mary of Bethany who sat at Jesus' feet to learn",
+    easterEgg: true 
+  },
+  devorah: { 
+    english: "Deborah", 
+    meaning: "Bee", 
+    context: "The judge and prophetess who led Israel to victory",
+    easterEgg: true 
+  },
+  dvorah: { 
+    english: "Deborah", 
+    meaning: "Bee", 
+    context: "Alternative spelling of the mighty judge",
+    easterEgg: true 
+  },
+
+  // MAJOR BIBLICAL FIGURES
+  moshe: { 
+    english: "Moses", 
+    meaning: "Drawn out of water", 
+    context: "The great lawgiver who led Israel out of Egypt" 
+  },
+  aharon: { 
+    english: "Aaron", 
+    meaning: "Exalted, High mountain", 
+    context: "Moses' brother, the first high priest of Israel" 
+  },
+  david: { 
+    english: "David", 
+    meaning: "Beloved", 
+    context: "The shepherd king, man after God's own heart" 
+  },
+  shlomo: { 
+    english: "Solomon", 
+    meaning: "Peaceful", 
+    context: "The wise king who built the first temple" 
+  },
+  avraham: { 
+    english: "Abraham", 
+    meaning: "Father of many", 
+    context: "The father of faith, first patriarch" 
+  },
+  yitzchak: { 
+    english: "Isaac", 
+    meaning: "Laughter", 
+    context: "The promised son of Abraham and Sarah" 
+  },
+  yaakov: { 
+    english: "Jacob", 
+    meaning: "Heel-grabber, Supplanter", 
+    context: "The patriarch who wrestled with God and became Israel" 
+  },
+  yisrael: { 
+    english: "Israel", 
+    meaning: "God wrestles/He who wrestles with God", 
+    context: "The name God gave Jacob after their wrestling match" 
+  },
+  yosef: { 
+    english: "Joseph", 
+    meaning: "God will add", 
+    context: "The dreamer who became second in command in Egypt" 
+  },
+  yeshayahu: { 
+    english: "Isaiah", 
+    meaning: "God is salvation", 
+    context: "The great prophet who foretold the coming Messiah" 
+  },
+  yirmeyahu: { 
+    english: "Jeremiah", 
+    meaning: "God will exalt", 
+    context: "The weeping prophet who warned of Jerusalem's destruction" 
+  },
+  daniel: { 
+    english: "Daniel", 
+    meaning: "God is my judge", 
+    context: "The prophet who interpreted dreams and survived the lion's den" 
+  },
+  eliyahu: { 
+    english: "Elijah", 
+    meaning: "My God is Yahweh", 
+    context: "The fiery prophet who called down fire from heaven" 
+  },
+  sarah: { 
+    english: "Sarah", 
+    meaning: "Princess", 
+    context: "Abraham's wife, mother of Isaac" 
+  },
+  rachel: { 
+    english: "Rachel", 
+    meaning: "Ewe, Innocence", 
+    context: "Jacob's beloved wife, mother of Joseph and Benjamin" 
+  },
+  ruth: { 
+    english: "Ruth", 
+    meaning: "Friend, Companion", 
+    context: "The Moabite who chose to follow Naomi and God" 
+  },
+  esther: { 
+    english: "Esther", 
+    meaning: "Star", 
+    context: "The queen who saved the Jewish people from destruction" 
+  },
+  yeshua: { 
+    english: "Jesus", 
+    meaning: "God saves", 
+    context: "The Messiah, Son of God, Savior of the world" 
+  },
+  mashiach: { 
+    english: "Messiah", 
+    meaning: "Anointed one", 
+    context: "The promised deliverer, Jesus Christ" 
+  },
+  shadrach: { 
+    english: "Shadrach", 
+    meaning: "Command of Aku (Babylonian god)", 
+    context: "One of Daniel's three friends who survived the fiery furnace" 
+  },
+  meshach: { 
+    english: "Meshach", 
+    meaning: "Who is what Aku is", 
+    context: "Daniel's friend who refused to bow to Nebuchadnezzar's statue" 
+  },
+  abednego: { 
+    english: "Abednego", 
+    meaning: "Servant of Nebo", 
+    context: "The third friend who was protected in the fiery furnace" 
+  },
+  shalom: { 
+    english: "Peace", 
+    meaning: "Peace, Wholeness, Completeness", 
+    context: "More than absence of conflict - total wellbeing" 
+  },
+  hesed: { 
+    english: "Lovingkindness", 
+    meaning: "Steadfast love, Mercy", 
+    context: "God's unfailing, covenant love for His people" 
+  },
+  noach: { 
+    english: "Noah", 
+    meaning: "Rest, Comfort", 
+    context: "The righteous man who built the ark" 
+  },
+  gideon: { 
+    english: "Gideon", 
+    meaning: "Hewer, One who cuts down", 
+    context: "The judge who defeated the Midianites with 300 men" 
+  },
+  yehoshua: { 
+    english: "Joshua", 
+    meaning: "God is salvation", 
+    context: "Moses' successor who led Israel into the Promised Land" 
+  },
+  shemuel: { 
+    english: "Samuel", 
+    meaning: "God has heard", 
+    context: "The prophet who anointed both Saul and David" 
+  }
+};
+
+// Function to search Hebrew names database
+function searchHebrewName(query) {
+  const lowerQuery = query.toLowerCase().trim();
+  
+  // Direct match
+  if (hebrewNamesDatabase[lowerQuery]) {
+    return {
+      found: true,
+      result: hebrewNamesDatabase[lowerQuery],
+      searchTerm: lowerQuery,
+      type: 'exact'
+    };
+  }
+  
+  // Partial matches
+  const partialMatches = Object.entries(hebrewNamesDatabase)
+    .filter(([hebrew, data]) => 
+      hebrew.includes(lowerQuery) || 
+      data.english.toLowerCase().includes(lowerQuery) ||
+      data.meaning.toLowerCase().includes(lowerQuery)
+    );
+  
+  if (partialMatches.length > 0) {
+    return {
+      found: true,
+      results: partialMatches.slice(0, 5),
+      searchTerm: lowerQuery,
+      type: 'partial'
+    };
+  }
+  
+  return {
+    found: false,
+    searchTerm: lowerQuery
+  };
+}
+
 // Bible reference pattern matching
 const bibleRefPattern = /^([1-3]?\s*[A-Za-z]+)\s*(\d+)(?::(\d+)(?:-(\d+))?)?$/;
 
@@ -55,6 +293,14 @@ function detectInputType(input) {
   // Check for Bible reference pattern
   if (bibleRefPattern.test(trimmed)) {
     return { type: 'reference', reference: trimmed };
+  }
+  
+  // Check for Hebrew names (non-Easter egg)
+  if (trimmed.length <= 20) {
+    const hebrewResult = searchHebrewName(trimmed);
+    if (hebrewResult.found && !hebrewResult.result?.easterEgg) {
+      return { type: 'hebrew_name', result: hebrewResult };
+    }
   }
   
   // Check for topic words
@@ -504,10 +750,34 @@ export default function handler(req, res) {
     });
   }
   
-  if (req.method === 'POST') {
-    const { herald: heraldName, input, userId } = req.body;
-    
-    // Validation
+  case 'hebrew_name':
+        const hebrewData = inputType.result;
+        if (hebrewData.type === 'exact') {
+          return res.status(200).json({
+            success: true,
+            type: 'hebrew_name',
+            herald: herald,
+            hebrew: hebrewData.searchTerm,
+            english: hebrewData.result.english,
+            meaning: hebrewData.result.meaning,
+            context: hebrewData.result.context,
+            message: `${herald.name} shares the meaning of "${hebrewData.result.english}" (${hebrewData.searchTerm})`
+          });
+        } else {
+          return res.status(200).json({
+            success: true,
+            type: 'hebrew_search',
+            herald: herald,
+            query: hebrewData.searchTerm,
+            results: hebrewData.results.map(([hebrew, data]) => ({ hebrew, ...data })),
+            message: `${herald.name} found Hebrew names related to your search`
+          });
+        }
+        break;
+if (req.method === 'POST') {
+    const { herald: heraldName, input, userId } = req.body;  
+   
+  // Validation
     if (!heraldName || !input) {
       return res.status(400).json({
         success: false,
@@ -593,7 +863,31 @@ export default function handler(req, res) {
             error: `I couldn't find any verses related to "${inputType.query}". Try topics like: love, faith, prayer, forgiveness, wisdom`
           });
         }
-        
+
+case 'hebrew_name':
+        const hebrewData = inputType.result;
+        if (hebrewData.type === 'exact') {
+          return res.status(200).json({
+            success: true,
+            type: 'hebrew_name',
+            herald: herald,
+            hebrew: hebrewData.searchTerm,
+            english: hebrewData.result.english,
+            meaning: hebrewData.result.meaning,
+            context: hebrewData.result.context,
+            message: `${herald.name} shares the meaning of "${hebrewData.result.english}" (${hebrewData.searchTerm})`
+          });
+        } else {
+          return res.status(200).json({
+            success: true,
+            type: 'hebrew_search',
+            herald: herald,
+            query: hebrewData.searchTerm,
+            results: hebrewData.results.map(([hebrew, data]) => ({ hebrew, ...data })),
+            message: `${herald.name} found Hebrew names related to your search`
+          });
+        }
+        break;
       default:
         return res.status(400).json({
           success: false,
