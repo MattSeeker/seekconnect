@@ -827,6 +827,43 @@
             responseArea.style.display = 'block';
             responseArea.classList.add('fade-in');
         }
+
+        function showHebrewNameResult(data) {
+            const responseArea = document.getElementById('response-area');
+            
+            responseArea.innerHTML = `
+                <div class="response-header">
+                    <div class="response-herald">📖 ${data.english} (${data.hebrew})</div>
+                    <div class="response-badge">Hebrew Name Meaning</div>
+                </div>
+                <div class="response-text">
+                    <strong>Meaning:</strong> ${data.meaning}<br><br>
+                    <strong>Context:</strong> ${data.context}
+                </div>
+            `;
+        }
+
+        function showHebrewSearchResults(data) {
+            const responseArea = document.getElementById('response-area');
+            
+            let resultsHtml = data.results.map(item => `
+                <div class="verse-item" onclick="document.getElementById('smart-input').value='${item.hebrew}'; getInterpretation();">
+                    <div class="verse-reference">${item.english} (${item.hebrew})</div>
+                    <div class="verse-topic">${item.meaning}</div>
+                </div>
+            `).join('');
+            
+            responseArea.innerHTML = `
+                <div class="concordance-results">
+                    <div class="concordance-header">
+                        🔍 ${data.message}
+                    </div>
+                    <div class="verse-list">
+                        ${resultsHtml}
+                    </div>
+                </div>
+            `;
+        }
     </script>
 </body>
-</html>
+</html>    
