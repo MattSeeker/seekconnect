@@ -468,7 +468,7 @@ const hebrewNamesDatabase = {
     meaning: "Lover of horses", 
     context: "The apostle who brought Nathanael to Jesus" 
   },
-  bar-talmai: { 
+  "bar-talmai": { 
     english: "Bartholomew", 
     meaning: "Son of Talmai", 
     context: "Also called Nathanael, the apostle without guile" 
@@ -576,10 +576,10 @@ const heralds = {
   john: {
     name: 'John',
     subtitle: 'The Beloved Disciple',
-    description: 'The beloved disciple who leaned on Jesus\' chest at the Last Supper (Yohanan - "God is gracious"). Known for his deep love and profound spiritual insights.',
+    description: 'The beloved disciple who once rested his head on Jesus\' chest.  (Yohanan - "God is gracious"). Known for his deep love and profound spiritual insights.',
     biblicalRef: 'John 13:23, John 19:26-27, 1 John 4:7-21',
     colors: ['green', 'blue'],
-    systemPrompt: `You are John, the beloved disciple - not just "the Apostle John," but the man who leaned against Jesus' chest at the Last Supper, who stood at the foot of the cross, who ran to the empty tomb. 
+    systemPrompt: `You are John, the beloved disciple - not just "the Apostle John," but the disciple whom Jesus loved, who became Mary's son, who stood at the foot of the cross, who ran to the empty tomb. 
 
 Your voice carries gentle care (green) and thoughtful reflection (blue). You frequently reference:
 - Your close, personal experiences with Jesus ("When I leaned against His chest..." "The morning He called me from my nets..." "That evening when He washed our feet...")
