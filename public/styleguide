@@ -1,0 +1,165 @@
+ # Biblical Heralds Style Guide
+
+## Design Philosophy
+- Clean, professional interface with white cards on light background
+- Elegant gradients (purple/blue theme: `#667eea` to `#764ba2`)
+- Modern typography using system fonts
+- Subtle shadows and hover effects
+- Card-based layout with rounded corners
+
+## Color Palette
+```css
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --background: #fafbfc;
+    --text-primary: #333;
+    --text-secondary: #2c3e50;
+    --text-muted: #5a6c7d;
+    --text-hint: #8492a6;
+    --card-bg: white;
+    --card-border: #e1e8ed;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --card-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --accent-color: #667eea;
+    --input-bg: #fafbfc;
+    --success-bg: #f8f9fa;
+    --warning-bg: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+    --error-bg: #fef2f2;
+}
+```
+
+## Typography
+```css
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: -1px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.herald-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+```
+
+## Card Components
+```css
+.herald-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e1e8ed;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.herald-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #667eea;
+}
+```
+
+## Header Design
+```css
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="0,0 1000,80 1000,100 0,100"/></svg>');
+    background-size: cover;
+}
+```
+
+## Layout Structure
+- **Container**: `max-width: 1200px`, centered with padding
+- **Grid**: `repeat(auto-fit, minmax(320px, 1fr))` for herald cards
+- **Spacing**: 2rem gaps between cards, 4rem section margins
+- **Responsive**: Single column on mobile, padding adjustments
+
+## Interactive Elements
+```css
+.interpret-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.interpret-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+```
+
+## Input Fields
+```css
+.input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fafbfc;
+    transition: border-color 0.2s;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+}
+```
+
+## Special States
+- **Selected**: `border-color: #667eea` + `box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1)`
+- **Easter Eggs**: Warning gradient background `linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%)`
+- **Loading**: Spinner animation with white border
+- **Error**: `#fef2f2` background with red text
+
+## File Structure Requirements
+- Main HTML: Clean card layout with smart input detection
+- API Integration: `/api/heralds` endpoint (NOT `/api/heralds.js`)
+- Easter Eggs: John's image at `/JohnEE1.jpeg`
+- Support Page: Same design language, funding thermometer
+- Policy Pages: Simplified versions with same typography
+
+## Key Features to Maintain
+1. Smart input detection (Bible refs, topics, scripture, Hebrew names)
+2. Herald selection cards with biblical references
+3. Easter egg discovery system with image support
+4. Concordance search results display
+5. Recommendation system after 4th search
+6. Organic color personalities (subtle, not explicit)
+7. Professional, trustworthy appearance
