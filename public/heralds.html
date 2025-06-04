@@ -245,6 +245,33 @@
             padding-top: 1rem;
         }
 
+        .herald-submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 1.5rem auto 0 auto;
+            width: 150px;
+            display: block;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .herald-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .herald-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .response-section {
             background: var(--card-bg);
             border-radius: 12px;
@@ -520,7 +547,7 @@
                     <div class="hebrew-name">Yochanan (יוחנן) - "God is gracious"</div>
                     <div class="herald-description">The beloved disciple who leaned on Jesus' chest at the Last Supper. Known for his deep love and profound spiritual insights, combining gentle care with thoughtful reflection.</div>
                     <div class="biblical-ref">John 13:23, John 19:26-27, 1 John 4:7-21</div>
-                    <button class="herald-submit-btn" data-herald="john" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                    <button class="herald-submit-btn" data-herald="john">Submit</button>
                 </div>
             </div>
 
@@ -533,7 +560,7 @@
                     <div class="hebrew-name">Kefa (כיפא) - "Stone, Rock"</div>
                     <div class="herald-description">The bold fisherman who became the rock of the early church. Quick to speak and act, Peter leads with passionate conviction, combining bold challenge with encouraging uplift.</div>
                     <div class="biblical-ref">Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25</div>
-                    <button class="herald-submit-btn" data-herald="peter" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                    <button class="herald-submit-btn" data-herald="peter">Submit</button>
                 </div>
             </div>
 
@@ -546,7 +573,7 @@
                     <div class="hebrew-name">Bar-Nabba (בר-נבא) - "Son of encouragement"</div>
                     <div class="herald-description">Called the "Son of Encouragement" by the apostles. He saw potential in Paul when others doubted and gave John Mark a second chance, blending gentle care with uplifting hope.</div>
                     <div class="biblical-ref">Acts 4:36-37, Acts 9:26-27, Acts 15:36-39</div>
-                    <button class="herald-submit-btn" data-herald="barnabas" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                    <button class="herald-submit-btn" data-herald="barnabas">Submit</button>
                 </div>
             </div>
 
@@ -559,7 +586,7 @@
                     <div class="hebrew-name">Miriam (מרים) - "Beloved"</div>
                     <div class="herald-description">The contemplative sister who chose to sit at Jesus' feet and learn. She understood the deeper significance of worship and sacrifice, combining thoughtful analysis with gentle care.</div>
                     <div class="biblical-ref">Luke 10:38-42, John 11:1-44, John 12:1-8</div>
-                    <button class="herald-submit-btn" data-herald="mary" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                    <button class="herald-submit-btn" data-herald="mary">Submit</button>
                 </div>
             </div>
 
@@ -572,7 +599,7 @@
                     <div class="hebrew-name">Devorah (דבורה) - "Bee"</div>
                     <div class="herald-description">The judge and prophetess who led Israel to victory. She combined divine wisdom with decisive leadership in challenging times, merging bold challenge with thoughtful analysis.</div>
                     <div class="biblical-ref">Judges 4:1-24, Judges 5:1-31</div>
-                    <button class="herald-submit-btn" data-herald="deborah" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                    <button class="herald-submit-btn" data-herald="deborah">Submit</button>
                 </div>
             </div>
         </div>
@@ -726,12 +753,16 @@
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             // Set default herald selection
-            document.querySelector('.herald-card.john').classList.add('selected');
+            const defaultCard = document.querySelector('.herald-card.john');
+            if (defaultCard) {
+                defaultCard.classList.add('selected');
+            }
             
-            // Herald selection handlers - remove old click handlers
+            // Herald selection handlers for submit buttons
             document.querySelectorAll('.herald-submit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation(); // Prevent card click
+                    
                     const input = document.getElementById('searchInput').value.trim();
                     if (!input) {
                         alert('Please enter a query first before selecting a herald.');
@@ -762,34 +793,49 @@
             // Example click handlers
             document.querySelectorAll('.example-item').forEach(item => {
                 item.addEventListener('click', () => {
-                    document.getElementById('searchInput').value = item.dataset.example;
-                    askHerald();
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.value = item.dataset.example;
+                        // Optionally auto-trigger with default herald
+                        // askHerald();
+                    }
                 });
             });
 
             // Search input handlers - Enter key should prompt to select herald
-            document.getElementById('searchInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !isLoading) {
-                    const input = document.getElementById('searchInput').value.trim();
-                    if (input) {
-                        // Scroll to heralds section
-                        document.querySelector('.heralds-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        
-                        // Flash the herald section to draw attention
-                        const heraldsSection = document.querySelector('.heralds-grid').parentElement;
-                        heraldsSection.style.backgroundColor = '#f0f9ff';
-                        setTimeout(() => {
-                            heraldsSection.style.backgroundColor = '';
-                        }, 1000);
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !isLoading) {
+                        const input = searchInput.value.trim();
+                        if (input) {
+                            // Scroll to heralds section
+                            const heraldsGrid = document.querySelector('.heralds-grid');
+                            if (heraldsGrid) {
+                                heraldsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                
+                                // Flash the herald section to draw attention
+                                const heraldsSection = heraldsGrid.parentElement;
+                                if (heraldsSection) {
+                                    heraldsSection.style.backgroundColor = '#f0f9ff';
+                                    setTimeout(() => {
+                                        heraldsSection.style.backgroundColor = '';
+                                    }, 1000);
+                                }
+                            }
+                        }
                     }
-                }
-            });
+                });
+            }
 
             // Keyboard shortcut for quick search
             document.addEventListener('keydown', (e) => {
                 if (e.ctrlKey && e.key === '/') {
                     e.preventDefault();
-                    document.getElementById('searchInput').focus();
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.focus();
+                    }
                 }
             });
 
@@ -804,7 +850,7 @@
             let hintCounter = 0;
             setInterval(() => {
                 const input = document.getElementById('searchInput');
-                if (!input.value && !isLoading) {
+                if (input && !input.value && !isLoading) {
                     hintCounter = (hintCounter + 1) % easterEggHints.length;
                     input.placeholder = easterEggHints[hintCounter];
                     
@@ -819,11 +865,12 @@
 
         // Main function to ask herald
         async function askHerald() {
-            const input = document.getElementById('searchInput').value.trim();
+            const searchInput = document.getElementById('searchInput');
+            const input = searchInput ? searchInput.value.trim() : '';
+            
             if (!input) return;
 
             const responseSection = document.getElementById('responseSection');
-            const askButton = document.getElementById('askButton');
             
             // Detect input type using smart detection
             const inputType = detectInputType(input);
@@ -831,17 +878,23 @@
             
             // Set loading state
             isLoading = true;
-            askButton.disabled = true;
-            askButton.innerHTML = '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>';
+            
+            // Disable all submit buttons during loading
+            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
+                btn.disabled = true;
+                btn.innerHTML = '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>';
+            });
             
             // Show response section with loading
-            responseSection.style.display = 'block';
-            responseSection.innerHTML = `
-                <div class="loading" style="justify-content: center; padding: 2rem;">
-                    <div class="spinner"></div>
-                    <span>The herald is contemplating your query...</span>
-                </div>
-            `;
+            if (responseSection) {
+                responseSection.style.display = 'block';
+                responseSection.innerHTML = `
+                    <div class="loading" style="justify-content: center; padding: 2rem;">
+                        <div class="spinner"></div>
+                        <span>The herald is contemplating your query...</span>
+                    </div>
+                `;
+            }
 
             try {
                 const response = await fetch('/api/heralds', {
@@ -863,7 +916,9 @@
                     
                     // Auto-scroll to response for all devices
                     setTimeout(() => {
-                        responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        if (responseSection) {
+                            responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
                     }, 100);
                 } else {
                     displayError(data.error || 'An error occurred');
@@ -874,14 +929,18 @@
             } finally {
                 // Reset loading state
                 isLoading = false;
-                askButton.disabled = false;
-                askButton.textContent = 'Ask Herald';
+                document.querySelectorAll('.herald-submit-btn').forEach(btn => {
+                    btn.disabled = false;
+                    btn.textContent = 'Submit';
+                });
             }
         }
 
         // Display response based on type
         function displayResponse(data) {
             const responseSection = document.getElementById('responseSection');
+            if (!responseSection) return;
+            
             let content = '';
 
             // Response header
@@ -1070,8 +1129,11 @@
         }
 
         function searchVerse(reference) {
-            document.getElementById('searchInput').value = reference;
-            askHerald();
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = reference;
+                askHerald();
+            }
         }
 
         function switchToHerald(heraldName) {
@@ -1093,18 +1155,20 @@
 
         function displayError(message) {
             const responseSection = document.getElementById('responseSection');
-            responseSection.innerHTML = `
-                <div class="response-header">
-                    <div class="herald-avatar">!</div>
-                    <div class="response-meta">
-                        <h3>Unable to Connect</h3>
-                        <p>Please try again</p>
+            if (responseSection) {
+                responseSection.innerHTML = `
+                    <div class="response-header">
+                        <div class="herald-avatar">!</div>
+                        <div class="response-meta">
+                            <h3>Unable to Connect</h3>
+                            <p>Please try again</p>
+                        </div>
                     </div>
-                </div>
-                <div class="response-text" style="color: #dc2626;">
-                    ${message}
-                </div>
-            `;
+                    <div class="response-text" style="color: #dc2626;">
+                        ${message}
+                    </div>
+                `;
+            }
         }
 
         // In-memory storage for user session
@@ -1135,6 +1199,11 @@
 
         // Add smooth scroll behavior
         document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Placeholder functions for concordance
+        function searchConcordance() {
+            console.log('Concordance search not yet implemented');
+        }
 
         // Console welcome message
         console.log('🎯 Biblical Heralds - Ancient Voices, Living Word');
