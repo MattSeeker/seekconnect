@@ -1,0 +1,449 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Biblical Heralds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: #fafbfc;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .main-content {
+            margin: 4rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            height: fit-content;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        
+        .contact-details h3 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-details p {
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-details a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-1px);
+        }
+        
+        .response-time {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .response-time h4 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+        
+        .response-time p {
+            color: #388e3c;
+            font-size: 0.9rem;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .ministry-info {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .ministry-info h4 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ministry-info p {
+            color: #1e3a8a;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .success-message {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you and help with your biblical study journey</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="back-link">
+            <a href="/heralds.html">← Back to Biblical Heralds</a>
+        </div>
+        
+        <div class="main-content">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2 class="section-title">Get in Touch</h2>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:[Your Email]">[Your Email]</a></p>
+                        <p>For general inquiries, support, and feedback</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Location</h3>
+                        <p>[Your City, State/Country]</p>
+                        <p>Serving the global Christian community</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Mission</h3>
+                        <p>Biblical education through technology</p>
+                        <p>Helping people connect with Scripture</p>
+                    </div>
+                </div>
+                
+                <div class="ministry-info">
+                    <h4>Ministry Information</h4>
+                    <p><strong>Founded:</strong> [Year]</p>
+                    <p><strong>Purpose:</strong> Making biblical study accessible through innovative technology</p>
+                    <p><strong>Status:</strong> [Your Legal Structure - LLC/Nonprofit/etc.]</p>
+                </div>
+                
+                <div class="response-time">
+                    <h4>Response Time</h4>
+                    <p>We typically respond within 24 hours during business days. For urgent matters, please mark your subject line as "URGENT".</p>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 class="section-title">Send Us a Message</h2>
+                
+                <div class="success-message" id="success-message">
+                    Thank you for your message! We'll get back to you within 24 hours.
+                </div>
+                
+                <div class="error-message" id="error-message">
+                    There was an error sending your message. Please try again or email us directly.
+                </div>
+                
+                <form id="contact-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Name *</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Subject *</label>
+                        <select id="subject" name="subject" class="form-select" required>
+                            <option value="">Please select a topic</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="feedback">Feedback & Suggestions</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="financial">Financial/Donation Question</option>
+                            <option value="privacy">Privacy/Data Question</option>
+                            <option value="media">Media/Press Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message *</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Please provide details about your inquiry, including any specific questions or issues you'd like us to address." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="engagement">How would you like to stay connected? (Optional)</label>
+                        <select id="engagement" name="engagement" class="form-select">
+                            <option value="">No preference</option>
+                            <option value="passive">Passive - No follow-up needed</option>
+                            <option value="participant">Participant - Occasional updates</option>
+                            <option value="productive">Productive - Help shape features</option>
+                            <option value="partner">Partner - Strategic involvement</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-button" id="submit-btn">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const successMsg = document.getElementById('success-message');
+            const errorMsg = document.getElementById('error-message');
+            
+            // Hide previous messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                // In production, send to your contact form handler
+                // For now, simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Log the form data (in production, send to your backend)
+                console.log('Contact form submission:', data);
+                
+                // Show success message
+                successMsg.style.display = 'block';
+                
+                // Reset form
+                event.target.reset();
+                
+                // Scroll to success message
+                successMsg.scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                errorMsg.style.display = 'block';
+                errorMsg.scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        }
+        
+        // Auto-resize textarea
+        document.getElementById('message').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+    </script>
+</body>
+</html>
