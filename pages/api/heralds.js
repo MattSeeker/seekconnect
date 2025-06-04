@@ -1671,7 +1671,7 @@ export default async function handler(req, res) {
                 content: userMessage
               }
             ],
-            max_tokens: getTargetWordCount(herald).max + 50,
+            max_tokens: getTargetWordCount(herald).max + 150,
             temperature: 0.8
           })
         });
@@ -1723,7 +1723,7 @@ export default async function handler(req, res) {
 
 // Helper function to build enhanced user message
 function buildUserMessage(input, inputType, verseText, herald) {
-  let userMessage = `My dear friend has shared this with me: "${input}".`;
+  let userMessage = `"${input}"`;
   
   switch (inputType.type) {
     case 'reference':
