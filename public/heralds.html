@@ -613,18 +613,21 @@
             
             <!-- Interactive Concordance -->
             <div class="concordance-tool" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid var(--accent-color);">
-                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">📚 Interactive Concordance</h3>
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">📚 Interactive Concordance <span style="color: #f59e0b; font-size: 0.8rem; font-weight: normal;">(COMING SOON)</span></h3>
                 <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                    <input type="text" id="concordanceSearch" placeholder="Search topics: love, faith, prayer, forgiveness..." 
-                           style="flex: 1; padding: 0.75rem; border: 2px solid var(--card-border); border-radius: 6px; font-size: 0.9rem;">
+                    <input type="text" id="concordanceSearch" placeholder="COMING SOON - Search topics: love, faith, prayer, forgiveness..." 
+                           style="flex: 1; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 6px; font-size: 0.9rem; background: #f9fafb; color: #6b7280;" disabled>
                     <button id="concordanceBtn" onclick="searchConcordance()" 
-                            style="background: var(--accent-color); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 600;">Search</button>
+                            style="background: #d1d5db; color: #6b7280; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: not-allowed; font-weight: 600;" disabled>Search</button>
                 </div>
                 <div id="concordanceResults" style="display: none;">
                     <!-- Results will appear here -->
                 </div>
                 <div id="concordanceTopics" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; margin-top: 1rem;">
                     <!-- Topic buttons will be added here -->
+                </div>
+                <div style="text-align: center; padding: 1rem; color: #6b7280; font-style: italic;">
+                    🔧 This feature is being developed. For now, try searching topics like "love", "faith", or "prayer" directly in the main search field above!
                 </div>
             </div>
             
