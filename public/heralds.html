@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblical Heralds - Ancient Voices, Living Word</title>
+    <title>Heralds - Ancient Voices, Living Word</title>
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -482,24 +482,123 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <h1>Biblical Heralds</h1>
+            <h1>Heralds</h1>
             <p class="tagline">Ancient Voices, Living Word</p>
         </div>
     </header>
 
     <div class="container">
-        <div class="intro">
-    <div style="max-width: 800px; margin: 0 auto; text-align: left; line-height: 1.8;">
-        <p style="margin-bottom: 0.5rem;">Meet 5 Biblical heralds - messengers with important proclamations</p>
-        <p style="margin-bottom: 0.5rem;">Engage with carefully crafted, unique personalities</p>
-        <p style="margin-bottom: 0.5rem;">Enrich your Biblical experience with resources like Hebrew name meanings, concordance, and indexed verses</p>
-        <p style="margin-bottom: 0.5rem;">Seek insights to help you grow closer to the Authentic Jesus</p>
-    </div>
+        <div class="intro" style="max-width: 800px; margin: 0 auto; text-align: left; line-height: 1.8;">
+            <p style="margin-bottom: 0.5rem;">Meet 5 Biblical heralds - messengers with important proclamations</p>
+            <p style="margin-bottom: 0.5rem;">Engage with carefully crafted, unique personalities</p>
+            <p style="margin-bottom: 0.5rem;">Enrich your Biblical experience with resources like Hebrew name meanings, concordance, and indexed verses</p>
+            <p style="margin-bottom: 0.5rem;">Seek insights to help you grow closer to the Authentic Jesus</p>
+        </div>
+
         <div class="input-section">
-            <h2>What would you like to explore?</h2>
+            <h2>Enter Your Query</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Enter a Bible verse, Hebrew name, or question below, then scroll down to select a Herald who will provide their unique perspective.
+            </p>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Enter Bible reference, Hebrew name, topic, or question..." id="searchInput">
-                <button class="ask-button" id="askButton">Ask Herald</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0;">
+            <h2 style="color: var(--text-primary); margin-bottom: 0.5rem;">Choose Your Herald</h2>
+            <p style="color: var(--text-secondary);">Select a Biblical character to provide their unique perspective on your query.</p>
+        </div>
+
+        <div class="heralds-grid">
+            <div class="herald-card john" data-herald="john">
+                <div class="herald-header">
+                    <div class="herald-name">John</div>
+                    <div class="herald-subtitle">The Beloved Disciple</div>
+                </div>
+                <div class="herald-content">
+                    <div class="hebrew-name">Yochanan (יוחנן) - "God is gracious"</div>
+                    <div class="herald-description">The beloved disciple who leaned on Jesus' chest at the Last Supper. Known for his deep love and profound spiritual insights, combining gentle care with thoughtful reflection.</div>
+                    <div class="biblical-ref">John 13:23, John 19:26-27, 1 John 4:7-21</div>
+                    <button class="herald-submit-btn" data-herald="john" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                </div>
+            </div>
+
+            <div class="herald-card peter" data-herald="peter">
+                <div class="herald-header">
+                    <div class="herald-name">Peter</div>
+                    <div class="herald-subtitle">The Bold Fisherman</div>
+                </div>
+                <div class="herald-content">
+                    <div class="hebrew-name">Kefa (כיפא) - "Stone, Rock"</div>
+                    <div class="herald-description">The bold fisherman who became the rock of the early church. Quick to speak and act, Peter leads with passionate conviction, combining bold challenge with encouraging uplift.</div>
+                    <div class="biblical-ref">Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25</div>
+                    <button class="herald-submit-btn" data-herald="peter" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                </div>
+            </div>
+
+            <div class="herald-card barnabas" data-herald="barnabas">
+                <div class="herald-header">
+                    <div class="herald-name">Barnabas</div>
+                    <div class="herald-subtitle">Son of Encouragement</div>
+                </div>
+                <div class="herald-content">
+                    <div class="hebrew-name">Bar-Nabba (בר-נבא) - "Son of encouragement"</div>
+                    <div class="herald-description">Called the "Son of Encouragement" by the apostles. He saw potential in Paul when others doubted and gave John Mark a second chance, blending gentle care with uplifting hope.</div>
+                    <div class="biblical-ref">Acts 4:36-37, Acts 9:26-27, Acts 15:36-39</div>
+                    <button class="herald-submit-btn" data-herald="barnabas" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                </div>
+            </div>
+
+            <div class="herald-card mary" data-herald="mary">
+                <div class="herald-header">
+                    <div class="herald-name">Mary of Bethany</div>
+                    <div class="herald-subtitle">The Contemplative Learner</div>
+                </div>
+                <div class="herald-content">
+                    <div class="hebrew-name">Miriam (מרים) - "Beloved"</div>
+                    <div class="herald-description">The contemplative sister who chose to sit at Jesus' feet and learn. She understood the deeper significance of worship and sacrifice, combining thoughtful analysis with gentle care.</div>
+                    <div class="biblical-ref">Luke 10:38-42, John 11:1-44, John 12:1-8</div>
+                    <button class="herald-submit-btn" data-herald="mary" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                </div>
+            </div>
+
+            <div class="herald-card deborah" data-herald="deborah">
+                <div class="herald-header">
+                    <div class="herald-name">Deborah</div>
+                    <div class="herald-subtitle">Judge and Prophetess</div>
+                </div>
+                <div class="herald-content">
+                    <div class="hebrew-name">Devorah (דבורה) - "Bee"</div>
+                    <div class="herald-description">The judge and prophetess who led Israel to victory. She combined divine wisdom with decisive leadership in challenging times, merging bold challenge with thoughtful analysis.</div>
+                    <div class="biblical-ref">Judges 4:1-24, Judges 5:1-31</div>
+                    <button class="herald-submit-btn" data-herald="deborah" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1.5rem auto 0 auto; width: 150px; display: block; text-align: center;">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="response-section" id="responseSection">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+
+        <div class="references-tools-section">
+            <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 1rem;">References & Tools</h2>
+            
+            <!-- Interactive Concordance -->
+            <div class="concordance-tool" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid var(--accent-color);">
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">📚 Interactive Concordance</h3>
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <input type="text" id="concordanceSearch" placeholder="Search topics: love, faith, prayer, forgiveness..." 
+                           style="flex: 1; padding: 0.75rem; border: 2px solid var(--card-border); border-radius: 6px; font-size: 0.9rem;">
+                    <button id="concordanceBtn" onclick="searchConcordance()" 
+                            style="background: var(--accent-color); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 600;">Search</button>
+                </div>
+                <div id="concordanceResults" style="display: none;">
+                    <!-- Results will appear here -->
+                </div>
+                <div id="concordanceTopics" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; margin-top: 1rem;">
+                    <!-- Topic buttons will be added here -->
+                </div>
             </div>
             
             <div class="input-examples">
@@ -520,86 +619,21 @@
                 </div>
                 
                 <div class="example-category">
-                    <h4>💭 Topics</h4>
-                    <div class="example-item" data-example="love">Love</div>
-                    <div class="example-item" data-example="faith">Faith</div>
-                    <div class="example-item" data-example="prayer">Prayer</div>
-                    <div class="example-item" data-example="forgiveness">Forgiveness</div>
+                    <h4>✨ Names of God</h4>
+                    <div class="example-item" data-example="elohim">Elohim</div>
+                    <div class="example-item" data-example="jehovah-jireh">Jehovah-Jireh</div>
+                    <div class="example-item" data-example="jehovah-rapha">Jehovah-Rapha</div>
+                    <div class="example-item" data-example="el-shaddai">El-Shaddai</div>
                 </div>
                 
                 <div class="example-category">
-                    <h4>❓ Questions</h4>
+                    <h4>💭 Topics & Questions</h4>
+                    <div class="example-item" data-example="love">Love</div>
+                    <div class="example-item" data-example="faith">Faith</div>
                     <div class="example-item" data-example="How do I find peace?">How do I find peace?</div>
-                    <div class="example-item" data-example="What does it mean to have faith?">What does it mean to have faith?</div>
-                    <div class="example-item" data-example="How can I forgive someone?">How can I forgive someone?</div>
+                    <div class="example-item" data-example="prayer">Prayer</div>
                 </div>
             </div>
-        </div>
-
-        <div class="heralds-grid">
-            <div class="herald-card john" data-herald="john">
-                <div class="herald-header">
-                    <div class="herald-name">John</div>
-                    <div class="herald-subtitle">The Beloved Disciple</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Yochanan (יוחנן) - "God is gracious"</div>
-                    <div class="herald-description">The beloved disciple who leaned on Jesus' chest at the Last Supper. Known for his deep love and profound spiritual insights, combining gentle care with thoughtful reflection.</div>
-                    <div class="biblical-ref">John 13:23, John 19:26-27, 1 John 4:7-21</div>
-                </div>
-            </div>
-
-            <div class="herald-card peter" data-herald="peter">
-                <div class="herald-header">
-                    <div class="herald-name">Peter</div>
-                    <div class="herald-subtitle">The Bold Fisherman</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Kefa (כיפא) - "Stone, Rock"</div>
-                    <div class="herald-description">The bold fisherman who became the rock of the early church. Quick to speak and act, Peter leads with passionate conviction, combining bold challenge with encouraging uplift.</div>
-                    <div class="biblical-ref">Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25</div>
-                </div>
-            </div>
-
-            <div class="herald-card barnabas" data-herald="barnabas">
-                <div class="herald-header">
-                    <div class="herald-name">Barnabas</div>
-                    <div class="herald-subtitle">Son of Encouragement</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Bar-Nabba (בר-נבא) - "Son of encouragement"</div>
-                    <div class="herald-description">Called the "Son of Encouragement" by the apostles. He saw potential in Paul when others doubted and gave John Mark a second chance, blending gentle care with uplifting hope.</div>
-                    <div class="biblical-ref">Acts 4:36-37, Acts 9:26-27, Acts 15:36-39</div>
-                </div>
-            </div>
-
-            <div class="herald-card mary" data-herald="mary">
-                <div class="herald-header">
-                    <div class="herald-name">Mary of Bethany</div>
-                    <div class="herald-subtitle">The Contemplative Learner</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Miriam (מרים) - "Beloved"</div>
-                    <div class="herald-description">The contemplative sister who chose to sit at Jesus' feet and learn. She understood the deeper significance of worship and sacrifice, combining thoughtful analysis with gentle care.</div>
-                    <div class="biblical-ref">Luke 10:38-42, John 11:1-44, John 12:1-8</div>
-                </div>
-            </div>
-
-            <div class="herald-card deborah" data-herald="deborah">
-                <div class="herald-header">
-                    <div class="herald-name">Deborah</div>
-                    <div class="herald-subtitle">Judge and Prophetess</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Devorah (דבורה) - "Bee"</div>
-                    <div class="herald-description">The judge and prophetess who led Israel to victory. She combined divine wisdom with decisive leadership in challenging times, merging bold challenge with thoughtful analysis.</div>
-                    <div class="biblical-ref">Judges 4:1-24, Judges 5:1-31</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="response-section" id="responseSection">
-            <!-- Dynamic content will be inserted here -->
         </div>
     </div>
 
@@ -610,18 +644,31 @@
             <a href="terms.html" class="footer-link">Terms of Service</a>
             <a href="about.html" class="footer-link">About</a>
         </div>
-        <p>&copy; 2024 Biblical Heralds. All rights reserved.</p>
+        <p>&copy; 2024 Heralds. All rights reserved.</p>
     </footer>
 
     <script>
         let selectedHerald = 'john'; // Default herald
         let isLoading = false;
 
-        // Smart Input Detection Function (from your API)
+        // Smart Input Detection Function (enhanced for Names of God)
         function detectInputType(input) {
             const trimmed = input.trim().toLowerCase();
             
-            // Hebrew names for Easter eggs (from your database)
+            // Names of God (highest priority)
+            const namesOfGod = ['elohim', 'yahweh', 'yhwh', 'adonai', 'el-shaddai', 'el-roi', 'el-olam', 'el-elyon', 'jehovah-jireh', 'jehovah-rapha', 'jehovah-nissi', 'jehovah-shalom', 'jehovah-rohi', 'jehovah-tsidkenu', 'jehovah-shammah', 'jehovah-sabaoth', 'abba', 'hashem'];
+            
+            for (const name of namesOfGod) {
+                if (trimmed.includes(name)) {
+                    return { 
+                        type: 'names_of_god', 
+                        name: name,
+                        input: trimmed 
+                    };
+                }
+            }
+            
+            // Hebrew names for Easter eggs
             const easterEggNames = {
                 'yochanan': 'john', 'yohanan': 'john',
                 'kefa': 'peter', 'cephas': 'peter', 'kepha': 'peter',
@@ -681,23 +728,34 @@
             // Set default herald selection
             document.querySelector('.herald-card.john').classList.add('selected');
             
-            // Herald selection handlers
+            // Herald selection handlers - remove old click handlers
+            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click
+                    const input = document.getElementById('searchInput').value.trim();
+                    if (!input) {
+                        alert('Please enter a query first before selecting a herald.');
+                        document.getElementById('searchInput').focus();
+                        return;
+                    }
+                    
+                    selectedHerald = btn.dataset.herald;
+                    
+                    // Visual selection feedback
+                    document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
+                    btn.closest('.herald-card').classList.add('selected');
+                    
+                    askHerald();
+                });
+            });
+
+            // Keep card hover for visual feedback but remove click functionality
             document.querySelectorAll('.herald-card').forEach(card => {
                 card.addEventListener('click', () => {
-                    // Remove previous selection
+                    // Just visual selection, no functionality
                     document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
-                    
-                    // Add selection to clicked card
                     card.classList.add('selected');
-                    
-                    // Update selected herald
                     selectedHerald = card.dataset.herald;
-                    
-                    // Visual feedback
-                    card.style.transform = 'scale(1.02)';
-                    setTimeout(() => {
-                        card.style.transform = '';
-                    }, 200);
                 });
             });
 
@@ -709,16 +767,21 @@
                 });
             });
 
-            // Search input handlers
+            // Search input handlers - Enter key should prompt to select herald
             document.getElementById('searchInput').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' && !isLoading) {
-                    askHerald();
-                }
-            });
-
-            document.getElementById('askButton').addEventListener('click', () => {
-                if (!isLoading) {
-                    askHerald();
+                    const input = document.getElementById('searchInput').value.trim();
+                    if (input) {
+                        // Scroll to heralds section
+                        document.querySelector('.heralds-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // Flash the herald section to draw attention
+                        const heraldsSection = document.querySelector('.heralds-grid').parentElement;
+                        heraldsSection.style.backgroundColor = '#f0f9ff';
+                        setTimeout(() => {
+                            heraldsSection.style.backgroundColor = '';
+                        }, 1000);
+                    }
                 }
             });
 
@@ -730,10 +793,11 @@
                 }
             });
 
-            // Easter egg hints
+            // Easter egg hints with Names of God
             const easterEggHints = [
                 "Try searching for Hebrew names like 'yochanan' or 'kefa'...",
-                "Discover the meaning behind biblical names...",
+                "Discover the Names of God like 'elohim' or 'jehovah-jireh'...",
+                "Explore 'jehovah-rapha' for prayer about healing...",
                 "Some names unlock special messages from the heralds..."
             ];
 
@@ -797,12 +861,10 @@
                 if (data.success) {
                     displayResponse(data);
                     
-                    // Auto-scroll to response on mobile
-                    if (window.innerWidth <= 768) {
-                        setTimeout(() => {
-                            responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 100);
-                    }
+                    // Auto-scroll to response for all devices
+                    setTimeout(() => {
+                        responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
                 } else {
                     displayError(data.error || 'An error occurred');
                 }
@@ -838,6 +900,9 @@
             switch (data.type) {
                 case 'easter_egg':
                     content += displayEasterEgg(data);
+                    break;
+                case 'names_of_god':
+                    content += displayNamesOfGod(data);
                     break;
                 case 'hebrew_name':
                     content += displayHebrewName(data);
@@ -884,6 +949,23 @@
             return content;
         }
 
+        // Display Names of God
+        function displayNamesOfGod(data) {
+            return `
+                <div class="names-of-god-result">
+                    <div class="names-of-god-header">
+                        <span class="holy-icon">✨</span>
+                        <div class="names-of-god-title">${data.hebrew} → ${data.english}</div>
+                    </div>
+                    <div class="names-of-god-meaning"><strong>Meaning:</strong> ${data.meaning}</div>
+                    <div class="names-of-god-context">${data.context}</div>
+                    <div class="prayer-application">
+                        <strong>In Prayer:</strong> This name reveals God's character for specific needs. When you pray to ${data.english}, you're approaching the aspect of God that ${data.meaning.toLowerCase()}. Let this name guide and focus your prayers.
+                    </div>
+                </div>
+            `;
+        }
+
         // Display Hebrew Name
         function displayHebrewName(data) {
             return `
@@ -902,11 +984,15 @@
             `;
             
             data.results.forEach(result => {
+                const resultClass = result.sacred ? 'names-of-god-result' : 'hebrew-search-item';
+                const icon = result.sacred ? '✨' : '📜';
+                
                 content += `
-                    <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 6px;">
-                        <strong>${result.hebrew} → ${result.english}</strong><br>
+                    <div class="${resultClass}" style="margin: 1rem 0; padding: 1rem; background: ${result.sacred ? '#fef9e7' : 'white'}; border-radius: 6px; border-left: 4px solid ${result.sacred ? '#d97706' : '#3b82f6'};">
+                        <strong>${icon} ${result.hebrew} → ${result.english}</strong><br>
                         <em>${result.meaning}</em><br>
                         <small>${result.context}</small>
+                        ${result.sacred ? '<br><small style="color: #d97706; font-weight: 600;">Name of God - for prayer and worship</small>' : ''}
                     </div>
                 `;
             });
@@ -1052,8 +1138,9 @@
 
         // Console welcome message
         console.log('🎯 Biblical Heralds - Ancient Voices, Living Word');
-        console.log('📊 Enhanced Features: Hebrew Names Database, Easter Eggs, Smart Input Detection, Color Psychology');
+        console.log('📊 Enhanced Features: Hebrew Names Database, Names of God, Easter Eggs, Smart Input Detection, Color Psychology');
         console.log('🔍 Try searching for: yochanan, kefa, miriam, devorah, or bar-nabba for special Easter eggs!');
+        console.log('✨ Names of God: elohim, yahweh, jehovah-jireh, jehovah-rapha, el-shaddai for prayer focus');
         console.log('📖 Bible references, topics like "love" or "faith", and questions all supported');
     </script>
 </body>
