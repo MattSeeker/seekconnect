@@ -1,612 +1,1011 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Biblical Heralds</title>
+    <title>Heralds Feedback - Your Voice Matters</title>
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --background: #fafbfc;
+            --text-primary: #333;
+            --text-secondary: #2c3e50;
+            --card-bg: white;
+            --card-border: #e1e8ed;
+            --accent-color: #667eea;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.12);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
             line-height: 1.6;
-            background: #fafbfc;
-            color: #333;
         }
-        
+
+        .header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
         }
-        
-        .header {
+
+        .intro-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
             text-align: center;
-            margin-bottom: 3rem;
         }
-        
-        .title {
-            font-size: 2.5rem;
-            color: #2c3e50;
+
+        .intro-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .intro-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
             margin-bottom: 1rem;
         }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #667eea;
+
+        .feedback-form {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
             margin-bottom: 2rem;
         }
-        
-        .thermometer-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            margin-bottom: 3rem;
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--card-border);
         }
-        
-        .thermometer-title {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #2c3e50;
+
+        .form-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .section-title {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
             margin-bottom: 1.5rem;
         }
-        
-        .thermometer {
-            background: #e1e8ed;
-            border-radius: 25px;
-            height: 40px;
-            position: relative;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-        
-        .thermometer-progress {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100%;
-            border-radius: 25px;
-            transition: width 0.3s ease;
-            position: relative;
-        }
-        
-        .thermometer-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
+
+        .form-label {
+            display: block;
+            color: var(--text-primary);
             font-weight: 600;
-            font-size: 0.9rem;
-            z-index: 2;
-        }
-        
-        .thermometer-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .cost-breakdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .cost-item {
-            text-align: center;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .cost-amount {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #667eea;
-        }
-        
-        .cost-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .engagement-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            margin-bottom: 3rem;
-        }
-        
-        .engagement-title {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin-bottom: 2rem;
-        }
-        
-        .tier-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .tier-card {
-            border: 2px solid #e1e8ed;
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: white;
-        }
-        
-        .tier-card:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-        }
-        
-        .tier-card.selected {
-            border-color: #667eea;
-            background: #f0f4ff;
-        }
-        
-        .tier-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2c3e50;
             margin-bottom: 0.5rem;
         }
-        
-        .tier-description {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .tier-features {
-            list-style: none;
-            text-align: left;
-        }
-        
-        .tier-features li {
-            font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-        
-        .tier-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-        
-        .donation-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            margin-bottom: 3rem;
-        }
-        
-        .donation-title {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin-bottom: 2rem;
-        }
-        
-        .donation-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .donation-amount {
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background: white;
-        }
-        
-        .donation-amount:hover,
-        .donation-amount.selected {
-            border-color: #667eea;
-            background: #f0f4ff;
-        }
-        
-        .donation-amount .amount {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .donation-amount .label {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 0.5rem;
-        }
-        
-        .custom-amount {
-            margin-bottom: 2rem;
-        }
-        
-        .custom-amount input {
+
+        .form-input, .form-textarea, .form-select {
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e1e8ed;
+            padding: 1rem;
+            border: 2px solid var(--card-border);
             border-radius: 8px;
             font-size: 1rem;
-            text-align: center;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
         }
-        
-        .custom-amount input:focus {
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--accent-color);
         }
-        
-        .feedback-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            margin-bottom: 3rem;
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
         }
-        
-        .feedback-title {
-            font-size: 1.3rem;
-            color: #2c3e50;
+
+        .rating-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
             margin-bottom: 1rem;
         }
-        
-        .feedback-textarea {
-            width: 100%;
-            min-height: 120px;
+
+        .rating-item {
+            background: #f8fafc;
             padding: 1rem;
-            border: 2px solid #e1e8ed;
             border-radius: 8px;
-            font-family: inherit;
-            resize: vertical;
-        }
-        
-        .feedback-textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .submit-section {
+            border: 2px solid transparent;
             text-align: center;
         }
-        
-        .submit-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .rating-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: #e5e7eb;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #fbbf24;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #f1f5f9;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+            transform: scale(1.2);
+        }
+
+        .submit-section {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px solid var(--card-border);
+        }
+
+        .submit-btn {
+            background: var(--primary-gradient);
             color: white;
             border: none;
-            padding: 1rem 2rem;
+            padding: 1.2rem 3rem;
             border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem 0.5rem 0;
         }
-        
-        .submit-button:hover {
-            transform: translateY(-1px);
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
         }
-        
-        .feedback-only {
-            margin-top: 1rem;
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
-        
-        .feedback-only button {
-            background: #6c757d;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-        }
-        
-        .transparency-note {
-            background: #f0f9ff;
-            border: 1px solid #bfdbfe;
+
+        .preview-btn {
+            background: var(--warning-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
             border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem 0.5rem 0;
         }
-        
-        .transparency-note h4 {
+
+        .preview-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(245, 158, 11, 0.4);
+        }
+
+        .thank-you-section {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid var(--success-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            display: none;
+        }
+
+        .thank-you-section h2 {
+            color: #065f46;
+            margin-bottom: 1rem;
+        }
+
+        .thank-you-section p {
+            color: #047857;
+            font-size: 1.1rem;
+        }
+
+        .character-count {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+
+        .required {
+            color: var(--error-color);
+        }
+
+        .herald-quick-test {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .herald-quick-test h4 {
             color: #1e40af;
             margin-bottom: 0.5rem;
         }
-        
-        .transparency-note p {
-            color: #1e3a8a;
+
+        .herald-test-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .herald-test-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
             font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
         }
-        
-        .back-link {
-            text-align: center;
-            margin-bottom: 2rem;
+
+        .herald-test-btn:hover {
+            background: #2563eb;
         }
-        
-        .back-link a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 1rem;
-        }
-        
-        .back-link a:hover {
-            text-decoration: underline;
-        }
-        
+
         @media (max-width: 768px) {
-            .tier-grid {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .rating-group {
                 grid-template-columns: 1fr;
             }
             
-            .donation-options {
-                grid-template-columns: repeat(2, 1fr);
+            .checkbox-group {
+                grid-template-columns: 1fr;
             }
+            
+            .submit-btn, .preview-btn {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e2e8f0;
+            border-top: 2px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <h1>📝 Heralds Feedback</h1>
+        <p class="tagline">Your Voice Helps Us Serve Better</p>
+    </header>
+
     <div class="container">
-        <div class="back-link">
-            <a href="/heralds.html">← Back to Biblical Heralds</a>
-        </div>
-        
-        <div class="header">
-            <h1 class="title">Support Biblical Heralds</h1>
-            <p class="subtitle">Help us bring Scripture insights to more people</p>
-        </div>
-        
-        <!-- Monthly Funding Thermometer -->
-        <div class="thermometer-section">
-            <h2 class="thermometer-title">December 2024 Funding</h2>
-            <div class="thermometer">
-                <div class="thermometer-progress" style="width: 65%;">
-                    <div class="thermometer-text">$325 of $500 monthly goal</div>
-                </div>
-            </div>
-            <div class="thermometer-labels">
-                <span>$0</span>
-                <span>$500 Target</span>
-            </div>
+        <div class="intro-section">
+            <h2>🙏 Thank You for Testing!</h2>
+            <p>Your feedback is invaluable in making Biblical Heralds a better platform for spiritual growth and biblical wisdom.</p>
+            <p>This survey takes about 5-10 minutes. Your responses will help shape the future of this ministry tool.</p>
             
-            <div class="cost-breakdown">
-                <div class="cost-item">
-                    <div class="cost-amount">$200</div>
-                    <div class="cost-label">API Costs</div>
-                </div>
-                <div class="cost-item">
-                    <div class="cost-amount">$150</div>
-                    <div class="cost-label">Hosting</div>
-                </div>
-                <div class="cost-item">
-                    <div class="cost-amount">$100</div>
-                    <div class="cost-label">Development</div>
-                </div>
-                <div class="cost-item">
-                    <div class="cost-amount">$50</div>
-                    <div class="cost-label">Backup Systems</div>
+            <div class="herald-quick-test">
+                <h4>🚀 Quick Test Links (if you haven't tried yet):</h4>
+                <div class="herald-test-buttons">
+                    <button class="herald-test-btn" onclick="openTest('John 3:16')">Try "John 3:16"</button>
+                    <button class="herald-test-btn" onclick="openTest('yochanan')">Try "yochanan" (Easter egg!)</button>
+                    <button class="herald-test-btn" onclick="openTest('love')">Try "love"</button>
+                    <button class="herald-test-btn" onclick="openTest('How do I find peace?')">Try "How do I find peace?"</button>
                 </div>
             </div>
         </div>
-        
-        <!-- Engagement Tier Selection -->
-        <div class="engagement-section">
-            <h2 class="engagement-title">How Involved Would You Like to Be?</h2>
-            <div class="tier-grid">
-                <div class="tier-card" data-tier="passive">
-                    <h3 class="tier-name">Passive</h3>
-                    <p class="tier-description">Support quietly from the sidelines</p>
-                    <ul class="tier-features">
-                        <li>One-time feedback option</li>
-                        <li>No follow-up emails</li>
-                        <li>Fire and forget</li>
-                    </ul>
-                </div>
+
+        <form class="feedback-form" id="feedbackForm">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <h3 class="section-title">👤 About You</h3>
                 
-                <div class="tier-card" data-tier="participant">
-                    <h3 class="tier-name">Participant</h3>
-                    <p class="tier-description">Stay informed about progress</p>
-                    <ul class="tier-features">
-                        <li>Monthly newsletter</li>
-                        <li>Development updates</li>
-                        <li>Occasional surveys</li>
-                        <li>Feature announcements</li>
-                    </ul>
+                <div class="form-group">
+                    <label class="form-label" for="name">Name (Optional)</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Your name or 'Anonymous'">
                 </div>
-                
-                <div class="tier-card" data-tier="productive">
-                    <h3 class="tier-name">Productive</h3>
-                    <p class="tier-description">Help shape new features</p>
-                    <ul class="tier-features">
-                        <li>Everything in Participant</li>
-                        <li>Submit feature requests</li>
-                        <li>Beta testing access</li>
-                        <li>Structured feedback forms</li>
-                        <li>Early feature access</li>
-                    </ul>
+
+                <div class="form-group">
+                    <label class="form-label" for="role">How would you describe yourself? <span class="required">*</span></label>
+                    <select id="role" name="role" class="form-select" required>
+                        <option value="">Please select...</option>
+                        <option value="pastor">Pastor/Ministry Leader</option>
+                        <option value="seminary">Seminary Student/Graduate</option>
+                        <option value="bible_teacher">Bible Teacher/Small Group Leader</option>
+                        <option value="believer">Committed Christian/Believer</option>
+                        <option value="seeker">Spiritual Seeker/Questioner</option>
+                        <option value="academic">Academic/Scholar</option>
+                        <option value="tech">Tech Professional</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
-                
-                <div class="tier-card" data-tier="partner">
-                    <h3 class="tier-name">Partner</h3>
-                    <p class="tier-description">Direct influence on direction</p>
-                    <ul class="tier-features">
-                        <li>Everything in Productive</li>
-                        <li>Monthly strategy calls</li>
-                        <li>Vote on feature priorities</li>
-                        <li>Roadmap planning input</li>
-                        <li>Recognition as Partner</li>
-                    </ul>
+
+                <div class="form-group">
+                    <label class="form-label" for="biblical_knowledge">How familiar are you with the Bible?</label>
+                    <select id="biblical_knowledge" name="biblical_knowledge" class="form-select">
+                        <option value="">Please select...</option>
+                        <option value="expert">Very familiar - I teach/preach regularly</option>
+                        <option value="intermediate">Quite familiar - I study regularly</option>
+                        <option value="basic">Somewhat familiar - I read occasionally</option>
+                        <option value="limited">Limited knowledge</option>
+                        <option value="new">New to the Bible</option>
+                    </select>
                 </div>
             </div>
-        </div>
-        
-        <!-- Donation Amounts -->
-        <div class="donation-section">
-            <h2 class="donation-title">Choose Your Support Level</h2>
-            <div class="donation-options">
-                <div class="donation-amount" data-amount="5">
-                    <div class="amount">$5</div>
-                    <div class="label">Cover my usage</div>
-                </div>
-                <div class="donation-amount" data-amount="15">
-                    <div class="amount">$15</div>
-                    <div class="label">Monthly supporter</div>
-                </div>
-                <div class="donation-amount" data-amount="25">
-                    <div class="amount">$25</div>
-                    <div class="label">Growth funding</div>
-                </div>
-                <div class="donation-amount" data-amount="50">
-                    <div class="amount">$50</div>
-                    <div class="label">Feature development</div>
-                </div>
-                <div class="donation-amount" data-amount="100">
-                    <div class="amount">$100</div>
-                    <div class="label">Major milestone</div>
+
+            <!-- User Experience Ratings -->
+            <div class="form-section">
+                <h3 class="section-title">⭐ Your Experience</h3>
+                
+                <div class="rating-group">
+                    <div class="rating-item">
+                        <div class="rating-label">Overall Experience</div>
+                        <div class="star-rating" data-rating="overall">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="rating_overall" id="rating_overall">
+                    </div>
+
+                    <div class="rating-item">
+                        <div class="rating-label">Ease of Use</div>
+                        <div class="star-rating" data-rating="ease">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="rating_ease" id="rating_ease">
+                    </div>
+
+                    <div class="rating-item">
+                        <div class="rating-label">Herald Personalities</div>
+                        <div class="star-rating" data-rating="personalities">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="rating_personalities" id="rating_personalities">
+                    </div>
+
+                    <div class="rating-item">
+                        <div class="rating-label">Spiritual Value</div>
+                        <div class="star-rating" data-rating="spiritual">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="rating_spiritual" id="rating_spiritual">
+                    </div>
+
+                    <div class="rating-item">
+                        <div class="rating-label">Mobile Experience</div>
+                        <div class="star-rating" data-rating="mobile">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="rating_mobile" id="rating_mobile">
+                    </div>
+
+                    <div class="rating-item">
+                        <div class="rating-label">Would Recommend</div>
+                        <div class="star-rating" data-rating="recommend">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="rating_recommend" id="rating_recommend">
+                    </div>
                 </div>
             </div>
+
+            <!-- Specific Feedback -->
+            <div class="form-section">
+                <h3 class="section-title">💬 Detailed Feedback</h3>
+                
+                <div class="form-group">
+                    <label class="form-label" for="favorite_herald">Which herald did you connect with most?</label>
+                    <select id="favorite_herald" name="favorite_herald" class="form-select">
+                        <option value="">Please select...</option>
+                        <option value="john">John (The Beloved Disciple)</option>
+                        <option value="peter">Peter (The Bold Fisherman)</option>
+                        <option value="barnabas">Barnabas (Son of Encouragement)</option>
+                        <option value="mary">Mary of Bethany (The Contemplative Learner)</option>
+                        <option value="deborah">Deborah (Judge and Prophetess)</option>
+                        <option value="none">None particularly stood out</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="tried_features">What features did you try? (Check all that apply)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tried_features" value="bible_verses">
+                            📖 Bible verse lookup (e.g., "John 3:16")
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tried_features" value="hebrew_names">
+                            🔤 Hebrew names (e.g., "yochanan")
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tried_features" value="easter_eggs">
+                            🥚 Easter eggs (Hebrew herald names)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tried_features" value="topics">
+                            💭 Topic searches (e.g., "love", "faith")
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tried_features" value="questions">
+                            ❓ Spiritual questions
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="tried_features" value="examples">
+                            📋 Example buttons
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="what_worked">What worked really well? <span class="required">*</span></label>
+                    <textarea id="what_worked" name="what_worked" class="form-textarea" 
+                              placeholder="Tell us what you loved about the experience..." 
+                              maxlength="1000" required></textarea>
+                    <div class="character-count">
+                        <span id="worked_count">0</span>/1000 characters
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="what_confused">What was confusing or didn't work?</label>
+                    <textarea id="what_confused" name="what_confused" class="form-textarea" 
+                              placeholder="Any bugs, confusing elements, or things that didn't work as expected..." 
+                              maxlength="1000"></textarea>
+                    <div class="character-count">
+                        <span id="confused_count">0</span>/1000 characters
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="improvements">What would make this better?</label>
+                    <textarea id="improvements" name="improvements" class="form-textarea" 
+                              placeholder="Features you'd like to see, improvements, or suggestions..." 
+                              maxlength="1000"></textarea>
+                    <div class="character-count">
+                        <span id="improvements_count">0</span>/1000 characters
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage Intent -->
+            <div class="form-section">
+                <h3 class="section-title">🎯 Future Use</h3>
+                
+                <div class="form-group">
+                    <label class="form-label" for="use_case">How would you most likely use this platform?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="personal_devotions">
+                            🙏 Personal devotions and Bible study
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="sermon_prep">
+                            📝 Sermon/teaching preparation
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="small_group">
+                            👥 Small group discussions
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="counseling">
+                            💬 Pastoral counseling/guidance
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="quick_questions">
+                            ⚡ Quick spiritual questions
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="learning">
+                            📚 Learning about biblical characters
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="youth_ministry">
+                            🎈 Youth/children's ministry
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="use_case" value="evangelism">
+                            ✨ Evangelism/outreach conversations
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="frequency">If this were available, how often would you use it?</label>
+                    <select id="frequency" name="frequency" class="form-select">
+                        <option value="">Please select...</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">2-3 times per week</option>
+                        <option value="occasionally">Once a week</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="rarely">Rarely</option>
+                        <option value="never">Probably wouldn't use it</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Technical Feedback -->
+            <div class="form-section">
+                <h3 class="section-title">💻 Technical Experience</h3>
+                
+                <div class="form-group">
+                    <label class="form-label" for="device">What device did you primarily use for testing?</label>
+                    <select id="device" name="device" class="form-select">
+                        <option value="">Please select...</option>
+                        <option value="desktop">Desktop computer</option>
+                        <option value="laptop">Laptop</option>
+                        <option value="tablet">Tablet (iPad, etc.)</option>
+                        <option value="mobile">Mobile phone</option>
+                        <option value="multiple">Multiple devices</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="browser">What browser did you use?</label>
+                    <select id="browser" name="browser" class="form-select">
+                        <option value="">Please select...</option>
+                        <option value="chrome">Chrome</option>
+                        <option value="safari">Safari</option>
+                        <option value="firefox">Firefox</option>
+                        <option value="edge">Microsoft Edge</option>
+                        <option value="other">Other</option>
+                        <option value="unsure">Not sure</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="technical_issues">Any technical issues encountered?</label>
+                    <textarea id="technical_issues" name="technical_issues" class="form-textarea" 
+                              placeholder="Slow loading, errors, buttons not working, display problems, etc..." 
+                              maxlength="500"></textarea>
+                    <div class="character-count">
+                        <span id="technical_count">0</span>/500 characters
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Thoughts -->
+            <div class="form-section">
+                <h3 class="section-title">💡 Final Thoughts</h3>
+                
+                <div class="form-group">
+                    <label class="form-label" for="biggest_concern">What's your biggest concern about this platform?</label>
+                    <textarea id="biggest_concern" name="biggest_concern" class="form-textarea" 
+                              placeholder="Theological accuracy, user experience, technical reliability, etc..." 
+                              maxlength="500"></textarea>
+                    <div class="character-count">
+                        <span id="concern_count">0</span>/500 characters
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="additional_feedback">Anything else you'd like to share?</label>
+                    <textarea id="additional_feedback" name="additional_feedback" class="form-textarea" 
+                              placeholder="Any other thoughts, suggestions, or feedback..." 
+                              maxlength="1000"></textarea>
+                    <div class="character-count">
+                        <span id="additional_count">0</span>/1000 characters
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="contact_followup">Would you like to be contacted for follow-up questions?</label>
+                    <select id="contact_followup" name="contact_followup" class="form-select">
+                        <option value="no">No, thanks</option>
+                        <option value="yes">Yes, I'm open to follow-up</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="contact_info_group" style="display: none;">
+                    <label class="form-label" for="contact_email">Email for follow-up (optional)</label>
+                    <input type="email" id="contact_email" name="contact_email" class="form-input" 
+                           placeholder="your.email@example.com">
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="button" class="preview-btn" onclick="previewSubmission()">👀 Preview My Responses</button>
+                <button type="submit" class="submit-btn">🚀 Submit Feedback</button>
+                <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    Your feedback is anonymous unless you choose to provide contact information.
+                </p>
+            </div>
+        </form>
+
+        <div class="thank-you-section" id="thankYouSection">
+            <h2>🙏 Thank You!</h2>
+            <p>Your feedback has been received and is incredibly valuable for improving Biblical Heralds.</p>
+            <p>May God bless you as you continue to grow in His Word!</p>
             
-            <div class="custom-amount">
-                <input type="number" id="custom-amount" placeholder="Enter custom amount ($)" min="1">
+            <div style="margin-top: 2rem;">
+                <a href="index.html" style="background: var(--accent-color); color: white; text-decoration: none; display: inline-block; padding: 1rem 2rem; border-radius: 8px; font-weight: 600;">
+                    🏠 Return to Biblical Heralds
+                </a>
             </div>
-        </div>
-        
-        <!-- Feedback Section -->
-        <div class="feedback-section">
-            <h3 class="feedback-title">Share Your Thoughts (Optional)</h3>
-            <textarea class="feedback-textarea" placeholder="What would make Biblical Heralds better? What features would you most like to see? Any bugs or suggestions?"></textarea>
-        </div>
-        
-        <!-- Submit Section -->
-        <div class="submit-section">
-            <button class="submit-button" onclick="processDonation()">
-                Complete Support & Feedback
-            </button>
-            
-            <div class="feedback-only">
-                <button onclick="submitFeedbackOnly()">
-                    Just Send Feedback (No Donation)
-                </button>
-            </div>
-        </div>
-        
-        <!-- Transparency Note -->
-        <div class="transparency-note">
-            <h4>Financial Transparency</h4>
-            <p>All surplus funds beyond operating costs are donated to biblical literacy ministries. Monthly reports available to all supporters.</p>
         </div>
     </div>
 
     <script>
-        let selectedTier = 'participant'; // Default selection
-        let selectedAmount = 0;
-        
-        // Tier selection
-        document.querySelectorAll('.tier-card').forEach(card => {
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedTier = card.dataset.tier;
+        // Character counting for textareas
+        function setupCharacterCounting() {
+            const textareas = [
+                { field: 'what_worked', counter: 'worked_count' },
+                { field: 'what_confused', counter: 'confused_count' },
+                { field: 'improvements', counter: 'improvements_count' },
+                { field: 'technical_issues', counter: 'technical_count' },
+                { field: 'biggest_concern', counter: 'concern_count' },
+                { field: 'additional_feedback', counter: 'additional_count' }
+            ];
+
+            textareas.forEach(({ field, counter }) => {
+                const textarea = document.getElementById(field);
+                const counterElement = document.getElementById(counter);
+                
+                if (textarea && counterElement) {
+                    textarea.addEventListener('input', () => {
+                        counterElement.textContent = textarea.value.length;
+                    });
+                }
             });
-        });
-        
-        // Default to Participant
-        document.querySelector('[data-tier="participant"]').classList.add('selected');
-        
-        // Amount selection
-        document.querySelectorAll('.donation-amount').forEach(amount => {
-            amount.addEventListener('click', () => {
-                document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
-                amount.classList.add('selected');
-                selectedAmount = parseInt(amount.dataset.amount);
-                document.getElementById('custom-amount').value = '';
-            });
-        });
-        
-        // Custom amount
-        document.getElementById('custom-amount').addEventListener('input', (e) => {
-            document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
-            selectedAmount = parseInt(e.target.value) || 0;
-        });
-        
-        // Process donation
-        function processDonation() {
-            const feedback = document.querySelector('.feedback-textarea').value;
-            
-            if (selectedAmount === 0) {
-                alert('Please select or enter a donation amount.');
-                return;
-            }
-            
-            // In production, integrate with Stripe/PayPal
-            const donationData = {
-                amount: selectedAmount,
-                tier: selectedTier,
-                feedback: feedback,
-                timestamp: new Date().toISOString()
-            };
-            
-            console.log('Donation data:', donationData);
-            alert(`Thank you! You've chosen the ${selectedTier} engagement level with a $${selectedAmount} donation. You'll be redirected to payment processing.`);
-            
-            // TODO: Integrate with payment processor
-            // TODO: Save tier preference to user profile
-            // TODO: Send confirmation email
         }
-        
-        // Feedback only
-        function submitFeedbackOnly() {
-            const feedback = document.querySelector('.feedback-textarea').value;
+
+        // Star rating functionality
+        function setupStarRatings() {
+            document.querySelectorAll('.star-rating').forEach(rating => {
+                const stars = rating.querySelectorAll('.star');
+                const ratingType = rating.getAttribute('data-rating');
+                const hiddenInput = document.getElementById(`rating_${ratingType}`);
+
+                stars.forEach((star, index) => {
+                    star.addEventListener('click', () => {
+                        const value = index + 1;
+                        hiddenInput.value = value;
+
+                        // Update visual state
+                        stars.forEach((s, i) => {
+                            s.classList.toggle('active', i < value);
+                        });
+                    });
+
+                    star.addEventListener('mouseover', () => {
+                        stars.forEach((s, i) => {
+                            s.style.color = i <= index ? '#fbbf24' : '#e5e7eb';
+                        });
+                    });
+                });
+
+                rating.addEventListener('mouseleave', () => {
+                    const currentValue = parseInt(hiddenInput.value) || 0;
+                    stars.forEach((s, i) => {
+                        s.style.color = i < currentValue ? '#fbbf24' : '#e5e7eb';
+                    });
+                });
+            });
+        }
+
+        // Contact follow-up visibility
+        function setupContactVisibility() {
+            const followupSelect = document.getElementById('contact_followup');
+            const contactGroup = document.getElementById('contact_info_group');
+
+            followupSelect.addEventListener('change', () => {
+                contactGroup.style.display = followupSelect.value === 'yes' ? 'block' : 'none';
+            });
+        }
+
+        // Quick test functions
+        function openTest(query) {
+            // Open main site with query in new tab
+            const url = `index.html?q=${encodeURIComponent(query)}`;
+            window.open(url, '_blank');
+        }
+
+        // Preview submission
+        function previewSubmission() {
+            const formData = new FormData(document.getElementById('feedbackForm'));
+            let preview = '=== FEEDBACK PREVIEW ===\n\n';
             
-            if (!feedback.trim()) {
-                alert('Please enter some feedback before submitting.');
-                return;
+            // Convert form data to readable format
+            for (let [key, value] of formData.entries()) {
+                if (value.trim() !== '') {
+                    const label = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    preview += `${label}: ${value}\n`;
+                }
             }
             
+            // Show in alert for now (you can replace with modal)
+            alert(preview);
+        }
+
+        // Form submission
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const submitBtn = event.target.querySelector('.submit-btn');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="loading"><div class="spinner"></div>Submitting...</div>';
+            
+            // Collect all form data
             const feedbackData = {
-                feedback: feedback,
-                tier: selectedTier,
                 timestamp: new Date().toISOString(),
-                donationAmount: 0
+                responses: {}
             };
             
-            console.log('Feedback data:', feedbackData);
-            alert(`Thank you for your feedback! You've been added to the ${selectedTier} engagement level.`);
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                if (feedbackData.responses[key]) {
+                    // Handle multiple values (checkboxes)
+                    if (!Array.isArray(feedbackData.responses[key])) {
+                        feedbackData.responses[key] = [feedbackData.responses[key]];
+                    }
+                    feedbackData.responses[key].push(value);
+                } else {
+                    feedbackData.responses[key] = value;
+                }
+            }
             
-            // TODO: Save feedback to database
-            // TODO: Add user to selected tier
-            // TODO: Send confirmation email
-        }
-        
-        // Update thermometer dynamically (for demo)
-        function updateThermometer(current, target) {
-            const percentage = Math.min((current / target) * 100, 100);
-            const progressBar = document.querySelector('.thermometer-progress');
-            const progressText = document.querySelector('.thermometer-text');
+            // Create formatted feedback text
+            const formattedFeedback = formatFeedbackForEmail(feedbackData);
             
-            progressBar.style.width = percentage + '%';
-            progressText.textContent = `$${current} of $${target} monthly goal`;
+            // Copy to clipboard automatically
+            navigator.clipboard.writeText(formattedFeedback).then(() => {
+                console.log('Feedback copied to clipboard successfully');
+            }).catch(() => {
+                console.log('Feedback data:', formattedFeedback);
+            });
+            
+            // Show thank you with instructions
+            setTimeout(() => {
+                document.getElementById('feedbackForm').style.display = 'none';
+                document.getElementById('thankYouSection').style.display = 'block';
+                document.getElementById('thankYouSection').innerHTML = `
+                    <h2>🙏 Thank You!</h2>
+                    <p>Your feedback has been automatically copied to your clipboard!</p>
+                    <div style="background: #f0f9ff; border: 2px solid #3b82f6; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; text-align: left;">
+                        <h4 style="color: #1e40af; margin-bottom: 1rem;">📧 Final Step (takes 30 seconds):</h4>
+                        <ol style="color: #1e3a8a; line-height: 1.8;">
+                            <li>Open your email app</li>
+                            <li>Send email to: <strong>feedback@biblicalheralds.com</strong></li>
+                            <li>Subject: <strong>Heralds Feedback</strong></li>
+                            <li>Paste your feedback (Ctrl+V or Cmd+V)</li>
+                            <li>Hit send! 🚀</li>
+                        </ol>
+                        <p style="margin-top: 1rem; font-style: italic; color: #64748b;">
+                            If clipboard didn't work, the feedback is also logged in your browser console (F12 → Console tab).
+                        </p>
+                    </div>
+                    <p>May God bless you as you continue to grow in His Word!</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="index.html" style="background: var(--accent-color); color: white; text-decoration: none; display: inline-block; padding: 1rem 2rem; border-radius: 8px; font-weight: 600;">
+                            🏠 Return to Biblical Heralds
+                        </a>
+                    </div>
+                `;
+                
+                document.getElementById('thankYouSection').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }, 1500);
         }
+
+        // Format feedback for email
+        function formatFeedbackForEmail(data) {
+            const timestamp = new Date(data.timestamp).toLocaleString();
+            let formatted = `BIBLICAL HERALDS FEEDBACK\nSubmitted: ${timestamp}\n\n`;
+            
+            const responses = data.responses;
+            
+            // Basic Info
+            formatted += "=== USER PROFILE ===\n";
+            formatted += `Name: ${responses.name || 'Anonymous'}\n`;
+            formatted += `Role: ${responses.role || 'Not specified'}\n`;
+            formatted += `Biblical Knowledge: ${responses.biblical_knowledge || 'Not specified'}\n\n`;
+            
+            // Ratings
+            formatted += "=== RATINGS (1-5 stars) ===\n";
+            formatted += `Overall Experience: ${responses.rating_overall || 'Not rated'}/5\n`;
+            formatted += `Ease of Use: ${responses.rating_ease || 'Not rated'}/5\n`;
+            formatted += `Herald Personalities: ${responses.rating_personalities || 'Not rated'}/5\n`;
+            formatted += `Spiritual Value: ${responses.rating_spiritual || 'Not rated'}/5\n`;
+            formatted += `Mobile Experience: ${responses.rating_mobile || 'Not rated'}/5\n`;
+            formatted += `Would Recommend: ${responses.rating_recommend || 'Not rated'}/5\n\n`;
+            
+            // Key Feedback
+            formatted += "=== DETAILED FEEDBACK ===\n";
+            formatted += `Favorite Herald: ${responses.favorite_herald || 'None selected'}\n\n`;
+            
+            if (responses.tried_features) {
+                const features = Array.isArray(responses.tried_features) ? responses.tried_features : [responses.tried_features];
+                formatted += `Features Tried: ${features.join(', ')}\n\n`;
+            }
+            
+            if (responses.what_worked) {
+                formatted += `What Worked Well:\n${responses.what_worked}\n\n`;
+            }
+            
+            if (responses.what_confused) {
+                formatted += `What Was Confusing:\n${responses.what_confused}\n\n`;
+            }
+            
+            if (responses.improvements) {
+                formatted += `Suggested Improvements:\n${responses.improvements}\n\n`;
+            }
+            
+            // Usage Intent
+            formatted += "=== USAGE INTENT ===\n";
+            if (responses.use_case) {
+                const useCases = Array.isArray(responses.use_case) ? responses.use_case : [responses.use_case];
+                formatted += `Would Use For: ${useCases.join(', ')}\n`;
+            }
+            formatted += `Frequency: ${responses.frequency || 'Not specified'}\n\n`;
+            
+            // Technical
+            formatted += "=== TECHNICAL INFO ===\n";
+            formatted += `Device: ${responses.device || 'Not specified'}\n`;
+            formatted += `Browser: ${responses.browser || 'Not specified'}\n`;
+            if (responses.technical_issues) {
+                formatted += `Technical Issues: ${responses.technical_issues}\n`;
+            }
+            formatted += `\n`;
+            
+            // Final thoughts
+            if (responses.biggest_concern) {
+                formatted += `Biggest Concern: ${responses.biggest_concern}\n\n`;
+            }
+            
+            if (responses.additional_feedback) {
+                formatted += `Additional Feedback: ${responses.additional_feedback}\n\n`;
+            }
+            
+            // Contact
+            formatted += "=== CONTACT ===\n";
+            formatted += `Follow-up OK: ${responses.contact_followup || 'Not specified'}\n`;
+            if (responses.contact_email) {
+                formatted += `Email: ${responses.contact_email}\n`;
+            }
+            
+            return formatted;
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setupCharacterCounting();
+            setupStarRatings();
+            setupContactVisibility();
+            
+            // Add form submission handler
+            document.getElementById('feedbackForm').addEventListener('submit', handleFormSubmission);
+        });
+
+        // Auto-populate from URL parameters (if coming from main site)
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            if (query) {
+                // Could auto-fill some context about what they tested
+                console.log('User came from testing:', query);
+            }
+        });
     </script>
 </body>
 </html>
