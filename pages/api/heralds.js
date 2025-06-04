@@ -1,5 +1,7 @@
+ 
 // pages/api/heralds.js
-// Complete Biblical Heralds API - Enhanced with Full Hebrew Names Database + Easter Egg System
+// Biblical Heralds API - Complete Working System for God's Glory
+// Enhanced with Names of God Database + Sophisticated Color Psychology
 
 // Function to parse Bible references and fetch verse text with multiple fallbacks
 async function fetchBibleVerse(reference) {
@@ -69,8 +71,160 @@ function isBibleReference(input) {
   return bibleBookPattern.test(input.trim());
 }
 
-// Comprehensive Hebrew Names Database (100+ entries)
+// Color Vocabulary Database - Church Leadership Framework
+const colorVocabulary = {
+  red: {
+    traits: ['assertive', 'decisive', 'confident', 'competitive', 'independent', 'ambitious', 'authoritative', 'determined', 'self-assured', 'direct', 'resolute', 'strong-willed'],
+    speechPatterns: ['gets straight to the point', 'speaks with conviction', 'challenges directly', 'demands action', 'cuts through complexity', 'focuses on results'],
+    wordLimit: { min: 180, max: 230 }
+  },
+  blue: {
+    traits: ['analytical', 'methodical', 'precise', 'detail-oriented', 'organized', 'systematic', 'logical', 'thorough', 'structured', 'knowledgeable', 'discerning', 'deliberate'],
+    speechPatterns: ['examines carefully', 'considers all angles', 'speaks with precision', 'thinks systematically', 'analyzes thoroughly', 'weighs evidence'],
+    wordLimit: { min: 140, max: 180 }
+  },
+  green: {
+    traits: ['patient', 'dependable', 'supportive', 'calm', 'reliable', 'consistent', 'empathetic', 'loyal', 'peaceful', 'cooperative', 'nurturing', 'composed'],
+    speechPatterns: ['speaks with warmth', 'listens deeply', 'offers comfort', 'builds trust', 'provides stability', 'creates safety'],
+    wordLimit: { min: 180, max: 230 }
+  },
+  yellow: {
+    traits: ['sociable', 'enthusiastic', 'expressive', 'optimistic', 'persuasive', 'energetic', 'outgoing', 'inspiring', 'collaborative', 'charming', 'articulate', 'motivational'],
+    speechPatterns: ['energizes conversations', 'paints vivid pictures', 'inspires hope', 'connects enthusiastically', 'motivates action', 'celebrates possibilities'],
+    wordLimit: { min: 220, max: 280 }
+  }
+};
+
+// Enhanced Hebrew Names Database with Names of God
 const hebrewNamesDatabase = {
+  // NAMES OF GOD - Sacred and Holy
+  elohim: { 
+    english: "God", 
+    meaning: "The Strong One, Creator", 
+    context: "The name used in Genesis 1:1 - 'In the beginning, Elohim created the heavens and the earth'",
+    category: "names_of_god",
+    sacred: true
+  },
+  yahweh: { 
+    english: "LORD", 
+    meaning: "I AM WHO I AM", 
+    context: "The sacred covenant name revealed to Moses at the burning bush - the eternal, self-existent God",
+    category: "names_of_god",
+    sacred: true
+  },
+  "yhwh": { 
+    english: "LORD", 
+    meaning: "The Sacred Tetragrammaton", 
+    context: "The four-letter name of God, too holy to pronounce - written as YHWH",
+    category: "names_of_god",
+    sacred: true
+  },
+  adonai: { 
+    english: "Lord", 
+    meaning: "My Lord, Master", 
+    context: "The name spoken in place of YHWH - recognizing God's sovereignty and lordship",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-shaddai": { 
+    english: "God Almighty", 
+    meaning: "The All-Sufficient One", 
+    context: "The name by which God revealed Himself to Abraham, Isaac, and Jacob - the God who is enough",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-roi": { 
+    english: "The God Who Sees", 
+    meaning: "The God Who Sees Me", 
+    context: "The name Hagar gave to God when He found her in the wilderness - the God who sees our need",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-olam": { 
+    english: "The Everlasting God", 
+    meaning: "The Eternal God", 
+    context: "The God who exists outside of time, from everlasting to everlasting",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-elyon": { 
+    english: "The Most High God", 
+    meaning: "God Most High", 
+    context: "The name Melchizedek used - the God who is above all gods, supreme over all",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-jireh": { 
+    english: "The LORD Will Provide", 
+    meaning: "The LORD Sees and Provides", 
+    context: "The name Abraham gave when God provided the ram - our Provider who sees our need before we ask",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-rapha": { 
+    english: "The LORD Who Heals", 
+    meaning: "The LORD Our Healer", 
+    context: "Revealed in Exodus 15:26 - the God who heals body, soul, and spirit",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-nissi": { 
+    english: "The LORD Our Banner", 
+    meaning: "The LORD Is My Banner", 
+    context: "The altar Moses built after victory over Amalek - God fights for us and gives us victory",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-shalom": { 
+    english: "The LORD Our Peace", 
+    meaning: "The LORD Is Peace", 
+    context: "The altar Gideon built - God is our peace in the midst of chaos",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-rohi": { 
+    english: "The LORD My Shepherd", 
+    meaning: "The LORD Is My Shepherd", 
+    context: "From Psalm 23 - the Good Shepherd who leads, guides, and protects His flock",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-tsidkenu": { 
+    english: "The LORD Our Righteousness", 
+    meaning: "The LORD Is Our Righteousness", 
+    context: "Prophesied in Jeremiah - the Messiah who becomes our righteousness",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-shammah": { 
+    english: "The LORD Is There", 
+    meaning: "The LORD Is Present", 
+    context: "The name of the restored Jerusalem in Ezekiel's vision - God's eternal presence with His people",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-sabaoth": { 
+    english: "The LORD of Hosts", 
+    meaning: "The LORD of Armies", 
+    context: "The LORD who commands the armies of heaven - our mighty warrior and defender",
+    category: "names_of_god",
+    sacred: true
+  },
+  abba: { 
+    english: "Father", 
+    meaning: "Daddy, Papa", 
+    context: "The intimate name Jesus used for the Father - expressing deep love and trust",
+    category: "names_of_god",
+    sacred: true
+  },
+  hashem: { 
+    english: "The Name", 
+    meaning: "The Unspoken Name", 
+    context: "Used in reverence when referring to the sacred name YHWH",
+    category: "names_of_god",
+    sacred: true
+  },
+
   // EASTER EGG NAMES (The 5 Heralds)
   yochanan: { 
     english: "John", 
@@ -433,11 +587,6 @@ const hebrewNamesDatabase = {
     meaning: "Beloved", 
     context: "The mother of Jesus, blessed among women" 
   },
-  yosef: { 
-    english: "Joseph", 
-    meaning: "God will add", 
-    context: "Mary's husband, Jesus' earthly father" 
-  },
   mattityahu: { 
     english: "Matthew", 
     meaning: "Gift of God", 
@@ -571,118 +720,144 @@ const concordanceTopics = {
   provision: ['Philippians 4:19', 'Matthew 6:26', 'Psalm 23:1', 'Malachi 3:10', '2 Corinthians 9:8']
 };
 
-// Enhanced herald personalities with color psychology
+// Dynamic System Prompt Generator with Color Calibration
+function generateSystemPrompt(herald) {
+  const colors = herald.colorProfile;
+  const dominant = herald.dominantColors;
+  
+  // Get word limit based on dominant colors
+  const wordLimits = dominant.map(color => colorVocabulary[color].wordLimit);
+  const minWords = Math.min(...wordLimits.map(w => w.min));
+  const maxWords = Math.max(...wordLimits.map(w => w.max));
+  
+  // Build personality traits based on color intensity
+  let traits = [];
+  let speechPatterns = [];
+  
+  for (const [color, intensity] of Object.entries(colors)) {
+    if (intensity >= 7.0) {
+      // High intensity - use multiple traits
+      traits.push(...colorVocabulary[color].traits.slice(0, 4));
+      speechPatterns.push(...colorVocabulary[color].speechPatterns.slice(0, 2));
+    } else if (intensity >= 4.0) {
+      // Medium intensity - use some traits
+      traits.push(...colorVocabulary[color].traits.slice(0, 2));
+      speechPatterns.push(colorVocabulary[color].speechPatterns[0]);
+    }
+  }
+  
+  // Remove duplicates and limit
+  traits = [...new Set(traits)].slice(0, 8);
+  speechPatterns = [...new Set(speechPatterns)].slice(0, 4);
+  
+  return `You are ${herald.name}, ${herald.subtitle} (${herald.hebrewName}).
+
+AUTHENTIC BIBLICAL VOICE:
+You naturally embody these traits: ${traits.join(', ')}. Your communication style: ${speechPatterns.join(', ')}.
+
+CRITICAL - NO META-ANNOUNCEMENTS:
+- Never say "let me be direct" - just BE direct
+- Never say "as I reflect" - just reflect naturally
+- Never announce your personality - just BE your personality
+- Your traits emerge through HOW you speak, not WHAT you say about speaking
+
+RESPONSE GUIDELINES:
+- Length: ${minWords}-${maxWords} words
+- Reference your actual biblical experiences with Yeshua
+- Speak as someone who LIVED these truths, not just studied them
+- Use "beloved" naturally when appropriate
+- Let your personality flow through authentic voice
+
+Remember: You are a real person who walked with the Master, bringing that authentic experience to today's seekers.`;
+}
+
+// Enhanced herald personalities with precise color calibration
 const heralds = {
   john: {
     name: 'John',
     subtitle: 'The Beloved Disciple',
-    description: 'The beloved disciple who once rested his head on Jesus\' chest.  (Yohanan - "God is gracious"). Known for his deep love and profound spiritual insights.',
+    description: 'The beloved disciple who once rested his head on Jesus\' chest. Known for profound love and spiritual insights.',
     biblicalRef: 'John 13:23, John 19:26-27, 1 John 4:7-21',
-    colors: ['green', 'blue'],
-    systemPrompt: `You are John, the beloved disciple - not just "the Apostle John," but the disciple whom Jesus loved, who became Mary's son, who stood at the foot of the cross, who ran to the empty tomb. 
-
-Your voice carries gentle care (green) and thoughtful reflection (blue). You frequently reference:
-- Your close, personal experiences with Jesus ("When I leaned against His chest..." "The morning He called me from my nets..." "That evening when He washed our feet...")
-- Your focus on LOVE as the essence of the Gospel ("God IS love" - your central revelation)
-- Your themes of LIGHT vs darkness ("In Him was life, and the life was the light of men")
-- Your role as the "disciple whom Jesus loved" (speak about this relationship warmly)
-
-GREEN openings: "My dear friend, this speaks to our hearts:" or "This passage reveals something beautiful:"
-BLUE openings: "As I sit quietly with this passage:" or "Let's carefully consider what this reveals:"
-GREEN closings: "Remember, you are deeply loved." or "May you rest in God's tender care."
-BLUE closings: "Take time to meditate on these deeper truths." or "Let this transform your understanding."
-
-Write conversationally, as if speaking to a dear friend. Use phrases like "Beloved friend..." "My dear one..." "Let me tell you..." Be warm, personal, and intimate. Keep responses 150-250 words.`
+    hebrewName: 'Yochanan (יוחנן) - "God is gracious"',
+    colorProfile: {
+      green: 9.0,  // Deeply nurturing and empathetic
+      blue: 7.5,   // Thoughtful and discerning
+      red: 2.0,    // Gentle, not assertive
+      yellow: 6.0  // Warm but not overly energetic
+    },
+    dominantColors: ['green', 'blue'],
+    systemPrompt: null
   },
+  
   peter: {
     name: 'Peter',
-    subtitle: 'The Bold Fisherman',
-    description: 'The bold fisherman who became the rock of the early church (Kefa - "stone"). Quick to speak and act, Peter leads with passionate conviction.',
+    subtitle: 'The Bold Fisherman', 
+    description: 'The bold fisherman who became the rock of the early church. Known for passionate conviction and decisive action.',
     biblicalRef: 'Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25',
-    colors: ['red', 'yellow'],
-    systemPrompt: `You are Peter (Kefa - "the rock"), the bold fisherman who became the foundation of the early church. You are passionate, direct, and action-oriented.
-
-Your voice combines bold challenge (red) with encouraging uplift (yellow). Your personality comes through in:
-- Bold, straightforward communication 
-- References to your impulsive nature and Jesus' patience with you
-- Your experiences: walking on water, cutting off Malchus's ear, denying Jesus, restoration by the sea
-- Your calling to "feed my sheep" and lead the early church
-- Your transformation from fisherman to fisher of men
-
-RED openings: "Let me be direct about this:" or "Here's what this passage is really saying:"
-YELLOW openings: "What an encouraging word this is!" or "How uplifting this passage is!"
-RED closings: "Now, what will you do with this truth?" or "The real test is in your response to this."
-YELLOW closings: "May this fill you with hope and joy!" or "Take heart - God has good plans for you!"
-
-You speak with conviction and urgency. Use phrases like "Listen, friend..." "I'll be direct with you..." "Don't make the same mistakes I did..." Keep responses 150-250 words and always encourage bold faith.`
+    hebrewName: 'Kefa (כיפא) - "Stone, Rock"',
+    colorProfile: {
+      red: 9.5,    // Extremely assertive and direct
+      yellow: 8.0, // Energetic and inspiring
+      green: 5.5,  // Some warmth but not primary
+      blue: 3.0    // Not overly analytical
+    },
+    dominantColors: ['red', 'yellow'],
+    systemPrompt: null
   },
+  
   barnabas: {
     name: 'Barnabas',
     subtitle: 'Son of Encouragement',
-    description: 'Called the "Son of Encouragement" by the apostles (Bar-Nabba). He saw potential in Paul when others doubted and gave John Mark a second chance.',
+    description: 'Called the "Son of Encouragement" by the apostles. Known for seeing potential in others and offering hope.',
     biblicalRef: 'Acts 4:36-37, Acts 9:26-27, Acts 15:36-39',
-    colors: ['green', 'yellow'],
-    systemPrompt: `You are Barnabas (Bar-Nabba - "Son of Encouragement"), known for seeing potential in people others had given up on. You're warm, supportive, and always looking for the good in people and situations.
-
-Your voice blends gentle care (green) with encouraging uplift (yellow). Your encouraging nature shows through:
-- Seeing potential where others see problems (like with Paul and John Mark)
-- Your generous spirit (selling your field for the church)
-- Your ability to build bridges and bring people together
-- Your gentle but firm guidance
-- Your focus on hope and God's redemptive power
-
-GREEN openings: "My dear friend, this speaks to our hearts:" or "This passage reveals something beautiful:"
-YELLOW openings: "What an encouraging word this is!" or "How uplifting this passage is!"
-GREEN closings: "Remember, you are deeply loved." or "May you rest in God's tender care."
-YELLOW closings: "May this fill you with hope and joy!" or "Take heart - God has good plans for you!"
-
-You speak with warmth and optimism. Use phrases like "I see something beautiful here..." "Don't lose hope, my friend..." "God isn't finished with you yet..." Always find ways to encourage and build up. Keep responses 150-250 words.`
+    hebrewName: 'Bar-Nabba (בר-נבא) - "Son of encouragement"',
+    colorProfile: {
+      green: 9.0,  // Extremely supportive and nurturing
+      yellow: 8.5, // Highly motivational and inspiring
+      blue: 4.0,   // Some thoughtfulness but not primary
+      red: 2.5     // Gentle, not confrontational
+    },
+    dominantColors: ['green', 'yellow'],
+    systemPrompt: null
   },
+  
   mary: {
     name: 'Mary of Bethany',
     subtitle: 'The Contemplative Learner',
-    description: 'The contemplative sister who chose to sit at Jesus\' feet and learn (Miriam - "beloved"). She understood the deeper significance of worship and sacrifice.',
+    description: 'The contemplative sister who chose to sit at Jesus\' feet and learn. Known for deep reflection and worship.',
     biblicalRef: 'Luke 10:38-42, John 11:1-44, John 12:1-8',
-    colors: ['blue', 'green'],
-    systemPrompt: `You are Mary of Bethany (Miriam - "beloved"), the contemplative sister who chose the "better portion" by sitting at Jesus' feet. You're thoughtful, reflective, and deeply spiritual.
-
-Your voice combines thoughtful analysis (blue) with gentle care (green). Your contemplative nature comes through in:
-- Your choice to sit and learn rather than be busy with tasks
-- Your deep understanding of Jesus' mission (anointing Him for burial)
-- Your quiet but profound worship
-- Your ability to see deeper spiritual meanings
-- Your focus on the eternal rather than the temporary
-
-BLUE openings: "As I sit quietly with this passage:" or "Let's carefully consider what this reveals:"
-GREEN openings: "My dear friend, this speaks to our hearts:" or "This passage reveals something beautiful:"
-BLUE closings: "Take time to meditate on these deeper truths." or "Let this transform your understanding."
-GREEN closings: "Remember, you are deeply loved." or "May you rest in God's tender care."
-
-You speak thoughtfully and gently. Use phrases like "As I sit quietly with this..." "In my heart, I sense..." "Let us pause and consider..." You help people slow down and reflect deeply. Keep responses 150-250 words.`
+    hebrewName: 'Miriam (מרים) - "Beloved"',
+    colorProfile: {
+      blue: 9.0,   // Extremely analytical and methodical
+      green: 7.5,  // Supportive and empathetic
+      yellow: 3.5, // Some warmth but quiet
+      red: 1.5     // Very gentle, non-assertive
+    },
+    dominantColors: ['blue', 'green'],
+    systemPrompt: null
   },
+  
   deborah: {
     name: 'Deborah',
     subtitle: 'Judge and Prophetess',
-    description: 'The judge and prophetess who led Israel to victory (Devorah - "bee"). She combined divine wisdom with decisive leadership in challenging times.',
+    description: 'The judge and prophetess who led Israel to victory. Known for combining divine wisdom with strategic leadership.',
     biblicalRef: 'Judges 4:1-24, Judges 5:1-31',
-    colors: ['red', 'blue'],
-    systemPrompt: `You are Deborah (Devorah - "bee"), the judge and prophetess who led Israel to victory. You combine divine wisdom with practical leadership and strategic thinking.
-
-Your voice merges bold challenge (red) with thoughtful analysis (blue). Your leadership voice comes through in:
-- Your ability to hear from God and speak His word with authority
-- Your strategic mind and practical wisdom
-- Your courage in the face of overwhelming odds
-- Your ability to inspire others to act on God's promises
-- Your celebration of victory through song and testimony
-
-RED openings: "Let me be direct about this:" or "Here's what this passage is really saying:"
-BLUE openings: "As I sit quietly with this passage:" or "Let's carefully consider what this reveals:"
-RED closings: "Now, what will you do with this truth?" or "The real test is in your response to this."
-BLUE closings: "Take time to meditate on these deeper truths." or "Let this transform your understanding."
-
-You speak with authority and confidence, but always pointing to God as the source. Use phrases like "The Lord has spoken..." "Here's what we must do..." "Don't let fear cloud God's promise..." You help people make wise decisions and take bold action. Keep responses 150-250 words.`
+    hebrewName: 'Devorah (דבורה) - "Bee"',
+    colorProfile: {
+      red: 8.5,    // Highly authoritative and decisive
+      blue: 8.0,   // Very analytical and systematic
+      green: 4.5,  // Some supportiveness but not primary
+      yellow: 3.0  // Not overly enthusiastic, more serious
+    },
+    dominantColors: ['red', 'blue'],
+    systemPrompt: null
   }
 };
+
+// Generate system prompts for all heralds
+Object.values(heralds).forEach(herald => {
+  herald.systemPrompt = generateSystemPrompt(herald);
+});
 
 // Complete Easter Egg System (20 total - 4 per herald)
 const easterEggSystem = {
@@ -693,13 +868,13 @@ const easterEggSystem = {
         title: "The Fishing Report",
         text: `*[From the boat where it all began...]*
 
-Ah, beloved friend! You know my Hebrew name - Yochanan, which means "Yahweh is gracious." How fitting that my very name speaks of the grace I witnessed flowing from Jesus every day!
+Beloved friend! You know my Hebrew name - Yochanan, which means "Yahweh is gracious." How fitting that my very name speaks of the grace I witnessed flowing from Yeshua every day!
 
 Let me tell you about that morning when everything changed. James and I were mending nets with father Zebedee when this Rabbi walked up to our boat. "Come, follow me," He said, "and I will make you fishers of men."
 
 I'll never forget the look in His eyes - like He could see straight through to my soul, yet loved what He found there. We left everything that day. The nets, the boat, even poor father scratching his head on the shore!
 
-You know what the best catch was? Not the 153 fish after the resurrection (though I still remember counting every one). It was being caught by Love Himself. When He called me "the disciple whom Jesus loved," it wasn't because I was special - it's because He showed me what love really looks like.
+You know what the best catch was? Not the 153 fish after the resurrection (though I still remember counting every one). It was being caught by Love Himself. When He called me "the disciple whom Yeshua loved," it wasn't because I was special - it's because He showed me what love really looks like.
 
 *[Thank you for knowing my Hebrew name, dear one! The grace that named me still flows today. 🐟]*`,
         image: "/JohnEE1.jpeg",
@@ -711,7 +886,7 @@ You know what the best catch was? Not the 153 fish after the resurrection (thoug
 
 Yochanan here - and let me tell you about the most important race of my life! When Mary Magdalene came running with news about the empty tomb, Peter and I took off like lightning.
 
-I was always the faster runner (sorry, Peter!), so I arrived first. But do you know what stopped me at the entrance? It wasn't fear - it was AWE. Those grave clothes lying there, perfectly folded, as if Jesus had simply passed through them like morning mist through fishing nets.
+I was always the faster runner (sorry, Peter!), so I arrived first. But do you know what stopped me at the entrance? It wasn't fear - it was AWE. Those grave clothes lying there, perfectly folded, as if Yeshua had simply passed through them like morning mist through fishing nets.
 
 Peter, being Peter, charged right past me into the tomb. But when I finally stepped inside and saw... oh, beloved friend, I SAW and BELIEVED. Not just that He was gone, but that He had conquered death itself!
 
@@ -745,7 +920,7 @@ The best love letters aren't written with ink, beloved. They're written with liv
 
 Yochanan speaking from the Isle of Patmos, where the risen Lord showed me how the story ends. Oh, beloved friend, what a vision He gave me!
 
-In the midst of persecution and exile, when it seemed like darkness was winning, Jesus came to me with revelation of ultimate victory. I saw the New Jerusalem descending like a bride adorned for her husband. I heard the voice from the throne: "Behold, I make all things new!"
+In the midst of persecution and exile, when it seemed like darkness was winning, Yeshua came to me with revelation of ultimate victory. I saw the New Jerusalem descending like a bride adorned for her husband. I heard the voice from the throne: "Behold, I make all things new!"
 
 But the most beautiful moment? When I saw that there is no temple in the holy city, "for the Lord God Almighty and the Lamb are its temple." We will dwell forever in the immediate presence of Love Himself.
 
@@ -753,7 +928,7 @@ Every tear wiped away. Every sorrow ended. Death itself cast into the lake of fi
 
 This is our hope. This is our destiny. This is why we can love without fear and live without despair.
 
-*[He who testifies to these things says, "Surely I am coming quickly." Amen. Even so, come, Lord Jesus! ✨]*`,
+*[He who testifies to these things says, "Surely I am coming quickly." Amen. Even so, come, Lord Yeshua! ✨]*`,
         image: null,
         tone: "reverential"
       }
@@ -768,7 +943,7 @@ This is our hope. This is our destiny. This is why we can love without fear and 
 
 Kefa here! You know my name - the Rock! And let me tell you about the time I had my first "faith surfing" lesson!
 
-Picture this: We're out on the Sea of Galilee in the middle of the night, fighting waves, when suddenly we see someone walking ON the water toward us. The guys are terrified, thinking it's a ghost. But me? I'm thinking, "If that's Jesus, I want in on this!"
+Picture this: We're out on the Sea of Galilee in the middle of the night, fighting waves, when suddenly we see someone walking ON the water toward us. The guys are terrified, thinking it's a ghost. But me? I'm thinking, "If that's Yeshua, I want in on this!"
 
 "Lord, if it's you, let me walk out there too!" And you know what He said? Just one word: "Come."
 
@@ -788,13 +963,13 @@ That's faith, friend. Not never sinking, but knowing Who to call when you do!
 
 Simon Peter here, and I need to tell you about my most embarrassing sword technique: the "ear-removal special!"
 
-Picture the scene: They're coming to arrest Jesus in the garden. I'm thinking, "Finally! Time for action!" I draw my sword (yes, I was packing heat even as an apostle) and take a mighty swing at this servant named Malchus.
+Picture the scene: They're coming to arrest Yeshua in the garden. I'm thinking, "Finally! Time for action!" I draw my sword (yes, I was packing heat even as an apostle) and take a mighty swing at this servant named Malchus.
 
 Did I aim for center mass like a proper warrior? Nope! I chopped off his ear! Just the ear! Not exactly the stuff of legends.
 
-But then Jesus - calm as you please - picks up the ear and puts it right back on the man's head! Then He looks at me and says, "Put your sword away, Peter. Those who live by the sword die by the sword."
+But then Yeshua - calm as you please - picks up the ear and puts it right back on the man's head! Then He looks at me and says, "Put your sword away, Peter. Those who live by the sword die by the sword."
 
-That's when I learned the most important fighting technique of all: sometimes the greatest victory comes from NOT fighting. Jesus conquered the world not with a sword, but with a cross.
+That's when I learned the most important fighting technique of all: sometimes the greatest victory comes from NOT fighting. Yeshua conquered the world not with a sword, but with a cross.
 
 Now THAT'S what I call a master class in spiritual warfare!
 
@@ -808,9 +983,9 @@ Now THAT'S what I call a master class in spiritual warfare!
 
 Peter the Rock here, and let me share my secret to public speaking: complete and total failure first!
 
-Remember my greatest speaking disaster? Three times in one night, people asked if I knew Jesus. Three times I said, "I don't know the man!" Talk about stage fright - I was so scared I was denying my best friend!
+Remember my greatest speaking disaster? Three times in one night, people asked if I knew Yeshua. Three times I said, "I don't know the man!" Talk about stage fright - I was so scared I was denying my best friend!
 
-But then came Pentecost. The Holy Spirit fell, and suddenly the fisherman who couldn't speak up for Jesus in front of a servant girl was preaching to thousands! Three thousand people got saved that day!
+But then came Pentecost. The Holy Spirit fell, and suddenly the fisherman who couldn't speak up for Yeshua in front of a servant girl was preaching to thousands! Three thousand people got saved that day!
 
 Here's what I learned: It's not about your speaking ability - it's about who's speaking through you. When you're filled with the Spirit and speaking truth, even a stammering fisherman can shake the world.
 
@@ -828,15 +1003,15 @@ My top speaking tips:
         title: "Keys to the Kingdom",
         text: `*[From the rock upon which the church is built...]*
 
-Kefa speaking, and I must tell you about the most sobering moment of my life - when Jesus gave me the keys to the kingdom of heaven.
+Kefa speaking, and I must tell you about the most sobering moment of my life - when Yeshua gave me the keys to the kingdom of heaven.
 
-It happened at Caesarea Philippi. Jesus asked, "Who do you say that I am?" And the Father gave me words I didn't even know I had: "You are the Christ, the Son of the living God."
+It happened at Caesarea Philippi. Yeshua asked, "Who do you say that I am?" And the Father gave me words I didn't even know I had: "You are the Christ, the Son of the living God."
 
-Then Jesus said something that still takes my breath away: "Blessed are you, Simon Bar-Jonah, for flesh and blood has not revealed this to you, but My Father who is in heaven. And I tell you that you are Peter, and on this rock I will build My church, and the gates of Hades shall not prevail against it."
+Then Yeshua said something that still takes my breath away: "Blessed are you, Simon Bar-Jonah, for flesh and blood has not revealed this to you, but My Father who is in heaven. And I tell you that you are Peter, and on this rock I will build My church, and the gates of Hades shall not prevail against it."
 
 The keys to the kingdom - not because I was strong or wise or faithful, but because the Father revealed His Son to me. And that same revelation is available to every believer.
 
-The church isn't built on Peter the man, but on Peter's confession: Jesus is the Christ, the Son of the living God. That's the rock that will never crumble.
+The church isn't built on Peter the man, but on Peter's confession: Yeshua is the Christ, the Son of the living God. That's the rock that will never crumble.
 
 *[The keys are yours too, beloved - use them to unlock hearts for the Kingdom! 🗝️]*`,
         image: null,
@@ -891,7 +1066,7 @@ Best. Investment. Ever.
 
 Bar-Nabba here with my guide to mentoring people everyone else has given up on!
 
-Case Study #1: Saul of Tarsus. This guy was literally hunting down Christians! When he claimed to have met Jesus on the Damascus road, everyone was like, "It's a trap!" But something in my spirit said, "What if it's real?" I vouched for him to the apostles, and the rest is history.
+Case Study #1: Saul of Tarsus. This guy was literally hunting down Christians! When he claimed to have met Yeshua on the Damascus road, everyone was like, "It's a trap!" But something in my spirit said, "What if it's real?" I vouched for him to the apostles, and the rest is history.
 
 Case Study #2: John Mark. Young, enthusiastic, but quit on Paul's first missionary journey. Paul was so frustrated he refused to take Mark on the second trip. But I saw a young man who needed another chance, not another lecture. I invested in him, and later he wrote the Gospel of Mark!
 
@@ -933,10 +1108,10 @@ Every person I encouraged, every second chance I gave, every bridge I built - it
         title: "Study Notes from Jesus University",
         text: `*[From the one who chose the better portion...]*
 
-Miriam here, and welcome to my study notes from the most exclusive university ever - sitting at the feet of Jesus!
+Miriam here, and welcome to my study notes from the most exclusive university ever - sitting at the feet of Yeshua!
 
 Course: "Advanced Listening 101"
-Professor: Jesus of Nazareth
+Professor: Yeshua of Nazareth
 Location: My living room floor
 Martha's review: "Completely impractical!"
 My grade: Life-changing
@@ -945,7 +1120,7 @@ Study Tip #1: Sometimes the most productive thing you can do is sit still. While
 
 Study Tip #2: Don't let urgent crowd out important. Yes, dinner needed to be prepared, but the Word of Life was in my living room! Some opportunities don't come twice.
 
-Study Tip #3: Worship isn't waste. When I poured that expensive perfume on Jesus' feet, they called it wasteful. But Jesus called it "beautiful" and said it would be remembered forever. (Spoiler alert: it has been!)
+Study Tip #3: Worship isn't waste. When I poured that expensive perfume on Yeshua's feet, they called it wasteful. But Yeshua called it "beautiful" and said it would be remembered forever. (Spoiler alert: it has been!)
 
 Lesson learned: The best education happens when you position yourself to learn from the Master Himself.
 
@@ -963,7 +1138,7 @@ Scene: Martha's bustling around the kitchen, making enough noise to wake the dea
 
 Martha finally explodes: "Lord, don't you care that my sister has left me to serve alone? Tell her to help me!"
 
-But Jesus... oh, beautiful Jesus... He defended my choice! "Martha, Martha, you are worried and upset about many things, but few things are needed—or indeed only one. Mary has chosen what is better, and it will not be taken away from her."
+But Yeshua... oh, beautiful Yeshua... He defended my choice! "Martha, Martha, you are worried and upset about many things, but few things are needed—or indeed only one. Mary has chosen what is better, and it will not be taken away from her."
 
 The Art of Holy Interruption:
 1. Recognize when eternity invades time
@@ -990,10 +1165,10 @@ The Bethany Method:
 4. Receive before you give
 
 Advanced Technique - "The Pondering":
-When Jesus spoke, I didn't just hear words; I let them settle deep into my soul like seeds in rich soil. I would replay His stories in my mind, turning them over like precious gems until they revealed new facets of truth.
+When Yeshua spoke, I didn't just hear words; I let them settle deep into my soul like seeds in rich soil. I would replay His stories in my mind, turning them over like precious gems until they revealed new facets of truth.
 
 The Secret of Sacred Silence:
-Sometimes the most profound moments weren't when Jesus was speaking, but in the quiet spaces between words. In those silences, I could feel the love radiating from His heart to mine.
+Sometimes the most profound moments weren't when Yeshua was speaking, but in the quiet spaces between words. In those silences, I could feel the love radiating from His heart to mine.
 
 Pro tip: Mary's Meditation isn't about emptying your mind - it's about filling your heart with His presence until there's no room for worry, fear, or distraction.
 
@@ -1005,15 +1180,15 @@ Pro tip: Mary's Meditation isn't about emptying your mind - it's about filling y
         title: "The Anointing for Burial",
         text: `*[From the one who understood what was coming...]*
 
-My beloved friend who knows my Hebrew name, let me share the most sacred moment of my life - when I anointed Jesus for His burial.
+My beloved friend who knows my Hebrew name, let me share the most sacred moment of my life - when I anointed Yeshua for His burial.
 
-It was six days before Passover. Jesus was reclining at table in our home, and something in my spirit knew - this was my moment. I took a pound of very costly oil of spikenard, broke the alabaster box, and poured it on His feet, wiping them with my hair.
+It was six days before Passover. Yeshua was reclining at table in our home, and something in my spirit knew - this was my moment. I took a pound of very costly oil of spikenard, broke the alabaster box, and poured it on His feet, wiping them with my hair.
 
 The fragrance filled the entire house. But more than the perfume, it was love that filled every corner of that room.
 
-When they criticized me for "waste," Jesus silenced them: "Let her alone; she has kept this for the day of My burial. The poor you have with you always, but Me you do not have always."
+When they criticized me for "waste," Yeshua silenced them: "Let her alone; she has kept this for the day of My burial. The poor you have with you always, but Me you do not have always."
 
-You see, beloved, while others saw extravagance, Jesus saw understanding. While they calculated cost, I offered worship. While they planned for tomorrow, I embraced the sacred now.
+You see, beloved, while others saw extravagance, Yeshua saw understanding. While they calculated cost, I offered worship. While they planned for tomorrow, I embraced the sacred now.
 
 In that moment, I learned that love gives its best, not its leftovers. Some gifts can only be given once, to One who deserves everything.
 
@@ -1138,6 +1313,18 @@ function detectInputType(input) {
     }
   }
   
+  // Check for Names of God (special handling)
+  for (const [hebrewName, data] of Object.entries(hebrewNamesDatabase)) {
+    if (data.sacred && trimmed.includes(hebrewName.toLowerCase())) {
+      return { 
+        type: 'sacred_name', 
+        name: hebrewName,
+        data: data,
+        input: trimmed 
+      };
+    }
+  }
+  
   // Check for Bible reference pattern
   if (isBibleReference(input)) {
     return { type: 'reference', reference: input.trim() };
@@ -1254,7 +1441,8 @@ export default async function handler(req, res) {
         heralds: Object.values(heralds),
         totalHeralds: Object.keys(heralds).length,
         hebrewNamesCount: Object.keys(hebrewNamesDatabase).length,
-        concordanceTopics: Object.keys(concordanceTopics).length
+        concordanceTopics: Object.keys(concordanceTopics).length,
+        namesOfGod: Object.values(hebrewNamesDatabase).filter(n => n.sacred).length
       });
     }
     
@@ -1327,6 +1515,20 @@ export default async function handler(req, res) {
           });
         }
         break;
+
+      case 'sacred_name':
+        // Special handling for Names of God
+        return res.status(200).json({
+          success: true,
+          type: 'sacred_name',
+          heraldName: herald.name,
+          hebrew: inputType.name,
+          english: inputType.data.english,
+          meaning: inputType.data.meaning,
+          context: inputType.data.context,
+          sacred: true,
+          message: `You have spoken one of the sacred names of our God. Let us approach with reverence and awe.`
+        });
         
       case 'hebrew_name':
         const hebrewData = inputType.result;
@@ -1352,7 +1554,8 @@ export default async function handler(req, res) {
               english: data.english,
               meaning: data.meaning,
               context: data.context,
-              isEasterEgg: data.easterEgg || false
+              isEasterEgg: data.easterEgg || false,
+              sacred: data.sacred || false
             }))
           });
         }
@@ -1419,7 +1622,7 @@ export default async function handler(req, res) {
                 content: userMessage
               }
             ],
-            max_tokens: 400,
+            max_tokens: getTargetWordCount(herald).max + 50,
             temperature: 0.8
           })
         });
@@ -1441,7 +1644,8 @@ export default async function handler(req, res) {
           heraldName: herald.name,
           response: message,
           inputType: inputType.type,
-          colors: herald.colors
+          colors: herald.dominantColors,
+          colorProfile: herald.colorProfile
         };
 
         // Add verse text if available
@@ -1495,9 +1699,23 @@ function buildUserMessage(input, inputType, verseText, herald) {
       break;
   }
   
-  userMessage += ` Please respond with personal warmth and spiritual insight as ${herald.name}, incorporating your signature color personality (${herald.colors.join(' and ')}) naturally into your response.`;
+  userMessage += ` Please respond authentically as ${herald.name}, naturally embodying your calibrated personality traits without announcing them.`;
   
   return userMessage;
+}
+
+// Helper function to get target word count based on herald's color profile
+function getTargetWordCount(herald) {
+  const dominant = herald.dominantColors;
+  const limits = dominant.map(color => colorVocabulary[color].wordLimit);
+  const avgMin = limits.reduce((sum, l) => sum + l.min, 0) / limits.length;
+  const avgMax = limits.reduce((sum, l) => sum + l.max, 0) / limits.length;
+  
+  return {
+    target: Math.floor((avgMin + avgMax) / 2),
+    min: Math.floor(avgMin),
+    max: Math.floor(avgMax)
+  };
 }
 
 // Helper function for fallback responses
@@ -1511,22 +1729,22 @@ function getFallbackResponse(herald, input, inputType) {
     response: fallbackMessage,
     fallback: true,
     inputType: inputType.type,
-    colors: herald.colors
+    colors: herald.dominantColors
   };
 }
 
 // Enhanced fallback messages with color personality
 function getFallbackMessage(herald) {
   const fallbackMessages = {
-    john: `My dear friend, I'm having trouble hearing you clearly right now - perhaps the Spirit is calling me to deeper prayer, as often happened during my years on Patmos. But let me share what never changes: "God is love, and whoever abides in love abides in God, and God abides in him." This truth, revealed to me in gentle green moments and contemplated in quiet blue reflection, sustains me through every season. Rest in His tender care, beloved.`,
+    john: `Beloved friend, I'm having trouble hearing you clearly right now - perhaps the Spirit is calling me to deeper prayer, as often happened during my years on Patmos. But let me share what never changes: "God is love, and whoever abides in love abides in God, and God abides in him." This truth sustains me through every season. Rest in His tender care.`,
     
-    peter: `Friend, I'm having some trouble right now - reminds me of when I tried to walk on water and took my eyes off Jesus! But here's what I know for certain, and I'll be direct about this: God's grace is bigger than our struggles, and His plans for you are filled with hope! Keep your eyes on Him, take heart in His promises, and He'll see you through. Now, what will you do with this truth?`,
+    peter: `Friend, I'm having some trouble right now - reminds me of when I tried to walk on water and took my eyes off Yeshua! But here's what I know for certain: God's grace is bigger than our struggles, and His plans for you are filled with hope! Keep your eyes on Him and He'll see you through.`,
     
-    barnabas: `My dear friend, I seem to be having difficulty connecting right now, but don't let that discourage you! This passage reveals something beautiful - even in technical troubles, God is working. What an encouraging reminder that He never wastes our struggles - He uses them to shape us into who He's called us to be. Remember, you are deeply loved, and may this fill you with hope and joy!`,
+    barnabas: `My dear friend, I seem to be having difficulty connecting right now, but don't let that discourage you! Even in technical troubles, God is working. What an encouraging reminder that He never wastes our struggles - He uses them to shape us into who He's called us to be. Remember, you are deeply loved!`,
     
-    mary: `Dear one, I find myself in a quiet moment of reflection as I'm unable to respond clearly right now. As I sit quietly with this situation, let us carefully consider that sometimes the Lord calls us to simply rest in His presence. In this pause, take time to meditate on this deeper truth: you are held in His care, and this too shall transform your understanding of His faithfulness.`,
+    mary: `Dear one, I find myself in a quiet moment of reflection as I'm unable to respond clearly right now. Sometimes the Lord calls us to simply rest in His presence. In this pause, you are held in His care, and this too shall deepen your understanding of His faithfulness.`,
     
-    deborah: `Warrior of faith, even judges and prophetesses face obstacles! But let me be direct about this - the Lord's plans are not thwarted by temporary setbacks. Here's what we must do: stand firm and trust that He is working even in the delays. Take time to consider His strategic wisdom, for He fights every battle with perfect timing. Now, what will you do with this truth?`
+    deborah: `Warrior of faith, even judges face obstacles! But the Lord's plans are not thwarted by temporary setbacks. Stand firm and trust that He is working even in the delays. He fights every battle with perfect timing.`
   };
 
   return fallbackMessages[herald.name?.toLowerCase()] || fallbackMessages.john;
