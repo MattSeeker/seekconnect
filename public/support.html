@@ -1,0 +1,612 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Biblical Heralds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: #fafbfc;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+        
+        .thermometer-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            margin-bottom: 3rem;
+        }
+        
+        .thermometer-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+        
+        .thermometer {
+            background: #e1e8ed;
+            border-radius: 25px;
+            height: 40px;
+            position: relative;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .thermometer-progress {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            border-radius: 25px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+        
+        .thermometer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        
+        .thermometer-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .cost-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .cost-amount {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .cost-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .engagement-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            margin-bottom: 3rem;
+        }
+        
+        .engagement-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+        
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tier-card {
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .tier-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .tier-card.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .tier-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tier-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .tier-features {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .tier-features li {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .tier-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .donation-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            margin-bottom: 3rem;
+        }
+        
+        .donation-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+        
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .donation-amount {
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+        
+        .donation-amount:hover,
+        .donation-amount.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .donation-amount .amount {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .donation-amount .label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .custom-amount {
+            margin-bottom: 2rem;
+        }
+        
+        .custom-amount input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .custom-amount input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .feedback-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            margin-bottom: 3rem;
+        }
+        
+        .feedback-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .feedback-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        
+        .feedback-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-section {
+            text-align: center;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-1px);
+        }
+        
+        .feedback-only {
+            margin-top: 1rem;
+        }
+        
+        .feedback-only button {
+            background: #6c757d;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .transparency-note {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .transparency-note h4 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        
+        .transparency-note p {
+            color: #1e3a8a;
+            font-size: 0.9rem;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .donation-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="/heralds.html">← Back to Biblical Heralds</a>
+        </div>
+        
+        <div class="header">
+            <h1 class="title">Support Biblical Heralds</h1>
+            <p class="subtitle">Help us bring Scripture insights to more people</p>
+        </div>
+        
+        <!-- Monthly Funding Thermometer -->
+        <div class="thermometer-section">
+            <h2 class="thermometer-title">December 2024 Funding</h2>
+            <div class="thermometer">
+                <div class="thermometer-progress" style="width: 65%;">
+                    <div class="thermometer-text">$325 of $500 monthly goal</div>
+                </div>
+            </div>
+            <div class="thermometer-labels">
+                <span>$0</span>
+                <span>$500 Target</span>
+            </div>
+            
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <div class="cost-amount">$200</div>
+                    <div class="cost-label">API Costs</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-amount">$150</div>
+                    <div class="cost-label">Hosting</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-amount">$100</div>
+                    <div class="cost-label">Development</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-amount">$50</div>
+                    <div class="cost-label">Backup Systems</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Engagement Tier Selection -->
+        <div class="engagement-section">
+            <h2 class="engagement-title">How Involved Would You Like to Be?</h2>
+            <div class="tier-grid">
+                <div class="tier-card" data-tier="passive">
+                    <h3 class="tier-name">Passive</h3>
+                    <p class="tier-description">Support quietly from the sidelines</p>
+                    <ul class="tier-features">
+                        <li>One-time feedback option</li>
+                        <li>No follow-up emails</li>
+                        <li>Fire and forget</li>
+                    </ul>
+                </div>
+                
+                <div class="tier-card" data-tier="participant">
+                    <h3 class="tier-name">Participant</h3>
+                    <p class="tier-description">Stay informed about progress</p>
+                    <ul class="tier-features">
+                        <li>Monthly newsletter</li>
+                        <li>Development updates</li>
+                        <li>Occasional surveys</li>
+                        <li>Feature announcements</li>
+                    </ul>
+                </div>
+                
+                <div class="tier-card" data-tier="productive">
+                    <h3 class="tier-name">Productive</h3>
+                    <p class="tier-description">Help shape new features</p>
+                    <ul class="tier-features">
+                        <li>Everything in Participant</li>
+                        <li>Submit feature requests</li>
+                        <li>Beta testing access</li>
+                        <li>Structured feedback forms</li>
+                        <li>Early feature access</li>
+                    </ul>
+                </div>
+                
+                <div class="tier-card" data-tier="partner">
+                    <h3 class="tier-name">Partner</h3>
+                    <p class="tier-description">Direct influence on direction</p>
+                    <ul class="tier-features">
+                        <li>Everything in Productive</li>
+                        <li>Monthly strategy calls</li>
+                        <li>Vote on feature priorities</li>
+                        <li>Roadmap planning input</li>
+                        <li>Recognition as Partner</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Donation Amounts -->
+        <div class="donation-section">
+            <h2 class="donation-title">Choose Your Support Level</h2>
+            <div class="donation-options">
+                <div class="donation-amount" data-amount="5">
+                    <div class="amount">$5</div>
+                    <div class="label">Cover my usage</div>
+                </div>
+                <div class="donation-amount" data-amount="15">
+                    <div class="amount">$15</div>
+                    <div class="label">Monthly supporter</div>
+                </div>
+                <div class="donation-amount" data-amount="25">
+                    <div class="amount">$25</div>
+                    <div class="label">Growth funding</div>
+                </div>
+                <div class="donation-amount" data-amount="50">
+                    <div class="amount">$50</div>
+                    <div class="label">Feature development</div>
+                </div>
+                <div class="donation-amount" data-amount="100">
+                    <div class="amount">$100</div>
+                    <div class="label">Major milestone</div>
+                </div>
+            </div>
+            
+            <div class="custom-amount">
+                <input type="number" id="custom-amount" placeholder="Enter custom amount ($)" min="1">
+            </div>
+        </div>
+        
+        <!-- Feedback Section -->
+        <div class="feedback-section">
+            <h3 class="feedback-title">Share Your Thoughts (Optional)</h3>
+            <textarea class="feedback-textarea" placeholder="What would make Biblical Heralds better? What features would you most like to see? Any bugs or suggestions?"></textarea>
+        </div>
+        
+        <!-- Submit Section -->
+        <div class="submit-section">
+            <button class="submit-button" onclick="processDonation()">
+                Complete Support & Feedback
+            </button>
+            
+            <div class="feedback-only">
+                <button onclick="submitFeedbackOnly()">
+                    Just Send Feedback (No Donation)
+                </button>
+            </div>
+        </div>
+        
+        <!-- Transparency Note -->
+        <div class="transparency-note">
+            <h4>Financial Transparency</h4>
+            <p>All surplus funds beyond operating costs are donated to biblical literacy ministries. Monthly reports available to all supporters.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedTier = 'participant'; // Default selection
+        let selectedAmount = 0;
+        
+        // Tier selection
+        document.querySelectorAll('.tier-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedTier = card.dataset.tier;
+            });
+        });
+        
+        // Default to Participant
+        document.querySelector('[data-tier="participant"]').classList.add('selected');
+        
+        // Amount selection
+        document.querySelectorAll('.donation-amount').forEach(amount => {
+            amount.addEventListener('click', () => {
+                document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
+                amount.classList.add('selected');
+                selectedAmount = parseInt(amount.dataset.amount);
+                document.getElementById('custom-amount').value = '';
+            });
+        });
+        
+        // Custom amount
+        document.getElementById('custom-amount').addEventListener('input', (e) => {
+            document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
+            selectedAmount = parseInt(e.target.value) || 0;
+        });
+        
+        // Process donation
+        function processDonation() {
+            const feedback = document.querySelector('.feedback-textarea').value;
+            
+            if (selectedAmount === 0) {
+                alert('Please select or enter a donation amount.');
+                return;
+            }
+            
+            // In production, integrate with Stripe/PayPal
+            const donationData = {
+                amount: selectedAmount,
+                tier: selectedTier,
+                feedback: feedback,
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('Donation data:', donationData);
+            alert(`Thank you! You've chosen the ${selectedTier} engagement level with a $${selectedAmount} donation. You'll be redirected to payment processing.`);
+            
+            // TODO: Integrate with payment processor
+            // TODO: Save tier preference to user profile
+            // TODO: Send confirmation email
+        }
+        
+        // Feedback only
+        function submitFeedbackOnly() {
+            const feedback = document.querySelector('.feedback-textarea').value;
+            
+            if (!feedback.trim()) {
+                alert('Please enter some feedback before submitting.');
+                return;
+            }
+            
+            const feedbackData = {
+                feedback: feedback,
+                tier: selectedTier,
+                timestamp: new Date().toISOString(),
+                donationAmount: 0
+            };
+            
+            console.log('Feedback data:', feedbackData);
+            alert(`Thank you for your feedback! You've been added to the ${selectedTier} engagement level.`);
+            
+            // TODO: Save feedback to database
+            // TODO: Add user to selected tier
+            // TODO: Send confirmation email
+        }
+        
+        // Update thermometer dynamically (for demo)
+        function updateThermometer(current, target) {
+            const percentage = Math.min((current / target) * 100, 100);
+            const progressBar = document.querySelector('.thermometer-progress');
+            const progressText = document.querySelector('.thermometer-text');
+            
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = `$${current} of $${target} monthly goal`;
+        }
+    </script>
+</body>
+</html>
