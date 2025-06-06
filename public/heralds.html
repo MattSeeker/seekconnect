@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heralds - Ancient Voices, Living Word</title>
+    <title>Heralds Courtyard - Ancient Voices, Living Word</title>
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -75,6 +75,30 @@
             margin: 0 auto;
         }
 
+        .theological-approach {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .theological-approach h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theological-approach p {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
         .input-section {
             background: var(--card-bg);
             border-radius: 12px;
@@ -107,30 +131,6 @@
 
         .search-input:focus {
             border-color: var(--accent-color);
-        }
-
-        .ask-button {
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .ask-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .ask-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
         }
 
         .input-examples {
@@ -339,6 +339,37 @@
             font-size: 1rem;
         }
 
+        /* Jesus Quote Styling - NEW */
+        .jesus-quote-section {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border: 2px solid #ea580c;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .jesus-quote-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #9a3412;
+            font-weight: 600;
+        }
+
+        .jesus-quote-text {
+            font-style: italic;
+            color: #7c2d12;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .jesus-quote-reference {
+            color: #ea580c;
+            font-weight: 600;
+            text-align: right;
+        }
+
         .easter-egg {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             border: 2px solid #f59e0b;
@@ -369,45 +400,6 @@
             max-width: 200px;
             border-radius: 8px;
             margin: 1rem 0;
-        }
-
-        .hebrew-result {
-            background: #eff6ff;
-            border: 2px solid #3b82f6;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hebrew-name-display {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .hebrew-meaning {
-            color: #1e3a8a;
-            margin-bottom: 1rem;
-        }
-
-        .concordance-results {
-            display: grid;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .concordance-verse {
-            background: #f8fafc;
-            padding: 0.75rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        .concordance-verse:hover {
-            background: #e2e8f0;
         }
 
         .recommendation-banner {
@@ -515,29 +507,67 @@
     </header>
 
     <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2 style="font-size: 2.2rem; color: var(--text-primary); margin-bottom: 0.5rem;">The Courtyard</h2>
+            <p style="font-size: 1.1rem; color: var(--accent-color); font-style: italic;">Where seekers gather for biblical wisdom</p>
+        </div>
+        
         <div class="intro" style="max-width: 800px; margin: 0 auto; text-align: left; line-height: 1.8;">
             <p style="margin-bottom: 0.5rem;">Meet 5 Biblical heralds - messengers with important proclamations</p>
             <p style="margin-bottom: 0.5rem;">Engage with carefully crafted, unique personalities</p>
-            <p style="margin-bottom: 0.5rem;">Enrich your Biblical experience with resources like Hebrew name meanings, concordance, and indexed verses</p>
+            <p style="margin-bottom: 0.5rem;">Enrich your Biblical experience with Hebrew name meanings and scriptural wisdom</p>
             <p style="margin-bottom: 0.5rem;">Seek insights to help you grow closer to the Authentic Jesus</p>
-            
-            <!-- Beta Testing Feedback Banner -->
-            <div style="background: #f0f9ff; border: 2px solid #3b82f6; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; text-align: center;">
-                <p style="margin-bottom: 0.5rem; color: #1e40af; font-weight: 600;">🚀 Beta Testing Phase</p>
-                <p style="margin-bottom: 1rem; color: #1e3a8a;">We'd love your feedback to make this platform even better!</p>
-                <a href="feedback.html" style="background: #3b82f6; color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; display: inline-block; transition: all 0.3s ease;">
-                    📝 Share Your Feedback (5 min)
-                </a>
-            </div>
+        </div>
+
+        <!-- Theological Approach Section -->
+        <div class="theological-approach">
+            <h3>🕊️ Our Theological Approach</h3>
+            <p><strong>Why No Jesus Herald?</strong> We believe Jesus Christ is the living Word of God, and the Holy Spirit is our Counselor and Teacher. While AI can help us study Scripture and gain biblical perspectives, it cannot replace the Trinity's work in our lives.</p>
+            <p><strong>How We Honor Christ:</strong> Our heralds point TO Jesus through His recorded words in Scripture, never presuming to speak FOR Him. When contextually relevant, they share Jesus' actual quotes with Gospel references for your verification.</p>
+            <p><strong>Our Purpose:</strong> We serve as study companions who enhance your biblical learning, always directing you to Scripture and encouraging personal relationship with God through prayer and His Word.</p>
         </div>
 
         <div class="input-section">
             <h2>Enter Your Query</h2>
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
-                Enter a Bible verse, Hebrew name, or question below, then scroll down to select a Herald who will provide their unique perspective.
+                Enter a Bible verse, question, or topic below, then choose a Herald who will provide their unique biblical perspective.
             </p>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Enter Bible reference, Hebrew name, topic, or question..." id="searchInput">
+                <input type="text" class="search-input" placeholder="Enter Bible reference, question, topic, or theme..." id="searchInput">
+            </div>
+
+            <div class="input-examples">
+                <div class="example-category">
+                    <h4>📖 Bible References</h4>
+                    <div class="example-item" data-example="John 3:16">John 3:16</div>
+                    <div class="example-item" data-example="Psalm 23">Psalm 23</div>
+                    <div class="example-item" data-example="1 Corinthians 13:4-7">1 Corinthians 13:4-7</div>
+                    <div class="example-item" data-example="Romans 8:28">Romans 8:28</div>
+                </div>
+                
+                <div class="example-category">
+                    <h4>💭 Common Questions</h4>
+                    <div class="example-item" data-example="How do I find peace in difficult times?">How do I find peace?</div>
+                    <div class="example-item" data-example="What does the Bible say about love?">What about love?</div>
+                    <div class="example-item" data-example="How can I grow in my faith?">Growing in faith</div>
+                    <div class="example-item" data-example="How do I pray effectively?">How to pray</div>
+                </div>
+                
+                <div class="example-category">
+                    <h4>✨ Common Themes</h4>
+                    <div class="example-item" data-example="faith">Faith</div>
+                    <div class="example-item" data-example="forgiveness">Forgiveness</div>
+                    <div class="example-item" data-example="wisdom">Wisdom</div>
+                    <div class="example-item" data-example="hope">Hope</div>
+                </div>
+                
+                <div class="example-category">
+                    <h4>📚 Popular Verses</h4>
+                    <div class="example-item" data-example="Jeremiah 29:11">Jeremiah 29:11</div>
+                    <div class="example-item" data-example="Philippians 4:13">Philippians 4:13</div>
+                    <div class="example-item" data-example="Matthew 11:28">Matthew 11:28</div>
+                    <div class="example-item" data-example="Psalm 23:1">Psalm 23:1</div>
+                </div>
             </div>
         </div>
 
@@ -617,321 +647,264 @@
             <!-- Dynamic content will be inserted here -->
         </div>
 
-        <div class="references-tools-section">
-            <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 1rem;">References & Tools</h2>
-            
-            <!-- Interactive Concordance -->
-            <div class="concordance-tool" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid var(--accent-color);">
-                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">📚 Interactive Concordance <span style="color: #f59e0b; font-size: 0.8rem; font-weight: normal;">(COMING SOON)</span></h3>
-                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                    <input type="text" id="concordanceSearch" placeholder="COMING SOON - Search topics: love, faith, prayer, forgiveness..." 
-                           style="flex: 1; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 6px; font-size: 0.9rem; background: #f9fafb; color: #6b7280;" disabled>
-                    <button id="concordanceBtn" onclick="searchConcordance()" 
-                            style="background: #d1d5db; color: #6b7280; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: not-allowed; font-weight: 600;" disabled>Search</button>
-                </div>
-                <div id="concordanceResults" style="display: none;">
-                    <!-- Results will appear here -->
-                </div>
-                <div id="concordanceTopics" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; margin-top: 1rem;">
-                    <!-- Topic buttons will be added here -->
-                </div>
-                <div style="text-align: center; padding: 1rem; color: #6b7280; font-style: italic;">
-                    🔧 This feature is being developed. For now, try searching topics like "love", "faith", or "prayer" directly in the main search field above!
-                </div>
-            </div>
-            
-            <div class="input-examples">
-                <div class="example-category">
-                    <h4>📖 Bible References</h4>
-                    <div class="example-item" data-example="John 3:16">John 3:16</div>
-                    <div class="example-item" data-example="Psalm 23">Psalm 23</div>
-                    <div class="example-item" data-example="1 Corinthians 13:4-7">1 Corinthians 13:4-7</div>
-                    <div class="example-item" data-example="Romans 8:28">Romans 8:28</div>
-                </div>
-                
-                <div class="example-category">
-                    <h4>🔤 Hebrew Names</h4>
-                    <div class="example-item" data-example="yochanan">Yochanan</div>
-                    <div class="example-item" data-example="kefa">Kefa</div>
-                    <div class="example-item" data-example="miriam">Miriam</div>
-                    <div class="example-item" data-example="shalom">Shalom</div>
-                </div>
-                
-                <div class="example-category">
-                    <h4>✨ Names of God</h4>
-                    <div class="example-item" data-example="elohim">Elohim</div>
-                    <div class="example-item" data-example="jehovah-jireh">Jehovah-Jireh</div>
-                    <div class="example-item" data-example="jehovah-rapha">Jehovah-Rapha</div>
-                    <div class="example-item" data-example="el-shaddai">El-Shaddai</div>
-                </div>
-                
-                <div class="example-category">
-                    <h4>💭 Topics & Questions</h4>
-                    <div class="example-item" data-example="love">Love</div>
-                    <div class="example-item" data-example="faith">Faith</div>
-                    <div class="example-item" data-example="How do I find peace?">How do I find peace?</div>
-                    <div class="example-item" data-example="prayer">Prayer</div>
-                </div>
-            </div>
+        <!-- Navigation hint for future pages -->
+        <div style="background: #f0fdf4; border: 2px solid #16a34a; border-radius: 8px; padding: 1rem; margin: 2rem 0; text-align: center;">
+            <p style="color: #15803d; margin-bottom: 0.5rem; font-weight: 600;">🚧 Coming This Weekend</p>
+            <p style="color: #166534;">Hebrew Synagogue • Luke's Forum • Scripture Memory Tool</p>
         </div>
     </div>
 
     <footer class="footer">
         <div class="footer-links">
-            <a href="feedback.html" class="footer-link">📝 Share Feedback</a>
-            <a href="privacy.html" class="footer-link">Privacy Policy</a>
-            <a href="terms.html" class="footer-link">Terms of Service</a>
-            <a href="about.html" class="footer-link">About</a>
+            <a href="#" class="footer-link">📝 Share Feedback</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">About</a>
         </div>
-        <p>&copy; 2024 Heralds. All rights reserved.</p>
+        <p>&copy; 2024 Heralds Courtyard. All rights reserved.</p>
     </footer>
 
     <script>
+        // ===== JESUS QUOTE CALIBRATION SYSTEM =====
+        const jesusQuotes = {
+            love: [
+                { text: "A new command I give you: Love one another. As I have loved you, so you must love one another.", reference: "John 13:34" },
+                { text: "Greater love has no one than this: to lay down one's life for one's friends.", reference: "John 15:13" },
+                { text: "Love your enemies and pray for those who persecute you.", reference: "Matthew 5:44" }
+            ],
+            
+            peace: [
+                { text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.", reference: "John 14:27" },
+                { text: "Blessed are the peacemakers, for they will be called children of God.", reference: "Matthew 5:9" },
+                { text: "In this world you will have trouble. But take heart! I have overcome the world.", reference: "John 16:33" }
+            ],
+            
+            faith: [
+                { text: "Truly I tell you, if you have faith as small as a mustard seed, you can say to this mountain, 'Move from here to there,' and it will move. Nothing will be impossible for you.", reference: "Matthew 17:20" },
+                { text: "Have faith in God.", reference: "Mark 11:22" },
+                { text: "Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.", reference: "John 20:29" }
+            ],
+            
+            forgiveness: [
+                { text: "Father, forgive them, for they do not know what they are doing.", reference: "Luke 23:34" },
+                { text: "If you forgive other people when they sin against you, your heavenly Father will also forgive you.", reference: "Matthew 6:14" },
+                { text: "Be merciful, just as your Father is merciful.", reference: "Luke 6:36" }
+            ],
+            
+            prayer: [
+                { text: "This, then, is how you should pray: 'Our Father in heaven, hallowed be your name...'", reference: "Matthew 6:9" },
+                { text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.", reference: "Matthew 7:7" },
+                { text: "And when you pray, do not be like the hypocrites, for they love to pray standing in the synagogues and on the street corners to be seen by others.", reference: "Matthew 6:5" }
+            ],
+            
+            salvation: [
+                { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", reference: "John 3:16" },
+                { text: "I am the way and the truth and the life. No one comes to the Father except through me.", reference: "John 14:6" },
+                { text: "Come to me, all you who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28" }
+            ],
+            
+            discipleship: [
+                { text: "If anyone would come after me, let him deny himself and take up his cross and follow me.", reference: "Matthew 16:24" },
+                { text: "By this everyone will know that you are my disciples, if you love one another.", reference: "John 13:35" },
+                { text: "Go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.", reference: "Matthew 28:19" }
+            ],
+            
+            worry: [
+                { text: "Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.", reference: "Matthew 6:34" },
+                { text: "Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they?", reference: "Matthew 6:26" },
+                { text: "Who of you by worrying can add a single hour to your life?", reference: "Matthew 6:27" }
+            ],
+            
+            general: [
+                { text: "I have come that they may have life, and have it abundantly.", reference: "John 10:10" },
+                { text: "Heaven and earth will pass away, but my words will never pass away.", reference: "Matthew 24:35" },
+                { text: "Blessed are the poor in spirit, for theirs is the kingdom of heaven.", reference: "Matthew 5:3" }
+            ]
+        };
+
+        // ===== JESUS QUOTE RELEVANCE DETECTION =====
+        function detectJesusQuoteRelevance(userInput, heraldResponse) {
+            const input = userInput.toLowerCase();
+            const response = heraldResponse.toLowerCase();
+            
+            const contextKeywords = {
+                love: ['love', 'loving', 'romance', 'relationship', 'marriage', 'family'],
+                peace: ['peace', 'anxiety', 'worry', 'stress', 'calm', 'rest', 'troubled'],
+                faith: ['faith', 'believe', 'trust', 'doubt', 'impossible', 'miracle'],
+                forgiveness: ['forgive', 'forgiveness', 'hurt', 'angry', 'resentment', 'mercy'],
+                prayer: ['pray', 'prayer', 'praying', 'ask god', 'talk to god'],
+                salvation: ['saved', 'salvation', 'eternal life', 'heaven', 'born again'],
+                discipleship: ['follow', 'disciple', 'christian life', 'obey', 'serve'],
+                worry: ['worry', 'anxious', 'fear', 'afraid', 'stressed', 'overwhelmed'],
+                general: ['jesus', 'christ', 'lord', 'savior', 'son of god']
+            };
+            
+            // Check if input or expected response contains relevant keywords
+            for (const [category, keywords] of Object.entries(contextKeywords)) {
+                for (const keyword of keywords) {
+                    if (input.includes(keyword) || response.includes(keyword)) {
+                        return category;
+                    }
+                }
+            }
+            
+            // Check for Bible references that Jesus spoke
+            const jesusVersePatterns = [
+                /john (3|14|15|16|17)/, /matthew (5|6|7|11|16|28)/, 
+                /luke (6|23)/, /mark (11|16)/
+            ];
+            
+            for (const pattern of jesusVersePatterns) {
+                if (pattern.test(input)) {
+                    return 'general';
+                }
+            }
+            
+            return null; // No Jesus quote needed
+        }
+
+        // ===== GET CONTEXTUAL JESUS QUOTE =====
+        function getContextualJesusQuote(category) {
+            if (!category || !jesusQuotes[category]) {
+                return null;
+            }
+            
+            const quotes = jesusQuotes[category];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            return {
+                text: randomQuote.text,
+                reference: randomQuote.reference,
+                formatted: `As our Lord Jesus said: "${randomQuote.text}" (${randomQuote.reference})`
+            };
+        }
+
+        // ===== ENHANCED HERALD INTERACTION SYSTEM =====
         let selectedHerald = 'john'; // Default herald
         let isLoading = false;
+        let userSession = {
+            userId: 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now(),
+            interactions: []
+        };
 
-        // Smart Input Detection Function (enhanced for Names of God)
+        // Herald personalities
+        const heralds = {
+            john: {
+                name: 'John',
+                subtitle: 'The Beloved Disciple',
+                colorProfile: { green: 9.0, blue: 7.5, red: 2.0, yellow: 6.0 },
+                addressTerm: 'beloved'
+            },
+            peter: {
+                name: 'Peter', 
+                subtitle: 'The Bold Fisherman',
+                colorProfile: { red: 9.5, yellow: 8.0, green: 5.5, blue: 3.0 },
+                addressTerm: 'friend'
+            },
+            barnabas: {
+                name: 'Barnabas',
+                subtitle: 'Son of Encouragement', 
+                colorProfile: { green: 9.0, yellow: 8.5, blue: 4.0, red: 2.5 },
+                addressTerm: 'dear friend'
+            },
+            mary: {
+                name: 'Mary of Bethany',
+                subtitle: 'The Contemplative Learner',
+                colorProfile: { blue: 9.0, green: 7.5, yellow: 3.5, red: 1.5 },
+                addressTerm: 'dear one'
+            },
+            deborah: {
+                name: 'Deborah',
+                subtitle: 'Judge and Prophetess',
+                colorProfile: { red: 8.5, blue: 8.0, green: 4.5, yellow: 3.0 },
+                addressTerm: 'faithful one'
+            }
+        };
+
+        // ===== ENHANCED INPUT DETECTION =====
         function detectInputType(input) {
             const trimmed = input.trim().toLowerCase();
             
-            // Names of God (highest priority)
-            const namesOfGod = ['elohim', 'yahweh', 'yhwh', 'adonai', 'el-shaddai', 'el-roi', 'el-olam', 'el-elyon', 'jehovah-jireh', 'jehovah-rapha', 'jehovah-nissi', 'jehovah-shalom', 'jehovah-rohi', 'jehovah-tsidkenu', 'jehovah-shammah', 'jehovah-sabaoth', 'abba', 'hashem'];
-            
-            for (const name of namesOfGod) {
-                if (trimmed.includes(name)) {
-                    return { 
-                        type: 'names_of_god', 
-                        name: name,
-                        input: trimmed 
-                    };
-                }
-            }
-            
-            // Hebrew names for Easter eggs
-            const easterEggNames = {
-                'yochanan': 'john', 'yohanan': 'john',
-                'kefa': 'peter', 'cephas': 'peter', 'kepha': 'peter',
-                'bar-nabba': 'barnabas', 'barnabba': 'barnabas',
-                'miriam': 'mary',
-                'devorah': 'deborah', 'dvorah': 'deborah'
-            };
-            
-            // Check for Easter egg Hebrew names
-            for (const [hebrewName, herald] of Object.entries(easterEggNames)) {
-                if (trimmed.includes(hebrewName)) {
-                    return { 
-                        type: 'easter_egg', 
-                        herald: herald,
-                        hebrewName: hebrewName,
-                        input: trimmed 
-                    };
-                }
-            }
-            
-            // Check for Bible reference pattern
+            // Bible reference pattern
             const biblePattern = /^(Genesis|Gen|Exodus|Ex|Leviticus|Lev|Numbers|Num|Deuteronomy|Deut|Joshua|Josh|Judges|Judg|Ruth|1\s*Samuel|2\s*Samuel|1\s*Sam|2\s*Sam|1\s*Kings|2\s*Kings|1\s*Chron|2\s*Chron|Ezra|Nehemiah|Neh|Esther|Est|Job|Psalm|Ps|Proverbs|Prov|Ecclesiastes|Eccl|Song\s*of\s*Solomon|Song|Isaiah|Isa|Jeremiah|Jer|Lamentations|Lam|Ezekiel|Ezek|Daniel|Dan|Hosea|Joel|Amos|Obadiah|Obad|Jonah|Micah|Nahum|Habakkuk|Hab|Zephaniah|Zeph|Haggai|Hag|Zechariah|Zech|Malachi|Mal|Matthew|Matt|Mark|Luke|John|Acts|Romans|Rom|1\s*Corinthians|2\s*Corinthians|1\s*Cor|2\s*Cor|Galatians|Gal|Ephesians|Eph|Philippians|Phil|Colossians|Col|1\s*Thessalonians|2\s*Thessalonians|1\s*Thess|2\s*Thess|1\s*Timothy|2\s*Timothy|1\s*Tim|2\s*Tim|Titus|Philemon|Hebrews|Heb|James|1\s*Peter|2\s*Peter|1\s*Pet|2\s*Pet|1\s*John|2\s*John|3\s*John|Jude|Revelation|Rev)\s+\d+/i;
             
             if (biblePattern.test(input.trim())) {
                 return { type: 'reference', reference: input.trim() };
             }
             
-            // Check for Hebrew names (non-Easter egg)
-            const hebrewNames = ['yeshua', 'david', 'moses', 'abraham', 'sarah', 'rachel', 'ruth', 'esther', 'daniel', 'samuel', 'shalom', 'hesed', 'tsedek', 'emunah'];
-            if (trimmed.length <= 20) {
-                for (const name of hebrewNames) {
-                    if (trimmed.includes(name)) {
-                        return { type: 'hebrew_name', name: name };
-                    }
-                }
-            }
-            
-            // Check for concordance topics
+            // Common spiritual topics
             const topics = ['love', 'faith', 'prayer', 'hope', 'peace', 'wisdom', 'strength', 'forgiveness', 'courage', 'grace', 'joy', 'humility', 'patience', 'kindness', 'trust', 'protection', 'guidance', 'comfort', 'healing', 'provision'];
             for (const topic of topics) {
                 if (trimmed.includes(topic) && input.length < 100) {
-                    return { type: 'concordance', topic: topic, query: input.trim() };
+                    return { type: 'topic', topic: topic, query: input.trim() };
                 }
             }
             
-            // Check for direct scripture (longer text)
+            // Direct scripture (longer text)
             if (input.length > 50) {
                 return { type: 'scripture', text: input.trim() };
             }
             
-            // Default to general interpretation
+            // Default to general query
             return { type: 'general', query: input.trim() };
         }
 
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set default herald selection
-            const defaultCard = document.querySelector('.herald-card.john');
-            if (defaultCard) {
-                defaultCard.classList.add('selected');
-            }
-            
-            // Herald selection handlers for submit buttons
-            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent card click
-                    
-                    const input = document.getElementById('searchInput').value.trim();
-                    if (!input) {
-                        alert('Please enter a query first before selecting a herald.');
-                        document.getElementById('searchInput').focus();
-                        return;
-                    }
-                    
-                    selectedHerald = btn.dataset.herald;
-                    
-                    // Visual selection feedback
-                    document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
-                    btn.closest('.herald-card').classList.add('selected');
-                    
-                    askHerald();
-                });
-            });
-
-            // Keep card hover for visual feedback but remove click functionality
-            document.querySelectorAll('.herald-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    // Just visual selection, no functionality
-                    document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
-                    card.classList.add('selected');
-                    selectedHerald = card.dataset.herald;
-                });
-            });
-
-            // Example click handlers
-            document.querySelectorAll('.example-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const searchInput = document.getElementById('searchInput');
-                    if (searchInput) {
-                        searchInput.value = item.dataset.example;
-                        // Optionally auto-trigger with default herald
-                        // askHerald();
-                    }
-                });
-            });
-
-            // Search input handlers - Enter key should prompt to select herald
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter' && !isLoading) {
-                        const input = searchInput.value.trim();
-                        if (input) {
-                            // Scroll to heralds section
-                            const heraldsGrid = document.querySelector('.heralds-grid');
-                            if (heraldsGrid) {
-                                heraldsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                
-                                // Flash the herald section to draw attention
-                                const heraldsSection = heraldsGrid.parentElement;
-                                if (heraldsSection) {
-                                    heraldsSection.style.backgroundColor = '#f0f9ff';
-                                    setTimeout(() => {
-                                        heraldsSection.style.backgroundColor = '';
-                                    }, 1000);
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Keyboard shortcut for quick search
-            document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && e.key === '/') {
-                    e.preventDefault();
-                    const searchInput = document.getElementById('searchInput');
-                    if (searchInput) {
-                        searchInput.focus();
-                    }
-                }
-            });
-
-            // Easter egg hints with Names of God
-            const easterEggHints = [
-                "Try searching for Hebrew names like 'yochanan' or 'kefa'...",
-                "Discover the Names of God like 'elohim' or 'jehovah-jireh'...",
-                "Explore 'jehovah-rapha' for prayer about healing...",
-                "Some names unlock special messages from the heralds..."
-            ];
-
-            let hintCounter = 0;
-            setInterval(() => {
-                const input = document.getElementById('searchInput');
-                if (input && !input.value && !isLoading) {
-                    hintCounter = (hintCounter + 1) % easterEggHints.length;
-                    input.placeholder = easterEggHints[hintCounter];
-                    
-                    setTimeout(() => {
-                        if (!input.value) {
-                            input.placeholder = "Enter Bible reference, Hebrew name, topic, or question...";
-                        }
-                    }, 3000);
-                }
-            }, 15000);
-        });
-
-        // Main function to ask herald
+        // ===== MAIN HERALD INTERACTION FUNCTION =====
         async function askHerald() {
             const searchInput = document.getElementById('searchInput');
             const input = searchInput ? searchInput.value.trim() : '';
             
-            if (!input) return;
+            if (!input) {
+                alert('Please enter a question, Bible verse, or topic first.');
+                return;
+            }
 
             const responseSection = document.getElementById('responseSection');
+            const herald = heralds[selectedHerald];
             
-            // Detect input type using smart detection
+            // Detect input type
             const inputType = detectInputType(input);
             console.log('Input type detected:', inputType);
             
             // Set loading state
             isLoading = true;
-            
-            // Disable all submit buttons during loading
-            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
-                btn.disabled = true;
-                btn.innerHTML = '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>';
-            });
+            updateLoadingState(true);
             
             // Show response section with loading
             if (responseSection) {
                 responseSection.style.display = 'block';
-                responseSection.innerHTML = `
-                    <div class="loading" style="justify-content: center; padding: 2rem;">
-                        <div class="spinner"></div>
-                        <span>The herald is contemplating your query...</span>
-                    </div>
-                `;
+                responseSection.innerHTML = getLoadingHTML(herald);
             }
 
             try {
+                // Call API
                 const response = await fetch('/api/heralds', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         herald: selectedHerald,
                         input: input,
-                        userId: generateUserId()
+                        userId: userSession.userId
                     })
                 });
 
                 const data = await response.json();
                 
                 if (data.success) {
-                    displayResponse(data);
+                    // Check if Jesus quote is contextually relevant
+                    const jesusCategory = detectJesusQuoteRelevance(input, data.response);
+                    const jesusQuote = jesusCategory ? getContextualJesusQuote(jesusCategory) : null;
                     
-                    // Auto-scroll to response for all devices
+                    // Display response with optional Jesus quote
+                    displayResponse(data, jesusQuote);
+                    
+                    // Auto-scroll to response
                     setTimeout(() => {
                         if (responseSection) {
                             responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
                     }, 100);
+                    
                 } else {
                     displayError(data.error || 'An error occurred');
                 }
@@ -941,162 +914,28 @@
             } finally {
                 // Reset loading state
                 isLoading = false;
-                document.querySelectorAll('.herald-submit-btn').forEach(btn => {
-                    btn.disabled = false;
-                    btn.textContent = 'Submit';
-                });
+                updateLoadingState(false);
             }
         }
 
-        // Display response based on type
-        function displayResponse(data) {
+        // ===== DISPLAY FUNCTIONS =====
+        function displayResponse(data, jesusQuote = null) {
             const responseSection = document.getElementById('responseSection');
             if (!responseSection) return;
             
-            let content = '';
-
-            // Response header
-            const heraldInfo = getHeraldInfo(data.heraldName || selectedHerald);
-            content += `
+            const herald = heralds[data.heraldName?.toLowerCase()] || heralds[selectedHerald];
+            
+            let content = `
                 <div class="response-header">
-                    <div class="herald-avatar">${heraldInfo.initial}</div>
+                    <div class="herald-avatar">${herald.name.charAt(0)}</div>
                     <div class="response-meta">
-                        <h3>${data.heraldName}</h3>
-                        <p>${heraldInfo.subtitle}</p>
+                        <h3>${herald.name}</h3>
+                        <p>${herald.subtitle}</p>
                     </div>
                 </div>
             `;
-
-            // Handle different response types
-            switch (data.type) {
-                case 'easter_egg':
-                    content += displayEasterEgg(data);
-                    break;
-                case 'names_of_god':
-                    content += displayNamesOfGod(data);
-                    break;
-                case 'hebrew_name':
-                    content += displayHebrewName(data);
-                    break;
-                case 'hebrew_search':
-                    content += displayHebrewSearch(data);
-                    break;
-                case 'concordance':
-                    content += displayConcordance(data);
-                    break;
-                case 'interpretation':
-                default:
-                    content += displayInterpretation(data);
-                    break;
-            }
-
-            // Add recommendation if present
-            if (data.recommendation) {
-                content += displayRecommendation(data.recommendation);
-            }
-
-            responseSection.innerHTML = content;
-        }
-
-        // Display Easter Egg
-        function displayEasterEgg(data) {
-            let content = `
-                <div class="easter-egg">
-                    <div class="easter-egg-header">
-                        <span>🥚</span>
-                        <span class="easter-egg-title">${data.easterEgg.title}</span>
-                        <span>🎉</span>
-                    </div>
-                    <div class="easter-egg-content">
-                        ${formatText(data.easterEgg.text)}
-                    </div>
-            `;
             
-            if (data.easterEgg.image) {
-                content += `<img src="${data.easterEgg.image}" alt="${data.easterEgg.title}" class="easter-egg-image">`;
-            }
-            
-            content += '</div>';
-            return content;
-        }
-
-        // Display Names of God
-        function displayNamesOfGod(data) {
-            return `
-                <div class="names-of-god-result">
-                    <div class="names-of-god-header">
-                        <span class="holy-icon">✨</span>
-                        <div class="names-of-god-title">${data.hebrew} → ${data.english}</div>
-                    </div>
-                    <div class="names-of-god-meaning"><strong>Meaning:</strong> ${data.meaning}</div>
-                    <div class="names-of-god-context">${data.context}</div>
-                    <div class="prayer-application">
-                        <strong>In Prayer:</strong> This name reveals God's character for specific needs. When you pray to ${data.english}, you're approaching the aspect of God that ${data.meaning.toLowerCase()}. Let this name guide and focus your prayers.
-                    </div>
-                </div>
-            `;
-        }
-
-        // Display Hebrew Name
-        function displayHebrewName(data) {
-            return `
-                <div class="hebrew-result">
-                    <div class="hebrew-name-display">${data.hebrew} → ${data.english}</div>
-                    <div class="hebrew-meaning"><strong>Meaning:</strong> ${data.meaning}</div>
-                    <div><strong>Context:</strong> ${data.context}</div>
-                </div>
-            `;
-        }
-
-        // Display Hebrew Search Results
-        function displayHebrewSearch(data) {
-            let content = `<div class="hebrew-result">
-                <div class="hebrew-name-display">Hebrew Names for "${data.query}"</div>
-            `;
-            
-            data.results.forEach(result => {
-                const resultClass = result.sacred ? 'names-of-god-result' : 'hebrew-search-item';
-                const icon = result.sacred ? '✨' : '📜';
-                
-                content += `
-                    <div class="${resultClass}" style="margin: 1rem 0; padding: 1rem; background: ${result.sacred ? '#fef9e7' : 'white'}; border-radius: 6px; border-left: 4px solid ${result.sacred ? '#d97706' : '#3b82f6'};">
-                        <strong>${icon} ${result.hebrew} → ${result.english}</strong><br>
-                        <em>${result.meaning}</em><br>
-                        <small>${result.context}</small>
-                        ${result.sacred ? '<br><small style="color: #d97706; font-weight: 600;">Name of God - for prayer and worship</small>' : ''}
-                    </div>
-                `;
-            });
-            
-            content += '</div>';
-            return content;
-        }
-
-        // Display Concordance
-        function displayConcordance(data) {
-            let content = `
-                <div class="hebrew-result">
-                    <div class="hebrew-name-display">Verses about "${data.topic}"</div>
-                    <div class="concordance-results">
-            `;
-            
-            data.concordance.forEach(verse => {
-                content += `
-                    <div class="concordance-verse" onclick="searchVerse('${verse.reference}')">
-                        ${verse.reference}
-                    </div>
-                `;
-            });
-            
-            content += '</div></div>';
-            return content;
-        }
-
-        // Display Interpretation
-        function displayInterpretation(data) {
-            let content = '';
-            
-            // Show verse if available
+            // Add verse display if available
             if (data.verseText) {
                 content += `
                     <div class="verse-display">
@@ -1106,63 +945,61 @@
                 `;
             }
             
-            // Show response
+            // Add Jesus quote if contextually relevant
+            if (jesusQuote) {
+                content += `
+                    <div class="jesus-quote-section">
+                        <div class="jesus-quote-header">
+                            <span class="jesus-icon">✝️</span>
+                            <span>The Words of Jesus</span>
+                        </div>
+                        <div class="jesus-quote-text">"${jesusQuote.text}"</div>
+                        <div class="jesus-quote-reference">— ${jesusQuote.reference}</div>
+                    </div>
+                `;
+            }
+            
+            // Add herald response
             content += `<div class="response-text">${formatText(data.response)}</div>`;
             
-            return content;
+            // Add recommendation if present
+            if (data.recommendation) {
+                content += `
+                    <div class="recommendation-banner">
+                        <div class="recommendation-text">${data.recommendation.message}</div>
+                        <button class="try-herald-btn" onclick="switchToHerald('${data.recommendation.recommendedHerald}')">
+                            Try ${getHeraldInfo(data.recommendation.recommendedHerald).name}
+                        </button>
+                    </div>
+                `;
+            }
+
+            responseSection.innerHTML = content;
         }
 
-        // Display Recommendation
-        function displayRecommendation(recommendation) {
+        function getLoadingHTML(herald) {
             return `
-                <div class="recommendation-banner">
-                    <div class="recommendation-text">${recommendation.message}</div>
-                    <button class="try-herald-btn" onclick="switchToHerald('${recommendation.recommendedHerald}')">
-                        Try ${getHeraldInfo(recommendation.recommendedHerald).name}
-                    </button>
+                <div class="response-header">
+                    <div class="herald-avatar">${herald.name.charAt(0)}</div>
+                    <div class="response-meta">
+                        <h3>${herald.name}</h3>
+                        <p>${herald.subtitle}</p>
+                    </div>
+                </div>
+                <div class="loading" style="justify-content: center; padding: 2rem;">
+                    <div class="spinner"></div>
+                    <span>${herald.name} is contemplating your query...</span>
                 </div>
             `;
         }
 
-        // Helper functions
-        function formatText(text) {
-            return text.replace(/\n/g, '<br>').replace(/\*\[(.*?)\]\*/g, '<em style="color: #667eea;">$1</em>');
-        }
-
-        function getHeraldInfo(heraldName) {
-            const heralds = {
-                john: { name: 'John', subtitle: 'The Beloved Disciple', initial: 'J' },
-                peter: { name: 'Peter', subtitle: 'The Bold Fisherman', initial: 'P' },
-                barnabas: { name: 'Barnabas', subtitle: 'Son of Encouragement', initial: 'B' },
-                mary: { name: 'Mary of Bethany', subtitle: 'The Contemplative Learner', initial: 'M' },
-                deborah: { name: 'Deborah', subtitle: 'Judge and Prophetess', initial: 'D' }
-            };
-            return heralds[heraldName.toLowerCase()] || heralds.john;
-        }
-
-        function searchVerse(reference) {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.value = reference;
-                askHerald();
-            }
-        }
-
-        function switchToHerald(heraldName) {
-            // Update selected herald
-            selectedHerald = heraldName;
-            
-            // Update visual selection
-            document.querySelectorAll('.herald-card').forEach(card => {
-                card.classList.remove('selected');
-                if (card.dataset.herald === heraldName) {
-                    card.classList.add('selected');
-                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+        function updateLoadingState(loading) {
+            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
+                btn.disabled = loading;
+                btn.innerHTML = loading ? 
+                    '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>' : 
+                    'Submit';
             });
-            
-            // Re-ask with new herald
-            askHerald();
         }
 
         function displayError(message) {
@@ -1183,90 +1020,99 @@
             }
         }
 
-        // In-memory storage for user session
-        let userSession = {
-            userId: 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now(),
-            interactions: []
-        };
-
-        function generateUserId() {
-            return userSession.userId;
+        // ===== UTILITY FUNCTIONS =====
+        function formatText(text) {
+            return text.replace(/\n/g, '<br>').replace(/\*\[(.*?)\]\*/g, '<em style="color: #667eea;">$1</em>');
         }
 
-        // Analytics for understanding user behavior (privacy-conscious)
-        function trackInteraction(type, data) {
-            // Simple in-memory analytics - no external tracking
-            userSession.interactions.push({
-                type,
-                data,
-                timestamp: Date.now(),
-                herald: selectedHerald
+        function getHeraldInfo(heraldName) {
+            return heralds[heraldName.toLowerCase()] || heralds.john;
+        }
+
+        function switchToHerald(heraldName) {
+            selectedHerald = heraldName;
+            
+            // Update visual selection
+            document.querySelectorAll('.herald-card').forEach(card => {
+                card.classList.remove('selected');
+                if (card.dataset.herald === heraldName) {
+                    card.classList.add('selected');
+                }
             });
             
-            // Keep only last 50 interactions
-            if (userSession.interactions.length > 50) {
-                userSession.interactions.splice(0, userSession.interactions.length - 50);
+            // Re-ask with new herald
+            askHerald();
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set default herald selection
+            const defaultCard = document.querySelector('.herald-card.john');
+            if (defaultCard) {
+                defaultCard.classList.add('selected');
             }
-        }
+            
+            // Herald selection handlers
+            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    const input = document.getElementById('searchInput').value.trim();
+                    if (!input) {
+                        alert('Please enter a query first before selecting a herald.');
+                        document.getElementById('searchInput').focus();
+                        return;
+                    }
+                    
+                    selectedHerald = btn.dataset.herald;
+                    
+                    // Visual selection feedback
+                    document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
+                    btn.closest('.herald-card').classList.add('selected');
+                    
+                    askHerald();
+                });
+            });
 
-        // Add smooth scroll behavior
-        document.documentElement.style.scrollBehavior = 'smooth';
+            // Herald card click for selection only
+            document.querySelectorAll('.herald-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    selectedHerald = card.dataset.herald;
+                });
+            });
 
-        // Placeholder functions for concordance
-        function searchConcordance() {
-            console.log('Concordance search not yet implemented');
-        }
+            // Example click handlers
+            document.querySelectorAll('.example-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.value = item.dataset.example;
+                    }
+                });
+            });
 
-        // Console welcome message
-        console.log('🎯 Biblical Heralds - Ancient Voices, Living Word');
-        console.log('📊 Enhanced Features: Hebrew Names Database, Names of God, Easter Eggs, Smart Input Detection, Color Psychology');
-        console.log('🔍 Try searching for: yochanan, kefa, miriam, devorah, or bar-nabba for special Easter eggs!');
-        console.log('✨ Names of God: elohim, yahweh, jehovah-jireh, jehovah-rapha, el-shaddai for prayer focus');
-        console.log('📖 Bible references, topics like "love" or "faith", and questions all supported');
+            // Enter key handling
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !isLoading) {
+                        const input = searchInput.value.trim();
+                        if (input) {
+                            const heraldsGrid = document.querySelector('.heralds-grid');
+                            if (heraldsGrid) {
+                                heraldsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }
+                    }
+                });
+            }
+
+            console.log('🏛️ Heralds Courtyard initialized - Ancient Voices, Living Word');
+            console.log('✝️ Jesus Quote System: Contextually relevant Scripture integration');
+            console.log('🎯 Test with: "peace", "forgiveness", "John 3:16", "worried about future"');
+        });
     </script>
-
-    <!-- Add this before closing </body> tag -->
-<footer style="background: #f8f9fa; border-top: 1px solid #e1e8ed; margin-top: 3rem; padding: 2rem 0;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-            <!-- Navigation Links -->
-            <div>
-                <h4 style="color: #2c3e50; margin-bottom: 1rem;">Navigation</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 0.5rem;"><a href="/heralds.html" style="color: #667eea; text-decoration: none;">Biblical Heralds</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="/feedback.html" style="color: #667eea; text-decoration: none;">Support Us</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="/contact.html" style="color: #667eea; text-decoration: none;">Contact</a></li>
-                </ul>
-            </div>
-            
-            <!-- Legal & Policies -->
-            <div>
-                <h4 style="color: #2c3e50; margin-bottom: 1rem;">Legal & Policies</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 0.5rem;"><a href="/privacy.html" style="color: #667eea; text-decoration: none;">Privacy Policy</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="/terms.html" style="color: #667eea; text-decoration: none;">Terms of Service</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="/refund-policy.html" style="color: #667eea; text-decoration: none;">Refund Policy</a></li>
-                </ul>
-            </div>
-            
-            <!-- About -->
-            <div>
-                <h4 style="color: #2c3e50; margin-bottom: 1rem;">About</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 0.5rem;"><a href="/about.html" style="color: #667eea; text-decoration: none;">About Us</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="/contact.html" style="color: #667eea; text-decoration: none;">Get in Touch</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e1e8ed;">
-            <p style="color: #8492a6; font-size: 0.9rem;">
-                © 2024 Biblical Heralds. All rights reserved. | 
-                <a href="/privacy.html" style="color: #667eea;">Privacy</a> | 
-                <a href="/terms.html" style="color: #667eea;">Terms</a>
-            </p>
-        </div>
-    </div>
-</footer></body>
+</body>
 </html>
