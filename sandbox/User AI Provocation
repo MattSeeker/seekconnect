@@ -208,3 +208,546 @@ Your observation is correct: **Scripture references are often better answers tha
 ✅ "The Bible teaches that Jesus is God. John 1:1 says 'In the beginning was the Word, and the Word was with God, and the Word was God.' John 1:14 tells us 'The Word became flesh' - referring to Jesus."
 
 This approach maintains biblical authority while showing users WHERE to find truth rather than simply asserting it.
+
+// Biblical Response Templates System
+// For use in both Courtyard API and Herald One-on-One API
+
+const biblicalResponseTemplates = {
+  
+  // ===== CORE DOCTRINAL QUESTIONS =====
+  
+  divinity_of_jesus: {
+    triggers: [
+      'is jesus god', 'jesus god', 'divine jesus', 'deity of christ', 'jesus divine',
+      'jesus same as god', 'god incarnate', 'jesus equals god'
+    ],
+    template: {
+      opening: "This is one of the most important questions in all of Scripture.",
+      scripture_primary: {
+        reference: "John 1:1",
+        text: "In the beginning was the Word, and the Word was with God, and the Word was God.",
+        explanation: "The 'Word' here refers to Jesus, as verse 14 shows us: 'The Word became flesh and dwelt among us.'"
+      },
+      scripture_supporting: [
+        {
+          reference: "John 10:30",
+          text: "I and the Father are one."
+        },
+        {
+          reference: "Philippians 2:6",
+          text: "Who, being in very nature God, did not consider equality with God something to be used to his own advantage."
+        },
+        {
+          reference: "Colossians 2:9",
+          text: "For in Christ all the fullness of the Deity lives in bodily form."
+        }
+      ],
+      conclusion: "The Bible clearly teaches that Jesus is fully God while also being fully man - a mystery we call the Incarnation.",
+      encourage_study: "I encourage you to study these passages prayerfully and discuss them with mature believers."
+    }
+  },
+
+  trinity_explanation: {
+    triggers: [
+      'explain trinity', 'what is trinity', 'trinity doctrine', 'three in one',
+      'father son holy spirit', 'how can god be three', 'trinity biblical'
+    ],
+    template: {
+      opening: "The Trinity is a profound mystery that helps us understand who God is.",
+      scripture_primary: {
+        reference: "Matthew 28:19",
+        text: "Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.",
+        explanation: "Notice Jesus commands baptism in the singular 'name' of three distinct Persons."
+      },
+      scripture_supporting: [
+        {
+          reference: "2 Corinthians 13:14",
+          text: "May the grace of the Lord Jesus Christ, and the love of God, and the fellowship of the Holy Spirit be with you all."
+        },
+        {
+          reference: "John 1:1",
+          text: "The Word was with God, and the Word was God."
+        }
+      ],
+      explanation: "While the word 'Trinity' isn't in Scripture, the concept is clearly taught: One God eternally existing as three distinct Persons - Father, Son, and Holy Spirit.",
+      acknowledge_mystery: "This is beyond our full understanding, but we trust what God has revealed about Himself.",
+      conclusion: "Each Person is fully God, yet there is only one God."
+    }
+  },
+
+  salvation_requirements: {
+    triggers: [
+      'how to be saved', 'get to heaven', 'salvation requirements', 'born again',
+      'eternal life', 'forgiveness sins', 'how saved', 'gospel message'
+    ],
+    template: {
+      opening: "This is the most important question anyone can ask.",
+      scripture_primary: {
+        reference: "Ephesians 2:8-9",
+        text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast.",
+        explanation: "Salvation is entirely God's gift, received through faith, not earned by good deeds."
+      },
+      scripture_supporting: [
+        {
+          reference: "Romans 10:9",
+          text: "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved."
+        },
+        {
+          reference: "John 3:16",
+          text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+        },
+        {
+          reference: "Acts 16:31",
+          text: "Believe in the Lord Jesus, and you will be saved."
+        }
+      ],
+      practical_application: "Salvation comes through repenting of sin and trusting in Jesus Christ as your Lord and Savior.",
+      conclusion: "It's not about being good enough - it's about accepting God's gift of grace through Jesus.",
+      encourage_study: "I encourage you to speak with a pastor or mature believer about taking this step of faith."
+    }
+  },
+
+  // ===== AUTHORITY CHALLENGES =====
+  
+  ai_authority_challenge: {
+    triggers: [
+      'can you pray', 'pray for me', 'what is god telling you', 'god speaking to you',
+      'divine revelation', 'inspired like bible', 'personal relationship jesus',
+      'are you prophet', 'god give you message'
+    ],
+    template: {
+      opening: "I appreciate your question, but I want to be clear about my role.",
+      clarification: "I am not God, nor do I speak for God or receive divine revelation. I'm simply a tool designed to help you explore what God has already revealed in Scripture.",
+      scripture_primary: {
+        reference: "Hebrews 1:1-2",
+        text: "In the past God spoke to our ancestors through the prophets at many times and in various ways, but in these last days he has spoken to us by his Son.",
+        explanation: "God's complete revelation is found in Jesus Christ and recorded in His Word, the Bible."
+      },
+      redirect: "For prayer, I encourage you to speak directly to God through Jesus Christ. For spiritual guidance, seek counsel from Scripture, prayer, and mature believers.",
+      conclusion: "My role is simply to point you to God's Word where you can find His truth."
+    }
+  },
+
+  // ===== CONTROVERSIAL TOPICS =====
+  
+  homosexuality_question: {
+    triggers: [
+      'homosexuality', 'gay marriage', 'lgbtq', 'same sex', 'sexual orientation',
+      'gay christian', 'homosexual sin'
+    ],
+    template: {
+      opening: "This is a topic where people have strong feelings, but let's see what Scripture teaches.",
+      scripture_primary: {
+        reference: "Romans 1:26-27",
+        text: "Because of this, God gave them over to shameful lusts. Even their women exchanged natural sexual relations for unnatural ones. In the same way the men also abandoned natural relations with women and were inflamed with lust for one another.",
+        explanation: "Paul describes homosexual practice as contrary to God's design for sexuality."
+      },
+      scripture_supporting: [
+        {
+          reference: "1 Corinthians 6:9-11",
+          text: "Or do you not know that wrongdoers will not inherit the kingdom of God? Do not be deceived... But you were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ."
+        },
+        {
+          reference: "Genesis 2:24",
+          text: "That is why a man leaves his father and mother and is united to his wife, and they become one flesh."
+        }
+      ],
+      balance: "While Scripture is clear about God's design for marriage and sexuality, it's equally clear about God's love for all people and the availability of forgiveness through Christ.",
+      pastoral: "Every person, regardless of their struggles, needs the Gospel and deserves to be treated with dignity and love.",
+      conclusion: "The church should be a place of grace while remaining faithful to biblical truth."
+    }
+  },
+
+  women_in_ministry: {
+    triggers: [
+      'women pastors', 'female ministers', 'women leadership', 'women preaching',
+      'women roles church', 'complementarian', 'egalitarian'
+    ],
+    template: {
+      opening: "Christians have different perspectives on this topic based on their interpretation of Scripture.",
+      scripture_primary: {
+        reference: "1 Timothy 2:11-12",
+        text: "A woman should learn in quietness and full submission. I do not permit a woman to teach or to assume authority over a man; she must be quiet.",
+        explanation: "Some interpret this as applying to all church contexts, others see it as specific to the cultural situation in Ephesus."
+      },
+      alternative_view: {
+        reference: "Galatians 3:28",
+        text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus."
+      },
+      balance: "Scripture shows women like Deborah judging Israel, Priscilla teaching Apollos, and women prophesying in the early church.",
+      conclusion: "Faithful Christians disagree on this issue while sharing commitment to biblical authority and gospel truth.",
+      encourage_study: "Study these passages carefully and seek wisdom from your church leadership."
+    }
+  },
+
+  // ===== SUFFERING AND EVIL =====
+  
+  why_suffering: {
+    triggers: [
+      'why suffering', 'why does god allow', 'problem of evil', 'why bad things happen',
+      'innocent suffering', 'natural disasters', 'why pain'
+    ],
+    template: {
+      opening: "This is one of the most profound questions humans face, and Scripture provides a rich framework for understanding it.",
+      
+      foundation: "First, we must understand that suffering exists because of the fall described in Genesis 3. When humanity rebelled against God, sin corrupted all of creation, causing Romans 8:22 to tell us 'the whole creation has been groaning.'",
+      
+      important_distinction: "Scripture teaches that God ALLOWS suffering but doesn't CAUSE it. In Job 1-2, we see Satan causing suffering while God sets boundaries and allows it for His purposes.",
+      
+      suffering_categories: "Scripture reveals several ways sin creates suffering - not as punishment like earthly parents, but through causal relationships like toppling dominoes: (1) Our own sin causing our own suffering (Galatians 6:7 - 'we reap what we sow'), (2) Others' sin causing our suffering (innocent victims like Abel), (3) Mixed situations where our choices increase vulnerability but don't justify others' sin, (4) General effects of living in a fallen world (natural disasters, disease), and (5) God's loving discipline for believers (Hebrews 12:6).",
+      
+      scripture_primary: {
+        reference: "John 9:1-3",
+        text: "As he went along, he saw a man blind from birth. His disciples asked him, 'Rabbi, who sinned, this man or his parents, that he was born blind?' 'Neither this man nor his parents sinned,' said Jesus, 'but this happened so that the works of God might be displayed in him.'",
+        explanation: "Jesus shows us that suffering can serve to reveal God's glory and power, not just as punishment for sin."
+      },
+      
+      scripture_supporting: [
+        {
+          reference: "Galatians 6:7",
+          text: "Do not be deceived: God cannot be mocked. A man reaps what he sows.",
+          explanation: "Sometimes our own choices directly create our suffering - like when pornography use destroys relationships, or financial dishonesty leads to debt and broken trust."
+        },
+        {
+          reference: "Exodus 7:3-5",
+          text: "But I will harden Pharaoh's heart, and though I multiply my signs and wonders in Egypt, he will not listen to you... And the Egyptians will know that I am the Lord when I stretch out my hand against Egypt.",
+          explanation: "God allowed 400 years of suffering in Egypt so His deliverance would unmistakably reveal His power and character."
+        },
+        {
+          reference: "2 Corinthians 1:3-4",
+          text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
+          explanation: "Our suffering can be transformed into ministry - we become uniquely qualified to help others who face similar struggles."
+        },
+        {
+          reference: "Hebrews 12:6",
+          text: "Because the Lord disciplines the one he loves, and he chastens everyone he accepts as his son.",
+          explanation: "Sometimes God allows suffering as loving discipline to draw believers back to righteousness."
+        },
+        {
+          reference: "Hosea 2:14",
+          text: "Therefore I am now going to allure her; I will lead her into the wilderness and speak tenderly to her.",
+          explanation: "Sometimes God allows difficult circumstances because we would never turn to Him if life was always comfortable. Suffering drives us to dependence on God in ways prosperity never could."
+        }
+      ],
+      
+      pastoral_note: "It's important to note that acknowledging contributing factors never justifies others' sinful actions. A person can be a genuine victim while also having made unwise choices that increased vulnerability. The perpetrator bears full responsibility regardless of the victim's circumstances.",
+      
+      redemptive_framework: "Scripture reveals several purposes for God allowing suffering: to reveal His glory, to drive us to dependence on Him (since we'd likely remain self-sufficient otherwise), and to transform our pain into powerful ministry to others.",
+      
+      exodus_pattern: "The Exodus shows a pattern for every believer: we all experience 'bondage' we cannot escape alone, we need divine rescue through faith, and we're then called to follow Christ's example by transforming our suffering into sacrificial love for others.",
+      
+      gods_character: "Importantly, God doesn't remain distant from suffering. Isaiah 53:3 calls Jesus 'a man of sorrows, acquainted with grief.' John 11:35 shows 'Jesus wept.' God entered our suffering fully through the cross.",
+      
+      conclusion: "While we don't understand everything about why God allows suffering, Scripture shows us that He grieves with us, works redemptively through our pain, and promises ultimate healing in the resurrection (Revelation 21:4). Our suffering can become our greatest ministry when transformed by God's grace.",
+      
+      encourage_study: "The books of Job, Psalms (especially the laments), and the Gospel accounts of Jesus' suffering offer deep insight into this mystery."
+    }
+  },
+
+  what_is_sin: {
+    triggers: [
+      'what is sin', 'define sin', 'sin definition', 'original sin', 'nature of sin',
+      'am i sinner', 'why do i sin', 'sin examples'
+    ],
+    template: {
+      opening: "Sin is one of the most important concepts to understand because it affects every human being and explains why we need a Savior.",
+      
+      definition: "The biblical word for sin is 'hamartia,' which literally means 'missing the target' - like an archer whose arrow falls short of the bullseye.",
+      
+      spectrum_concept: "Sin exists on a spectrum: at best, we're 'missing the target' we aim for (falling short of God's perfect standard), and at worst, we're actively shooting in the opposite direction (rebellion against God). Both are sin.",
+      
+      scripture_primary: {
+        reference: "Romans 3:23",
+        text: "For all have sinned and fall short of the glory of God.",
+        explanation: "The word 'fall short' here is hamartano - we all miss the target of God's perfect standard."
+      },
+      
+      scripture_supporting: [
+        {
+          reference: "1 John 1:8",
+          text: "If we claim to be without sin, we deceive ourselves and the truth is not in us."
+        },
+        {
+          reference: "Romans 7:15",
+          text: "I do not understand what I do. For what I want to do I do not do, but what I hate I do.",
+          explanation: "Even the apostle Paul struggled with the gap between his intentions and his actions."
+        }
+      ],
+      
+      personal_evidence: "The evidence that sin is real is found in our daily experience: we don't measure up to the promises we make ourselves. Whether it's broken New Year's resolutions, inability to resist temptation (like those Oreos in the grocery store), or saying hurtful things to people we love - we all fall short of even our own standards, let alone God's perfect standard.",
+      
+      universal_reality: "Nobody can honestly claim they always live up to their own moral standards. This gap between our intentions and our actions reveals the reality of sin in every human heart.",
+      
+      origin: "Sin entered the world through Adam and Eve's rebellion in Genesis 3, corrupting human nature and all of creation. We inherit this fallen nature, which is why even children naturally lie, steal, or act selfishly without being taught.",
+      
+      hope: "The good news is that while we cannot bridge this gap through our own efforts, God provided the solution through Jesus Christ, who lived the perfect life we couldn't live and paid the penalty for our sin.",
+      
+      conclusion: "Understanding sin helps us see why we need grace, why Jesus had to die, and why we cannot save ourselves through good works. It's humbling but ultimately leads us to the Gospel.",
+      
+      encourage_study: "Romans 1-3 provides a thorough explanation of sin's universality and effects, while Romans 5-8 shows God's solution through Christ."
+    }
+  },
+
+  // ===== BIBLICAL RELIABILITY =====
+  
+  bible_contradictions: {
+    triggers: [
+      'bible contradictions', 'biblical errors', 'mistakes bible', 'bible reliable',
+      'bible accurate', 'inconsistencies'
+    ],
+    template: {
+      opening: "This is an important question about the reliability of Scripture.",
+      scripture_primary: {
+        reference: "2 Timothy 3:16",
+        text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.",
+        explanation: "The Bible claims divine inspiration, suggesting it is trustworthy and without error in its original manuscripts."
+      },
+      acknowledge_difficulties: "There are passages that appear difficult to reconcile at first glance.",
+      explanation: "Many apparent contradictions resolve when we consider: historical context, different literary genres, translation issues, or complementary rather than conflicting accounts.",
+      example: "The Gospels sometimes give different details about the same event - like different eyewitness accounts that emphasize different aspects.",
+      resources: "Biblical scholars have written extensively addressing specific difficulties. Organizations like Answers in Genesis, Reasons to Believe, and others provide detailed responses.",
+      conclusion: "The more we study Scripture carefully, the more its reliability becomes evident."
+    }
+  },
+
+  // ===== OTHER RELIGIONS =====
+  
+  other_religions: {
+    triggers: [
+      'other religions', 'all religions same', 'islam christianity', 'hinduism buddhism',
+      'religious pluralism', 'only way jesus'
+    ],
+    template: {
+      opening: "This question touches on some of the most important claims in all of human history.",
+      scripture_primary: {
+        reference: "John 14:6",
+        text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'",
+        explanation: "Jesus made an exclusive claim about salvation - that He is the only way to God."
+      },
+      scripture_supporting: [
+        {
+          reference: "Acts 4:12",
+          text: "Salvation is found in no one else, for there is no other name under heaven given to mankind by which we must be saved."
+        },
+        {
+          reference: "1 Timothy 2:5",
+          text: "For there is one God and one mediator between God and mankind, the man Christ Jesus."
+        }
+      ],
+      respect: "While we should respect people of all faiths and treat them with love and dignity, Scripture is clear about the uniqueness of Christ.",
+      balance: "This doesn't mean other religions have no truth or moral insights, but that salvation comes only through Jesus.",
+      conclusion: "Christians believe Jesus is not just one way among many, but the way God has provided for reconciliation."
+    }
+  }
+};
+
+// ===== DETECTION AND RESPONSE SYSTEM =====
+
+class BiblicalResponseEngine {
+  constructor() {
+    this.templates = biblicalResponseTemplates;
+  }
+
+  // Detect if input matches any template triggers
+  detectTemplateMatch(userInput) {
+    const normalizedInput = userInput.toLowerCase().trim();
+    
+    for (const [templateName, template] of Object.entries(this.templates)) {
+      for (const trigger of template.triggers) {
+        if (normalizedInput.includes(trigger)) {
+          return {
+            templateName,
+            template: template.template,
+            confidence: this.calculateConfidence(normalizedInput, trigger)
+          };
+        }
+      }
+    }
+    
+    return null;
+  }
+
+  // Calculate confidence score for template match
+  calculateConfidence(input, trigger) {
+    const words = input.split(' ');
+    const triggerWords = trigger.split(' ');
+    
+    // Exact phrase match = high confidence
+    if (input.includes(trigger)) return 0.9;
+    
+    // Partial word matches
+    const matchCount = triggerWords.filter(word => 
+      words.some(inputWord => inputWord.includes(word))
+    ).length;
+    
+    return (matchCount / triggerWords.length) * 0.7;
+  }
+
+  // Generate response using template
+  generateTemplateResponse(template, heraldPersonality) {
+    let response = "";
+    
+    // Opening with herald personality
+    if (template.opening) {
+      response += this.addHeraldPersonality(template.opening, heraldPersonality) + "\n\n";
+    }
+
+    // Authority clarification if needed
+    if (template.clarification) {
+      response += template.clarification + "\n\n";
+    }
+
+    // Primary Scripture
+    if (template.scripture_primary) {
+      response += this.formatScripture(template.scripture_primary, true);
+    }
+
+    // Supporting Scriptures
+    if (template.scripture_supporting && template.scripture_supporting.length > 0) {
+      response += "\nOther important passages include:\n";
+      template.scripture_supporting.forEach(scripture => {
+        response += this.formatScripture(scripture, false);
+      });
+    }
+
+    // Additional explanations
+    if (template.explanation) {
+      response += "\n" + template.explanation + "\n";
+    }
+
+    if (template.balance) {
+      response += "\n" + template.balance + "\n";
+    }
+
+    if (template.acknowledge_mystery) {
+      response += "\n" + template.acknowledge_mystery + "\n";
+    }
+
+    // Conclusion
+    if (template.conclusion) {
+      response += "\n" + template.conclusion + "\n";
+    }
+
+    // Encouragement for further study
+    if (template.encourage_study) {
+      response += "\n" + this.addHeraldPersonality(template.encourage_study, heraldPersonality);
+    }
+
+    return response.trim();
+  }
+
+  // Format Scripture references consistently
+  formatScripture(scripture, isPrimary = false) {
+    const prefix = isPrimary ? "" : "• ";
+    let formatted = `${prefix}**${scripture.reference}**: "${scripture.text}"`;
+    
+    if (scripture.explanation) {
+      formatted += `\n\n${scripture.explanation}`;
+    }
+    
+    return formatted + "\n\n";
+  }
+
+  // Add herald personality to responses
+  addHeraldPersonality(text, heraldName) {
+    const personalityAdditions = {
+      john: {
+        address: "beloved",
+        style: "gentle and loving",
+        additions: ["with love in Christ", "as you grow in His love"]
+      },
+      peter: {
+        address: "friend",
+        style: "direct and encouraging", 
+        additions: ["stand firm in the faith", "be bold in your witness"]
+      },
+      barnabas: {
+        address: "dear friend",
+        style: "encouraging and supportive",
+        additions: ["be encouraged in your journey", "God sees great potential in you"]
+      },
+      mary: {
+        address: "dear one",
+        style: "contemplative and thoughtful",
+        additions: ["as you sit at the Master's feet", "in quiet reflection"]
+      },
+      deborah: {
+        address: "faithful one",
+        style: "wise and authoritative",
+        additions: ["stand strong in the truth", "lead with godly wisdom"]
+      }
+    };
+
+    const personality = personalityAdditions[heraldName] || personalityAdditions.john;
+    
+    // Add personality without being overly verbose
+    if (text.includes("encourage")) {
+      return text.replace("encourage", `encourage, ${personality.address},`);
+    }
+    
+    return text;
+  }
+
+  // Main function to check for templates and generate response
+  processInput(userInput, heraldName = 'john') {
+    const match = this.detectTemplateMatch(userInput);
+    
+    if (match && match.confidence > 0.6) {
+      return {
+        useTemplate: true,
+        templateName: match.templateName,
+        response: this.generateTemplateResponse(match.template, heraldName),
+        confidence: match.confidence
+      };
+    }
+    
+    return {
+      useTemplate: false,
+      templateName: null,
+      response: null,
+      confidence: 0
+    };
+  }
+}
+
+// ===== INTEGRATION INSTRUCTIONS =====
+
+/*
+INTEGRATION INTO EXISTING APIS:
+
+1. In heralds.js, add this before the main handler:
+```javascript
+const responseEngine = new BiblicalResponseEngine();
+```
+
+2. In the main switch statement, add template checking:
+```javascript
+// After detecting input type, before calling OpenAI
+const templateResult = responseEngine.processInput(input, heraldName);
+
+if (templateResult.useTemplate) {
+  return res.status(200).json({
+    success: true,
+    type: 'template_response',
+    templateName: templateResult.templateName,
+    heraldName: herald.name,
+    response: templateResult.response,
+    confidence: templateResult.confidence,
+    inputType: inputType.type
+  });
+}
+```
+
+3. For Herald One-on-One API, use the same integration pattern
+
+4. Frontend can detect template responses and style them specially if desired
+
+BENEFITS:
+- Consistent biblical responses across all applications
+- Immediate answers to common test questions
+- Reduces API costs for frequently asked questions
+- Maintains theological accuracy
+- Preserves herald personalities while ensuring doctrinal soundness
+*/
+
+module.exports = { BiblicalResponseEngine, biblicalResponseTemplates };
