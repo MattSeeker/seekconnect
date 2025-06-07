@@ -479,6 +479,16 @@
             font-size: clamp(1rem, 2.2vw, 1.1rem);
         }
 
+        .ai-attribution {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: clamp(0.8rem, 1.8vw, 0.85rem);
+            color: #64748b;
+            text-align: center;
+            font-style: italic;
+        }
+
         .recommendation-banner {
             background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
             border: 2px solid #10b981;
@@ -698,10 +708,6 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-
-            .jesus-quote-section {
-                padding: 1.25rem;
-            }
         }
 
         /* Large Mobile/Small Tablet (481px - 768px) */
@@ -908,6 +914,10 @@
                 background: #3a3a3a;
             }
 
+            .ai-attribution {
+                border-top-color: #404040;
+                color: #9ca3af;
+            }
         }
     </style>
 </head>
@@ -931,6 +941,7 @@
             <div class="nav-links" id="navLinks">
                 <a href="#" class="nav-link">Agora/Home</a>
                 <a href="#" class="nav-link">Herald Chat</a>
+                <a href="#" class="nav-link">WDJS (What Did Jesus Say)</a>
                 <a href="#" class="nav-link">References</a>
                 <a href="#" class="nav-link">Learning</a>
                 <a href="#" class="nav-link">About</a>
@@ -1085,6 +1096,7 @@
             <div class="footer-links">
                 <a href="#" class="footer-link">Agora/Home</a>
                 <a href="#" class="footer-link">Herald Chat</a>
+                <a href="#" class="footer-link">WDJS (What Did Jesus Say)</a>
                 <a href="#" class="footer-link">References</a>
                 <a href="#" class="footer-link">Learning</a>
                 <a href="#" class="footer-link">About</a>
@@ -1099,6 +1111,7 @@
         </div>
     </footer>
 
+    <script>
         // ===== ENHANCED HERALD INTERACTION SYSTEM =====
         let selectedHerald = 'john';
         let isLoading = false;
@@ -1143,7 +1156,7 @@
                 name: 'Lydia',
                 subtitle: 'The Hospitable Merchant',
                 colorProfile: { yellow: 8.0, green: 7.5, blue: 6.0, red: 4.0 },
-                addressTerm: 'dear sister'
+                addressTerm: 'dear friend'
             }
         };
 
@@ -1217,12 +1230,8 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Check if Jesus quote is contextually relevant
-                    const jesusCategory = detectJesusQuoteRelevance(input, data.response);
-                    const jesusQuote = jesusCategory ? getContextualJesusQuote(jesusCategory) : null;
-                    
-                    // Display response with optional Jesus quote
-                    displayResponse(data, jesusQuote);
+                    // Display response
+                    displayResponse(data);
                     
                     // Auto-scroll to response
                     setTimeout(() => {
@@ -1245,7 +1254,7 @@
         }
 
         // ===== DISPLAY FUNCTIONS =====
-        function displayResponse(data, jesusQuote = null) {
+        function displayResponse(data) {
             const responseSection = document.getElementById('responseSection');
             if (!responseSection) return;
             
@@ -1271,9 +1280,11 @@
                 `;
             }
             
-       
             // Add herald response
             content += `<div class="response-text">${formatText(data.response)}</div>`;
+            
+            // Add OpenAI attribution
+            content += `<div class="ai-attribution">Response generated with assistance from OpenAI ChatGPT</div>`;
             
             // Add recommendation if present
             if (data.recommendation) {
@@ -1310,8 +1321,8 @@
             document.querySelectorAll('.herald-submit-btn').forEach(btn => {
                 btn.disabled = loading;
                 btn.innerHTML = loading ? 
-                    '<div class="loading"><div class="spinner"></div>Submit</div>' : 
-                    'Seek Wisdom';
+                    '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>' : 
+                    'Submit';
             });
         }
 
@@ -1463,8 +1474,6 @@
             }
 
             console.log('🏛️ The Agora initialized - Ancient Voices, Living Word');
-            console.log('✝️ Jesus Quote System: Contextually relevant Scripture integration');
-            console.log('🎯 Test with: "peace", "forgiveness", "John 3:16", "worried about future"');
         });
     </script>
 </body>
