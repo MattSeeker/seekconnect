@@ -23,11 +23,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: var(--background);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -38,16 +43,17 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 1rem 0;
+            padding: 0.75rem 0;
         }
 
         .nav-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            min-height: 60px;
         }
 
         .nav-logo {
@@ -56,17 +62,19 @@
             gap: 0.75rem;
             text-decoration: none;
             color: var(--text-primary);
+            flex-shrink: 0;
         }
 
         .nav-logo-icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--primary-gradient);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .nav-logo-icon img {
@@ -76,7 +84,7 @@
         }
 
         .nav-logo-text {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -84,7 +92,8 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .nav-link {
@@ -92,29 +101,33 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            white-space: nowrap;
         }
 
         .nav-link:hover {
             color: var(--accent-color);
+            background: rgba(102, 126, 234, 0.1);
         }
 
         /* Header */
         .header {
             background: var(--primary-gradient);
             color: white;
-            padding: 4rem 0;
+            padding: 3rem 0 4rem 0;
             text-align: center;
         }
 
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             display: flex;
@@ -133,21 +146,21 @@
         }
 
         .header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .tagline {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             opacity: 0.9;
             font-style: italic;
             margin-bottom: 2rem;
         }
 
         .header-description {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             opacity: 0.85;
             max-width: 600px;
             margin: 0 auto;
@@ -156,9 +169,9 @@
 
         /* Main Content */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 2rem 1rem 4rem 1rem;
         }
 
         /* Input Section */
@@ -166,28 +179,32 @@
             background: var(--card-bg);
             border-radius: 16px;
             box-shadow: var(--shadow);
-            padding: 3rem;
-            margin-bottom: 4rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
             text-align: center;
         }
 
         .input-section h2 {
             color: var(--text-primary);
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 1rem;
         }
 
         .input-section p {
             color: var(--text-secondary);
             margin-bottom: 2rem;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
         }
 
         .search-container {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -200,48 +217,11 @@
             font-size: 1.1rem;
             outline: none;
             transition: border-color 0.3s ease;
+            min-height: 56px;
         }
 
         .search-input:focus {
             border-color: var(--accent-color);
-        }
-
-        .input-examples {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .example-category {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .example-category h4 {
-            color: var(--accent-color);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .example-item {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 0.5rem 0;
-            transition: color 0.2s ease;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .example-item:last-child {
-            border-bottom: none;
-        }
-
-        .example-item:hover {
-            color: var(--accent-color);
         }
 
         /* Heralds Section */
@@ -255,13 +235,13 @@
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             color: var(--text-primary);
             margin-bottom: 1rem;
         }
 
         .section-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto;
@@ -269,8 +249,9 @@
 
         .heralds-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            align-items: stretch;
         }
 
         .herald-card {
@@ -281,10 +262,13 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .herald-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
         }
 
@@ -311,13 +295,13 @@
         }
 
         .herald-header {
-            padding: 2rem;
+            padding: 1.5rem;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             border-bottom: 1px solid var(--card-border);
         }
 
         .herald-name {
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
@@ -325,54 +309,58 @@
 
         .herald-subtitle {
             color: #8b5a9f;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             font-weight: 600;
         }
 
         .herald-content {
-            padding: 2rem;
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .hebrew-name {
             background: #f1f5f9;
-            padding: 0.75rem 1.25rem;
+            padding: 0.75rem 1rem;
             border-radius: 8px;
             font-style: italic;
             color: #7c3f58;
             margin-bottom: 1.5rem;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             font-weight: 500;
         }
 
         .herald-description {
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
-            font-size: 1rem;
+            font-size: clamp(0.95rem, 2vw, 1rem);
             line-height: 1.6;
+            flex: 1;
         }
 
         .biblical-ref {
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.8vw, 0.9rem);
             color: #64748b;
             border-top: 1px solid #e2e8f0;
             padding-top: 1.5rem;
             font-style: italic;
+            margin-bottom: 1.5rem;
         }
 
         .herald-submit-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 1.25rem 2.5rem;
+            padding: 1rem 2rem;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             font-weight: 600;
             cursor: pointer;
-            margin: 2rem auto 0 auto;
-            width: 200px;
-            display: block;
+            width: 100%;
             text-align: center;
             transition: all 0.3s ease;
+            min-height: 48px;
         }
 
         .herald-submit-btn:hover {
@@ -391,7 +379,7 @@
             background: var(--card-bg);
             border-radius: 16px;
             box-shadow: var(--shadow);
-            padding: 3rem;
+            padding: 2rem;
             margin-bottom: 3rem;
             display: none;
         }
@@ -406,27 +394,28 @@
         }
 
         .herald-avatar {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: var(--primary-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             color: white;
             font-weight: 700;
+            flex-shrink: 0;
         }
 
         .response-meta h3 {
             color: var(--text-primary);
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
             margin-bottom: 0.5rem;
         }
 
         .response-meta p {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .verse-display {
@@ -441,11 +430,11 @@
             font-style: italic;
             color: var(--text-primary);
             margin-bottom: 0.75rem;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
         }
 
         .verse-reference {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             color: var(--accent-color);
             font-weight: 600;
         }
@@ -453,14 +442,14 @@
         .response-text {
             color: var(--text-primary);
             line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
         }
 
         .jesus-quote-section {
             background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
             border: 2px solid #ea580c;
             border-radius: 12px;
-            padding: 2rem;
+            padding: 1.5rem;
             margin: 2rem 0;
         }
 
@@ -471,14 +460,14 @@
             margin-bottom: 1.5rem;
             color: #9a3412;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
         }
 
         .jesus-quote-text {
             font-style: italic;
             color: #7c2d12;
             margin-bottom: 1rem;
-            font-size: 1.15rem;
+            font-size: clamp(1.05rem, 2.3vw, 1.15rem);
             line-height: 1.6;
         }
 
@@ -486,7 +475,7 @@
             color: #ea580c;
             font-weight: 600;
             text-align: right;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .loading {
@@ -495,7 +484,7 @@
             gap: 0.75rem;
             color: var(--accent-color);
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
         }
 
         .spinner {
@@ -516,21 +505,21 @@
         .footer {
             background: var(--card-bg);
             border-top: 1px solid var(--card-border);
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             color: var(--text-secondary);
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
@@ -538,9 +527,10 @@
         .footer-link {
             color: var(--accent-color);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 0.5rem;
         }
 
         .footer-link:hover {
@@ -548,53 +538,287 @@
         }
 
         .footer-bottom {
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.8vw, 0.9rem);
             color: #64748b;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* Enhanced Responsive Design */
+        
+        /* Small Mobile (320px - 480px) */
+        @media (max-width: 480px) {
             .nav-content {
                 flex-direction: column;
                 gap: 1rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .header {
+                padding: 2rem 0 3rem 0;
+            }
+
+            .logo {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 1.5rem;
+            }
+
+            .container {
+                padding: 1.5rem 0.75rem 3rem 0.75rem;
+            }
+
+            .input-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .heralds-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .herald-header {
+                padding: 1.25rem;
+            }
+
+            .herald-content {
+                padding: 1.25rem;
+            }
+
+            .response-section {
+                padding: 1.5rem;
+            }
+
+            .response-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .herald-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .jesus-quote-section {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Large Mobile/Small Tablet (481px - 768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .nav-content {
+                padding: 0 1.5rem;
             }
 
             .nav-links {
                 gap: 1rem;
             }
 
-            .header h1 {
-                font-size: 2.5rem;
-            }
-
-            .search-container {
-                flex-direction: column;
-            }
-
-            .input-examples {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 2rem 1.5rem 4rem 1.5rem;
             }
 
             .heralds-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.25rem;
+            }
+
+            .search-container {
+                max-width: 600px;
             }
 
             .response-header {
-                flex-direction: column;
-                text-align: center;
+                gap: 1.25rem;
             }
 
             .footer-links {
-                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Tablet (769px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 900px;
+                padding: 3rem 2rem 4rem 2rem;
+            }
+
+            .heralds-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 1.5rem;
             }
 
-            .section-header h2 {
-                font-size: 2rem;
+            .nav-links {
+                gap: 1.25rem;
+            }
+
+            .input-section {
+                padding: 2.5rem;
+            }
+
+            .response-section {
+                padding: 2.5rem;
+            }
+        }
+
+        /* Large Desktop (1025px+) */
+        @media (min-width: 1025px) {
+            .container {
+                padding: 4rem 2rem;
+            }
+
+            .nav-content {
+                padding: 0 2rem;
+            }
+
+            .heralds-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+            }
+
+            .input-section {
+                padding: 3rem;
+            }
+
+            .response-section {
+                padding: 3rem;
+            }
+
+            .herald-header {
+                padding: 2rem;
+            }
+
+            .herald-content {
+                padding: 2rem;
+            }
+        }
+
+        /* Extra Large Desktop (1400px+) */
+        @media (min-width: 1400px) {
+            .heralds-grid {
+                grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+                gap: 2.5rem;
+            }
+        }
+
+        /* High DPI Displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .logo img,
+            .nav-logo-icon img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Landscape Orientation Adjustments */
+        @media (orientation: landscape) and (max-height: 600px) {
+            .header {
+                padding: 2rem 0;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 1rem;
             }
 
             .container {
-                padding: 2rem 1rem;
+                padding-top: 2rem;
+            }
+        }
+
+        /* Touch-specific enhancements */
+        @media (hover: none) and (pointer: coarse) {
+            .herald-card {
+                transform: none;
+            }
+
+            .herald-card:hover {
+                transform: none;
+            }
+
+            .herald-card:active {
+                transform: scale(0.98);
+            }
+
+            .herald-submit-btn:hover {
+                transform: none;
+            }
+
+            .herald-submit-btn:active {
+                transform: scale(0.98);
+            }
+
+            .nav-link:hover {
+                background: transparent;
+            }
+
+            .nav-link:active {
+                background: rgba(102, 126, 234, 0.1);
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Dark mode support (if system preference) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #1a1a1a;
+                --text-primary: #ffffff;
+                --text-secondary: #e0e0e0;
+                --card-bg: #2d2d2d;
+                --card-border: #404040;
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.4);
+            }
+
+            .herald-header {
+                background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
+            }
+
+            .hebrew-name {
+                background: #3a3a3a;
+                color: #b794c4;
+            }
+
+            .verse-display {
+                background: #3a3a3a;
+            }
+
+            .jesus-quote-section {
+                background: linear-gradient(135deg, #4a3728 0%, #6b4423 100%);
             }
         }
     </style>
@@ -1123,16 +1347,6 @@
                     selectedHerald = card.dataset.herald;
                 });
             });
-
-            // Example click handlers - REMOVED since examples section was removed
-            // document.querySelectorAll('.example-item').forEach(item => {
-            //     item.addEventListener('click', () => {
-            //         const searchInput = document.getElementById('searchInput');
-            //         if (searchInput) {
-            //             searchInput.value = item.dataset.example;
-            //         }
-            //     });
-            // });
 
             // Enter key handling
             const searchInput = document.getElementById('searchInput');
