@@ -2017,3 +2017,42 @@ function getFallbackMessage(herald) {
 
   return fallbackMessages[herald.name?.toLowerCase()] || fallbackMessages.john;
 }
+
+
+
+// =======================
+// MODE DETECTION LOGIC
+// =======================
+
+function getHeraldMode(input) {
+  const spiritualKeywords = [
+    "Jesus", "Messiah", "Christ", "God", "faith", "salvation", "sin", "grace",
+    "forgiveness", "resurrection", "Bible", "Scripture", "discipleship", "Holy Spirit", "Kingdom"
+  ];
+
+  const secularKeywords = [
+    "boat", "fish", "market", "family", "storm", "travel", "nets", "Galilee",
+    "friendship", "food", "walking", "work", "village", "tools"
+  ];
+
+  const bridgeKeywords = [
+    "betrayal", "purpose", "calling", "identity", "failure", "fear", "shame",
+    "worth", "courage", "restoration", "hope", "direction", "leadership", "love"
+  ];
+
+  const lowered = input.toLowerCase();
+  const hasSpiritual = spiritualKeywords.some(word => lowered.includes(word.toLowerCase()));
+  const hasSecular = secularKeywords.some(word => lowered.includes(word.toLowerCase()));
+  const hasBridge = bridgeKeywords.some(word => lowered.includes(word.toLowerCase()));
+
+  if (hasSpiritual) return "herald";
+  if (hasSecular) return "pilgrim";
+  if (hasBridge) return "span";
+  return "pilgrim";
+}
+
+// Later in the main POST handler or system prompt generation, apply:
+// const mode = getHeraldMode(userInput);
+// if (mode === "herald") { systemPrompt += "...add scripture..."; }
+// else if (mode === "pilgrim") { systemPrompt += "...human reflection..."; }
+// else if (mode === "span") { systemPrompt += "...offer choice to user..."; }
