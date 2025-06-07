@@ -479,39 +479,6 @@
             font-size: clamp(1rem, 2.2vw, 1.1rem);
         }
 
-        .jesus-quote-section {
-            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
-            border: 2px solid #ea580c;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .jesus-quote-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            color: #9a3412;
-            font-weight: 600;
-            font-size: clamp(1rem, 2.2vw, 1.1rem);
-        }
-
-        .jesus-quote-text {
-            font-style: italic;
-            color: #7c2d12;
-            margin-bottom: 1rem;
-            font-size: clamp(1.05rem, 2.3vw, 1.15rem);
-            line-height: 1.6;
-        }
-
-        .jesus-quote-reference {
-            color: #ea580c;
-            font-weight: 600;
-            text-align: right;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
         .recommendation-banner {
             background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
             border: 2px solid #10b981;
@@ -941,9 +908,6 @@
                 background: #3a3a3a;
             }
 
-            .jesus-quote-section {
-                background: linear-gradient(135deg, #4a3728 0%, #6b4423 100%);
-            }
         }
     </style>
 </head>
@@ -1135,121 +1099,6 @@
         </div>
     </footer>
 
-    <script>
-        // ===== JESUS QUOTE CALIBRATION SYSTEM =====
-        const jesusQuotes = {
-            love: [
-                { text: "A new command I give you: Love one another. As I have loved you, so you must love one another.", reference: "John 13:34" },
-                { text: "Greater love has no one than this: to lay down one's life for one's friends.", reference: "John 15:13" },
-                { text: "Love your enemies and pray for those who persecute you.", reference: "Matthew 5:44" }
-            ],
-            
-            peace: [
-                { text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.", reference: "John 14:27" },
-                { text: "Blessed are the peacemakers, for they will be called children of God.", reference: "Matthew 5:9" },
-                { text: "In this world you will have trouble. But take heart! I have overcome the world.", reference: "John 16:33" }
-            ],
-            
-            faith: [
-                { text: "Truly I tell you, if you have faith as small as a mustard seed, you can say to this mountain, 'Move from here to there,' and it will move. Nothing will be impossible for you.", reference: "Matthew 17:20" },
-                { text: "Have faith in God.", reference: "Mark 11:22" },
-                { text: "Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.", reference: "John 20:29" }
-            ],
-            
-            forgiveness: [
-                { text: "Father, forgive them, for they do not know what they are doing.", reference: "Luke 23:34" },
-                { text: "If you forgive other people when they sin against you, your heavenly Father will also forgive you.", reference: "Matthew 6:14" },
-                { text: "Be merciful, just as your Father is merciful.", reference: "Luke 6:36" }
-            ],
-            
-            prayer: [
-                { text: "This, then, is how you should pray: 'Our Father in heaven, hallowed be your name...'", reference: "Matthew 6:9" },
-                { text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.", reference: "Matthew 7:7" },
-                { text: "And when you pray, do not be like the hypocrites, for they love to pray standing in the synagogues and on the street corners to be seen by others.", reference: "Matthew 6:5" }
-            ],
-            
-            salvation: [
-                { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", reference: "John 3:16" },
-                { text: "I am the way and the truth and the life. No one comes to the Father except through me.", reference: "John 14:6" },
-                { text: "Come to me, all you who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28" }
-            ],
-            
-            discipleship: [
-                { text: "If anyone would come after me, let him deny himself and take up his cross and follow me.", reference: "Matthew 16:24" },
-                { text: "By this everyone will know that you are my disciples, if you love one another.", reference: "John 13:35" },
-                { text: "Go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.", reference: "Matthew 28:19" }
-            ],
-            
-            worry: [
-                { text: "Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.", reference: "Matthew 6:34" },
-                { text: "Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they?", reference: "Matthew 6:26" },
-                { text: "Who of you by worrying can add a single hour to your life?", reference: "Matthew 6:27" }
-            ],
-            
-            general: [
-                { text: "I have come that they may have life, and have it abundantly.", reference: "John 10:10" },
-                { text: "Heaven and earth will pass away, but my words will never pass away.", reference: "Matthew 24:35" },
-                { text: "Blessed are the poor in spirit, for theirs is the kingdom of heaven.", reference: "Matthew 5:3" }
-            ]
-        };
-
-        // ===== JESUS QUOTE RELEVANCE DETECTION =====
-        function detectJesusQuoteRelevance(userInput, heraldResponse) {
-            const input = userInput.toLowerCase();
-            const response = heraldResponse.toLowerCase();
-            
-            const contextKeywords = {
-                love: ['love', 'loving', 'romance', 'relationship', 'marriage', 'family'],
-                peace: ['peace', 'anxiety', 'worry', 'stress', 'calm', 'rest', 'troubled'],
-                faith: ['faith', 'believe', 'trust', 'doubt', 'impossible', 'miracle'],
-                forgiveness: ['forgive', 'forgiveness', 'hurt', 'angry', 'resentment', 'mercy'],
-                prayer: ['pray', 'prayer', 'praying', 'ask god', 'talk to god'],
-                salvation: ['saved', 'salvation', 'eternal life', 'heaven', 'born again'],
-                discipleship: ['follow', 'disciple', 'christian life', 'obey', 'serve'],
-                worry: ['worry', 'anxious', 'fear', 'afraid', 'stressed', 'overwhelmed'],
-                general: ['jesus', 'christ', 'lord', 'savior', 'son of god']
-            };
-            
-            // Check if input or expected response contains relevant keywords
-            for (const [category, keywords] of Object.entries(contextKeywords)) {
-                for (const keyword of keywords) {
-                    if (input.includes(keyword) || response.includes(keyword)) {
-                        return category;
-                    }
-                }
-            }
-            
-            // Check for Bible references that Jesus spoke
-            const jesusVersePatterns = [
-                /john (3|14|15|16|17)/, /matthew (5|6|7|11|16|28)/, 
-                /luke (6|23)/, /mark (11|16)/
-            ];
-            
-            for (const pattern of jesusVersePatterns) {
-                if (pattern.test(input)) {
-                    return 'general';
-                }
-            }
-            
-            return null; // No Jesus quote needed
-        }
-
-        // ===== GET CONTEXTUAL JESUS QUOTE =====
-        function getContextualJesusQuote(category) {
-            if (!category || !jesusQuotes[category]) {
-                return null;
-            }
-            
-            const quotes = jesusQuotes[category];
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            
-            return {
-                text: randomQuote.text,
-                reference: randomQuote.reference,
-                formatted: `As our Lord Jesus said: "${randomQuote.text}" (${randomQuote.reference})`
-            };
-        }
-
         // ===== ENHANCED HERALD INTERACTION SYSTEM =====
         let selectedHerald = 'john';
         let isLoading = false;
@@ -1422,20 +1271,7 @@
                 `;
             }
             
-            // Add Jesus quote if contextually relevant
-            if (jesusQuote) {
-                content += `
-                    <div class="jesus-quote-section">
-                        <div class="jesus-quote-header">
-                            <span class="jesus-icon">✝️</span>
-                            <span>The Words of Jesus</span>
-                        </div>
-                        <div class="jesus-quote-text">"${jesusQuote.text}"</div>
-                        <div class="jesus-quote-reference">— ${jesusQuote.reference}</div>
-                    </div>
-                `;
-            }
-            
+       
             // Add herald response
             content += `<div class="response-text">${formatText(data.response)}</div>`;
             
