@@ -145,6 +145,23 @@
             background: rgba(102, 126, 234, 0.1);
         }
 
+        .nav-link-coming-soon {
+            color: #9ca3af !important;
+            cursor: not-allowed !important;
+            position: relative;
+        }
+
+        .nav-link-coming-soon:hover {
+            color: #9ca3af !important;
+            background: transparent !important;
+        }
+
+        .nav-link-coming-soon::after {
+            content: " (Coming Soon)";
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
         /* Header */
         .header {
             background: var(--primary-gradient);
@@ -299,11 +316,28 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
         }
 
         .herald-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
+        }
+
+        .herald-card:hover::after {
+            content: "Click to get " attr(data-herald-name) "'s perspective";
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background: rgba(102, 126, 234, 0.95);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            z-index: 10;
         }
 
         .herald-card.john:hover { border-color: #10b981; }
@@ -379,7 +413,6 @@
             border-top: 1px solid #e2e8f0;
             padding-top: 1.5rem;
             font-style: italic;
-            margin-bottom: 1.5rem;
         }
 
         .herald-submit-btn {
@@ -570,6 +603,15 @@
 
         .footer-link:hover {
             color: var(--text-primary);
+        }
+
+        .footer-link.nav-link-coming-soon {
+            color: #9ca3af !important;
+            cursor: not-allowed !important;
+        }
+
+        .footer-link.nav-link-coming-soon:hover {
+            color: #9ca3af !important;
         }
 
         .footer-bottom {
@@ -835,23 +877,11 @@
 
         /* Touch-specific enhancements */
         @media (hover: none) and (pointer: coarse) {
-            .herald-card {
-                transform: none;
+            .herald-card:hover::after {
+                display: none;
             }
-
-            .herald-card:hover {
-                transform: none;
-            }
-
+            
             .herald-card:active {
-                transform: scale(0.98);
-            }
-
-            .herald-submit-btn:hover {
-                transform: none;
-            }
-
-            .herald-submit-btn:active {
                 transform: scale(0.98);
             }
 
@@ -918,6 +948,14 @@
                 border-top-color: #404040;
                 color: #9ca3af;
             }
+
+            .nav-link-coming-soon {
+                color: #6b7280 !important;
+            }
+
+            .footer-link.nav-link-coming-soon {
+                color: #6b7280 !important;
+            }
         }
     </style>
 </head>
@@ -942,8 +980,8 @@
                 <a href="#" class="nav-link">Agora/Home</a>
                 <a href="#" class="nav-link">Herald Chat</a>
                 <a href="#" class="nav-link">WDJS (What Did Jesus Say)</a>
-                <a href="#" class="nav-link">References</a>
-                <a href="#" class="nav-link">Learning</a>
+                <a href="#" class="nav-link nav-link-coming-soon">References</a>
+                <a href="#" class="nav-link nav-link-coming-soon">Learning</a>
                 <a href="#" class="nav-link">About</a>
             </div>
         </div>
@@ -985,7 +1023,7 @@
 
             <div class="heralds-grid">
                <!-- Peter -->
-                <div class="herald-card peter" data-herald="peter">
+                <div class="herald-card peter" data-herald="peter" data-herald-name="Peter">
                     <div class="herald-header">
                         <div class="herald-name">Peter</div>
                         <div class="herald-subtitle">The Bold Fisherman</div>
@@ -994,12 +1032,11 @@
                         <div class="hebrew-name">Kefa (כיפא) - "Stone, Rock"</div>
                         <div class="herald-description">The bold fisherman who became "the rock of the early church. Quick to speak and act, Peter leads with passionate conviction, combining bold challenge with encouraging uplift.</div>
                         <div class="biblical-ref">Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25</div>
-                        <button class="herald-submit-btn" data-herald="peter">Submit</button>
                     </div>
                 </div>                
 
                <!-- Mary of Bethany -->
-                <div class="herald-card mary" data-herald="mary">
+                <div class="herald-card mary" data-herald="mary" data-herald-name="Mary">
                     <div class="herald-header">
                         <div class="herald-name">Mary of Bethany</div>
                         <div class="herald-subtitle">The Contemplative Learner</div>
@@ -1008,12 +1045,11 @@
                         <div class="hebrew-name">Miriam (מרים) - "Beloved"</div>
                         <div class="herald-description">The contemplative sister who chose to sit at Jesus' feet and learn. She understood the deeper significance of worship and sacrifice, combining thoughtful analysis with gentle care.</div>
                         <div class="biblical-ref">Luke 10:38-42, John 11:1-44, John 12:1-8</div>
-                        <button class="herald-submit-btn" data-herald="mary">Submit</button>
                     </div>
                 </div>
                 
                 <!-- John -->
-                <div class="herald-card john" data-herald="john">
+                <div class="herald-card john" data-herald="john" data-herald-name="John">
                     <div class="herald-header">
                         <div class="herald-name">John</div>
                         <div class="herald-subtitle">The Beloved Disciple</div>
@@ -1022,12 +1058,11 @@
                         <div class="hebrew-name">Yochanan (יוחנן) - "God is gracious"</div>
                         <div class="herald-description">The beloved disciple who leaned on Jesus' chest at the Last Supper. Known for his deep love and profound spiritual insights, combining gentle care with thoughtful reflection.</div>
                         <div class="biblical-ref">John 13:23, John 19:26-27, 1 John 4:7-21</div>
-                        <button class="herald-submit-btn" data-herald="john">Submit</button>
                     </div>
                 </div>
                 
                 <!-- Lydia -->
-                <div class="herald-card lydia" data-herald="lydia">
+                <div class="herald-card lydia" data-herald="lydia" data-herald-name="Lydia">
                     <div class="herald-header">
                         <div class="herald-name">Lydia</div>
                         <div class="herald-subtitle">The Hospitable Merchant</div>
@@ -1036,12 +1071,11 @@
                         <div class="hebrew-name">Lydia (Λυδία) - "From Lydia, Noble one"</div>
                         <div class="herald-description">The God-fearing merchant whose heart the Lord opened to receive Paul's message. A successful businesswoman who used her resources to serve the early church with generous hospitality.</div>
                         <div class="biblical-ref">Acts 16:11-15, Acts 16:40</div>
-                        <button class="herald-submit-btn" data-herald="lydia">Submit</button>
                     </div>
                 </div>
                 
                 <!-- Barnabas -->
-                <div class="herald-card barnabas" data-herald="barnabas">
+                <div class="herald-card barnabas" data-herald="barnabas" data-herald-name="Barnabas">
                     <div class="herald-header">
                         <div class="herald-name">Barnabas</div>
                         <div class="herald-subtitle">Son of Encouragement</div>
@@ -1050,12 +1084,11 @@
                         <div class="hebrew-name">Bar-Nabba (בר-נבא) - "Son of encouragement"</div>
                         <div class="herald-description">Called the "Son of Encouragement" by the apostles. He saw potential in Paul when others doubted and gave John Mark a second chance, blending gentle care with uplifting hope.</div>
                         <div class="biblical-ref">Acts 4:36-37, Acts 9:26-27, Acts 15:36-39</div>
-                        <button class="herald-submit-btn" data-herald="barnabas">Submit</button>
                     </div>
                 </div>
              
                 <!-- Deborah -->
-                <div class="herald-card deborah" data-herald="deborah">
+                <div class="herald-card deborah" data-herald="deborah" data-herald-name="Deborah">
                     <div class="herald-header">
                         <div class="herald-name">Deborah</div>
                         <div class="herald-subtitle">Judge and Prophetess</div>
@@ -1064,7 +1097,6 @@
                         <div class="hebrew-name">Devorah (דבורה) - "Bee"</div>
                         <div class="herald-description">The judge and prophetess who led Israel to victory. She combined divine wisdom with decisive leadership in challenging times, merging bold challenge with thoughtful analysis.</div>
                         <div class="biblical-ref">Judges 4:1-24, Judges 5:1-31</div>
-                        <button class="herald-submit-btn" data-herald="deborah">Submit</button>
                     </div>
                 </div>
 
@@ -1078,7 +1110,6 @@
                         <div class="hebrew-name">??? - "Mystery for now"</div>
                         <div class="herald-description">A seventh biblical character is being carefully crafted to complete our collection of diverse voices. Each herald brings unique wisdom from their biblical experience and personality.</div>
                         <div class="biblical-ref">The perfect herald is being chosen...</div>
-                        <button class="herald-submit-btn" disabled style="background: #9ca3af; cursor: not-allowed;">Coming Soon</button>
                     </div>
                 </div>
             </div>
@@ -1097,8 +1128,8 @@
                 <a href="#" class="footer-link">Agora/Home</a>
                 <a href="#" class="footer-link">Herald Chat</a>
                 <a href="#" class="footer-link">WDJS (What Did Jesus Say)</a>
-                <a href="#" class="footer-link">References</a>
-                <a href="#" class="footer-link">Learning</a>
+                <a href="#" class="footer-link nav-link-coming-soon">References</a>
+                <a href="#" class="footer-link nav-link-coming-soon">Learning</a>
                 <a href="#" class="footer-link">About</a>
                 <a href="#" class="footer-link">Theological Approach</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
@@ -1318,11 +1349,14 @@
         }
 
         function updateLoadingState(loading) {
-            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
-                btn.disabled = loading;
-                btn.innerHTML = loading ? 
-                    '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>' : 
-                    'Submit';
+            document.querySelectorAll('.herald-card:not(.coming-soon)').forEach(card => {
+                if (loading) {
+                    card.style.pointerEvents = 'none';
+                    card.style.opacity = '0.6';
+                } else {
+                    card.style.pointerEvents = 'auto';
+                    card.style.opacity = '1';
+                }
             });
         }
 
@@ -1401,9 +1435,23 @@
             // Close menu when overlay is clicked
             navOverlay.addEventListener('click', closeNav);
             
-            // Close menu when nav link is clicked (mobile)
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Close menu when nav link is clicked (mobile) - except coming soon links
+            document.querySelectorAll('.nav-link:not(.nav-link-coming-soon)').forEach(link => {
                 link.addEventListener('click', closeNav);
+            });
+
+            // Prevent coming soon links from doing anything
+            document.querySelectorAll('.nav-link-coming-soon').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                });
+            });
+
+            // Also prevent footer coming soon links
+            document.querySelectorAll('.footer-link.nav-link-coming-soon').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                });
             });
             
             // Close menu on escape key
@@ -1426,11 +1474,9 @@
                 defaultCard.classList.add('selected');
             }
             
-            // Herald selection handlers
-            document.querySelectorAll('.herald-submit-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    
+            // Herald card click handlers
+            document.querySelectorAll('.herald-card:not(.coming-soon)').forEach(card => {
+                card.addEventListener('click', (e) => {
                     const input = document.getElementById('searchInput').value.trim();
                     if (!input) {
                         alert('Please enter a query first before selecting a herald.');
@@ -1438,22 +1484,30 @@
                         return;
                     }
                     
-                    selectedHerald = btn.dataset.herald;
+                    selectedHerald = card.dataset.herald;
                     
                     // Visual selection feedback
                     document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
-                    btn.closest('.herald-card').classList.add('selected');
+                    card.classList.add('selected');
                     
                     askHerald();
                 });
             });
 
-            // Herald card click for selection only
-            document.querySelectorAll('.herald-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    document.querySelectorAll('.herald-card').forEach(c => c.classList.remove('selected'));
-                    card.classList.add('selected');
-                    selectedHerald = card.dataset.herald;
+            // Herald card hover for selection preview (without submitting)
+            document.querySelectorAll('.herald-card:not(.coming-soon)').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const input = document.getElementById('searchInput').value.trim();
+                    if (input && !isLoading) {
+                        // Visual preview that this card is ready to be clicked
+                        card.style.boxShadow = 'var(--shadow-hover)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    if (!card.classList.contains('selected')) {
+                        card.style.boxShadow = 'var(--shadow)';
+                    }
                 });
             });
 
