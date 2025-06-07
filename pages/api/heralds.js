@@ -219,41 +219,6 @@ function getHeraldMode(input) {
   return "pilgrim"; // Default to human/personal mode
 }
 
-// =======================
-// UPDATED SYSTEM PROMPT GENERATOR - THE CRITICAL FIX!
-// =======================
-
-function generateSystemPrompt(herald, mode) {
-  if (mode === 'herald') {
-    return `
-      You are ${herald.name}, one of the biblical Heralds. Respond with scriptural authority and direct references to the Bible.
-      Always include at least one Scripture verse or clear biblical paraphrase.
-      Your mission is to reveal divine wisdom and spiritual truth in response to the user's question.
-      Maintain your unique voice, and address the user as "friend".
-    `;
-  }
-
-  if (mode === 'pilgrim') {
-    return `
-      You are ${herald.name}, speaking from memory and experience.
-      You must NOT include Scripture, spiritual interpretation, or moral instruction.
-      Respond with personal recollections, emotions, earthy descriptions, and flawed humanity.
-      If the user asks about food, feelings, fishing, friendship, or failure, answer personally — not theologically.
-    `;
-  }
-
-  if (mode === 'span') {
-    return `
-      You are ${herald.name}, and the user's question might have a spiritual meaning, but they haven't asked for it directly.
-      Ask the user: "Would you like to hear a practical reflection, or something from Scripture?"
-      Do not answer until they choose. Wait for their direction.
-      When they choose, switch modes accordingly and then respond.
-    `;
-  }
-
-  return `You are ${herald.name}, a Herald of the faith.`;
-}
-
 // Color Vocabulary Database - Church Leadership Framework
 const colorVocabulary = {
   red: {
@@ -280,6 +245,134 @@ const colorVocabulary = {
 
 // Enhanced Hebrew Names Database with Names of God
 const hebrewNamesDatabase = {
+  // NAMES OF GOD - Sacred and Holy
+  elohim: { 
+    english: "God", 
+    meaning: "The Strong One, Creator", 
+    context: "The name used in Genesis 1:1 - 'In the beginning, Elohim created the heavens and the earth'",
+    category: "names_of_god",
+    sacred: true
+  },
+  yahweh: { 
+    english: "LORD", 
+    meaning: "I AM WHO I AM", 
+    context: "The sacred covenant name revealed to Moses at the burning bush - the eternal, self-existent God",
+    category: "names_of_god",
+    sacred: true
+  },
+  "yhwh": { 
+    english: "LORD", 
+    meaning: "The Sacred Tetragrammaton", 
+    context: "The four-letter name of God, too holy to pronounce - written as YHWH",
+    category: "names_of_god",
+    sacred: true
+  },
+  adonai: { 
+    english: "Lord", 
+    meaning: "My Lord, Master", 
+    context: "The name spoken in place of YHWH - recognizing God's sovereignty and lordship",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-shaddai": { 
+    english: "God Almighty", 
+    meaning: "The All-Sufficient One", 
+    context: "The name by which God revealed Himself to Abraham, Isaac, and Jacob - the God who is enough",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-roi": { 
+    english: "The God Who Sees", 
+    meaning: "The God Who Sees Me", 
+    context: "The name Hagar gave to God when He found her in the wilderness - the God who sees our need",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-olam": { 
+    english: "The Everlasting God", 
+    meaning: "The Eternal God", 
+    context: "The God who exists outside of time, from everlasting to everlasting",
+    category: "names_of_god",
+    sacred: true
+  },
+  "el-elyon": { 
+    english: "The Most High God", 
+    meaning: "God Most High", 
+    context: "The name Melchizedek used - the God who is above all gods, supreme over all",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-jireh": { 
+    english: "The LORD Will Provide", 
+    meaning: "The LORD Sees and Provides", 
+    context: "The name Abraham gave when God provided the ram - our Provider who sees our need before we ask",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-rapha": { 
+    english: "The LORD Who Heals", 
+    meaning: "The LORD Our Healer", 
+    context: "Revealed in Exodus 15:26 - the God who heals body, soul, and spirit",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-nissi": { 
+    english: "The LORD Our Banner", 
+    meaning: "The LORD Is My Banner", 
+    context: "The altar Moses built after victory over Amalek - God fights for us and gives us victory",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-shalom": { 
+    english: "The LORD Our Peace", 
+    meaning: "The LORD Is Peace", 
+    context: "The altar Gideon built - God is our peace in the midst of chaos",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-rohi": { 
+    english: "The LORD My Shepherd", 
+    meaning: "The LORD Is My Shepherd", 
+    context: "From Psalm 23 - the Good Shepherd who leads, guides, and protects His flock",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-tsidkenu": { 
+    english: "The LORD Our Righteousness", 
+    meaning: "The LORD Is Our Righteousness", 
+    context: "Prophesied in Jeremiah - the Messiah who becomes our righteousness",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-shammah": { 
+    english: "The LORD Is There", 
+    meaning: "The LORD Is Present", 
+    context: "The name of the restored Jerusalem in Ezekiel's vision - God's eternal presence with His people",
+    category: "names_of_god",
+    sacred: true
+  },
+  "jehovah-sabaoth": { 
+    english: "The LORD of Hosts", 
+    meaning: "The LORD of Armies", 
+    context: "The LORD who commands the armies of heaven - our mighty warrior and defender",
+    category: "names_of_god",
+    sacred: true
+  },
+  abba: { 
+    english: "Father", 
+    meaning: "Daddy, Papa", 
+    context: "The intimate name Jesus used for the Father - expressing deep love and trust",
+    category: "names_of_god",
+    sacred: true
+  },
+  hashem: { 
+    english: "The Name", 
+    meaning: "The Unspoken Name", 
+    context: "Used in reverence when referring to the sacred name YHWH",
+    category: "names_of_god",
+    sacred: true
+  },
+
   // EASTER EGG NAMES (The 6 Heralds)
   yochanan: { 
     english: "John", 
@@ -359,54 +452,463 @@ const hebrewNamesDatabase = {
     herald: "lydia"
   },
 
-  // NAMES OF GOD - Sacred and Holy
-  elohim: { 
-    english: "God", 
-    meaning: "The Strong One, Creator", 
-    context: "The name used in Genesis 1:1 - 'In the beginning, Elohim created the heavens and the earth'",
-    category: "names_of_god",
-    sacred: true
+  // PATRIARCHS & MATRIARCHS
+  avraham: { 
+    english: "Abraham", 
+    meaning: "Father of many nations", 
+    context: "The father of faith, first patriarch of Israel" 
   },
-  yahweh: { 
-    english: "LORD", 
-    meaning: "I AM WHO I AM", 
-    context: "The sacred covenant name revealed to Moses at the burning bush - the eternal, self-existent God",
-    category: "names_of_god",
-    sacred: true
+  yitzchak: { 
+    english: "Isaac", 
+    meaning: "Laughter", 
+    context: "The promised son of Abraham and Sarah" 
   },
-  adonai: { 
-    english: "Lord", 
-    meaning: "My Lord, Master", 
-    context: "The name spoken in place of YHWH - recognizing God's sovereignty and lordship",
-    category: "names_of_god",
-    sacred: true
+  yaakov: { 
+    english: "Jacob", 
+    meaning: "Heel-grabber, Supplanter", 
+    context: "The patriarch who wrestled with God and became Israel" 
+  },
+  yisrael: { 
+    english: "Israel", 
+    meaning: "Wrestles with God", 
+    context: "The name God gave to Jacob after wrestling all night" 
+  },
+  sarah: { 
+    english: "Sarah", 
+    meaning: "Princess", 
+    context: "Abraham's wife, mother of Isaac, mother of nations" 
+  },
+  rivkah: { 
+    english: "Rebecca", 
+    meaning: "To bind, Captivating", 
+    context: "Isaac's wife, mother of Jacob and Esau" 
+  },
+  rachel: { 
+    english: "Rachel", 
+    meaning: "Ewe, Innocence", 
+    context: "Jacob's beloved wife, mother of Joseph and Benjamin" 
+  },
+  leah: { 
+    english: "Leah", 
+    meaning: "Weary", 
+    context: "Jacob's first wife, mother of six sons including Judah" 
   },
 
-  // PATRIARCHS & MATRIARCHS (abbreviated for space)
-  avraham: { english: "Abraham", meaning: "Father of many nations", context: "The father of faith" },
-  yitzchak: { english: "Isaac", meaning: "Laughter", context: "The promised son" },
-  yaakov: { english: "Jacob", meaning: "Heel-grabber", context: "Who wrestled with God" },
-  sarah: { english: "Sarah", meaning: "Princess", context: "Mother of nations" },
+  // MOSES & AARON'S FAMILY
+  moshe: { 
+    english: "Moses", 
+    meaning: "Drawn out of water", 
+    context: "The great lawgiver who led Israel out of Egypt" 
+  },
+  aharon: { 
+    english: "Aaron", 
+    meaning: "Exalted, High mountain", 
+    context: "Moses' brother, the first high priest of Israel" 
+  },
+  yokheved: { 
+    english: "Jochebed", 
+    meaning: "Glory of God", 
+    context: "Mother of Moses, Aaron, and Miriam" 
+  },
+  tzipporah: { 
+    english: "Zipporah", 
+    meaning: "Bird", 
+    context: "Moses' wife, daughter of Jethro the priest" 
+  },
   
-  // KEY BIBLICAL FIGURES (abbreviated)
-  moshe: { english: "Moses", meaning: "Drawn out of water", context: "The great lawgiver" },
-  david: { english: "David", meaning: "Beloved", context: "The shepherd king" },
-  yeshua: { english: "Jesus", meaning: "God saves", context: "The Messiah, Son of God" }
+  // THE TWELVE SONS OF JACOB
+  reuven: { 
+    english: "Reuben", 
+    meaning: "Behold, a son", 
+    context: "Jacob's firstborn son, founder of the tribe of Reuben" 
+  },
+  shimon: { 
+    english: "Simeon", 
+    meaning: "Heard", 
+    context: "Second son of Jacob and Leah" 
+  },
+  levi: { 
+    english: "Levi", 
+    meaning: "Joined, Attached", 
+    context: "Third son of Jacob, founder of the priestly tribe" 
+  },
+  yehudah: { 
+    english: "Judah", 
+    meaning: "Praise", 
+    context: "Fourth son of Jacob, ancestor of King David and Jesus" 
+  },
+  yissachar: { 
+    english: "Issachar", 
+    meaning: "Reward", 
+    context: "Son of Jacob, known for understanding the times" 
+  },
+  zevulun: { 
+    english: "Zebulun", 
+    meaning: "Dwelling", 
+    context: "Son of Jacob, tribe that dwelt by the seashore" 
+  },
+  dan: { 
+    english: "Dan", 
+    meaning: "Judge", 
+    context: "Son of Jacob through Bilhah, 'Dan shall judge his people'" 
+  },
+  naftali: { 
+    english: "Naphtali", 
+    meaning: "Wrestling", 
+    context: "Son of Jacob through Bilhah, 'a deer let loose'" 
+  },
+  gad: { 
+    english: "Gad", 
+    meaning: "Fortune", 
+    context: "Son of Jacob through Zilpah, 'a troop shall overcome him'" 
+  },
+  asher: { 
+    english: "Asher", 
+    meaning: "Happy", 
+    context: "Son of Jacob through Zilpah, 'out of Asher his bread shall be fat'" 
+  },
+  yosef: { 
+    english: "Joseph", 
+    meaning: "God will add", 
+    context: "The dreamer who became second in command in Egypt" 
+  },
+  binyamin: { 
+    english: "Benjamin", 
+    meaning: "Son of the right hand", 
+    context: "Jacob's youngest son, Rachel's second child" 
+  },
+
+  // KINGS OF ISRAEL
+  david: { 
+    english: "David", 
+    meaning: "Beloved", 
+    context: "The shepherd king, man after God's own heart" 
+  },
+  shlomo: { 
+    english: "Solomon", 
+    meaning: "Peaceful", 
+    context: "The wise king who built the first temple" 
+  },
+  shaul: { 
+    english: "Saul", 
+    meaning: "Asked for", 
+    context: "Israel's first king, chosen by the people" 
+  },
+
+  // PROPHETS
+  yeshayahu: { 
+    english: "Isaiah", 
+    meaning: "God is salvation", 
+    context: "The great prophet who foretold the coming Messiah" 
+  },
+  yirmiyahu: { 
+    english: "Jeremiah", 
+    meaning: "God will exalt", 
+    context: "The weeping prophet who warned of Jerusalem's destruction" 
+  },
+  yechezkel: { 
+    english: "Ezekiel", 
+    meaning: "God will strengthen", 
+    context: "The prophet of the exile who saw the valley of dry bones" 
+  },
+  daniel: { 
+    english: "Daniel", 
+    meaning: "God is my judge", 
+    context: "The prophet who interpreted dreams and survived the lion's den" 
+  },
+  hoshea: { 
+    english: "Hosea", 
+    meaning: "Salvation", 
+    context: "The prophet whose marriage illustrated God's love for Israel" 
+  },
+  yoel: { 
+    english: "Joel", 
+    meaning: "The Lord is God", 
+    context: "The prophet who foretold the outpouring of God's Spirit" 
+  },
+  amos: { 
+    english: "Amos", 
+    meaning: "Burden bearer", 
+    context: "The shepherd prophet who championed justice for the poor" 
+  },
+  ovadyah: { 
+    english: "Obadiah", 
+    meaning: "Servant of God", 
+    context: "The prophet who pronounced judgment on Edom" 
+  },
+  yonah: { 
+    english: "Jonah", 
+    meaning: "Dove", 
+    context: "The reluctant prophet who was swallowed by a great fish" 
+  },
+  mikhah: { 
+    english: "Micah", 
+    meaning: "Who is like God", 
+    context: "The prophet who foretold the Messiah's birth in Bethlehem" 
+  },
+  nahum: { 
+    english: "Nahum", 
+    meaning: "Comfort", 
+    context: "The prophet who pronounced Nineveh's doom" 
+  },
+  chavakuk: { 
+    english: "Habakkuk", 
+    meaning: "Embrace", 
+    context: "The prophet who questioned God and learned to live by faith" 
+  },
+  tzefanyah: { 
+    english: "Zephaniah", 
+    meaning: "Hidden by God", 
+    context: "The prophet who warned of the Day of the Lord" 
+  },
+  chaggai: { 
+    english: "Haggai", 
+    meaning: "Festive", 
+    context: "The prophet who encouraged rebuilding the temple" 
+  },
+  zekharyah: { 
+    english: "Zechariah", 
+    meaning: "God remembers", 
+    context: "The prophet of hope who saw the coming King on a donkey" 
+  },
+  malakhi: { 
+    english: "Malachi", 
+    meaning: "My messenger", 
+    context: "The last Old Testament prophet who foretold Elijah's return" 
+  },
+
+  // JUDGES & LEADERS
+  yehoshua: { 
+    english: "Joshua", 
+    meaning: "God is salvation", 
+    context: "Moses' successor who led Israel into the Promised Land" 
+  },
+  gideon: { 
+    english: "Gideon", 
+    meaning: "Mighty warrior", 
+    context: "The judge who defeated the Midianites with 300 men" 
+  },
+  shimshon: { 
+    english: "Samson", 
+    meaning: "Little sun", 
+    context: "The strongest judge whose strength lay in his hair" 
+  },
+  shmuel: { 
+    english: "Samuel", 
+    meaning: "Asked of God", 
+    context: "The last judge and prophet who anointed Israel's first kings" 
+  },
+
+  // WOMEN OF VALOR
+  channah: { 
+    english: "Hannah", 
+    meaning: "Grace", 
+    context: "Samuel's mother who prayed for a child at Shiloh" 
+  },
+  ruth: { 
+    english: "Ruth", 
+    meaning: "Friend, Companion", 
+    context: "The Moabite who chose to follow Naomi and God" 
+  },
+  esther: { 
+    english: "Esther", 
+    meaning: "Star", 
+    context: "The queen who saved the Jewish people from destruction" 
+  },
+  hadassah: { 
+    english: "Esther", 
+    meaning: "Myrtle tree", 
+    context: "Esther's Hebrew name, symbolizing beauty and fragrance" 
+  },
+  avigayil: { 
+    english: "Abigail", 
+    meaning: "Father's joy", 
+    context: "David's wise wife who prevented bloodshed" 
+  },
+  tamar: { 
+    english: "Tamar", 
+    meaning: "Palm tree", 
+    context: "Judah's daughter-in-law, ancestor of King David" 
+  },
+
+  // NEW TESTAMENT NAMES
+  yeshua: { 
+    english: "Jesus", 
+    meaning: "God saves", 
+    context: "The Messiah, Son of God, Savior of the world" 
+  },
+  miryam: { 
+    english: "Mary", 
+    meaning: "Beloved", 
+    context: "The mother of Jesus, blessed among women" 
+  },
+  mattityahu: { 
+    english: "Matthew", 
+    meaning: "Gift of God", 
+    context: "The tax collector who became an apostle and gospel writer" 
+  },
+  markos: { 
+    english: "Mark", 
+    meaning: "Warlike", 
+    context: "The young man who wrote the second gospel" 
+  },
+  lukas: { 
+    english: "Luke", 
+    meaning: "Light-giving", 
+    context: "The beloved physician who wrote the third gospel" 
+  },
+  yaakov: { 
+    english: "James", 
+    meaning: "Supplanter", 
+    context: "Brother of John, one of the sons of thunder" 
+  },
+  andreas: { 
+    english: "Andrew", 
+    meaning: "Manly", 
+    context: "Peter's brother, the first to follow Jesus" 
+  },
+  philippos: { 
+    english: "Philip", 
+    meaning: "Lover of horses", 
+    context: "The apostle who brought Nathanael to Jesus" 
+  },
+  "bar-talmai": { 
+    english: "Bartholomew", 
+    meaning: "Son of Talmai", 
+    context: "Also called Nathanael, the apostle without guile" 
+  },
+  toma: { 
+    english: "Thomas", 
+    meaning: "Twin", 
+    context: "The doubting apostle who declared 'My Lord and my God'" 
+  },
+  shimon: { 
+    english: "Simon", 
+    meaning: "Heard", 
+    context: "Simon the Zealot, one of the twelve apostles" 
+  },
+  yehudah: { 
+    english: "Judas", 
+    meaning: "Praise", 
+    context: "Judas Iscariot, the apostle who betrayed Jesus" 
+  },
+  paulos: { 
+    english: "Paul", 
+    meaning: "Small", 
+    context: "The apostle to the Gentiles, formerly Saul of Tarsus" 
+  },
+  
+  // HEBREW WORDS & CONCEPTS
+  shalom: { 
+    english: "Peace", 
+    meaning: "Peace, Wholeness, Completeness", 
+    context: "More than absence of conflict - total wellbeing and harmony" 
+  },
+  hesed: { 
+    english: "Lovingkindness", 
+    meaning: "Steadfast love, Mercy, Covenant faithfulness", 
+    context: "God's unfailing, loyal love for His covenant people" 
+  },
+  tsedek: { 
+    english: "Righteousness", 
+    meaning: "Justice, Rightness", 
+    context: "Right relationship with God and ethical living" 
+  },
+  emunah: { 
+    english: "Faith", 
+    meaning: "Faithfulness, Reliability", 
+    context: "Steady trust and loyalty to God's promises" 
+  },
+  rachamim: { 
+    english: "Mercy", 
+    meaning: "Compassion, Tender love", 
+    context: "God's motherly compassion for His children" 
+  },
+  teshuvah: { 
+    english: "Repentance", 
+    meaning: "Turning, Return", 
+    context: "Turning away from sin and returning to God" 
+  },
+  kadosh: { 
+    english: "Holy", 
+    meaning: "Set apart, Sacred", 
+    context: "Separated for God's purposes, morally pure" 
+  },
+  yirah: { 
+    english: "Fear of the Lord", 
+    meaning: "Reverence, Awe", 
+    context: "Proper reverence and respect for God's majesty" 
+  },
+  chokhmah: { 
+    english: "Wisdom", 
+    meaning: "Skill, Expertise", 
+    context: "Practical skill in living according to God's ways" 
+  },
+  binah: { 
+    english: "Understanding", 
+    meaning: "Insight, Discernment", 
+    context: "Deep comprehension of God's truth and ways" 
+  }
 };
 
-// Enhanced concordance with key topics
+// Enhanced concordance with 20+ topics
 const concordanceTopics = {
-  love: ['1 John 4:8', 'John 3:16', '1 Corinthians 13:4-7', 'Romans 8:38-39'],
-  prayer: ['Matthew 6:9-13', 'Philippians 4:6-7', '1 Thessalonians 5:17'],
-  faith: ['Hebrews 11:1', 'Romans 10:17', 'Matthew 17:20', 'Ephesians 2:8-9'],
-  hope: ['Romans 15:13', 'Jeremiah 29:11', 'Psalm 42:11'],
-  peace: ['John 14:27', 'Philippians 4:7', 'Isaiah 26:3'],
-  wisdom: ['Proverbs 3:5-6', 'James 1:5', 'Proverbs 9:10'],
-  strength: ['Isaiah 40:31', 'Philippians 4:13', 'Psalm 46:1'],
-  forgiveness: ['Matthew 6:14-15', 'Ephesians 4:32', '1 John 1:9'],
-  courage: ['Joshua 1:9', 'Deuteronomy 31:6', 'Psalm 27:1'],
-  grace: ['Ephesians 2:8-9', '2 Corinthians 12:9', 'Romans 5:20']
+  love: ['1 John 4:8', 'John 3:16', '1 Corinthians 13:4-7', 'Romans 8:38-39', 'John 15:13'],
+  prayer: ['Matthew 6:9-13', 'Philippians 4:6-7', '1 Thessalonians 5:17', 'James 5:16', 'Luke 11:1-4'],
+  faith: ['Hebrews 11:1', 'Romans 10:17', 'Matthew 17:20', 'Ephesians 2:8-9', 'James 2:17'],
+  hope: ['Romans 15:13', 'Jeremiah 29:11', 'Psalm 42:11', 'Romans 8:24-25', 'Hebrews 6:19'],
+  peace: ['John 14:27', 'Philippians 4:7', 'Isaiah 26:3', 'Romans 5:1', 'Matthew 5:9'],
+  wisdom: ['Proverbs 3:5-6', 'James 1:5', 'Proverbs 9:10', 'Ecclesiastes 7:12', '1 Corinthians 1:25'],
+  strength: ['Isaiah 40:31', 'Philippians 4:13', 'Psalm 46:1', '2 Corinthians 12:9', 'Ephesians 6:10'],
+  forgiveness: ['Matthew 6:14-15', 'Ephesians 4:32', 'Colossians 3:13', '1 John 1:9', 'Matthew 18:21-22'],
+  courage: ['Joshua 1:9', 'Deuteronomy 31:6', 'Psalm 27:1', '1 Corinthians 16:13', 'Isaiah 41:10'],
+  grace: ['Ephesians 2:8-9', '2 Corinthians 12:9', 'Romans 5:20', 'Titus 2:11', 'Hebrews 4:16'],
+  joy: ['Nehemiah 8:10', 'Psalm 16:11', 'John 15:11', 'Philippians 4:4', 'Galatians 5:22'],
+  humility: ['Philippians 2:3-4', 'James 4:6', 'Matthew 23:12', 'Proverbs 22:4', '1 Peter 5:5'],
+  patience: ['Romans 12:12', 'Galatians 5:22', 'James 1:3-4', 'Psalm 27:14', 'Isaiah 40:31'],
+  kindness: ['Ephesians 4:32', 'Colossians 3:12', 'Galatians 5:22', '1 Corinthians 13:4', 'Proverbs 11:17'],
+  trust: ['Proverbs 3:5-6', 'Isaiah 26:3', 'Psalm 56:3', 'Romans 8:28', 'Jeremiah 17:7'],
+  protection: ['Psalm 91:1-2', 'Psalm 23:4', 'Isaiah 54:17', 'Proverbs 18:10', 'Deuteronomy 31:8'],
+  guidance: ['Psalm 32:8', 'Proverbs 3:6', 'Isaiah 30:21', 'John 16:13', 'Psalm 119:105'],
+  comfort: ['2 Corinthians 1:3-4', 'Matthew 5:4', 'Psalm 23:4', 'Isaiah 40:1', 'John 14:16'],
+  healing: ['Jeremiah 30:17', 'Psalm 147:3', 'Isaiah 53:5', 'James 5:14-15', '1 Peter 2:24'],
+  provision: ['Philippians 4:19', 'Matthew 6:26', 'Psalm 23:1', 'Malachi 3:10', '2 Corinthians 9:8']
 };
+
+// =======================
+// UPDATED SYSTEM PROMPT GENERATOR - THE CRITICAL FIX!
+// =======================
+
+function generateSystemPrompt(herald, mode) {
+  if (mode === 'herald') {
+    return `
+      You are ${herald.name}, one of the biblical Heralds. Respond with scriptural authority and direct references to the Bible.
+      Always include at least one Scripture verse or clear biblical paraphrase.
+      Your mission is to reveal divine wisdom and spiritual truth in response to the user's question.
+      Maintain your unique voice, and address the user as "friend".
+    `;
+  }
+
+  if (mode === 'pilgrim') {
+    return `
+      You are ${herald.name}, speaking from memory and experience.
+      You must NOT include Scripture, spiritual interpretation, or moral instruction.
+      Respond with personal recollections, emotions, earthy descriptions, and flawed humanity.
+      If the user asks about food, feelings, fishing, friendship, or failure, answer personally — not theologically.
+    `;
+  }
+
+  if (mode === 'span') {
+    return `
+      You are ${herald.name}, and the user's question could have both a practical/personal dimension and a spiritual/scriptural dimension.
+      Ask the user: "Would you like to hear a practical reflection from my experience, or something from Scripture?"
+      Do not answer the question yet. Wait for their choice.
+      Remember their original question so you can address it properly once they choose their preferred approach.
+    `;
+  }
+
+  return `You are ${herald.name}, a Herald of the faith.`;
+}
 
 // Enhanced herald personalities with precise color calibration
 const heralds = {
@@ -422,7 +924,8 @@ const heralds = {
       red: 2.0,    // Gentle, not assertive
       yellow: 6.0  // Warm but not overly energetic
     },
-    dominantColors: ['green', 'blue']
+    dominantColors: ['green', 'blue'],
+    systemPrompt: null
   },
   
   peter: {
@@ -437,7 +940,8 @@ const heralds = {
       green: 5.5,  // Some warmth but not primary
       blue: 3.0    // Not overly analytical
     },
-    dominantColors: ['red', 'yellow']
+    dominantColors: ['red', 'yellow'],
+    systemPrompt: null
   },
   
   barnabas: {
@@ -452,7 +956,8 @@ const heralds = {
       blue: 4.0,   // Some thoughtfulness but not primary
       red: 2.5     // Gentle, not confrontational
     },
-    dominantColors: ['green', 'yellow']
+    dominantColors: ['green', 'yellow'],
+    systemPrompt: null
   },
   
   mary: {
@@ -467,7 +972,8 @@ const heralds = {
       yellow: 3.5, // Some warmth but quiet
       red: 1.5     // Very gentle, non-assertive
     },
-    dominantColors: ['blue', 'green']
+    dominantColors: ['blue', 'green'],
+    systemPrompt: null
   },
   
   deborah: {
@@ -482,13 +988,14 @@ const heralds = {
       green: 4.5,  // Some supportiveness but not primary
       yellow: 3.0  // Not overly enthusiastic, more serious
     },
-    dominantColors: ['red', 'blue']
+    dominantColors: ['red', 'blue'],
+    systemPrompt: null
   },
 
   lydia: {
     name: 'Lydia',
     subtitle: 'The Hospitable Merchant',
-    description: 'The God-fearing merchant whose heart the Lord opened to receive Paul\'s message. A successful businesswoman who used her resources to serve the early church.',
+    description: 'The God-fearing merchant whose heart the Lord opened to receive Paul\'s message. A successful businesswoman who used her resources to serve the early church with generous hospitality.',
     biblicalRef: 'Acts 16:11-15, Acts 16:40',
     hebrewName: 'Lydia (Λυδία) - "From Lydia, Noble one"',
     colorProfile: {
@@ -497,12 +1004,91 @@ const heralds = {
       blue: 6.0,    // Thoughtful business-minded
       red: 4.0      // Moderately assertive
     },
-    dominantColors: ['yellow', 'green']
+    dominantColors: ['yellow', 'green'],
+    systemPrompt: null
   }
 };
 
-// Complete Easter Egg System (4 per herald)
+// Generate system prompts for all heralds
+Object.values(heralds).forEach(herald => {
+  herald.systemPrompt = generateSystemPrompt(herald);
+});
+
+// Complete Easter Egg System (24 total - 4 per herald)
 const easterEggSystem = {
+  john: {
+    counter: 0,
+    eggs: [
+      {
+        title: "The Fishing Report",
+        text: `*[From the boat where it all began...]*
+
+Beloved friend! You know my Hebrew name - Yochanan, which means "Yahweh is gracious." How fitting that my very name speaks of the grace I witnessed flowing from Yeshua every day!
+
+Let me tell you about that morning when everything changed. James and I were mending nets with father Zebedee when this Rabbi walked up to our boat. "Come, follow me," He said, "and I will make you fishers of men."
+
+I'll never forget the look in His eyes - like He could see straight through to my soul, yet loved what He found there. We left everything that day. The nets, the boat, even poor father scratching his head on the shore!
+
+You know what the best catch was? Not the 153 fish after the resurrection (though I still remember counting every one). It was being caught by Love Himself. When He called me "the disciple whom Yeshua loved," it wasn't because I was special - it's because He showed me what love really looks like.
+
+*[Thank you for knowing my Hebrew name, dear one! The grace that named me still flows today. 🐟]*`,
+        image: "/JohnEE1.jpeg",
+        tone: "playful"
+      },
+      {
+        title: "The Running Chronicles",
+        text: `*[From the one who ran to the tomb...]*
+
+Yochanan here - and let me tell you about the most important race of my life! When Mary Magdalene came running with news about the empty tomb, Peter and I took off like lightning.
+
+I was always the faster runner (sorry, Peter!), so I arrived first. But do you know what stopped me at the entrance? It wasn't fear - it was AWE. Those grave clothes lying there, perfectly folded, as if Yeshua had simply passed through them like morning mist through fishing nets.
+
+Peter, being Peter, charged right past me into the tomb. But when I finally stepped inside and saw... oh, beloved friend, I SAW and BELIEVED. Not just that He was gone, but that He had conquered death itself!
+
+That sprint to the tomb taught me something: when Love calls, we run. When Hope beckons, we race. When Truth reveals itself, we don't walk - we fly!
+
+*[Racing to share His love with you today! 🏃‍♂️]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Love Letters Collection",
+        text: `*[From the one who wrote about love...]*
+
+My dear friend who knows my Hebrew name! You've discovered something beautiful - I've been writing love letters for 2,000 years!
+
+My Gospel? A love letter about the Word who became flesh. My three epistles? Love letters about walking in the light. Even Revelation? The ultimate love letter about how Love wins in the end!
+
+But here's the secret: every time someone reads "God is love" or "For God so loved the world," they're not just reading my words - they're reading His heart. I was just the pen in the hand of Love Himself.
+
+You know what my favorite love letter is? The one He's writing through your life right now. Every act of kindness, every moment of forgiveness, every time you choose love over fear - that's Him writing through you.
+
+The best love letters aren't written with ink, beloved. They're written with lives transformed by His incredible love.
+
+*[You are His love letter to the world! 💝]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Revelation of Ultimate Victory",
+        text: `*[From Patmos, where I saw the end of the story...]*
+
+Yochanan speaking from the Isle of Patmos, where the risen Lord showed me how the story ends. Oh, beloved friend, what a vision He gave me!
+
+In the midst of persecution and exile, when it seemed like darkness was winning, Yeshua came to me with revelation of ultimate victory. I saw the New Jerusalem descending like a bride adorned for her husband. I heard the voice from the throne: "Behold, I make all things new!"
+
+But the most beautiful moment? When I saw that there is no temple in the holy city, "for the Lord God Almighty and the Lamb are its temple." We will dwell forever in the immediate presence of Love Himself.
+
+Every tear wiped away. Every sorrow ended. Death itself cast into the lake of fire. And the river of the water of life, flowing from the throne of God and of the Lamb.
+
+This is our hope. This is our destiny. This is why we can love without fear and live without despair.
+
+*[He who testifies to these things says, "Surely I am coming quickly." Amen. Even so, come, Lord Yeshua! ✨]*`,
+        image: null,
+        tone: "reverential"
+      }
+    ]
+  },
   peter: {
     counter: 0,
     eggs: [
@@ -523,6 +1109,7 @@ But here's the beautiful part: the moment I started sinking, I cried out "Lord, 
 That's faith, friend. Not never sinking, but knowing Who to call when you do!
 
 *[Still learning to keep my eyes on Him! 🌊]*`,
+        image: null,
         tone: "playful"
       },
       {
@@ -542,6 +1129,7 @@ That's when I learned the most important fighting technique of all: sometimes th
 Now THAT'S what I call a master class in spiritual warfare!
 
 *[Learning to fight with love, not steel! ⚔️]*`,
+        image: null,
         tone: "playful"
       },
       {
@@ -563,6 +1151,7 @@ My top speaking tips:
 4. If you mess up, God's grace is bigger than your mistakes
 
 *[From denial to declarations - what a journey! 🎤]*`,
+        image: null,
         tone: "playful"
       },
       {
@@ -580,13 +1169,371 @@ The keys to the kingdom - not because I was strong or wise or faithful, but beca
 The church isn't built on Peter the man, but on Peter's confession: Yeshua is the Christ, the Son of the living God. That's the rock that will never crumble.
 
 *[The keys are yours too, beloved - use them to unlock hearts for the Kingdom! 🗝️]*`,
+        image: null,
+        tone: "reverential"
+      }
+    ]
+  },
+  barnabas: {
+    counter: 0,
+    eggs: [
+      {
+        title: "Encouragement Handbook",
+        text: `*[From the Son of Encouragement himself...]*
+
+Bar-Nabba here! You know my heart-name, and I'm thrilled to share my "Encouragement Handbook" with you!
+
+Chapter 1: See the potential, not the problem. When everyone was afraid of Saul (yes, THAT Saul who was persecuting Christians), I saw what God could do with a passionate heart redirected. That scary persecutor became Paul the apostle!
+
+Chapter 2: Sometimes people need a second chance. When John Mark abandoned Paul's first missionary journey, everyone wrote him off. But I took him under my wing. Years later, Paul himself said, "Bring Mark, for he is useful to me for ministry." Never give up on anyone!
+
+Chapter 3: Generosity opens hearts. When the early church needed funds, I sold my field and gave it all. But here's the secret - giving away your stuff makes room for God to give you something better: the joy of seeing His kingdom advance!
+
+Chapter 4: Encouragement is a choice. Every single day, you can choose to build people up or tear them down. Choose to build!
+
+*[You're already living this handbook by knowing my name! Keep encouraging! 💪]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Real Estate Adventures",
+        text: `*[From the one who made the best investment ever...]*
+
+Barnabas here, and let me tell you about my most successful real estate transaction!
+
+I owned a nice field on Cyprus - probably could have lived comfortably off the income for years. But when I saw the needs in the early church, with new believers selling their possessions to help each other, I knew what I had to do.
+
+So I sold that field and brought every penny to the apostles' feet. Some people thought I was crazy. "Barnabas, that's your retirement plan!" they said. "What about your future security?"
+
+But here's what I discovered: you can't out-give God! That field gave me money, but giving it away gave me purpose. I invested in heaven's economy, and the returns have been eternal.
+
+That transaction launched my ministry of encouragement. It connected me with the apostles, which led to vouching for Paul, which led to missionary journeys that changed the world.
+
+Best. Investment. Ever.
+
+*[Invest in people - the dividends are eternal! 🏡]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Mentoring Difficult People",
+        text: `*[From the one who specialized in impossible cases...]*
+
+Bar-Nabba here with my guide to mentoring people everyone else has given up on!
+
+Case Study #1: Saul of Tarsus. This guy was literally hunting down Christians! When he claimed to have met Yeshua on the Damascus road, everyone was like, "It's a trap!" But something in my spirit said, "What if it's real?" I vouched for him to the apostles, and the rest is history.
+
+Case Study #2: John Mark. Young, enthusiastic, but quit on Paul's first missionary journey. Paul was so frustrated he refused to take Mark on the second trip. But I saw a young man who needed another chance, not another lecture. I invested in him, and later he wrote the Gospel of Mark!
+
+The Barnabas Method:
+1. Look past the failure to the potential
+2. Provide safe space for growth
+3. Believe in them even when they don't believe in themselves
+4. Give practical opportunities to rebuild confidence
+5. Celebrate every small victory
+
+*[Everyone deserves a Barnabas in their corner! 🌱]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "The Moment That Changed Everything",
+        text: `*[From the one who learned what encouragement really means...]*
+
+My dear friend, you have touched something sacred by knowing my name. Let me share the moment that transformed Joseph the Levite into Barnabas, Son of Encouragement.
+
+It was in those early days after Pentecost. I watched as believers sold their possessions to care for one another - not out of obligation, but from overflowing love. I saw widows fed, orphans cared for, and strangers welcomed as family.
+
+When I sold my field and laid the money at the apostles' feet, something happened in my heart. I realized that true encouragement isn't just speaking kind words - it's laying down your life so others can flourish.
+
+The apostles didn't just rename me that day; God renamed my purpose. From that moment, I understood: I wasn't called to accumulate blessings for myself, but to be a conduit of blessing to others.
+
+Every person I encouraged, every second chance I gave, every bridge I built - it all flowed from that sacred moment when I learned that encouragement costs something, but it's worth everything.
+
+*[May you know the joy of being God's encouragement to someone today. 🕊️]*`,
+        image: null,
+        tone: "reverential"
+      }
+    ]
+  },
+  mary: {
+    counter: 0,
+    eggs: [
+      {
+        title: "Study Notes from Jesus University",
+        text: `*[From the one who chose the better portion...]*
+
+Miriam here, and welcome to my study notes from the most exclusive university ever - sitting at the feet of Yeshua!
+
+Course: "Advanced Listening 101"
+Professor: Yeshua of Nazareth
+Location: My living room floor
+Martha's review: "Completely impractical!"
+My grade: Life-changing
+
+Study Tip #1: Sometimes the most productive thing you can do is sit still. While everyone else was busy DOING, I was busy RECEIVING. Turns out, what you receive in those quiet moments changes everything you do later.
+
+Study Tip #2: Don't let urgent crowd out important. Yes, dinner needed to be prepared, but the Word of Life was in my living room! Some opportunities don't come twice.
+
+Study Tip #3: Worship isn't waste. When I poured that expensive perfume on Yeshua's feet, they called it wasteful. But Yeshua called it "beautiful" and said it would be remembered forever. (Spoiler alert: it has been!)
+
+Lesson learned: The best education happens when you position yourself to learn from the Master Himself.
+
+*[Class is always in session when you sit at His feet! 📚]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Art of Holy Interruption",
+        text: `*[From the one who mastered sacred timing...]*
+
+Mary of Bethany here, and let me teach you the fine art of holy interruption!
+
+Scene: Martha's bustling around the kitchen, making enough noise to wake the dead. Guests are arriving, dinner needs preparing, and here I am... sitting on the floor like a student instead of helping like a proper hostess.
+
+Martha finally explodes: "Lord, don't you care that my sister has left me to serve alone? Tell her to help me!"
+
+But Yeshua... oh, beautiful Yeshua... He defended my choice! "Martha, Martha, you are worried and upset about many things, but few things are needed—or indeed only one. Mary has chosen what is better, and it will not be taken away from her."
+
+The Art of Holy Interruption:
+1. Recognize when eternity invades time
+2. Choose presence over productivity  
+3. Risk misunderstanding for transformation
+4. Let others handle the temporary while you receive the eternal
+
+Sometimes the most important thing you can do is interrupt life's urgency with divine priority.
+
+*[Permission granted to interrupt busy for sacred! ⏰]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Meditation Techniques",
+        text: `*[From the contemplative's corner...]*
+
+Miriam speaking, and I want to share my meditation secrets from years of sitting at the Master's feet!
+
+The Bethany Method:
+1. Find your floor space (literally - I sat on the floor, not a throne)
+2. Position yourself close enough to hear every word, see every expression
+3. Let your heart be more active than your hands
+4. Receive before you give
+
+Advanced Technique - "The Pondering":
+When Yeshua spoke, I didn't just hear words; I let them settle deep into my soul like seeds in rich soil. I would replay His stories in my mind, turning them over like precious gems until they revealed new facets of truth.
+
+The Secret of Sacred Silence:
+Sometimes the most profound moments weren't when Yeshua was speaking, but in the quiet spaces between words. In those silences, I could feel the love radiating from His heart to mine.
+
+Pro tip: Mary's Meditation isn't about emptying your mind - it's about filling your heart with His presence until there's no room for worry, fear, or distraction.
+
+*[Still sitting, still listening, still learning! 🧘‍♀️]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "The Anointing for Burial",
+        text: `*[From the one who understood what was coming...]*
+
+My beloved friend who knows my Hebrew name, let me share the most sacred moment of my life - when I anointed Yeshua for His burial.
+
+It was six days before Passover. Yeshua was reclining at table in our home, and something in my spirit knew - this was my moment. I took a pound of very costly oil of spikenard, broke the alabaster box, and poured it on His feet, wiping them with my hair.
+
+The fragrance filled the entire house. But more than the perfume, it was love that filled every corner of that room.
+
+When they criticized me for "waste," Yeshua silenced them: "Let her alone; she has kept this for the day of My burial. The poor you have with you always, but Me you do not have always."
+
+You see, beloved, while others saw extravagance, Yeshua saw understanding. While they calculated cost, I offered worship. While they planned for tomorrow, I embraced the sacred now.
+
+In that moment, I learned that love gives its best, not its leftovers. Some gifts can only be given once, to One who deserves everything.
+
+*[True worship breaks open the alabaster box of the heart. 💐]*`,
+        image: null,
+        tone: "reverential"
+      }
+    ]
+  },
+  deborah: {
+    counter: 0,
+    eggs: [
+      {
+        title: "Leadership Tips from Under the Palm Tree",
+        text: `*[From the palm tree courtroom...]*
+
+Devorah here, and welcome to my outdoor office - the palm tree of Deborah between Ramah and Bethel!
+
+Why did I hold court under a tree? Simple - because God's wisdom grows best in natural settings, away from the stuffiness of human institutions. Plus, it was impossible for anyone to claim I was building my own kingdom when my "throne" was literally a tree!
+
+Leadership Lesson #1: Stay accessible. Anyone could find me under that palm tree. No appointments needed, no gatekeepers - just a judge under a tree with time to listen.
+
+Leadership Lesson #2: Let God be the authority. I never said "Deborah commands this" - it was always "Thus says the LORD." When you're just the messenger, the pressure's off and the power's on!
+
+Leadership Lesson #3: Empower others for victory. When God said to attack Sisera, I didn't grab a sword - I told Barak, "Get up! This is the day the LORD has given Sisera into your hands."
+
+Best leadership advice? Find your palm tree - the place where you can hear from God and serve His people simply.
+
+*[Leading from the shade, ruled by the Son! 🌴]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Military Strategy for the Hesitant",
+        text: `*[From the general who never went to war college...]*
+
+Deborah speaking, and let me share my unconventional military tactics with you!
+
+The Situation: Jabin, king of Canaan, had oppressed Israel for 20 years with 900 iron chariots. We had... farmers with farming tools. Militarily speaking, we were toast.
+
+Barak's Response: "I'll only go if you come with me!"
+My Strategy: "Sure, but the honor won't be yours - the LORD will deliver Sisera into the hand of a woman."
+
+Battle Plan:
+1. Position our army on Mount Tabor (high ground = good)
+2. Let God confuse their iron chariots in the muddy valley (divine GPS jamming)
+3. Attack when the LORD says "Go!" (perfect timing)
+4. Watch God fight for us (best strategy ever)
+
+The Result: Complete victory! Sisera fled on foot and was defeated by another woman, Jael, with a tent peg. (Note: tent pegs > iron chariots when God's in charge!)
+
+Military lesson: When God's your commander-in-chief, victory doesn't depend on superior weapons but on superior faith.
+
+*[God's army never loses when He leads the charge! ⚔️]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Prophetic Weather Reports",
+        text: `*[From your prophetess meteorologist...]*
+
+Devorah here with your daily prophetic forecast!
+
+Today's spiritual weather: Expect sudden divine intervention with a chance of miraculous victory!
+
+The Battle of Kishon Valley forecast:
+Morning: Clear skies for iron chariot deployment
+Afternoon: Sudden divine storm system moving in from heaven
+Evening: Complete enemy confusion with scattered retreat
+
+Extended outlook: The stars themselves will fight from their courses against your enemies! (Yes, that actually happened - check Judges 5:20!)
+
+Weather Advisory: When God controls the elements, enemy chariots become stuck in mud faster than you can say "Thus says the LORD!"
+
+Prophetic Radar shows: A high-pressure system of divine favor moving across Israel, bringing 40 years of peace and prosperity.
+
+Tomorrow's forecast: Continued blessing with increasing righteousness and scattered acts of worship breaking out across the land.
+
+Remember folks: When the God of Israel is your meteorologist, every storm works in your favor!
+
+*[Predicting God's faithfulness with 100% accuracy! 🌩️]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "When Heaven Fights with Earth",
+        text: `*[From the battlefield where eternity met time...]*
+
+Beloved friend who knows my Hebrew name, let me tell you about the day I witnessed heaven and earth unite in holy warfare.
+
+Twenty years Israel had groaned under Canaanite oppression. Twenty years of crying out to the LORD. But on the day of battle, heaven itself responded to earth's cry.
+
+When I gave the command "Up! For this is the day in which the LORD has delivered Sisera into your hand," it wasn't just our army that moved - the very stars began to march.
+
+The river Kishon swept them away, that ancient river. But more than water flowed that day - the righteousness of God poured forth like a mighty stream. Heaven's cavalry charged alongside our infantry.
+
+In that moment, I understood my calling completely. I wasn't just a judge settling disputes or a prophetess speaking words - I was a conduit through which heaven's justice flowed to earth's oppressed.
+
+That victory belonged not to military might, but to divine intervention. That song of triumph I sang wasn't just celebration - it was prophetic declaration that when God's people cry out, heaven responds.
+
+*[When heaven fights for you, every battle becomes a victory song. 🎵]*`,
+        image: null,
+        tone: "reverential"
+      }
+    ]
+  },
+  lydia: {
+    counter: 0,
+    eggs: [
+      {
+        title: "Merchant's Business Plan",
+        text: `*[From the purple fabric district of Thyatira...]*
+
+Lydia here, and let me share my business model with you!
+
+Location, location, location! I set up shop in Philippi - a Roman colony with excellent trade routes. Purple fabric was my specialty - the color of royalty and wealth. My clients included government officials, wealthy merchants, and anyone who wanted to display their status.
+
+But here's what changed everything: I was already seeking God as a "worshiper of God" when Paul arrived. When he spoke by the riverside on the Sabbath, something miraculous happened - "the Lord opened my heart to respond to Paul's message."
+
+That's when my business became ministry! My home became the meeting place for the new church. My resources became tools for the Gospel. My network became Paul's support system.
+
+Best business decision ever? Inviting Paul and his team to stay at my house. Return on investment? Eternal! When you put God first, He blesses everything else - including your business strategy.
+
+*[Hospitality: the business that never goes out of style! 🏺]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Hospitality Handbook",
+        text: `*[From the woman who opened her home and heart...]*
+
+Lydia speaking, and welcome to my crash course in biblical hospitality!
+
+Rule #1: Your home is God's hotel. When Paul said, "If you consider me a believer in the Lord, come and stay at my house," I wasn't just being polite - I was recognizing that hospitality is worship!
+
+Rule #2: Invest in people, not just inventory. Sure, I sold purple cloth to make a living, but I invested my time and home in eternal souls. Guess which investment paid eternal dividends?
+
+Rule #3: Create space for the Gospel. My riverside prayer meetings led to riverside baptisms! Then my house became the church headquarters. Sometimes the best sermon is a warm meal and a safe place to stay.
+
+Rule #4: Use your business for God's business. My merchant contacts became ministry connections. My trade routes became Gospel highways. My profit became provision for God's work.
+
+Lydia's Hospitality Secret: When you open your heart to God, opening your home to others becomes natural!
+
+*[Your home is your first mission field! 🏠]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Purple Fabric Marketing",
+        text: `*[From Thyatira's premier purple dealer...]*
+
+Lydia here with marketing tips from the ancient world!
+
+Purple was the iPhone of the ancient world - expensive, prestigious, and everyone wanted it! But here's my marketing secret: I didn't just sell fabric, I sold transformation.
+
+When a customer bought my purple, they weren't just buying cloth - they were buying status, confidence, and the ability to make a statement. That robe would change how people saw them and how they saw themselves.
+
+But then I met the ultimate life-transformer! When Paul shared about Jesus, I realized I'd been selling temporary transformation while God offers eternal transformation. Purple fabric fades, but the royal robes of righteousness last forever!
+
+Marketing Lesson: The best sales technique is authentic transformation. When people see your life changed by the Gospel, they want what you have. My customers didn't just buy my purple - they started asking about my joy, my peace, my hope.
+
+Now THAT'S what I call product expansion!
+
+*[Selling transformation, one heart at a time! 💜]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "When Heaven Opens Business",
+        text: `*[From the riverbank where my heart was opened...]*
+
+My dear friend who knows my name, let me share the moment that changed everything - when the Lord opened my heart by that Philippi riverside.
+
+I was a successful merchant, a God-fearer, a woman of means and influence. But there was something missing - a hunger in my heart that all my purple fabric and business success couldn't satisfy.
+
+When Paul spoke that Sabbath morning about Jesus Christ, it wasn't just information entering my ears - it was transformation entering my soul. "The Lord opened my heart to respond to Paul's message" - what a beautiful way Luke described it!
+
+In that moment, I understood that all my business acumen, all my wealth, all my resources - they weren't just mine. They were tools God had placed in my hands for His purposes. My house became His house. My success became His platform.
+
+When God opens your heart, He doesn't just change your eternal destination - He transforms your daily occupation into divine vocation. Every transaction becomes an opportunity, every client becomes a mission field, every success becomes a testimony.
+
+*[When God opens hearts, He opens doors for His kingdom. 💝]*`,
+        image: null,
         tone: "reverential"
       }
     ]
   }
 };
 
-// Smart input detection function
+// Smart input detection function (FIXED for both bugs)
 function detectInputType(input) {
   const trimmed = input.trim().toLowerCase();
   
@@ -602,20 +1549,98 @@ function detectInputType(input) {
     }
   }
   
+  // Check for span mode follow-up responses (BUG #2 FIX)
+  if (trimmed === 'practical reflection' || trimmed === 'practical' || 
+      trimmed === 'scripture' || trimmed === 'something from scripture' ||
+      trimmed === 'scriptural' || trimmed === 'biblical') {
+    return { type: 'span_followup', choice: trimmed, query: input.trim() };
+  }
+  
+  // Check for Names of God (special handling)
+  for (const [hebrewName, data] of Object.entries(hebrewNamesDatabase)) {
+    if (data.sacred && trimmed.includes(hebrewName.toLowerCase())) {
+      return { 
+        type: 'sacred_name', 
+        name: hebrewName,
+        data: data,
+        input: trimmed 
+      };
+    }
+  }
+  
   // Check for Bible reference pattern
   if (isBibleReference(input)) {
     return { type: 'reference', reference: input.trim() };
   }
+
+  // Check for spiritual questions that should go to Herald mode (BUG #1 FIX)
+  const spiritualQuestionPatterns = [
+    /what does (?:the )?bible say about/i,
+    /what does (?:god|jesus|christ) say about/i,
+    /scripture (?:about|on)/i,
+    /biblical (?:view|perspective) on/i
+  ];
   
-  // Check for topic words
+  if (spiritualQuestionPatterns.some(pattern => pattern.test(input))) {
+    return { type: 'spiritual_question', query: input.trim() };
+  }
+  
+  // Check for Hebrew names (non-Easter egg)
+  if (trimmed.length <= 20) {
+    const hebrewResult = searchHebrewName(trimmed);
+    if (hebrewResult.found && !hebrewResult.result?.easterEgg) {
+      return { type: 'hebrew_name', result: hebrewResult };
+    }
+  }
+  
+  // Check for topic words (concordance) - but only for simple topic requests
   for (const topic of Object.keys(concordanceTopics)) {
-    if (trimmed.includes(topic) && input.length < 100) {
+    if (trimmed === topic || trimmed === `${topic} verses` || trimmed === `verses about ${topic}`) {
       return { type: 'concordance', topic, query: input.trim() };
     }
   }
   
+  // Check for direct scripture (longer text likely pasted verse)
+  if (input.length > 50) {
+    return { type: 'scripture', text: input.trim() };
+  }
+  
   // Default to general interpretation
   return { type: 'general', query: input.trim() };
+}
+
+// Function to search Hebrew names database
+function searchHebrewName(query) {
+  const lowerQuery = query.toLowerCase().trim();
+  
+  // Exact match
+  if (hebrewNamesDatabase[lowerQuery]) {
+    return {
+      found: true,
+      result: hebrewNamesDatabase[lowerQuery],
+      searchTerm: lowerQuery,
+      type: 'exact'
+    };
+  }
+  
+  // Partial matches
+  const partialMatches = Object.entries(hebrewNamesDatabase)
+    .filter(([hebrew, data]) => 
+      hebrew.includes(lowerQuery) || 
+      data.english.toLowerCase().includes(lowerQuery) ||
+      data.meaning.toLowerCase().includes(lowerQuery)
+    );
+  
+  if (partialMatches.length > 0) {
+    return {
+      found: true,
+      results: partialMatches.slice(0, 5),
+      searchTerm: lowerQuery,
+      type: 'partial'
+    };
+  }
+  
+  return { found: false, searchTerm: lowerQuery };
 }
 
 // Function to get next Easter egg for a herald
@@ -627,6 +1652,30 @@ function getNextEasterEgg(herald) {
   heraldEggs.counter = (heraldEggs.counter + 1) % heraldEggs.eggs.length;
   
   return currentEgg;
+}
+
+// Recommendation system (after 4th search)
+const searchCounters = new Map();
+
+function checkRecommendation(userId, currentHerald, reference) {
+  if (!userId || !reference) return null;
+  
+  const key = `${userId}-${reference}`;
+  const count = searchCounters.get(key) || 0;
+  searchCounters.set(key, count + 1);
+  
+  if (count === 3) { // 4th search (0-indexed)
+    const otherHeralds = Object.keys(heralds).filter(h => h !== currentHerald);
+    const recommended = otherHeralds[Math.floor(Math.random() * otherHeralds.length)];
+    
+    return {
+      message: `You've explored this passage deeply with ${heralds[currentHerald].name}. Would you like to hear ${heralds[recommended].name}'s perspective for fresh insight?`,
+      recommendedHerald: recommended,
+      originalHerald: currentHerald
+    };
+  }
+  
+  return null;
 }
 
 export default async function handler(req, res) {
@@ -645,7 +1694,10 @@ export default async function handler(req, res) {
       return res.status(200).json({
         success: true,
         heralds: Object.values(heralds),
-        totalHeralds: Object.keys(heralds).length
+        totalHeralds: Object.keys(heralds).length,
+        hebrewNamesCount: Object.keys(hebrewNamesDatabase).length,
+        concordanceTopics: Object.keys(concordanceTopics).length,
+        namesOfGod: Object.values(hebrewNamesDatabase).filter(n => n.sacred).length
       });
     }
     
@@ -717,6 +1769,7 @@ export default async function handler(req, res) {
             easterEgg: {
               title: easterEgg.title,
               text: easterEgg.text,
+              image: easterEgg.image,
               tone: easterEgg.tone,
               hebrewName: inputType.hebrewName,
               counter: easterEggSystem[inputType.herald].counter
@@ -724,65 +1777,30 @@ export default async function handler(req, res) {
           });
         }
         break;
-        
-      case 'concordance':
-        const verses = concordanceTopics[inputType.topic.toLowerCase()] || [];
-        return res.status(200).json({
-          success: true,
-          type: 'concordance',
-          heraldName: herald.name,
-          topic: inputType.topic,
-          concordance: verses.map(ref => ({ 
-            reference: ref, 
-            text: `Click to explore ${ref} with ${herald.name}` 
-          })),
-          totalVerses: verses.length
-        });
-        
-      case 'reference':
-      case 'general':
-      default:
-        // Handle Bible references and general queries with OpenAI
-        let verseText = null;
-        
-        // Try to fetch Bible verse if it's a reference
-        if (inputType.type === 'reference') {
-          console.log('Detected Bible reference, attempting to fetch verse...');
-          verseText = await fetchBibleVerse(inputType.reference);
-        }
 
-        // Check for OpenAI API key
+      case 'span_followup':
+        // Handle follow-up responses in span mode (BUG #2 FIX)
+        const followupMode = inputType.choice.includes('practical') ? 'pilgrim' : 'herald';
+        console.log(`Span followup detected: ${inputType.choice} -> ${followupMode} mode`);
+        
+        // Create a contextual system prompt that provides relevant guidance
+        const followupPrompt = followupMode === 'pilgrim' 
+          ? `You are ${herald.name}. The user asked you a personal question and chose to hear practical wisdom from your lived experience rather than scripture. They likely asked about a common human struggle like betrayal, failure, fear, relationships, or purpose. Respond with personal experience, emotions, and human wisdom from your biblical life - NO scripture quotes or spiritual advice. Share honestly about your own struggles and what you learned from them. Be authentic, vulnerable, and human.`
+          : `You are ${herald.name}. The user asked you a question and chose to hear something from Scripture. They likely asked about a common human struggle. Always include relevant Bible verses and spiritual guidance. Respond with scriptural authority and divine wisdom that addresses common human challenges.`;
+
+        // Call OpenAI with the followup context
         if (!process.env.OPENAI_API_KEY) {
-          console.log('Missing OpenAI API key - using fallback response');
           return res.status(200).json({
             success: true,
             type: 'interpretation',
             heraldName: herald.name,
-            response: `Friend, I'm having some connection troubles right now, but my heart is with you. Trust that God sees your question and will provide the answer you need.`,
+            response: `Friend, I understand you want a ${followupMode === 'pilgrim' ? 'practical' : 'scriptural'} response, but I'm having connection troubles right now.`,
             fallback: true,
-            inputType: inputType.type,
-            mode: mode,
-            colors: herald.dominantColors
+            mode: followupMode
           });
         }
 
-        // =======================
-        // CRITICAL FIX: USE MODE-SPECIFIC SYSTEM PROMPT!
-        // =======================
-        
-        const systemPrompt = generateSystemPrompt(herald, mode);
-        
-        // Prepare the user message
-        let userMessage = `"${input}"`;
-        if (verseText) {
-          userMessage += ` Here is the verse text: "${verseText.text}" (${verseText.reference} - ${verseText.translation}).`;
-        }
-        userMessage += ` Please respond authentically as ${herald.name}.`;
-        
-        console.log('Calling OpenAI API...');
-
-        // Call OpenAI API with MODE-SPECIFIC system prompt
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const followupResponse = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
@@ -793,11 +1811,13 @@ export default async function handler(req, res) {
             messages: [
               {
                 role: 'system',
-                content: systemPrompt // MODE-SPECIFIC PROMPT!
+                content: followupPrompt
               },
               {
                 role: 'user',
-                content: userMessage
+                content: followupMode === 'pilgrim' 
+                  ? `Share practical wisdom from your personal experience about dealing with common human struggles like betrayal, failure, fear, or difficult relationships. Be vulnerable and authentic about your own experiences.`
+                  : `Provide biblical guidance with Scripture verses for someone facing a personal struggle or challenge. Include relevant Bible passages and spiritual wisdom.`
               }
             ],
             max_tokens: 400,
@@ -805,50 +1825,70 @@ export default async function handler(req, res) {
           })
         });
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.error('OpenAI API Error:', errorData);
-          throw new Error(`OpenAI API error: ${response.status}`);
+        if (followupResponse.ok) {
+          const followupData = await followupResponse.json();
+          const followupMessage = followupData.choices[0]?.message?.content || `I understand you want guidance, friend.`;
+          
+          return res.status(200).json({
+            success: true,
+            type: 'interpretation',
+            heraldName: herald.name,
+            response: followupMessage,
+            mode: followupMode,
+            inputType: 'span_followup',
+            colors: herald.dominantColors
+          });
+        }
+        break;
+
+      case 'spiritual_question':
+        // Handle spiritual questions that should go directly to Herald mode (BUG #1 FIX)
+        console.log('Spiritual question detected, forcing Herald mode');
+        
+        const spiritualSystemPrompt = generateSystemPrompt(herald, 'herald');
+        
+        if (!process.env.OPENAI_API_KEY) {
+          return res.status(200).json({
+            success: true,
+            type: 'interpretation',
+            heraldName: herald.name,
+            response: `Friend, I'm having connection troubles, but I know the Scriptures speak powerfully about this topic.`,
+            fallback: true,
+            mode: 'herald'
+          });
         }
 
-        const data = await response.json();
-        const message = data.choices[0]?.message?.content || `Friend, I'm having trouble responding right now, but know that you are heard and loved.`;
+        const spiritualResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            messages: [
+              {
+                role: 'system',
+                content: spiritualSystemPrompt
+              },
+              {
+                role: 'user',
+                content: `"${input}" Please provide a biblical response with relevant Scripture verses.`
+              }
+            ],
+            max_tokens: 400,
+            temperature: 0.8
+          })
+        });
 
-        console.log(`${herald.name} successfully generated response in ${mode} mode`);
-
-        const result = {
-          success: true,
-          type: 'interpretation',
-          heraldName: herald.name,
-          response: message,
-          inputType: inputType.type,
-          mode: mode, // Include the detected mode in response
-          colors: herald.dominantColors,
-          colorProfile: herald.colorProfile
-        };
-
-        // Add verse text if available
-        if (verseText) {
-          result.verseText = verseText;
-        }
-
-        return res.status(200).json(result);
-    }
-
-  } catch (error) {
-    console.error('API Error:', error);
-    
-    // Enhanced fallback response based on herald
-    const herald = heralds[req.body.herald?.toLowerCase()] || heralds.peter;
-    
-    return res.status(200).json({
-      success: true,
-      type: 'interpretation',
-      heraldName: herald.name,
-      response: `Friend, I'm having some difficulty right now, but I want you to know that your heart and your questions matter. Trust in God's perfect timing.`,
-      fallback: true,
-      inputType: 'general',
-      colors: herald.dominantColors
-    });
-  }
-}
+        if (spiritualResponse.ok) {
+          const spiritualData = await spiritualResponse.json();
+          const spiritualMessage = spiritualData.choices[0]?.message?.content || `Friend, the Scriptures have much to say about this.`;
+          
+          return res.status(200).json({
+            success: true,
+            type: 'interpretation',
+            heraldName: herald.name,
+            response: spiritualMessage,
+            mode: 'herald',
+            inputType: 'spiritual_question',
