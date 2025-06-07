@@ -54,6 +54,7 @@
             align-items: center;
             justify-content: space-between;
             min-height: 60px;
+            position: relative;
         }
 
         .nav-logo {
@@ -63,6 +64,7 @@
             text-decoration: none;
             color: var(--text-primary);
             flex-shrink: 0;
+            z-index: 101;
         }
 
         .nav-logo-icon {
@@ -87,6 +89,38 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-primary);
+        }
+
+        /* Hamburger Menu Button */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            border: none;
+            background: transparent;
+            z-index: 101;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         .nav-links {
@@ -545,21 +579,75 @@
         /* Enhanced Responsive Design */
         
         /* Small Mobile (320px - 480px) */
-        @media (max-width: 480px) {
-            .nav-content {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 0.5rem 1rem;
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
             }
 
             .nav-links {
-                gap: 0.5rem;
-                justify-content: center;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 5rem 2rem 2rem 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+                gap: 0;
+            }
+
+            .nav-links.active {
+                right: 0;
             }
 
             .nav-link {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.6rem;
+                width: 100%;
+                padding: 1rem;
+                border-radius: 8px;
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+                border-bottom: 1px solid #e2e8f0;
+                background: transparent;
+            }
+
+            .nav-link:hover {
+                background: rgba(102, 126, 234, 0.1);
+            }
+
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+
+            /* Dark overlay when menu is open */
+            .nav-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 99;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                width: 100%;
+                padding: 5rem 1.5rem 2rem 1.5rem;
             }
 
             .header {
@@ -804,6 +892,18 @@
                 --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.4);
             }
 
+            .nav-toggle span {
+                background: var(--text-primary);
+            }
+
+            .nav-links {
+                background: rgba(45, 45, 45, 0.98);
+            }
+
+            .nav-link {
+                border-bottom-color: #404040;
+            }
+
             .herald-header {
                 background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
             }
@@ -833,7 +933,14 @@
                 </div>
                 <span class="nav-logo-text">Heralds</span>
             </a>
-            <div class="nav-links">
+            
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-links" id="navLinks">
                 <a href="#" class="nav-link">Agora/Home</a>
                 <a href="#" class="nav-link">Herald Chat</a>
                 <a href="#" class="nav-link">References</a>
@@ -841,6 +948,7 @@
                 <a href="#" class="nav-link">About</a>
             </div>
         </div>
+        <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
     <!-- Header -->
@@ -1311,6 +1419,56 @@
 
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Navigation Toggle
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navOverlay = document.getElementById('navOverlay');
+            
+            function toggleNav() {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                
+                // Prevent body scroll when menu is open
+                if (navLinks.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            function closeNav() {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Toggle menu when hamburger is clicked
+            navToggle.addEventListener('click', toggleNav);
+            
+            // Close menu when overlay is clicked
+            navOverlay.addEventListener('click', closeNav);
+            
+            // Close menu when nav link is clicked (mobile)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', closeNav);
+            });
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    closeNav();
+                }
+            });
+            
+            // Close menu on window resize (if user rotates device or resizes window)
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    closeNav();
+                }
+            });
+
             // Set default herald selection
             const defaultCard = document.querySelector('.herald-card.john');
             if (defaultCard) {
