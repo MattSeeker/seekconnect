@@ -1,4 +1,3 @@
-  
 // pages/api/heralds.js
 // Biblical Heralds API - Complete Working System for God's Glory
 // Enhanced with Names of God Database + Sophisticated Color Psychology
@@ -335,7 +334,7 @@ const hebrewNamesDatabase = {
     sacred: true
   },
 
-  // EASTER EGG NAMES (The 5 Heralds)
+  // EASTER EGG NAMES (The 6 Heralds)
   yochanan: { 
     english: "John", 
     meaning: "God is gracious", 
@@ -405,6 +404,13 @@ const hebrewNamesDatabase = {
     context: "Alternative spelling of the mighty judge",
     easterEgg: true,
     herald: "deborah"
+  },
+  lydia: { 
+    english: "Lydia", 
+    meaning: "From Lydia, Noble one", 
+    context: "The hospitable merchant whose heart the Lord opened",
+    easterEgg: true,
+    herald: "lydia"
   },
 
   // PATRIARCHS & MATRIARCHS
@@ -831,8 +837,6 @@ const concordanceTopics = {
 };
 
 // Dynamic System Prompt Generator with Color Calibration
-// REPLACE the generateSystemPrompt function with this version:
-
 function generateSystemPrompt(herald) {
   const colors = herald.colorProfile;
   const dominant = herald.dominantColors;
@@ -869,13 +873,13 @@ function generateSystemPrompt(herald) {
     },
     
     peter: {
-      addressTerm: 'Address people as "friend," "brother," or "sister" - never use "beloved" (that\'s John\'s term)',
+      addressTerm: 'Address people as "friend," "my good friend," or "fellow disciple" - never use "beloved" (that\'s John\'s term)',
       interpretiveStyle: 'Focus on bold faith, overcoming failure, and taking action. Help them see how to apply biblical truth courageously in their current challenges. Emphasize practical steps they can take.',
       modernFocus: 'Guide them to bold, faithful action in their present circumstances and help them turn failures into stepping stones'
     },
     
     barnabas: {
-      addressTerm: 'Address people as "dear friend," "my friend," or "dear one" - never use "beloved" (that\'s John\'s term)',
+      addressTerm: 'Address people as "amazing friend," "Wall-breaker," or "Firestarter" - never use "beloved" (that\'s John\'s term)',
       interpretiveStyle: 'Focus on encouragement, seeing potential, and supporting others. Help them understand how to be encouragers and how God sees their potential. NEVER claim to have walked with Jesus during His earthly ministry.',
       modernFocus: 'Help them become encouragers and see God\'s potential in themselves and others in their current relationships and calling'
     },
@@ -890,6 +894,12 @@ function generateSystemPrompt(herald) {
       addressTerm: 'Address people as "warrior of faith," "servant of the Most High," or "faithful one" - never use "beloved" (that\'s John\'s term)',
       interpretiveStyle: 'Focus on wise leadership, strategic thinking, and God\'s justice. Help them understand how to lead with divine wisdom and stand for righteousness in their current context.',
       modernFocus: 'Equip them for wise leadership and courageous action in their sphere of influence today'
+    },
+
+    lydia: {
+      addressTerm: 'Address people as "my favored guest," "Have I told you about Jesus?  Anyway," or "I am so honored to know you!" - never use "beloved" (that\'s John\'s term)',
+      interpretiveStyle: 'Focus on practical application, resource stewardship, and generous hospitality. Help them understand how to use their resources, talents, and influence for God\'s kingdom in their current situation.',
+      modernFocus: 'Guide them to see their career, resources, and influence as ministry opportunities and help them practice biblical hospitality in their current context'
     }
   };
   
@@ -1010,6 +1020,22 @@ const heralds = {
     },
     dominantColors: ['red', 'blue'],
     systemPrompt: null
+  },
+
+  lydia: {
+    name: 'Lydia',
+    subtitle: 'The Hospitable Merchant',
+    description: 'The God-fearing merchant whose heart the Lord opened to receive Paul\'s message. A successful businesswoman who used her resources to serve the early church with generous hospitality.',
+    biblicalRef: 'Acts 16:11-15, Acts 16:40',
+    hebrewName: 'Lydia (Λυδία) - "From Lydia, Noble one"',
+    colorProfile: {
+      yellow: 8.0,  // Enthusiastic and hospitable
+      green: 7.5,   // Supportive and nurturing
+      blue: 6.0,    // Thoughtful business-minded
+      red: 4.0      // Moderately assertive
+    },
+    dominantColors: ['yellow', 'green'],
+    systemPrompt: null
   }
 };
 
@@ -1018,7 +1044,7 @@ Object.values(heralds).forEach(herald => {
   herald.systemPrompt = generateSystemPrompt(herald);
 });
 
-// Complete Easter Egg System (20 total - 4 per herald)
+// Complete Easter Egg System (24 total - 4 per herald)
 const easterEggSystem = {
   john: {
     counter: 0,
@@ -1449,6 +1475,87 @@ In that moment, I understood my calling completely. I wasn't just a judge settli
 That victory belonged not to military might, but to divine intervention. That song of triumph I sang wasn't just celebration - it was prophetic declaration that when God's people cry out, heaven responds.
 
 *[When heaven fights for you, every battle becomes a victory song. 🎵]*`,
+        image: null,
+        tone: "reverential"
+      }
+    ]
+  },
+  lydia: {
+    counter: 0,
+    eggs: [
+      {
+        title: "Merchant's Business Plan",
+        text: `*[From the purple fabric district of Thyatira...]*
+
+Lydia here, and let me share my business model with you!
+
+Location, location, location! I set up shop in Philippi - a Roman colony with excellent trade routes. Purple fabric was my specialty - the color of royalty and wealth. My clients included government officials, wealthy merchants, and anyone who wanted to display their status.
+
+But here's what changed everything: I was already seeking God as a "worshiper of God" when Paul arrived. When he spoke by the riverside on the Sabbath, something miraculous happened - "the Lord opened my heart to respond to Paul's message."
+
+That's when my business became ministry! My home became the meeting place for the new church. My resources became tools for the Gospel. My network became Paul's support system.
+
+Best business decision ever? Inviting Paul and his team to stay at my house. Return on investment? Eternal! When you put God first, He blesses everything else - including your business strategy.
+
+*[Hospitality: the business that never goes out of style! 🏺]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Hospitality Handbook",
+        text: `*[From the woman who opened her home and heart...]*
+
+Lydia speaking, and welcome to my crash course in biblical hospitality!
+
+Rule #1: Your home is God's hotel. When Paul said, "If you consider me a believer in the Lord, come and stay at my house," I wasn't just being polite - I was recognizing that hospitality is worship!
+
+Rule #2: Invest in people, not just inventory. Sure, I sold purple cloth to make a living, but I invested my time and home in eternal souls. Guess which investment paid eternal dividends?
+
+Rule #3: Create space for the Gospel. My riverside prayer meetings led to riverside baptisms! Then my house became the church headquarters. Sometimes the best sermon is a warm meal and a safe place to stay.
+
+Rule #4: Use your business for God's business. My merchant contacts became ministry connections. My trade routes became Gospel highways. My profit became provision for God's work.
+
+Lydia's Hospitality Secret: When you open your heart to God, opening your home to others becomes natural!
+
+*[Your home is your first mission field! 🏠]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "Purple Fabric Marketing",
+        text: `*[From Thyatira's premier purple dealer...]*
+
+Lydia here with marketing tips from the ancient world!
+
+Purple was the iPhone of the ancient world - expensive, prestigious, and everyone wanted it! But here's my marketing secret: I didn't just sell fabric, I sold transformation.
+
+When a customer bought my purple, they weren't just buying cloth - they were buying status, confidence, and the ability to make a statement. That robe would change how people saw them and how they saw themselves.
+
+But then I met the ultimate life-transformer! When Paul shared about Jesus, I realized I'd been selling temporary transformation while God offers eternal transformation. Purple fabric fades, but the royal robes of righteousness last forever!
+
+Marketing Lesson: The best sales technique is authentic transformation. When people see your life changed by the Gospel, they want what you have. My customers didn't just buy my purple - they started asking about my joy, my peace, my hope.
+
+Now THAT'S what I call product expansion!
+
+*[Selling transformation, one heart at a time! 💜]*`,
+        image: null,
+        tone: "playful"
+      },
+      {
+        title: "When Heaven Opens Business",
+        text: `*[From the riverbank where my heart was opened...]*
+
+My dear friend who knows my name, let me share the moment that changed everything - when the Lord opened my heart by that Philippi riverside.
+
+I was a successful merchant, a God-fearer, a woman of means and influence. But there was something missing - a hunger in my heart that all my purple fabric and business success couldn't satisfy.
+
+When Paul spoke that Sabbath morning about Jesus Christ, it wasn't just information entering my ears - it was transformation entering my soul. "The Lord opened my heart to respond to Paul's message" - what a beautiful way Luke described it!
+
+In that moment, I understood that all my business acumen, all my wealth, all my resources - they weren't just mine. They were tools God had placed in my hands for His purposes. My house became His house. My success became His platform.
+
+When God opens your heart, He doesn't just change your eternal destination - He transforms your daily occupation into divine vocation. Every transaction becomes an opportunity, every client becomes a mission field, every success becomes a testimony.
+
+*[When God opens hearts, He opens doors for His kingdom. 💝]*`,
         image: null,
         tone: "reverential"
       }
@@ -1903,7 +2010,9 @@ function getFallbackMessage(herald) {
     
     mary: `Dear one, I find myself in a quiet moment of reflection as I'm unable to respond clearly right now. Sometimes the Lord calls us to simply rest in His presence. In this pause, you are held in His care, and this too shall deepen your understanding of His faithfulness.`,
     
-    deborah: `Warrior of faith, even judges face obstacles! But the Lord's plans are not thwarted by temporary setbacks. Stand firm and trust that He is working even in the delays. He fights every battle with perfect timing.`
+    deborah: `Warrior of faith, even judges face obstacles! But the Lord's plans are not thwarted by temporary setbacks. Stand firm and trust that He is working even in the delays. He fights every battle with perfect timing.`,
+
+    lydia: `Dear friend, I seem to be having some connection troubles right now - reminds me of those early days when establishing trade routes wasn't always smooth! But just as the Lord opened my heart by the riverside, He's always working behind the scenes. Sometimes the best business strategy is patience and trust in His perfect timing. Your heart is precious to Him.`
   };
 
   return fallbackMessages[herald.name?.toLowerCase()] || fallbackMessages.john;
