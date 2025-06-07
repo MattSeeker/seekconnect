@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heralds Courtyard - Ancient Voices, Living Word</title>
+    <title>Agora - Ancient Voices, Living Word</title>
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -30,101 +30,174 @@
             line-height: 1.6;
         }
 
+        /* Navigation */
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .nav-logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
         .header {
             background: var(--primary-gradient);
             color: white;
-            padding: 2rem 0;
-            box-shadow: var(--shadow);
+            padding: 4rem 0;
+            text-align: center;
         }
 
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 2rem auto;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
             font-style: italic;
+            margin-bottom: 2rem;
         }
 
+        .header-description {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 4rem 2rem;
         }
 
-        .intro {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .intro p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .theological-approach {
-            background: #f0f9ff;
-            border: 2px solid #3b82f6;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .theological-approach h3 {
-            color: #1e40af;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .theological-approach p {
-            color: #1e3a8a;
-            margin-bottom: 0.5rem;
-        }
-
+        /* Input Section */
         .input-section {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
         }
 
         .input-section h2 {
             color: var(--text-primary);
+            font-size: 2rem;
             margin-bottom: 1rem;
-            text-align: center;
+        }
+
+        .input-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .search-container {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .search-input {
             flex: 1;
-            padding: 1rem;
+            padding: 1.25rem;
             border: 2px solid var(--card-border);
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
             outline: none;
             transition: border-color 0.3s ease;
         }
@@ -135,46 +208,74 @@
 
         .input-examples {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .example-category {
             background: #f8fafc;
-            padding: 1rem;
-            border-radius: 8px;
+            padding: 1.5rem;
+            border-radius: 12px;
             border-left: 4px solid var(--accent-color);
         }
 
         .example-category h4 {
             color: var(--accent-color);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .example-item {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
             cursor: pointer;
-            padding: 0.25rem 0;
+            padding: 0.5rem 0;
             transition: color 0.2s ease;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .example-item:last-child {
+            border-bottom: none;
         }
 
         .example-item:hover {
             color: var(--accent-color);
         }
 
+        /* Heralds Section */
+        .heralds-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
         .heralds-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
         }
 
         .herald-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
             overflow: hidden;
             transition: all 0.3s ease;
@@ -183,7 +284,7 @@
         }
 
         .herald-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
         }
 
@@ -192,70 +293,83 @@
         .herald-card.barnabas:hover { border-color: #84cc16; }
         .herald-card.mary:hover { border-color: #3b82f6; }
         .herald-card.deborah:hover { border-color: #8b5cf6; }
+        .herald-card.lydia:hover { border-color: #eab308; }
+
+        .herald-card.coming-soon {
+            opacity: 0.7;
+        }
+
+        .herald-card.coming-soon:hover {
+            border-color: #9ca3af;
+            transform: translateY(-2px);
+        }
 
         .herald-card.selected {
             border-color: var(--accent-color) !important;
-            transform: translateY(-2px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
         }
 
         .herald-header {
-            padding: 1.5rem;
+            padding: 2rem;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             border-bottom: 1px solid var(--card-border);
         }
 
         .herald-name {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
 
         .herald-subtitle {
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            font-weight: 500;
+            color: #8b5a9f;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .herald-content {
-            padding: 1.5rem;
-        }
-
-        .herald-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+            padding: 2rem;
         }
 
         .hebrew-name {
             background: #f1f5f9;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
             font-style: italic;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            color: #7c3f58;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .herald-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .biblical-ref {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #64748b;
             border-top: 1px solid #e2e8f0;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
+            font-style: italic;
         }
 
         .herald-submit-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 8px;
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            margin: 1.5rem auto 0 auto;
-            width: 150px;
+            margin: 2rem auto 0 auto;
+            width: 200px;
             display: block;
             text-align: center;
             transition: all 0.3s ease;
@@ -263,7 +377,7 @@
 
         .herald-submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         .herald-submit-btn:disabled {
@@ -272,172 +386,123 @@
             transform: none;
         }
 
+        /* Response Section */
         .response-section {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 3rem;
+            margin-bottom: 3rem;
             display: none;
         }
 
         .response-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--card-border);
         }
 
         .herald-avatar {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: var(--primary-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             color: white;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .response-meta h3 {
             color: var(--text-primary);
-            margin-bottom: 0.25rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .response-meta p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .verse-display {
             background: #f1f5f9;
             border-left: 4px solid var(--accent-color);
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0 8px 8px 0;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 12px 12px 0;
         }
 
         .verse-text {
             font-style: italic;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
         }
 
         .verse-reference {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--accent-color);
             font-weight: 600;
         }
 
         .response-text {
             color: var(--text-primary);
-            line-height: 1.7;
-            font-size: 1rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
-        /* Jesus Quote Styling - NEW */
         .jesus-quote-section {
             background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
             border: 2px solid #ea580c;
             border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
         .jesus-quote-header {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
             color: #9a3412;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .jesus-quote-text {
             font-style: italic;
             color: #7c2d12;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            line-height: 1.6;
         }
 
         .jesus-quote-reference {
             color: #ea580c;
             font-weight: 600;
             text-align: right;
-        }
-
-        .easter-egg {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid #f59e0b;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .easter-egg-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            color: #92400e;
-        }
-
-        .easter-egg-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .easter-egg-content {
-            color: #451a03;
-            line-height: 1.6;
-        }
-
-        .easter-egg-image {
-            max-width: 200px;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-
-        .recommendation-banner {
-            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-            border: 2px solid #10b981;
-            border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .recommendation-text {
-            color: #065f46;
-            margin-bottom: 0.5rem;
-        }
-
-        .try-herald-btn {
-            background: #10b981;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
+            font-size: 1rem;
         }
 
         .loading {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             color: var(--accent-color);
+            justify-content: center;
+            font-size: 1.1rem;
         }
 
         .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #e2e8f0;
-            border-top: 2px solid var(--accent-color);
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid var(--accent-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -447,406 +512,404 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Footer */
         .footer {
             background: var(--card-bg);
             border-top: 1px solid var(--card-border);
-            padding: 2rem 0;
+            padding: 3rem 0;
             text-align: center;
             color: var(--text-secondary);
-            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .footer-link {
             color: var(--accent-color);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .footer-link:hover {
-            text-decoration: underline;
+            color: var(--text-primary);
         }
 
+        .footer-bottom {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
             }
-            
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
             .search-container {
                 flex-direction: column;
             }
-            
+
             .input-examples {
                 grid-template-columns: 1fr;
             }
-            
+
+            .heralds-grid {
+                grid-template-columns: 1fr;
+            }
+
             .response-header {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .footer-links {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">
+                    <img src="https://github.com/MattSeeker/seekconnect/raw/main/public/Heralds%20Logo.png" alt="Agora Logo">
+                </div>
+                <span class="nav-logo-text">Agora</span>
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">References</a>
+                <a href="#" class="nav-link">Herald Chat</a>
+                <a href="#" class="nav-link">Learning</a>
+                <a href="#" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <h1>Heralds</h1>
+            <div class="logo">
+                <img src="https://github.com/MattSeeker/seekconnect/raw/main/public/Heralds%20Logo.png" alt="Agora Logo">
+            </div>
+            <h1>Agora</h1>
             <p class="tagline">Ancient Voices, Living Word</p>
+            <p class="header-description">
+                Meet biblical characters who offer their unique perspectives on Scripture and life. 
+                Engage with carefully crafted personalities that help you grow closer to the authentic Jesus.
+            </p>
         </div>
     </header>
 
+    <!-- Main Content -->
     <div class="container">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <h2 style="font-size: 2.2rem; color: var(--text-primary); margin-bottom: 0.5rem;">The Courtyard</h2>
-            <p style="font-size: 1.1rem; color: var(--accent-color); font-style: italic;">Where seekers gather for biblical wisdom</p>
-        </div>
-        
-        <div class="intro" style="max-width: 800px; margin: 0 auto; text-align: left; line-height: 1.8;">
-            <p style="margin-bottom: 0.5rem;">Meet 5 Biblical heralds - messengers with important proclamations</p>
-            <p style="margin-bottom: 0.5rem;">Engage with carefully crafted, unique personalities</p>
-            <p style="margin-bottom: 0.5rem;">Enrich your Biblical experience with Hebrew name meanings and scriptural wisdom</p>
-            <p style="margin-bottom: 0.5rem;">Seek insights to help you grow closer to the Authentic Jesus</p>
-        </div>
-
-        <!-- Theological Approach Section -->
-        <div class="theological-approach">
-            <h3>🕊️ Our Theological Approach</h3>
-            <p><strong>Why No Jesus Herald?</strong> We believe Jesus Christ is the living Word of God, and the Holy Spirit is our Counselor and Teacher. While AI can help us study Scripture and gain biblical perspectives, it cannot replace the Trinity's work in our lives.</p>
-            <p><strong>How We Honor Christ:</strong> Our heralds point TO Jesus through His recorded words in Scripture, never presuming to speak FOR Him. When contextually relevant, they share Jesus' actual quotes with Gospel references for your verification.</p>
-            <p><strong>Our Purpose:</strong> We serve as study companions who enhance your biblical learning, always directing you to Scripture and encouraging personal relationship with God through prayer and His Word.</p>
-        </div>
-
+        <!-- Input Section -->
         <div class="input-section">
             <h2>Enter Your Query</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
-                Enter a Bible verse, question, or topic below, then choose a Herald who will provide their unique biblical perspective.
-            </p>
+            <p>Share a Bible verse, spiritual question, or topic, then choose a biblical herald to provide their unique perspective.</p>
+            
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Enter Bible reference, question, topic, or theme..." id="searchInput">
             </div>
+        </div>
 
-            <div class="input-examples">
-                <div class="example-category">
-                    <h4>📖 Bible References</h4>
-                    <div class="example-item" data-example="John 3:16">John 3:16</div>
-                    <div class="example-item" data-example="Psalm 23">Psalm 23</div>
-                    <div class="example-item" data-example="1 Corinthians 13:4-7">1 Corinthians 13:4-7</div>
-                    <div class="example-item" data-example="Romans 8:28">Romans 8:28</div>
+        <!-- Heralds Section -->
+        <div class="heralds-section">
+            <div class="section-header">
+                <h2>Meet Your Biblical Heralds</h2>
+                <p>Six biblical characters ready to share wisdom, plus one more herald coming soon to complete the collection.</p>
+            </div>
+
+            <div class="heralds-grid">
+                <!-- John -->
+                <div class="herald-card john" data-herald="john">
+                    <div class="herald-header">
+                        <div class="herald-name">John</div>
+                        <div class="herald-subtitle">The Beloved Disciple</div>
+                    </div>
+                    <div class="herald-content">
+                        <div class="hebrew-name">Yochanan (יוחנן) - "God is gracious"</div>
+                        <div class="herald-description">The beloved disciple who leaned on Jesus' chest at the Last Supper. Known for his deep love and profound spiritual insights, combining gentle care with thoughtful reflection.</div>
+                        <div class="biblical-ref">John 13:23, John 19:26-27, 1 John 4:7-21</div>
+                        <button class="herald-submit-btn" data-herald="john">Seek Wisdom</button>
+                    </div>
                 </div>
-                
-                <div class="example-category">
-                    <h4>💭 Common Questions</h4>
-                    <div class="example-item" data-example="How do I find peace in difficult times?">How do I find peace?</div>
-                    <div class="example-item" data-example="What does the Bible say about love?">What about love?</div>
-                    <div class="example-item" data-example="How can I grow in my faith?">Growing in faith</div>
-                    <div class="example-item" data-example="How do I pray effectively?">How to pray</div>
+
+                <!-- Peter -->
+                <div class="herald-card peter" data-herald="peter">
+                    <div class="herald-header">
+                        <div class="herald-name">Peter</div>
+                        <div class="herald-subtitle">The Bold Fisherman</div>
+                    </div>
+                    <div class="herald-content">
+                        <div class="hebrew-name">Kefa (כיפא) - "Stone, Rock"</div>
+                        <div class="herald-description">The bold fisherman who became the rock of the early church. Quick to speak and act, Peter leads with passionate conviction, combining bold challenge with encouraging uplift.</div>
+                        <div class="biblical-ref">Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25</div>
+                        <button class="herald-submit-btn" data-herald="peter">Seek Wisdom</button>
+                    </div>
                 </div>
-                
-                <div class="example-category">
-                    <h4>✨ Common Themes</h4>
-                    <div class="example-item" data-example="faith">Faith</div>
-                    <div class="example-item" data-example="forgiveness">Forgiveness</div>
-                    <div class="example-item" data-example="wisdom">Wisdom</div>
-                    <div class="example-item" data-example="hope">Hope</div>
+
+                <!-- Barnabas -->
+                <div class="herald-card barnabas" data-herald="barnabas">
+                    <div class="herald-header">
+                        <div class="herald-name">Barnabas</div>
+                        <div class="herald-subtitle">Son of Encouragement</div>
+                    </div>
+                    <div class="herald-content">
+                        <div class="hebrew-name">Bar-Nabba (בר-נבא) - "Son of encouragement"</div>
+                        <div class="herald-description">Called the "Son of Encouragement" by the apostles. He saw potential in Paul when others doubted and gave John Mark a second chance, blending gentle care with uplifting hope.</div>
+                        <div class="biblical-ref">Acts 4:36-37, Acts 9:26-27, Acts 15:36-39</div>
+                        <button class="herald-submit-btn" data-herald="barnabas">Seek Wisdom</button>
+                    </div>
                 </div>
-                
-                <div class="example-category">
-                    <h4>📚 Popular Verses</h4>
-                    <div class="example-item" data-example="Jeremiah 29:11">Jeremiah 29:11</div>
-                    <div class="example-item" data-example="Philippians 4:13">Philippians 4:13</div>
-                    <div class="example-item" data-example="Matthew 11:28">Matthew 11:28</div>
-                    <div class="example-item" data-example="Psalm 23:1">Psalm 23:1</div>
+
+                <!-- Mary of Bethany -->
+                <div class="herald-card mary" data-herald="mary">
+                    <div class="herald-header">
+                        <div class="herald-name">Mary of Bethany</div>
+                        <div class="herald-subtitle">The Contemplative Learner</div>
+                    </div>
+                    <div class="herald-content">
+                        <div class="hebrew-name">Miriam (מרים) - "Beloved"</div>
+                        <div class="herald-description">The contemplative sister who chose to sit at Jesus' feet and learn. She understood the deeper significance of worship and sacrifice, combining thoughtful analysis with gentle care.</div>
+                        <div class="biblical-ref">Luke 10:38-42, John 11:1-44, John 12:1-8</div>
+                        <button class="herald-submit-btn" data-herald="mary">Seek Wisdom</button>
+                    </div>
+                </div>
+
+                <!-- Deborah -->
+                <div class="herald-card deborah" data-herald="deborah">
+                    <div class="herald-header">
+                        <div class="herald-name">Deborah</div>
+                        <div class="herald-subtitle">Judge and Prophetess</div>
+                    </div>
+                    <div class="herald-content">
+                        <div class="hebrew-name">Devorah (דבורה) - "Bee"</div>
+                        <div class="herald-description">The judge and prophetess who led Israel to victory. She combined divine wisdom with decisive leadership in challenging times, merging bold challenge with thoughtful analysis.</div>
+                        <div class="biblical-ref">Judges 4:1-24, Judges 5:1-31</div>
+                        <button class="herald-submit-btn" data-herald="deborah">Seek Wisdom</button>
+                    </div>
+                </div>
+
+                <!-- Lydia -->
+                <div class="herald-card lydia" data-herald="lydia">
+                    <div class="herald-header">
+                        <div class="herald-name">Lydia</div>
+                        <div class="herald-subtitle">The Hospitable Merchant</div>
+                    </div>
+                    <div class="herald-content">
+                        <div class="hebrew-name">Lydia (Λυδία) - "From Lydia, Noble one"</div>
+                        <div class="herald-description">The God-fearing merchant whose heart the Lord opened to receive Paul's message. A successful businesswoman who used her resources to serve the early church with generous hospitality.</div>
+                        <div class="biblical-ref">Acts 16:11-15, Acts 16:40</div>
+                        <button class="herald-submit-btn" data-herald="lydia">Seek Wisdom</button>
+                    </div>
+                </div>
+
+                <!-- Coming Soon - 7th Herald -->
+                <div class="herald-card coming-soon">
+                    <div class="herald-header">
+                        <div class="herald-name">Coming Soon</div>
+                        <div class="herald-subtitle">The 7th Herald</div>
+                    </div>
+                    <div class="herald-content">
+                        <div class="hebrew-name">??? - "Mystery for now"</div>
+                        <div class="herald-description">A seventh biblical character is being carefully crafted to complete our collection of diverse voices. Each herald brings unique wisdom from their biblical experience and personality.</div>
+                        <div class="biblical-ref">The perfect herald is being chosen...</div>
+                        <button class="herald-submit-btn" disabled style="background: #9ca3af; cursor: not-allowed;">Coming Soon</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center; margin: 2rem 0;">
-            <h2 style="color: var(--text-primary); margin-bottom: 0.5rem;">Choose Your Herald</h2>
-            <p style="color: var(--text-secondary);">Select a Biblical character to provide their unique perspective on your query.</p>
-        </div>
-
-        <div class="heralds-grid">
-            <div class="herald-card john" data-herald="john">
-                <div class="herald-header">
-                    <div class="herald-name">John</div>
-                    <div class="herald-subtitle">The Beloved Disciple</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Yochanan (יוחנן) - "God is gracious"</div>
-                    <div class="herald-description">The beloved disciple who leaned on Jesus' chest at the Last Supper. Known for his deep love and profound spiritual insights, combining gentle care with thoughtful reflection.</div>
-                    <div class="biblical-ref">John 13:23, John 19:26-27, 1 John 4:7-21</div>
-                    <button class="herald-submit-btn" data-herald="john">Submit</button>
-                </div>
-            </div>
-
-            <div class="herald-card peter" data-herald="peter">
-                <div class="herald-header">
-                    <div class="herald-name">Peter</div>
-                    <div class="herald-subtitle">The Bold Fisherman</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Kefa (כיפא) - "Stone, Rock"</div>
-                    <div class="herald-description">The bold fisherman who became the rock of the early church. Quick to speak and act, Peter leads with passionate conviction, combining bold challenge with encouraging uplift.</div>
-                    <div class="biblical-ref">Matthew 16:13-20, Acts 2:14-41, 1 Peter 1:1-25</div>
-                    <button class="herald-submit-btn" data-herald="peter">Submit</button>
-                </div>
-            </div>
-
-            <div class="herald-card barnabas" data-herald="barnabas">
-                <div class="herald-header">
-                    <div class="herald-name">Barnabas</div>
-                    <div class="herald-subtitle">Son of Encouragement</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Bar-Nabba (בר-נבא) - "Son of encouragement"</div>
-                    <div class="herald-description">Called the "Son of Encouragement" by the apostles. He saw potential in Paul when others doubted and gave John Mark a second chance, blending gentle care with uplifting hope.</div>
-                    <div class="biblical-ref">Acts 4:36-37, Acts 9:26-27, Acts 15:36-39</div>
-                    <button class="herald-submit-btn" data-herald="barnabas">Submit</button>
-                </div>
-            </div>
-
-            <div class="herald-card mary" data-herald="mary">
-                <div class="herald-header">
-                    <div class="herald-name">Mary of Bethany</div>
-                    <div class="herald-subtitle">The Contemplative Learner</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Miriam (מרים) - "Beloved"</div>
-                    <div class="herald-description">The contemplative sister who chose to sit at Jesus' feet and learn. She understood the deeper significance of worship and sacrifice, combining thoughtful analysis with gentle care.</div>
-                    <div class="biblical-ref">Luke 10:38-42, John 11:1-44, John 12:1-8</div>
-                    <button class="herald-submit-btn" data-herald="mary">Submit</button>
-                </div>
-            </div>
-
-            <div class="herald-card deborah" data-herald="deborah">
-                <div class="herald-header">
-                    <div class="herald-name">Deborah</div>
-                    <div class="herald-subtitle">Judge and Prophetess</div>
-                </div>
-                <div class="herald-content">
-                    <div class="hebrew-name">Devorah (דבורה) - "Bee"</div>
-                    <div class="herald-description">The judge and prophetess who led Israel to victory. She combined divine wisdom with decisive leadership in challenging times, merging bold challenge with thoughtful analysis.</div>
-                    <div class="biblical-ref">Judges 4:1-24, Judges 5:1-31</div>
-                    <button class="herald-submit-btn" data-herald="deborah">Submit</button>
-                </div>
-            </div>
-        </div>
-
+        <!-- Response Section -->
         <div class="response-section" id="responseSection">
             <!-- Dynamic content will be inserted here -->
         </div>
-
-        <!-- Navigation hint for future pages -->
-        <div style="background: #f0fdf4; border: 2px solid #16a34a; border-radius: 8px; padding: 1rem; margin: 2rem 0; text-align: center;">
-            <p style="color: #15803d; margin-bottom: 0.5rem; font-weight: 600;">🚧 Coming This Weekend</p>
-            <p style="color: #166534;">Hebrew Synagogue • Luke's Forum • Scripture Memory Tool</p>
-        </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-links">
-            <a href="#" class="footer-link">📝 Share Feedback</a>
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">About</a>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Home</a>
+                <a href="#" class="footer-link">References</a>
+                <a href="#" class="footer-link">Herald Chat</a>
+                <a href="#" class="footer-link">Learning</a>
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Theological Approach</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Feedback</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Agora. All rights reserved. Ancient Voices, Living Word.</p>
+            </div>
         </div>
-        <p>&copy; 2024 Heralds Courtyard. All rights reserved.</p>
     </footer>
 
     <script>
-        // ===== JESUS QUOTE CALIBRATION SYSTEM =====
-        const jesusQuotes = {
-            love: [
-                { text: "A new command I give you: Love one another. As I have loved you, so you must love one another.", reference: "John 13:34" },
-                { text: "Greater love has no one than this: to lay down one's life for one's friends.", reference: "John 15:13" },
-                { text: "Love your enemies and pray for those who persecute you.", reference: "Matthew 5:44" }
-            ],
-            
-            peace: [
-                { text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.", reference: "John 14:27" },
-                { text: "Blessed are the peacemakers, for they will be called children of God.", reference: "Matthew 5:9" },
-                { text: "In this world you will have trouble. But take heart! I have overcome the world.", reference: "John 16:33" }
-            ],
-            
-            faith: [
-                { text: "Truly I tell you, if you have faith as small as a mustard seed, you can say to this mountain, 'Move from here to there,' and it will move. Nothing will be impossible for you.", reference: "Matthew 17:20" },
-                { text: "Have faith in God.", reference: "Mark 11:22" },
-                { text: "Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.", reference: "John 20:29" }
-            ],
-            
-            forgiveness: [
-                { text: "Father, forgive them, for they do not know what they are doing.", reference: "Luke 23:34" },
-                { text: "If you forgive other people when they sin against you, your heavenly Father will also forgive you.", reference: "Matthew 6:14" },
-                { text: "Be merciful, just as your Father is merciful.", reference: "Luke 6:36" }
-            ],
-            
-            prayer: [
-                { text: "This, then, is how you should pray: 'Our Father in heaven, hallowed be your name...'", reference: "Matthew 6:9" },
-                { text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.", reference: "Matthew 7:7" },
-                { text: "And when you pray, do not be like the hypocrites, for they love to pray standing in the synagogues and on the street corners to be seen by others.", reference: "Matthew 6:5" }
-            ],
-            
-            salvation: [
-                { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", reference: "John 3:16" },
-                { text: "I am the way and the truth and the life. No one comes to the Father except through me.", reference: "John 14:6" },
-                { text: "Come to me, all you who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28" }
-            ],
-            
-            discipleship: [
-                { text: "If anyone would come after me, let him deny himself and take up his cross and follow me.", reference: "Matthew 16:24" },
-                { text: "By this everyone will know that you are my disciples, if you love one another.", reference: "John 13:35" },
-                { text: "Go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.", reference: "Matthew 28:19" }
-            ],
-            
-            worry: [
-                { text: "Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.", reference: "Matthew 6:34" },
-                { text: "Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they?", reference: "Matthew 6:26" },
-                { text: "Who of you by worrying can add a single hour to your life?", reference: "Matthew 6:27" }
-            ],
-            
-            general: [
-                { text: "I have come that they may have life, and have it abundantly.", reference: "John 10:10" },
-                { text: "Heaven and earth will pass away, but my words will never pass away.", reference: "Matthew 24:35" },
-                { text: "Blessed are the poor in spirit, for theirs is the kingdom of heaven.", reference: "Matthew 5:3" }
-            ]
-        };
-
-        // ===== JESUS QUOTE RELEVANCE DETECTION =====
-        function detectJesusQuoteRelevance(userInput, heraldResponse) {
-            const input = userInput.toLowerCase();
-            const response = heraldResponse.toLowerCase();
-            
-            const contextKeywords = {
-                love: ['love', 'loving', 'romance', 'relationship', 'marriage', 'family'],
-                peace: ['peace', 'anxiety', 'worry', 'stress', 'calm', 'rest', 'troubled'],
-                faith: ['faith', 'believe', 'trust', 'doubt', 'impossible', 'miracle'],
-                forgiveness: ['forgive', 'forgiveness', 'hurt', 'angry', 'resentment', 'mercy'],
-                prayer: ['pray', 'prayer', 'praying', 'ask god', 'talk to god'],
-                salvation: ['saved', 'salvation', 'eternal life', 'heaven', 'born again'],
-                discipleship: ['follow', 'disciple', 'christian life', 'obey', 'serve'],
-                worry: ['worry', 'anxious', 'fear', 'afraid', 'stressed', 'overwhelmed'],
-                general: ['jesus', 'christ', 'lord', 'savior', 'son of god']
-            };
-            
-            // Check if input or expected response contains relevant keywords
-            for (const [category, keywords] of Object.entries(contextKeywords)) {
-                for (const keyword of keywords) {
-                    if (input.includes(keyword) || response.includes(keyword)) {
-                        return category;
-                    }
-                }
-            }
-            
-            // Check for Bible references that Jesus spoke
-            const jesusVersePatterns = [
-                /john (3|14|15|16|17)/, /matthew (5|6|7|11|16|28)/, 
-                /luke (6|23)/, /mark (11|16)/
-            ];
-            
-            for (const pattern of jesusVersePatterns) {
-                if (pattern.test(input)) {
-                    return 'general';
-                }
-            }
-            
-            return null; // No Jesus quote needed
-        }
-
-        // ===== GET CONTEXTUAL JESUS QUOTE =====
-        function getContextualJesusQuote(category) {
-            if (!category || !jesusQuotes[category]) {
-                return null;
-            }
-            
-            const quotes = jesusQuotes[category];
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            
-            return {
-                text: randomQuote.text,
-                reference: randomQuote.reference,
-                formatted: `As our Lord Jesus said: "${randomQuote.text}" (${randomQuote.reference})`
-            };
-        }
-
         // ===== ENHANCED HERALD INTERACTION SYSTEM =====
-        let selectedHerald = 'john'; // Default herald
+        let selectedHerald = 'john';
         let isLoading = false;
         let userSession = {
             userId: 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now(),
             interactions: []
         };
 
-        // Herald personalities
+        // Herald personalities (now including 7 heralds)
         const heralds = {
             john: {
                 name: 'John',
                 subtitle: 'The Beloved Disciple',
                 colorProfile: { green: 9.0, blue: 7.5, red: 2.0, yellow: 6.0 },
-                addressTerm: 'beloved'
+                addressTerm: 'beloved',
+                baseWordLimit: { min: 180, max: 230 }
             },
             peter: {
                 name: 'Peter', 
                 subtitle: 'The Bold Fisherman',
                 colorProfile: { red: 9.5, yellow: 8.0, green: 5.5, blue: 3.0 },
-                addressTerm: 'friend'
+                addressTerm: 'friend',
+                baseWordLimit: { min: 200, max: 250 }
             },
             barnabas: {
                 name: 'Barnabas',
                 subtitle: 'Son of Encouragement', 
                 colorProfile: { green: 9.0, yellow: 8.5, blue: 4.0, red: 2.5 },
-                addressTerm: 'dear friend'
+                addressTerm: 'dear friend',
+                baseWordLimit: { min: 190, max: 240 }
             },
             mary: {
                 name: 'Mary of Bethany',
                 subtitle: 'The Contemplative Learner',
                 colorProfile: { blue: 9.0, green: 7.5, yellow: 3.5, red: 1.5 },
-                addressTerm: 'dear one'
+                addressTerm: 'dear one',
+                baseWordLimit: { min: 170, max: 220 }
             },
             deborah: {
                 name: 'Deborah',
                 subtitle: 'Judge and Prophetess',
                 colorProfile: { red: 8.5, blue: 8.0, green: 4.5, yellow: 3.0 },
-                addressTerm: 'faithful one'
+                addressTerm: 'faithful one',
+                baseWordLimit: { min: 185, max: 235 }
+            },
+            lydia: {
+                name: 'Lydia',
+                subtitle: 'The Hospitable Merchant',
+                colorProfile: { yellow: 8.0, green: 7.5, blue: 6.0, red: 4.0 },
+                addressTerm: 'dear sister',
+                baseWordLimit: { min: 195, max: 245 }
             }
         };
 
-        // ===== ENHANCED INPUT DETECTION =====
+        // ===== INPUT DETECTION WITH SLIDING SCALE =====
         function detectInputType(input) {
             const trimmed = input.trim().toLowerCase();
+            const verseCount = countVerses(input);
             
             // Bible reference pattern
             const biblePattern = /^(Genesis|Gen|Exodus|Ex|Leviticus|Lev|Numbers|Num|Deuteronomy|Deut|Joshua|Josh|Judges|Judg|Ruth|1\s*Samuel|2\s*Samuel|1\s*Sam|2\s*Sam|1\s*Kings|2\s*Kings|1\s*Chron|2\s*Chron|Ezra|Nehemiah|Neh|Esther|Est|Job|Psalm|Ps|Proverbs|Prov|Ecclesiastes|Eccl|Song\s*of\s*Solomon|Song|Isaiah|Isa|Jeremiah|Jer|Lamentations|Lam|Ezekiel|Ezek|Daniel|Dan|Hosea|Joel|Amos|Obadiah|Obad|Jonah|Micah|Nahum|Habakkuk|Hab|Zephaniah|Zeph|Haggai|Hag|Zechariah|Zech|Malachi|Mal|Matthew|Matt|Mark|Luke|John|Acts|Romans|Rom|1\s*Corinthians|2\s*Corinthians|1\s*Cor|2\s*Cor|Galatians|Gal|Ephesians|Eph|Philippians|Phil|Colossians|Col|1\s*Thessalonians|2\s*Thessalonians|1\s*Thess|2\s*Thess|1\s*Timothy|2\s*Timothy|1\s*Tim|2\s*Tim|Titus|Philemon|Hebrews|Heb|James|1\s*Peter|2\s*Peter|1\s*Pet|2\s*Pet|1\s*John|2\s*John|3\s*John|Jude|Revelation|Rev)\s+\d+/i;
             
             if (biblePattern.test(input.trim())) {
-                return { type: 'reference', reference: input.trim() };
+                return { 
+                    type: 'reference', 
+                    reference: input.trim(),
+                    complexity: verseCount > 1 ? 'multi-verse' : 'single-verse'
+                };
             }
             
             // Common spiritual topics
             const topics = ['love', 'faith', 'prayer', 'hope', 'peace', 'wisdom', 'strength', 'forgiveness', 'courage', 'grace', 'joy', 'humility', 'patience', 'kindness', 'trust', 'protection', 'guidance', 'comfort', 'healing', 'provision'];
             for (const topic of topics) {
                 if (trimmed.includes(topic) && input.length < 100) {
-                    return { type: 'topic', topic: topic, query: input.trim() };
+                    return { 
+                        type: 'topic', 
+                        topic: topic, 
+                        query: input.trim(),
+                        complexity: 'simple'
+                    };
                 }
             }
             
             // Direct scripture (longer text)
             if (input.length > 50) {
-                return { type: 'scripture', text: input.trim() };
+                return { 
+                    type: 'scripture', 
+                    text: input.trim(),
+                    complexity: input.length > 200 ? 'extended' : 'moderate'
+                };
             }
             
             // Default to general query
-            return { type: 'general', query: input.trim() };
+            return { 
+                type: 'general', 
+                query: input.trim(),
+                complexity: input.length > 100 ? 'complex' : 'simple'
+            };
+        }
+
+        function countVerses(input) {
+            const versePattern = /\d+:\d+/g;
+            const matches = input.match(versePattern);
+            return matches ? matches.length : 1;
+        }
+
+        function calculateWordLimit(herald, inputType) {
+            const base = herald.baseWordLimit;
+            let multiplier = 1;
+            
+            switch(inputType.complexity) {
+                case 'multi-verse':
+                case 'extended':
+                    multiplier = 1.5;
+                    break;
+                case 'complex':
+                case 'moderate':
+                    multiplier = 1.2;
+                    break;
+                case 'simple':
+                default:
+                    multiplier = 1;
+                    break;
+            }
+            
+            return {
+                min: Math.floor(base.min * multiplier),
+                max: Math.floor(base.max * multiplier)
+            };
         }
 
         // ===== MAIN HERALD INTERACTION FUNCTION =====
@@ -862,9 +925,10 @@
             const responseSection = document.getElementById('responseSection');
             const herald = heralds[selectedHerald];
             
-            // Detect input type
+            // Detect input type with complexity analysis
             const inputType = detectInputType(input);
-            console.log('Input type detected:', inputType);
+            const wordLimit = calculateWordLimit(herald, inputType);
+            console.log('Input type detected:', inputType, 'Word limit:', wordLimit);
             
             // Set loading state
             isLoading = true;
@@ -874,40 +938,16 @@
             if (responseSection) {
                 responseSection.style.display = 'block';
                 responseSection.innerHTML = getLoadingHTML(herald);
+                responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             try {
-                // Call API
-                const response = await fetch('/api/heralds', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        herald: selectedHerald,
-                        input: input,
-                        userId: userSession.userId
-                    })
-                });
-
-                const data = await response.json();
+                // Simulate herald response
+                const mockResponse = await simulateHeraldResponse(herald, input, inputType, wordLimit);
                 
-                if (data.success) {
-                    // Check if Jesus quote is contextually relevant
-                    const jesusCategory = detectJesusQuoteRelevance(input, data.response);
-                    const jesusQuote = jesusCategory ? getContextualJesusQuote(jesusCategory) : null;
-                    
-                    // Display response with optional Jesus quote
-                    displayResponse(data, jesusQuote);
-                    
-                    // Auto-scroll to response
-                    setTimeout(() => {
-                        if (responseSection) {
-                            responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }, 100);
-                    
-                } else {
-                    displayError(data.error || 'An error occurred');
-                }
+                // Display response
+                displayResponse(mockResponse);
+                
             } catch (error) {
                 console.error('Error:', error);
                 displayError('Unable to connect to the herald. Please try again.');
@@ -918,8 +958,65 @@
             }
         }
 
+        // ===== MOCK HERALD RESPONSE =====
+        async function simulateHeraldResponse(herald, input, inputType, wordLimit) {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000));
+            
+            // Generate response based on herald personality
+            let response = `${herald.addressTerm}, I see you've brought `;
+            
+            switch(inputType.type) {
+                case 'reference':
+                    response += `a beautiful Scripture passage to explore. `;
+                    break;
+                case 'scripture':
+                    response += `the Word itself to examine together. `;
+                    break;
+                case 'topic':
+                    response += `a question about ${inputType.topic} - a topic close to my heart. `;
+                    break;
+                default:
+                    response += `a thoughtful question that deserves careful consideration. `;
+            }
+            
+            // Add herald-specific perspective
+            switch(herald.name.toLowerCase()) {
+                case 'john':
+                    response += `As one who walked closely with Jesus, I'm reminded of how His love transforms everything. Remember, beloved, that every verse, every question, every seeking heart is an invitation to experience God's love more deeply.`;
+                    break;
+                case 'peter':
+                    response += `You know me - I'm not one to mince words! Friend, don't be afraid to dive deep into God's Word. He's big enough to handle our questions and strong enough to hold us through the answers.`;
+                    break;
+                case 'barnabas':
+                    response += `How encouraging it is to see you seeking God's wisdom! Remember, dear friend, every step of seeking brings you closer to the heart of our loving Father.`;
+                    break;
+                case 'mary':
+                    response += `I'm drawn into contemplation by your question. Dear one, let us sit together in the presence of the Word and allow His truth to wash over our souls.`;
+                    break;
+                case 'deborah':
+                    response += `Your question calls for wisdom and discernment. Faithful one, let us seek the Lord's wisdom together and trust Him to illuminate the path forward.`;
+                    break;
+                case 'lydia':
+                    response += `As one who has experienced God's provision in business and hospitality, I understand the practical side of faith. Dear sister, let me share how God's truth applies to our daily lives and relationships.`;
+                    break;
+            }
+            
+            // Add reference verses
+            response += `\n\n*[Reference verses: ${inputType.reference || 'Psalm 119:105, 2 Timothy 3:16'} - Always verify Scripture in context]*`;
+            
+            return {
+                success: true,
+                heraldName: herald.name,
+                response: response,
+                inputType: inputType.type,
+                wordCount: response.split(' ').length,
+                wordLimit: wordLimit
+            };
+        }
+
         // ===== DISPLAY FUNCTIONS =====
-        function displayResponse(data, jesusQuote = null) {
+        function displayResponse(data) {
             const responseSection = document.getElementById('responseSection');
             if (!responseSection) return;
             
@@ -933,46 +1030,8 @@
                         <p>${herald.subtitle}</p>
                     </div>
                 </div>
+                <div class="response-text">${formatText(data.response)}</div>
             `;
-            
-            // Add verse display if available
-            if (data.verseText) {
-                content += `
-                    <div class="verse-display">
-                        <div class="verse-text">"${data.verseText.text}"</div>
-                        <div class="verse-reference">${data.verseText.reference} (${data.verseText.translation})</div>
-                    </div>
-                `;
-            }
-            
-            // Add Jesus quote if contextually relevant
-            if (jesusQuote) {
-                content += `
-                    <div class="jesus-quote-section">
-                        <div class="jesus-quote-header">
-                            <span class="jesus-icon">✝️</span>
-                            <span>The Words of Jesus</span>
-                        </div>
-                        <div class="jesus-quote-text">"${jesusQuote.text}"</div>
-                        <div class="jesus-quote-reference">— ${jesusQuote.reference}</div>
-                    </div>
-                `;
-            }
-            
-            // Add herald response
-            content += `<div class="response-text">${formatText(data.response)}</div>`;
-            
-            // Add recommendation if present
-            if (data.recommendation) {
-                content += `
-                    <div class="recommendation-banner">
-                        <div class="recommendation-text">${data.recommendation.message}</div>
-                        <button class="try-herald-btn" onclick="switchToHerald('${data.recommendation.recommendedHerald}')">
-                            Try ${getHeraldInfo(data.recommendation.recommendedHerald).name}
-                        </button>
-                    </div>
-                `;
-            }
 
             responseSection.innerHTML = content;
         }
@@ -986,7 +1045,7 @@
                         <p>${herald.subtitle}</p>
                     </div>
                 </div>
-                <div class="loading" style="justify-content: center; padding: 2rem;">
+                <div class="loading" style="padding: 3rem;">
                     <div class="spinner"></div>
                     <span>${herald.name} is contemplating your query...</span>
                 </div>
@@ -996,9 +1055,11 @@
         function updateLoadingState(loading) {
             document.querySelectorAll('.herald-submit-btn').forEach(btn => {
                 btn.disabled = loading;
-                btn.innerHTML = loading ? 
-                    '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>' : 
-                    'Submit';
+                if (loading) {
+                    btn.innerHTML = '<div class="loading"><div class="spinner"></div>Seeking...</div>';
+                } else {
+                    btn.innerHTML = 'Seek Wisdom';
+                }
             });
         }
 
@@ -1020,28 +1081,8 @@
             }
         }
 
-        // ===== UTILITY FUNCTIONS =====
         function formatText(text) {
             return text.replace(/\n/g, '<br>').replace(/\*\[(.*?)\]\*/g, '<em style="color: #667eea;">$1</em>');
-        }
-
-        function getHeraldInfo(heraldName) {
-            return heralds[heraldName.toLowerCase()] || heralds.john;
-        }
-
-        function switchToHerald(heraldName) {
-            selectedHerald = heraldName;
-            
-            // Update visual selection
-            document.querySelectorAll('.herald-card').forEach(card => {
-                card.classList.remove('selected');
-                if (card.dataset.herald === heraldName) {
-                    card.classList.add('selected');
-                }
-            });
-            
-            // Re-ask with new herald
-            askHerald();
         }
 
         // ===== INITIALIZATION =====
@@ -1083,15 +1124,15 @@
                 });
             });
 
-            // Example click handlers
-            document.querySelectorAll('.example-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const searchInput = document.getElementById('searchInput');
-                    if (searchInput) {
-                        searchInput.value = item.dataset.example;
-                    }
-                });
-            });
+            // Example click handlers - REMOVED since examples section was removed
+            // document.querySelectorAll('.example-item').forEach(item => {
+            //     item.addEventListener('click', () => {
+            //         const searchInput = document.getElementById('searchInput');
+            //         if (searchInput) {
+            //             searchInput.value = item.dataset.example;
+            //         }
+            //     });
+            // });
 
             // Enter key handling
             const searchInput = document.getElementById('searchInput');
@@ -1100,18 +1141,18 @@
                     if (e.key === 'Enter' && !isLoading) {
                         const input = searchInput.value.trim();
                         if (input) {
-                            const heraldsGrid = document.querySelector('.heralds-grid');
-                            if (heraldsGrid) {
-                                heraldsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            const heraldsSection = document.querySelector('.heralds-section');
+                            if (heraldsSection) {
+                                heraldsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }
                         }
                     }
                 });
             }
 
-            console.log('🏛️ Heralds Courtyard initialized - Ancient Voices, Living Word');
-            console.log('✝️ Jesus Quote System: Contextually relevant Scripture integration');
-            console.log('🎯 Test with: "peace", "forgiveness", "John 3:16", "worried about future"');
+            console.log('🏛️ Agora initialized - Ancient Voices, Living Word');
+            console.log('👥 6 Biblical Heralds ready to serve (Luke reserved for Lyceum)');
+            console.log('🎯 Clean, focused landing page complete');
         });
     </script>
 </body>
