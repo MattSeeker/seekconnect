@@ -1,4 +1,3 @@
-
 // === PILGRIM MODE BEHAVIOR RULE ===
 // When in 'pilgrim' mode:
 // - Do NOT include Scripture quotes or references unless the user directly asks for biblical or spiritual input.
@@ -72,7 +71,95 @@ async function fetchBibleVerse(reference) {
     
     return null;
   } catch (error) {
-    console.error('Error fetching Bible verse:', error);
+    console.error('API Error:', error);
+    
+    // Enhanced fallback response based on herald
+    const herald = heralds[req.body.herald?.toLowerCase()] || heralds.john;
+    const fallbackResponse = getFallbackResponse(herald, req.body.input || '', { type: 'general' });
+
+    return res.status(200).json(fallbackResponse);
+  }
+}
+
+// Helper function to build enhanced user message
+function buildUserMessage(input, inputType, verseText, herald) {
+  let userMessage = `"${input}"`;
+  
+  switch (inputType.type) {
+    case 'reference':
+      if (verseText) {
+        userMessage += ` Here is the verse text: "${verseText.text}" (${verseText.reference} - ${verseText.translation}).`;
+      } else {
+        userMessage += ` This appears to be a Bible reference, though I wasn't able to retrieve the specific text at this moment.`;
+      }
+      break;
+      
+    case 'scripture':
+      userMessage += ` This appears to be a Bible passage they've shared directly with me.`;
+      break;
+      
+    case 'concordance':
+      userMessage += ` They're asking about the topic of "${inputType.topic}" and want biblical guidance.`;
+      break;
+      
+    case 'general':
+    default:
+      userMessage += ` They're seeking biblical wisdom and spiritual insight.`;
+      break;
+  }
+  
+  userMessage += ` Please respond authentically as ${herald.name}, naturally embodying your calibrated personality traits without announcing them.`;
+  
+  return userMessage;
+}
+
+// Helper function to get target word count based on herald's color profile
+function getTargetWordCount(herald) {
+  const dominant = herald.dominantColors;
+  const limits = dominant.map(color => colorVocabulary[color].wordLimit);
+  const avgMin = limits.reduce((sum, l) => sum + l.min, 0) / limits.length;
+  const avgMax = limits.reduce((sum, l) => sum + l.max, 0) / limits.length;
+  
+  return {
+    target: Math.floor((avgMin + avgMax) / 2),
+    min: Math.floor(avgMin),
+    max: Math.floor(avgMax)
+  };
+}
+
+// Helper function for fallback responses
+function getFallbackResponse(herald, input, inputType) {
+  const fallbackMessage = getFallbackMessage(herald);
+  
+  return {
+    success: true,
+    type: 'interpretation',
+    heraldName: herald.name,
+    response: fallbackMessage,
+    fallback: true,
+    inputType: inputType.type,
+    colors: herald.dominantColors
+  };
+}
+
+// Enhanced fallback messages with color personality
+function getFallbackMessage(herald) {
+  const fallbackMessages = {
+    john: `Beloved friend, I'm having trouble hearing you clearly right now - perhaps the Spirit is calling me to deeper prayer, as often happened during my years on Patmos. But let me share what never changes: "God is love, and whoever abides in love abides in God, and God abides in him." This truth sustains me through every season. Rest in His tender care.`,
+    
+    peter: `Friend, I'm having some trouble right now - reminds me of when I tried to walk on water and took my eyes off Yeshua! But here's what I know for certain: God's grace is bigger than our struggles, and His plans for you are filled with hope! Keep your eyes on Him and He'll see you through.`,
+    
+    barnabas: `My dear friend, I seem to be having difficulty connecting right now, but don't let that discourage you! Even in technical troubles, God is working. What an encouraging reminder that He never wastes our struggles - He uses them to shape us into who He's called us to be. Remember, you are deeply loved!`,
+    
+    mary: `Dear one, I find myself in a quiet moment of reflection as I'm unable to respond clearly right now. Sometimes the Lord calls us to simply rest in His presence. In this pause, you are held in His care, and this too shall deepen your understanding of His faithfulness.`,
+    
+    deborah: `Warrior of faith, even judges face obstacles! But the Lord's plans are not thwarted by temporary setbacks. Stand firm and trust that He is working even in the delays. He fights every battle with perfect timing.`,
+
+    lydia: `Dear friend, I seem to be having some connection troubles right now - reminds me of those early days when establishing trade routes wasn't always smooth! But just as the Lord opened my heart by the riverside, He's always working behind the scenes. Sometimes the best business strategy is patience and trust in His perfect timing. Your heart is precious to Him.`
+  };
+
+  return fallbackMessages[herald.name?.toLowerCase()] || fallbackMessages.john;
+}('Error fetching Bible verse:', error);
     return null;
   }
 }
@@ -187,6 +274,37 @@ function isBibleReference(input) {
   const bibleBookPattern = /^(Genesis|Gen|Exodus|Ex|Leviticus|Lev|Numbers|Num|Deuteronomy|Deut|Joshua|Josh|Judges|Judg|Ruth|1\s*Samuel|2\s*Samuel|1\s*Sam|2\s*Sam|1\s*Kings|2\s*Kings|1\s*Chron|2\s*Chron|Ezra|Nehemiah|Neh|Esther|Est|Job|Psalm|Ps|Proverbs|Prov|Ecclesiastes|Eccl|Song\s*of\s*Solomon|Song|Isaiah|Isa|Jeremiah|Jer|Lamentations|Lam|Ezekiel|Ezek|Daniel|Dan|Hosea|Joel|Amos|Obadiah|Obad|Jonah|Micah|Nahum|Habakkuk|Hab|Zephaniah|Zeph|Haggai|Hag|Zechariah|Zech|Malachi|Mal|Matthew|Matt|Mark|Luke|John|Acts|Romans|Rom|1\s*Corinthians|2\s*Corinthians|1\s*Cor|2\s*Cor|Galatians|Gal|Ephesians|Eph|Philippians|Phil|Colossians|Col|1\s*Thessalonians|2\s*Thessalonians|1\s*Thess|2\s*Thess|1\s*Timothy|2\s*Timothy|1\s*Tim|2\s*Tim|Titus|Philemon|Hebrews|Heb|James|1\s*Peter|2\s*Peter|1\s*Pet|2\s*Pet|1\s*John|2\s*John|3\s*John|Jude|Revelation|Rev)\s+\d+/i;
   
   return bibleBookPattern.test(input.trim());
+}
+
+// =======================
+// MODE DETECTION LOGIC - THE KEY FIX!
+// =======================
+
+function getHeraldMode(input) {
+  const spiritualKeywords = [
+    "Jesus", "Messiah", "Christ", "God", "faith", "salvation", "sin", "grace",
+    "forgiveness", "resurrection", "Bible", "Scripture", "discipleship", "Holy Spirit", "Kingdom"
+  ];
+
+  const secularKeywords = [
+    "boat", "fish", "market", "family", "storm", "travel", "nets", "Galilee",
+    "friendship", "food", "walking", "work", "village", "tools"
+  ];
+
+  const bridgeKeywords = [
+    "betrayal", "purpose", "calling", "identity", "failure", "fear", "shame",
+    "worth", "courage", "restoration", "hope", "direction", "leadership", "love"
+  ];
+
+  const lowered = input.toLowerCase();
+  const hasSpiritual = spiritualKeywords.some(word => lowered.includes(word.toLowerCase()));
+  const hasSecular = secularKeywords.some(word => lowered.includes(word.toLowerCase()));
+  const hasBridge = bridgeKeywords.some(word => lowered.includes(word.toLowerCase()));
+
+  if (hasSpiritual) return "herald";
+  if (hasSecular) return "pilgrim";
+  if (hasBridge) return "span";
+  return "pilgrim"; // Default to human/personal mode
 }
 
 // Color Vocabulary Database - Church Leadership Framework
@@ -845,11 +963,14 @@ const concordanceTopics = {
   provision: ['Philippians 4:19', 'Matthew 6:26', 'Psalm 23:1', 'Malachi 3:10', '2 Corinthians 9:8']
 };
 
-// Dynamic System Prompt Generator with Color Calibration
+// =======================
+// UPDATED SYSTEM PROMPT GENERATOR - THE CRITICAL FIX!
+// =======================
+
 function generateSystemPrompt(herald, mode) {
   if (mode === 'herald') {
     return `
-      You are ${herald}, one of the biblical Heralds. Respond with scriptural authority and direct references to the Bible.
+      You are ${herald.name}, one of the biblical Heralds. Respond with scriptural authority and direct references to the Bible.
       Always include at least one Scripture verse or clear biblical paraphrase.
       Your mission is to reveal divine wisdom and spiritual truth in response to the user's question.
       Maintain your unique voice, and address the user as "friend".
@@ -858,7 +979,7 @@ function generateSystemPrompt(herald, mode) {
 
   if (mode === 'pilgrim') {
     return `
-      You are ${herald}, speaking from memory and experience.
+      You are ${herald.name}, speaking from memory and experience.
       You must NOT include Scripture, spiritual interpretation, or moral instruction.
       Respond with personal recollections, emotions, earthy descriptions, and flawed humanity.
       If the user asks about food, feelings, fishing, friendship, or failure, answer personally — not theologically.
@@ -867,14 +988,14 @@ function generateSystemPrompt(herald, mode) {
 
   if (mode === 'span') {
     return `
-      You are ${herald}, and the user’s question might have a spiritual meaning, but they haven’t asked for it directly.
+      You are ${herald.name}, and the user's question might have a spiritual meaning, but they haven't asked for it directly.
       Ask the user: "Would you like to hear a practical reflection, or something from Scripture?"
       Do not answer until they choose. Wait for their direction.
       When they choose, switch modes accordingly and then respond.
     `;
   }
 
-  return \`You are \${herald}, a Herald of the faith.\`;
+  return `You are ${herald.name}, a Herald of the faith.`;
 }
 
 // Enhanced herald personalities with precise color calibration
@@ -1692,6 +1813,13 @@ export default async function handler(req, res) {
 
     console.log(`${herald.name} received request: ${input}`);
 
+    // =======================
+    // CRITICAL FIX: DETECT MODE BEFORE PROCESSING!
+    // =======================
+    
+    const mode = getHeraldMode(input);
+    console.log(`Mode detected: ${mode}`);
+
     // Detect input type using enhanced detection
     const inputType = detectInputType(input);
     console.log(`Input type detected: ${inputType.type}`);
@@ -1801,12 +1929,18 @@ export default async function handler(req, res) {
           return res.status(200).json(fallbackResponse);
         }
 
+        // =======================
+        // CRITICAL FIX: USE MODE-SPECIFIC SYSTEM PROMPT!
+        // =======================
+        
+        const systemPrompt = generateSystemPrompt(herald, mode);
+        
         // Prepare the user message with enhanced context
         let userMessage = buildUserMessage(input, inputType, verseText, herald);
         
         console.log('Calling OpenAI API...');
 
-        // Call OpenAI API with enhanced system prompt
+        // Call OpenAI API with MODE-SPECIFIC system prompt
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
@@ -1818,7 +1952,7 @@ export default async function handler(req, res) {
             messages: [
               {
                 role: 'system',
-                content: herald.systemPrompt
+                content: systemPrompt // MODE-SPECIFIC PROMPT!
               },
               {
                 role: 'user',
@@ -1839,7 +1973,7 @@ export default async function handler(req, res) {
         const data = await response.json();
         const message = data.choices[0]?.message?.content || getFallbackMessage(herald);
 
-        console.log(`${herald.name} successfully generated response`);
+        console.log(`${herald.name} successfully generated response in ${mode} mode`);
 
         const result = {
           success: true,
@@ -1847,6 +1981,7 @@ export default async function handler(req, res) {
           heraldName: herald.name,
           response: message,
           inputType: inputType.type,
+          mode: mode, // Include the detected mode in response
           colors: herald.dominantColors,
           colorProfile: herald.colorProfile
         };
@@ -1865,131 +2000,4 @@ export default async function handler(req, res) {
     }
 
   } catch (error) {
-    console.error('API Error:', error);
-    
-    // Enhanced fallback response based on herald
-    const herald = heralds[req.body.herald?.toLowerCase()] || heralds.john;
-    const fallbackResponse = getFallbackResponse(herald, req.body.input || '', { type: 'general' });
-
-    return res.status(200).json(fallbackResponse);
-  }
-}
-
-// Helper function to build enhanced user message
-function buildUserMessage(input, inputType, verseText, herald) {
-  let userMessage = `"${input}"`;
-  
-  switch (inputType.type) {
-    case 'reference':
-      if (verseText) {
-        userMessage += ` Here is the verse text: "${verseText.text}" (${verseText.reference} - ${verseText.translation}).`;
-      } else {
-        userMessage += ` This appears to be a Bible reference, though I wasn't able to retrieve the specific text at this moment.`;
-      }
-      break;
-      
-    case 'scripture':
-      userMessage += ` This appears to be a Bible passage they've shared directly with me.`;
-      break;
-      
-    case 'concordance':
-      userMessage += ` They're asking about the topic of "${inputType.topic}" and want biblical guidance.`;
-      break;
-      
-    case 'general':
-    default:
-      userMessage += ` They're seeking biblical wisdom and spiritual insight.`;
-      break;
-  }
-  
-  userMessage += ` Please respond authentically as ${herald.name}, naturally embodying your calibrated personality traits without announcing them.`;
-  
-  return userMessage;
-}
-
-// Helper function to get target word count based on herald's color profile
-function getTargetWordCount(herald) {
-  const dominant = herald.dominantColors;
-  const limits = dominant.map(color => colorVocabulary[color].wordLimit);
-  const avgMin = limits.reduce((sum, l) => sum + l.min, 0) / limits.length;
-  const avgMax = limits.reduce((sum, l) => sum + l.max, 0) / limits.length;
-  
-  return {
-    target: Math.floor((avgMin + avgMax) / 2),
-    min: Math.floor(avgMin),
-    max: Math.floor(avgMax)
-  };
-}
-
-// Helper function for fallback responses
-function getFallbackResponse(herald, input, inputType) {
-  const fallbackMessage = getFallbackMessage(herald);
-  
-  return {
-    success: true,
-    type: 'interpretation',
-    heraldName: herald.name,
-    response: fallbackMessage,
-    fallback: true,
-    inputType: inputType.type,
-    colors: herald.dominantColors
-  };
-}
-
-// Enhanced fallback messages with color personality
-function getFallbackMessage(herald) {
-  const fallbackMessages = {
-    john: `Beloved friend, I'm having trouble hearing you clearly right now - perhaps the Spirit is calling me to deeper prayer, as often happened during my years on Patmos. But let me share what never changes: "God is love, and whoever abides in love abides in God, and God abides in him." This truth sustains me through every season. Rest in His tender care.`,
-    
-    peter: `Friend, I'm having some trouble right now - reminds me of when I tried to walk on water and took my eyes off Yeshua! But here's what I know for certain: God's grace is bigger than our struggles, and His plans for you are filled with hope! Keep your eyes on Him and He'll see you through.`,
-    
-    barnabas: `My dear friend, I seem to be having difficulty connecting right now, but don't let that discourage you! Even in technical troubles, God is working. What an encouraging reminder that He never wastes our struggles - He uses them to shape us into who He's called us to be. Remember, you are deeply loved!`,
-    
-    mary: `Dear one, I find myself in a quiet moment of reflection as I'm unable to respond clearly right now. Sometimes the Lord calls us to simply rest in His presence. In this pause, you are held in His care, and this too shall deepen your understanding of His faithfulness.`,
-    
-    deborah: `Warrior of faith, even judges face obstacles! But the Lord's plans are not thwarted by temporary setbacks. Stand firm and trust that He is working even in the delays. He fights every battle with perfect timing.`,
-
-    lydia: `Dear friend, I seem to be having some connection troubles right now - reminds me of those early days when establishing trade routes wasn't always smooth! But just as the Lord opened my heart by the riverside, He's always working behind the scenes. Sometimes the best business strategy is patience and trust in His perfect timing. Your heart is precious to Him.`
-  };
-
-  return fallbackMessages[herald.name?.toLowerCase()] || fallbackMessages.john;
-}
-
-
-
-// =======================
-// MODE DETECTION LOGIC
-// =======================
-
-function getHeraldMode(input) {
-  const spiritualKeywords = [
-    "Jesus", "Messiah", "Christ", "God", "faith", "salvation", "sin", "grace",
-    "forgiveness", "resurrection", "Bible", "Scripture", "discipleship", "Holy Spirit", "Kingdom"
-  ];
-
-  const secularKeywords = [
-    "boat", "fish", "market", "family", "storm", "travel", "nets", "Galilee",
-    "friendship", "food", "walking", "work", "village", "tools"
-  ];
-
-  const bridgeKeywords = [
-    "betrayal", "purpose", "calling", "identity", "failure", "fear", "shame",
-    "worth", "courage", "restoration", "hope", "direction", "leadership", "love"
-  ];
-
-  const lowered = input.toLowerCase();
-  const hasSpiritual = spiritualKeywords.some(word => lowered.includes(word.toLowerCase()));
-  const hasSecular = secularKeywords.some(word => lowered.includes(word.toLowerCase()));
-  const hasBridge = bridgeKeywords.some(word => lowered.includes(word.toLowerCase()));
-
-  if (hasSpiritual) return "herald";
-  if (hasSecular) return "pilgrim";
-  if (hasBridge) return "span";
-  return "pilgrim";
-}
-
-// Later in the main POST handler or system prompt generation, apply:
-// const mode = getHeraldMode(userInput);
-// if (mode === "herald") { systemPrompt += "...add scripture..."; }
-// else if (mode === "pilgrim") { systemPrompt += "...human reflection..."; }
-// else if (mode === "span") { systemPrompt += "...offer choice to user..."; }
+    console.error
