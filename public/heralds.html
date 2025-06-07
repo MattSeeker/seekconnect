@@ -512,6 +512,30 @@
             font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
+        .recommendation-banner {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .recommendation-text {
+            color: #065f46;
+            margin-bottom: 0.5rem;
+        }
+
+        .try-herald-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
         .loading {
             display: flex;
             align-items: center;
@@ -1112,6 +1136,120 @@
     </footer>
 
     <script>
+        // ===== JESUS QUOTE CALIBRATION SYSTEM =====
+        const jesusQuotes = {
+            love: [
+                { text: "A new command I give you: Love one another. As I have loved you, so you must love one another.", reference: "John 13:34" },
+                { text: "Greater love has no one than this: to lay down one's life for one's friends.", reference: "John 15:13" },
+                { text: "Love your enemies and pray for those who persecute you.", reference: "Matthew 5:44" }
+            ],
+            
+            peace: [
+                { text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.", reference: "John 14:27" },
+                { text: "Blessed are the peacemakers, for they will be called children of God.", reference: "Matthew 5:9" },
+                { text: "In this world you will have trouble. But take heart! I have overcome the world.", reference: "John 16:33" }
+            ],
+            
+            faith: [
+                { text: "Truly I tell you, if you have faith as small as a mustard seed, you can say to this mountain, 'Move from here to there,' and it will move. Nothing will be impossible for you.", reference: "Matthew 17:20" },
+                { text: "Have faith in God.", reference: "Mark 11:22" },
+                { text: "Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.", reference: "John 20:29" }
+            ],
+            
+            forgiveness: [
+                { text: "Father, forgive them, for they do not know what they are doing.", reference: "Luke 23:34" },
+                { text: "If you forgive other people when they sin against you, your heavenly Father will also forgive you.", reference: "Matthew 6:14" },
+                { text: "Be merciful, just as your Father is merciful.", reference: "Luke 6:36" }
+            ],
+            
+            prayer: [
+                { text: "This, then, is how you should pray: 'Our Father in heaven, hallowed be your name...'", reference: "Matthew 6:9" },
+                { text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.", reference: "Matthew 7:7" },
+                { text: "And when you pray, do not be like the hypocrites, for they love to pray standing in the synagogues and on the street corners to be seen by others.", reference: "Matthew 6:5" }
+            ],
+            
+            salvation: [
+                { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", reference: "John 3:16" },
+                { text: "I am the way and the truth and the life. No one comes to the Father except through me.", reference: "John 14:6" },
+                { text: "Come to me, all you who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28" }
+            ],
+            
+            discipleship: [
+                { text: "If anyone would come after me, let him deny himself and take up his cross and follow me.", reference: "Matthew 16:24" },
+                { text: "By this everyone will know that you are my disciples, if you love one another.", reference: "John 13:35" },
+                { text: "Go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.", reference: "Matthew 28:19" }
+            ],
+            
+            worry: [
+                { text: "Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.", reference: "Matthew 6:34" },
+                { text: "Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they?", reference: "Matthew 6:26" },
+                { text: "Who of you by worrying can add a single hour to your life?", reference: "Matthew 6:27" }
+            ],
+            
+            general: [
+                { text: "I have come that they may have life, and have it abundantly.", reference: "John 10:10" },
+                { text: "Heaven and earth will pass away, but my words will never pass away.", reference: "Matthew 24:35" },
+                { text: "Blessed are the poor in spirit, for theirs is the kingdom of heaven.", reference: "Matthew 5:3" }
+            ]
+        };
+
+        // ===== JESUS QUOTE RELEVANCE DETECTION =====
+        function detectJesusQuoteRelevance(userInput, heraldResponse) {
+            const input = userInput.toLowerCase();
+            const response = heraldResponse.toLowerCase();
+            
+            const contextKeywords = {
+                love: ['love', 'loving', 'romance', 'relationship', 'marriage', 'family'],
+                peace: ['peace', 'anxiety', 'worry', 'stress', 'calm', 'rest', 'troubled'],
+                faith: ['faith', 'believe', 'trust', 'doubt', 'impossible', 'miracle'],
+                forgiveness: ['forgive', 'forgiveness', 'hurt', 'angry', 'resentment', 'mercy'],
+                prayer: ['pray', 'prayer', 'praying', 'ask god', 'talk to god'],
+                salvation: ['saved', 'salvation', 'eternal life', 'heaven', 'born again'],
+                discipleship: ['follow', 'disciple', 'christian life', 'obey', 'serve'],
+                worry: ['worry', 'anxious', 'fear', 'afraid', 'stressed', 'overwhelmed'],
+                general: ['jesus', 'christ', 'lord', 'savior', 'son of god']
+            };
+            
+            // Check if input or expected response contains relevant keywords
+            for (const [category, keywords] of Object.entries(contextKeywords)) {
+                for (const keyword of keywords) {
+                    if (input.includes(keyword) || response.includes(keyword)) {
+                        return category;
+                    }
+                }
+            }
+            
+            // Check for Bible references that Jesus spoke
+            const jesusVersePatterns = [
+                /john (3|14|15|16|17)/, /matthew (5|6|7|11|16|28)/, 
+                /luke (6|23)/, /mark (11|16)/
+            ];
+            
+            for (const pattern of jesusVersePatterns) {
+                if (pattern.test(input)) {
+                    return 'general';
+                }
+            }
+            
+            return null; // No Jesus quote needed
+        }
+
+        // ===== GET CONTEXTUAL JESUS QUOTE =====
+        function getContextualJesusQuote(category) {
+            if (!category || !jesusQuotes[category]) {
+                return null;
+            }
+            
+            const quotes = jesusQuotes[category];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            return {
+                text: randomQuote.text,
+                reference: randomQuote.reference,
+                formatted: `As our Lord Jesus said: "${randomQuote.text}" (${randomQuote.reference})`
+            };
+        }
+
         // ===== ENHANCED HERALD INTERACTION SYSTEM =====
         let selectedHerald = 'john';
         let isLoading = false;
@@ -1120,127 +1258,72 @@
             interactions: []
         };
 
-        // Herald personalities (now including 7 heralds)
+        // Herald personalities
         const heralds = {
             john: {
                 name: 'John',
                 subtitle: 'The Beloved Disciple',
                 colorProfile: { green: 9.0, blue: 7.5, red: 2.0, yellow: 6.0 },
-                addressTerm: 'beloved',
-                baseWordLimit: { min: 180, max: 230 }
+                addressTerm: 'beloved'
             },
             peter: {
                 name: 'Peter', 
                 subtitle: 'The Bold Fisherman',
                 colorProfile: { red: 9.5, yellow: 8.0, green: 5.5, blue: 3.0 },
-                addressTerm: 'friend',
-                baseWordLimit: { min: 200, max: 250 }
+                addressTerm: 'friend'
             },
             barnabas: {
                 name: 'Barnabas',
                 subtitle: 'Son of Encouragement', 
                 colorProfile: { green: 9.0, yellow: 8.5, blue: 4.0, red: 2.5 },
-                addressTerm: 'dear friend',
-                baseWordLimit: { min: 190, max: 240 }
+                addressTerm: 'dear friend'
             },
             mary: {
                 name: 'Mary of Bethany',
                 subtitle: 'The Contemplative Learner',
                 colorProfile: { blue: 9.0, green: 7.5, yellow: 3.5, red: 1.5 },
-                addressTerm: 'dear one',
-                baseWordLimit: { min: 170, max: 220 }
+                addressTerm: 'dear one'
             },
             deborah: {
                 name: 'Deborah',
                 subtitle: 'Judge and Prophetess',
                 colorProfile: { red: 8.5, blue: 8.0, green: 4.5, yellow: 3.0 },
-                addressTerm: 'faithful one',
-                baseWordLimit: { min: 185, max: 235 }
+                addressTerm: 'faithful one'
             },
             lydia: {
                 name: 'Lydia',
                 subtitle: 'The Hospitable Merchant',
                 colorProfile: { yellow: 8.0, green: 7.5, blue: 6.0, red: 4.0 },
-                addressTerm: 'dear sister',
-                baseWordLimit: { min: 195, max: 245 }
+                addressTerm: 'dear sister'
             }
         };
 
-        // ===== INPUT DETECTION WITH SLIDING SCALE =====
+        // ===== ENHANCED INPUT DETECTION =====
         function detectInputType(input) {
             const trimmed = input.trim().toLowerCase();
-            const verseCount = countVerses(input);
             
             // Bible reference pattern
             const biblePattern = /^(Genesis|Gen|Exodus|Ex|Leviticus|Lev|Numbers|Num|Deuteronomy|Deut|Joshua|Josh|Judges|Judg|Ruth|1\s*Samuel|2\s*Samuel|1\s*Sam|2\s*Sam|1\s*Kings|2\s*Kings|1\s*Chron|2\s*Chron|Ezra|Nehemiah|Neh|Esther|Est|Job|Psalm|Ps|Proverbs|Prov|Ecclesiastes|Eccl|Song\s*of\s*Solomon|Song|Isaiah|Isa|Jeremiah|Jer|Lamentations|Lam|Ezekiel|Ezek|Daniel|Dan|Hosea|Joel|Amos|Obadiah|Obad|Jonah|Micah|Nahum|Habakkuk|Hab|Zephaniah|Zeph|Haggai|Hag|Zechariah|Zech|Malachi|Mal|Matthew|Matt|Mark|Luke|John|Acts|Romans|Rom|1\s*Corinthians|2\s*Corinthians|1\s*Cor|2\s*Cor|Galatians|Gal|Ephesians|Eph|Philippians|Phil|Colossians|Col|1\s*Thessalonians|2\s*Thessalonians|1\s*Thess|2\s*Thess|1\s*Timothy|2\s*Timothy|1\s*Tim|2\s*Tim|Titus|Philemon|Hebrews|Heb|James|1\s*Peter|2\s*Peter|1\s*Pet|2\s*Pet|1\s*John|2\s*John|3\s*John|Jude|Revelation|Rev)\s+\d+/i;
             
             if (biblePattern.test(input.trim())) {
-                return { 
-                    type: 'reference', 
-                    reference: input.trim(),
-                    complexity: verseCount > 1 ? 'multi-verse' : 'single-verse'
-                };
+                return { type: 'reference', reference: input.trim() };
             }
             
             // Common spiritual topics
             const topics = ['love', 'faith', 'prayer', 'hope', 'peace', 'wisdom', 'strength', 'forgiveness', 'courage', 'grace', 'joy', 'humility', 'patience', 'kindness', 'trust', 'protection', 'guidance', 'comfort', 'healing', 'provision'];
             for (const topic of topics) {
                 if (trimmed.includes(topic) && input.length < 100) {
-                    return { 
-                        type: 'topic', 
-                        topic: topic, 
-                        query: input.trim(),
-                        complexity: 'simple'
-                    };
+                    return { type: 'topic', topic: topic, query: input.trim() };
                 }
             }
             
             // Direct scripture (longer text)
             if (input.length > 50) {
-                return { 
-                    type: 'scripture', 
-                    text: input.trim(),
-                    complexity: input.length > 200 ? 'extended' : 'moderate'
-                };
+                return { type: 'scripture', text: input.trim() };
             }
             
             // Default to general query
-            return { 
-                type: 'general', 
-                query: input.trim(),
-                complexity: input.length > 100 ? 'complex' : 'simple'
-            };
-        }
-
-        function countVerses(input) {
-            const versePattern = /\d+:\d+/g;
-            const matches = input.match(versePattern);
-            return matches ? matches.length : 1;
-        }
-
-        function calculateWordLimit(herald, inputType) {
-            const base = herald.baseWordLimit;
-            let multiplier = 1;
-            
-            switch(inputType.complexity) {
-                case 'multi-verse':
-                case 'extended':
-                    multiplier = 1.5;
-                    break;
-                case 'complex':
-                case 'moderate':
-                    multiplier = 1.2;
-                    break;
-                case 'simple':
-                default:
-                    multiplier = 1;
-                    break;
-            }
-            
-            return {
-                min: Math.floor(base.min * multiplier),
-                max: Math.floor(base.max * multiplier)
-            };
+            return { type: 'general', query: input.trim() };
         }
 
         // ===== MAIN HERALD INTERACTION FUNCTION =====
@@ -1256,10 +1339,9 @@
             const responseSection = document.getElementById('responseSection');
             const herald = heralds[selectedHerald];
             
-            // Detect input type with complexity analysis
+            // Detect input type
             const inputType = detectInputType(input);
-            const wordLimit = calculateWordLimit(herald, inputType);
-            console.log('Input type detected:', inputType, 'Word limit:', wordLimit);
+            console.log('Input type detected:', inputType);
             
             // Set loading state
             isLoading = true;
@@ -1269,16 +1351,40 @@
             if (responseSection) {
                 responseSection.style.display = 'block';
                 responseSection.innerHTML = getLoadingHTML(herald);
-                responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             try {
-                // Simulate herald response
-                const mockResponse = await simulateHeraldResponse(herald, input, inputType, wordLimit);
+                // Call API
+                const response = await fetch('/api/heralds', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        herald: selectedHerald,
+                        input: input,
+                        userId: userSession.userId
+                    })
+                });
+
+                const data = await response.json();
                 
-                // Display response
-                displayResponse(mockResponse);
-                
+                if (data.success) {
+                    // Check if Jesus quote is contextually relevant
+                    const jesusCategory = detectJesusQuoteRelevance(input, data.response);
+                    const jesusQuote = jesusCategory ? getContextualJesusQuote(jesusCategory) : null;
+                    
+                    // Display response with optional Jesus quote
+                    displayResponse(data, jesusQuote);
+                    
+                    // Auto-scroll to response
+                    setTimeout(() => {
+                        if (responseSection) {
+                            responseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 100);
+                    
+                } else {
+                    displayError(data.error || 'An error occurred');
+                }
             } catch (error) {
                 console.error('Error:', error);
                 displayError('Unable to connect to the herald. Please try again.');
@@ -1289,65 +1395,8 @@
             }
         }
 
-        // ===== MOCK HERALD RESPONSE =====
-        async function simulateHeraldResponse(herald, input, inputType, wordLimit) {
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000));
-            
-            // Generate response based on herald personality
-            let response = `${herald.addressTerm}, I see you've brought `;
-            
-            switch(inputType.type) {
-                case 'reference':
-                    response += `a beautiful Scripture passage to explore. `;
-                    break;
-                case 'scripture':
-                    response += `the Word itself to examine together. `;
-                    break;
-                case 'topic':
-                    response += `a question about ${inputType.topic} - a topic close to my heart. `;
-                    break;
-                default:
-                    response += `a thoughtful question that deserves careful consideration. `;
-            }
-            
-            // Add herald-specific perspective
-            switch(herald.name.toLowerCase()) {
-                case 'john':
-                    response += `As one who walked closely with Jesus, I'm reminded of how His love transforms everything. Remember, beloved, that every verse, every question, every seeking heart is an invitation to experience God's love more deeply.`;
-                    break;
-                case 'peter':
-                    response += `You know me - I'm not one to mince words! Friend, don't be afraid to dive deep into God's Word. He's big enough to handle our questions and strong enough to hold us through the answers.`;
-                    break;
-                case 'barnabas':
-                    response += `How encouraging it is to see you seeking God's wisdom! Remember, dear friend, every step of seeking brings you closer to the heart of our loving Father.`;
-                    break;
-                case 'mary':
-                    response += `I'm drawn into contemplation by your question. Dear one, let us sit together in the presence of the Word and allow His truth to wash over our souls.`;
-                    break;
-                case 'deborah':
-                    response += `Your question calls for wisdom and discernment. Faithful one, let us seek the Lord's wisdom together and trust Him to illuminate the path forward.`;
-                    break;
-                case 'lydia':
-                    response += `As one who has experienced God's provision in business and hospitality, I understand the practical side of faith. Dear sister, let me share how God's truth applies to our daily lives and relationships.`;
-                    break;
-            }
-            
-            // Add reference verses
-            response += `\n\n*[Reference verses: ${inputType.reference || 'Psalm 119:105, 2 Timothy 3:16'} - Always verify Scripture in context]*`;
-            
-            return {
-                success: true,
-                heraldName: herald.name,
-                response: response,
-                inputType: inputType.type,
-                wordCount: response.split(' ').length,
-                wordLimit: wordLimit
-            };
-        }
-
         // ===== DISPLAY FUNCTIONS =====
-        function displayResponse(data) {
+        function displayResponse(data, jesusQuote = null) {
             const responseSection = document.getElementById('responseSection');
             if (!responseSection) return;
             
@@ -1361,8 +1410,46 @@
                         <p>${herald.subtitle}</p>
                     </div>
                 </div>
-                <div class="response-text">${formatText(data.response)}</div>
             `;
+            
+            // Add verse display if available
+            if (data.verseText) {
+                content += `
+                    <div class="verse-display">
+                        <div class="verse-text">"${data.verseText.text}"</div>
+                        <div class="verse-reference">${data.verseText.reference} (${data.verseText.translation})</div>
+                    </div>
+                `;
+            }
+            
+            // Add Jesus quote if contextually relevant
+            if (jesusQuote) {
+                content += `
+                    <div class="jesus-quote-section">
+                        <div class="jesus-quote-header">
+                            <span class="jesus-icon">✝️</span>
+                            <span>The Words of Jesus</span>
+                        </div>
+                        <div class="jesus-quote-text">"${jesusQuote.text}"</div>
+                        <div class="jesus-quote-reference">— ${jesusQuote.reference}</div>
+                    </div>
+                `;
+            }
+            
+            // Add herald response
+            content += `<div class="response-text">${formatText(data.response)}</div>`;
+            
+            // Add recommendation if present
+            if (data.recommendation) {
+                content += `
+                    <div class="recommendation-banner">
+                        <div class="recommendation-text">${data.recommendation.message}</div>
+                        <button class="try-herald-btn" onclick="switchToHerald('${data.recommendation.recommendedHerald}')">
+                            Try ${getHeraldInfo(data.recommendation.recommendedHerald).name}
+                        </button>
+                    </div>
+                `;
+            }
 
             responseSection.innerHTML = content;
         }
@@ -1376,7 +1463,7 @@
                         <p>${herald.subtitle}</p>
                     </div>
                 </div>
-                <div class="loading" style="padding: 3rem;">
+                <div class="loading" style="justify-content: center; padding: 2rem;">
                     <div class="spinner"></div>
                     <span>${herald.name} is contemplating your query...</span>
                 </div>
@@ -1386,11 +1473,9 @@
         function updateLoadingState(loading) {
             document.querySelectorAll('.herald-submit-btn').forEach(btn => {
                 btn.disabled = loading;
-                if (loading) {
-                    btn.innerHTML = '<div class="loading"><div class="spinner"></div>Seeking...</div>';
-                } else {
-                    btn.innerHTML = 'Seek Wisdom';
-                }
+                btn.innerHTML = loading ? 
+                    '<div class="loading"><div class="spinner"></div>Seeking wisdom...</div>' : 
+                    'Seek Wisdom';
             });
         }
 
@@ -1412,8 +1497,28 @@
             }
         }
 
+        // ===== UTILITY FUNCTIONS =====
         function formatText(text) {
             return text.replace(/\n/g, '<br>').replace(/\*\[(.*?)\]\*/g, '<em style="color: #667eea;">$1</em>');
+        }
+
+        function getHeraldInfo(heraldName) {
+            return heralds[heraldName.toLowerCase()] || heralds.john;
+        }
+
+        function switchToHerald(heraldName) {
+            selectedHerald = heraldName;
+            
+            // Update visual selection
+            document.querySelectorAll('.herald-card').forEach(card => {
+                card.classList.remove('selected');
+                if (card.dataset.herald === heraldName) {
+                    card.classList.add('selected');
+                }
+            });
+            
+            // Re-ask with new herald
+            askHerald();
         }
 
         // ===== INITIALIZATION =====
@@ -1521,9 +1626,9 @@
                 });
             }
 
-            console.log('🏛️ Agora initialized - Ancient Voices, Living Word');
-            console.log('👥 6 Biblical Heralds ready to serve (Luke reserved for Lyceum)');
-            console.log('🎯 Clean, focused landing page complete');
+            console.log('🏛️ The Agora initialized - Ancient Voices, Living Word');
+            console.log('✝️ Jesus Quote System: Contextually relevant Scripture integration');
+            console.log('🎯 Test with: "peace", "forgiveness", "John 3:16", "worried about future"');
         });
     </script>
 </body>
