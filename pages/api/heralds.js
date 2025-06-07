@@ -1,3 +1,12 @@
+
+// === PILGRIM MODE BEHAVIOR RULE ===
+// When in 'pilgrim' mode:
+// - Do NOT include Scripture quotes or references unless the user directly asks for biblical or spiritual input.
+// - Do NOT offer life advice, sermons, or prescriptive action unless prompted.
+// - Respond with earthy, emotional, personal, or practical stories from lived experience.
+// - Be flawed, human, and honest — not abstract or theological.
+// ===================================
+
 // pages/api/heralds.js
 // Biblical Heralds API - Complete Working System for God's Glory
 // Enhanced with Names of God Database + Sophisticated Color Psychology
