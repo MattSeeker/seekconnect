@@ -26,6 +26,8 @@
 
 ## 👥 THE 5 HERALDS SYSTEM (FULLY FUNCTIONAL)
 
+06/07 Update:  6 Heralds including Lydia, one more coming soon.   
+
 ### 1. John (The Beloved Disciple) ✅
 - **Colors**: Green (gentle care) + Blue (thoughtful reflection)
 - **Hebrew**: Yochanan (יוחנן) = "God is gracious"
@@ -284,8 +286,165 @@ Response: { success: boolean, type: string, response: string, ... }
 ```
 OPENAI_API_KEY=sk-...  // Required for AI responses
 ```
+# Claude Cornerstones - Heralds Project Summary
+
+## 🏛️ **Project Overview**
+
+**Heralds** is a Biblical character interaction application where users can engage with carefully crafted personalities representing Biblical figures. The app provides contextual Scripture wisdom and helps users grow closer to authentic Biblical understanding.
+
+### **Core Concept:**
+- **The Agora**: Central meeting place (like ancient Greek city centers)
+- **6 Biblical Heralds** ready to provide unique perspectives on Scripture
+- **Contextual Jesus Quotes** for relevant spiritual topics
+- **Real API Integration** for authentic herald responses
+
+## 📁 **Current File Status**
+
+### **Working Production File:**
+- **heralds(3).html** - Current production version with API functionality restored
+- Contains all manual customizations and responsive design
+- Has real API calls to `/api/heralds` endpoint
+- Includes Jesus quotes system for contextual Scripture
+
+### **File History:**
+- **heralds(1).html** - Original backup with working API (reference only)
+- **heralds(2).html** - Updated responsive version (replaced by heralds(3))
+- **heralds(3).html** - Current version with all improvements
+
+## ⚙️ **Technical Implementation**
+
+### **API Functionality:**
+```javascript
+// Real API call structure
+fetch('/api/heralds', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        herald: selectedHerald,
+        input: input,
+        userId: userSession.userId
+    })
+});
+```
+
+### **Jesus Quotes System:**
+- **9 Categories**: love, peace, faith, forgiveness, prayer, salvation, discipleship, worry, general
+- **Contextual Detection**: Only shows when relevant to user input
+- **Scripture References**: All quotes include Gospel citations
+
+### **Responsive Design:**
+- **Hamburger Menu**: Mobile navigation (≤768px screens)
+- **Fluid Typography**: `clamp()` functions for scalable text
+- **Flexible Grid**: Herald cards adapt to screen size
+- **Touch Optimizations**: Mobile-specific interactions
+
+## 🎭 **Herald Characters**
+
+### **Current Lineup (In Order):**
+1. **Peter** - The Bold Fisherman (Red theme)
+2. **Mary of Bethany** - The Contemplative Learner (Blue theme)
+3. **John** - The Beloved Disciple (Green theme)
+4. **Lydia** - The Hospitable Merchant (Yellow theme)
+5. **Barnabas** - Son of Encouragement (Lime theme)
+6. **Deborah** - Judge and Prophetess (Purple theme)
+7. **Coming Soon** - 7th Herald (Mystery)
+
+### **Herald Data Structure:**
+```javascript
+const heralds = {
+    peter: {
+        name: 'Peter',
+        subtitle: 'The Bold Fisherman',
+        colorProfile: { red: 9.5, yellow: 8.0, green: 5.5, blue: 3.0 },
+        addressTerm: 'friend'
+    }
+    // ... other heralds
+};
+```
+
+## 🎨 **Custom Design Elements**
+
+### **Header:**
+- **Large Logo**: 240x240px (custom size)
+- **Title**: "The Agora" (custom text)
+- **Description**: Custom welcome message about ancient Greek meeting places
+
+### **Input Section:**
+- **Custom Instructions**: Specific examples like "Genesis 1:1" and "Gen 1:1"
+- **No Examples Grid**: Intentionally removed for cleaner design
+- **Focus on Scripture**: Emphasizes Bible verse and reference input
+
+### **Styling Choices:**
+- **Purple/Blue Gradient**: Primary brand colors
+- **Hebrew Names**: Each herald shows original name meaning
+- **Modern Responsive**: Works on all device sizes
+- **Accessibility**: Reduced motion support, dark mode compatibility
+
+## 🔧 **Working Functionality**
+
+### ✅ **What Works:**
+- Real API calls to herald backend
+- Contextual Jesus quotes (9 categories)
+- Mobile hamburger navigation
+- Herald selection and switching
+- Loading states and error handling
+- Responsive design across all screen sizes
+- Herald personality system
+
+### ⚠️ **Dependencies:**
+- Requires `/api/heralds` endpoint to be running
+- Needs `HLogo.png` image file in same directory
+- JavaScript enabled for full functionality
+
+## 📱 **Mobile Optimizations**
+
+### **Navigation:**
+- Hamburger menu slides in from right
+- Dark overlay when menu open
+- Touch-friendly tap targets
+- Auto-closes on link click or resize
+
+### **Layout:**
+- Single column herald grid on mobile
+- Stacked search container
+- Responsive typography scaling
+- Optimized touch interactions
+
+## 🎯 **User Journey**
+
+1. **Enter Query**: Bible verse, reference, or spiritual question
+2. **Select Herald**: Choose Biblical character for perspective
+3. **Receive Response**: Get personalized biblical wisdom
+4. **Jesus Quotes**: Contextual Scripture when relevant
+5. **Herald Switching**: Try different perspectives on same topic
+
+## 🔮 **Future Considerations**
+
+### **Potential Additions:**
+- 7th Herald completion
+- Example input section (if desired)
+- Additional Jesus quote categories
+- Enhanced mobile gestures
+- Offline functionality
+
+### **Maintenance Notes:**
+- Keep API endpoint structure intact
+- Preserve herald ordering and custom text
+- Maintain responsive breakpoints
+- Test on various devices regularly
 
 ---
+
+## 📞 **Quick Reference**
+
+**Current Status**: ✅ **Production Ready**  
+**Last Updated**: Responsive design with API functionality restored  
+**Key File**: `heralds(3).html`  
+**Dependencies**: `/api/heralds` endpoint, `HLogo.png`  
+**Mobile Ready**: ✅ Hamburger menu, responsive design  
+**API Status**: ✅ Real calls (no mock responses)
+
+*"Ancient Voices, Living Word - Heralds: where Biblical wisdom meets modern seekers."*---
 
 *This document serves as the complete reference for the Biblical Heralds platform. All features marked ✅ are fully implemented and tested. Use this as your starting point for any future development sessions.*
 
